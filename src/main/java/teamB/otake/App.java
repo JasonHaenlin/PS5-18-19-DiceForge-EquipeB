@@ -1,22 +1,22 @@
 package main.java.teamB.otake;
 
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class App {
 
     public static void main(String[] args) {
 
-        ArrayList<face> faces = new ArrayList<>();
-        face face1 = new face(1);
-        face face2 = new face(2);
-        face face3 = new face(3);
-        faces.add(face1);faces.add(face2);faces.add(face3);
-        dice des = new dice(faces);
+
+        HashMap<String, face> mymap = new HashMap<>();
+
+        for (int i = 0; i < 6; i++) {
+            mymap.put("f" + i, new face(i + 1));
+        }
+
+        dice des = new dice(mymap);
         System.out.println(des.random().getValue());
-
-
 
     }
 }

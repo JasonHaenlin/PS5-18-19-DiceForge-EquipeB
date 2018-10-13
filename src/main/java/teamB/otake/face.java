@@ -1,7 +1,7 @@
 package main.java.teamB.otake;
 
 public class face {
-    int honneur;
+    private int honneur;
 
     face(int honneur) {
         this.honneur = honneur;
