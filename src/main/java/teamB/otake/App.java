@@ -1,12 +1,6 @@
 package teamB.otake;
 
-import java.util.HashMap;
-
 import teamB.otake.diceForge.Bot;
-import teamB.otake.diceForge.Dice;
-import teamB.otake.diceForge.DiceSide;
-import teamB.otake.diceForge.Resources;
-import teamB.otake.diceForge.SimpleDiceSide;
 
 public class App {
 

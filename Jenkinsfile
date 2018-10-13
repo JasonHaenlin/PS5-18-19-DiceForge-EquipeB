@@ -21,7 +21,7 @@ pipeline {
     stage('Sonarqube') {
       agent any
       steps {
-        withSonarQubeEnv('Sonarqube_Local_poker') {
+        withSonarQubeEnv('Sonarqube_Local_diceforge') {
           sh 'mvn clean package sonar:sonar'
         }
 
