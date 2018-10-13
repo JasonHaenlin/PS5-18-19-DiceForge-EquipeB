@@ -7,20 +7,25 @@ import java.util.Random;
 
 public class Dice {
 
-    private List<Face> face = new ArrayList<>();
-    private int size;
-    private Random randDiceValue;
+    private List<DiceSide> diceSides = new ArrayList<>();
 
-    public Dice(HashMap<String, Face> faces) {
-        for (int i = 0; i < faces.size(); i++) {
-            face.add(faces.get("f" + i));
+    private int size;
+    Random rnd;
+
+    public Dice(HashMap<String, DiceSide> Side) {
+        rnd = new Random();
+        for (int i = 0; i < Side.size(); i++) {
+            diceSides.add(Side.get("f" + i));
         }
-        this.size = face.size();
-        randDiceValue = new Random();
+        this.size = diceSides.size();
     }
 
-    public Face random() {
-        return face.get(randDiceValue.nextInt(size));
+    public int random() {
+        return diceSides.get(rnd.nextInt(size)).getValue();
+    }
+
+    public String diceFaceType() {
+        return diceSides.get(rnd.nextInt(size)).getType().toString();
     }
 
 }
