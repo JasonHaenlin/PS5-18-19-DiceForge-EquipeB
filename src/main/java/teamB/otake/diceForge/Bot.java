@@ -14,19 +14,19 @@ package teamB.otake.diceForge;
 
 public class Bot {
 
-    private int nombrePointDeGloire;
+    private int victoryPoint;
     private Dice dice;
 
     /**
      * constructor
      */
-    public Bot(){
+    public Bot() {
         dice = new Dice();
-        nombrePointDeGloire = 0;
+        victoryPoint = 0;
     }
 
-    public void jouer(){
-        nombrePointDeGloire += lancer();
+    public void play() {
+        victoryPoint += rollDice();
     }
 
     /**
@@ -34,11 +34,11 @@ public class Bot {
      * @return the number of dice
      */
 
-    private int lancer(){
+    private int rollDice() {
         return dice.random();
     }
 
-    public int getNombrePointDeGloire(){
-        return nombrePointDeGloire;
+    public int getVictoryPoint() {
+        return victoryPoint;
     }
 }

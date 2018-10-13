@@ -1,7 +1,6 @@
 package teamB.otake.diceForge;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -16,27 +15,26 @@ import java.util.Random;
  *
  */
 
-
 public class Dice {
 
     private List<DiceSide> diceSides = new ArrayList<>();
 
     private int size;
-    Random rnd;
+    private Random rnd;
+    private int currentRnd = 0;
 
-    public Dice(){
+    public Dice() {
         rnd = new Random();
-        for(int i = 0; i < 6; i++){
-            DiceSide side = new DiceSide(i, Resources.PG);
-            diceSides.add(side);
+        for (int i = 0; i < 6; i++) {
+            diceSides.add(new DiceSide(i, Resources.PG));
         }
         this.size = diceSides.size();
     }
 
-    public Dice(HashMap<String, DiceSide> Side) {
+    public Dice(List<DiceSide> Side) {
         rnd = new Random();
-        for (int i = 0; i < Side.size(); i++) {
-            diceSides.add(Side.get("f" + i));
+        for (DiceSide s : Side) {
+            diceSides.add(s);
         }
         this.size = diceSides.size();
     }
@@ -46,7 +44,8 @@ public class Dice {
      * @return the value of throw of the dice
      */
     public int random() {
-        return diceSides.get(rnd.nextInt(size)).getValue();
+        currentRnd = rnd.nextInt(size);
+        return diceSides.get(currentRnd).getValue();
     }
 
     /**
@@ -54,7 +53,7 @@ public class Dice {
      * @return the type of ressource of throw of the dice
      */
     public String diceFaceType() {
-        return diceSides.get(rnd.nextInt(size)).getType().toString();
+        return diceSides.get(currentRnd).getType().toString();
     }
 
 }

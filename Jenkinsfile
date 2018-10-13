@@ -14,7 +14,11 @@ pipeline {
     }
     stage('Test JUnit') {
       steps {
-        echo 'Testing'
+        echo 'Testing n°1'
+        sh 'mvn test'
+      }
+      steps {
+        echo 'Testing n°2'
         sh 'mvn test'
       }
     }
@@ -55,6 +59,8 @@ pipeline {
   }
   post {
     always {
+      archiveArtifacts artifacts: 'target/**/*', fingerprint: true
+      junit 'target/surefire-reports/*.xml'
       echo 'JENKINS PIPELINE'
 
     }

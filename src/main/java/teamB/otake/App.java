@@ -9,10 +9,10 @@ public class App {
         Bot bot1 = new Bot();
         Bot bot2 = new Bot();
 
-        bot1.jouer();
-        bot2.jouer();
+        bot1.play();
+        bot2.play();
 
-        System.out.println("Bot 1 : " + bot1.getNombrePointDeGloire());
-        System.out.println("Bot 2 : " + bot2.getNombrePointDeGloire());
+        System.out.println("Bot 1 : " + bot1.getVictoryPoint());
+        System.out.println("Bot 2 : " + bot2.getVictoryPoint());
     }
 }
