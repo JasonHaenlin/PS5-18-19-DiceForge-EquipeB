@@ -18,10 +18,19 @@ pipeline {
         sh 'mvn test'
       }
     }
-    stage('Sonar') {
+    stage("build & SonarQube analysis") {
+      agent any
       steps {
-        sh 'Sonar Scanner'
-        sh 'mvn sonar:sonar -Dsonar.host.url=https://sonar.jareon.fr -Dsonar.login=8b66d7cae71e2b72608e08baa2051f5b22361966'
+        withSonarQubeEnv('My SonarQube Server') {
+          sh 'mvn clean package sonar:sonar'
+        }
+      }
+    }
+    stage("Quality Gate") {
+      steps {
+        timeout(time: 1, unit: 'HOURS') {
+          waitForQualityGate abortPipeline: true
+        }
       }
     }
     stage('Package') {
@@ -34,6 +43,23 @@ pipeline {
       steps {
         echo 'Done'
       }
+    }
+  }
+   post {
+    always {
+        echo 'JENKINS PIPELINE'
+    }
+    success {
+        echo 'JENKINS PIPELINE SUCCESSFUL'
+    }
+    failure {
+        echo 'JENKINS PIPELINE FAILED'
+    }
+    unstable {
+        echo 'JENKINS PIPELINE WAS MARKED AS UNSTABLE'
+    }
+    changed {
+        echo 'JENKINS PIPELINE STATUS HAS CHANGED SINCE LAST EXECUTION'
     }
   }
 }
