@@ -2,6 +2,7 @@ package teamB.otake;
 
 import java.util.HashMap;
 
+import teamB.otake.diceForge.Bot;
 import teamB.otake.diceForge.Dice;
 import teamB.otake.diceForge.DiceSide;
 import teamB.otake.diceForge.Resources;
@@ -11,15 +12,13 @@ public class App {
 
     public static void main(String[] args) {
 
-        HashMap<String, DiceSide> mymap = new HashMap<>();
+        Bot bot1 = new Bot();
+        Bot bot2 = new Bot();
 
-        for (int i = 0; i < 6; i++) {
-            mymap.put("f" + i, new SimpleDiceSide(i + 1, Resources.PG));
-        }
+        bot1.jouer();
+        bot2.jouer();
 
-        Dice dice = new Dice(mymap);
-        System.out.println("Gain : " + dice.random());
-        System.out.println("Type : " + dice.diceFaceType());
-
+        System.out.println("Bot 1 : " + bot1.getNombrePointDeGloire());
+        System.out.println("Bot 2 : " + bot2.getNombrePointDeGloire());
     }
 }

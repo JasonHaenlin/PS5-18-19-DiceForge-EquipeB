@@ -1,7 +1,11 @@
 package teamB.otake.diceForge;
 
 /**
- * 
+ *
+ * @author Ruben Houri
+ * @author Maxime Castellano
+ * @author Vincent Ung
+ * @author Jason Haenlin
  */
 public class DiceSide {
     protected int value;
