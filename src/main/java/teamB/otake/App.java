@@ -1,22 +1,23 @@
-package teamB.otake;
+package main.java.teamB.otake;
+
 
 import java.util.HashMap;
 
-import teamB.otake.diceForge.Dice;
-import teamB.otake.diceForge.Face;
 
 public class App {
 
     public static void main(String[] args) {
 
-        HashMap<String, Face> mymap = new HashMap<>();
+
+        HashMap<String, DiceSide> mymap = new HashMap<>();
 
         for (int i = 0; i < 6; i++) {
-            mymap.put("f" + i, new Face(i + 1));
+            mymap.put("f" + i, new SimpleDiceSide(i + 1,Resources.PG));
         }
 
-        Dice des = new Dice(mymap);
-        System.out.println(des.random().getValue());
+        Dice dice = new Dice(mymap);
+        System.out.println("Gain : "+dice.random());
+        System.out.println("Type : "+dice.diceFaceType());
 
     }
 }
