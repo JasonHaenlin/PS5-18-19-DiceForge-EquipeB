@@ -1,5 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>teamB-otake</groupId>
   <artifactId>PS5-18-19-DiceForge-EquipeB</artifactId>
@@ -9,42 +9,65 @@
   <url>http://maven.apache.org</url>
 
   <properties>
-   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-   <maven.compiler.source>1.8</maven.compiler.source> 
-   <maven.compiler.target>1.8</maven.compiler.target> 
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
+
+  <developers>
+    <developer>
+      <id>Maxime</id>
+      <name>Maxime Castello</name>
+      <email>maxime.castello@etu.univ-cotedazur.fr</email>
+    </developer>
+    <developer>
+      <id>Ruben</id>
+      <name>Ruben Houri</name>
+      <email>ruben.houri@etu.univ-cotedazur.fr</email>
+    </developer>
+    <developer>
+      <id>GitMaster</id>
+      <name>Vincent Ung</name>
+      <email>vincent.ung@etu.univ-cotedazur.fr</email>
+    </developer>
+    <developer>
+      <id>Jareon</id>
+      <name>Jason Haenlin</name>
+      <email>jason.haenlin@etu.univ-cotedazur.fr</email>
+    </developer>
+  </developers>
 
   <dependencies>
     <!-- JUnit for Unit testing -->
     <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-api</artifactId>
-        <version>5.1.0</version>
-        <scope>test</scope>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>5.1.0</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-engine</artifactId>
-        <version>5.1.0</version>
-        <scope>test</scope>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.1.0</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
-        <groupId>org.junit.vintage</groupId>
-        <artifactId>junit-vintage-engine</artifactId>
-        <version>5.1.0</version>
-        <scope>test</scope>
+      <groupId>org.junit.vintage</groupId>
+      <artifactId>junit-vintage-engine</artifactId>
+      <version>5.1.0</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
-        <groupId>org.junit.platform</groupId>
-        <artifactId>junit-platform-launcher</artifactId>
-        <version>1.1.0</version>
-        <scope>test</scope>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-launcher</artifactId>
+      <version>1.1.0</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
-        <groupId>org.junit.platform</groupId>
-        <artifactId>junit-platform-runner</artifactId>
-        <version>1.1.0</version>
-        <scope>test</scope>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-runner</artifactId>
+      <version>1.1.0</version>
+      <scope>test</scope>
     </dependency>
     <!-- JaCoCo to generate the code coverage report -->
     <dependency>
@@ -89,7 +112,7 @@
           <mainClass>teamB.otake.App</mainClass>
           <cleanupDaemonThreads>false</cleanupDaemonThreads>
         </configuration>
-      </plugin> 
+      </plugin>
 
       <plugin>
         <groupId>org.jacoco</groupId>
@@ -113,13 +136,14 @@
         <groupId>org.pitest</groupId>
         <artifactId>pitest-maven</artifactId>
         <version>1.4.3</version>
-        <!-- <configuration>
+        <configuration>
           <outputFormats>
-            <outputFormat>XML</outputFormat> 
+            <value>XML</value>
+            <value>HTML</value>
           </outputFormats>
-        </configuration> -->
+        </configuration>
       </plugin>
-      
+
     </plugins>
   </build>
 
