@@ -18,19 +18,21 @@ pipeline {
         sh 'mvn test'
       }
     }
-    stage("build & SonarQube analysis") {
+    stage('Sonarqube') {
       agent any
       steps {
-        withSonarQubeEnv('My SonarQube Server') {
+        withSonarQubeEnv('Sonarqube_Local') {
           sh 'mvn clean package sonar:sonar'
         }
+
       }
     }
-    stage("Quality Gate") {
+    stage('Quality Gate') {
       steps {
         timeout(time: 1, unit: 'HOURS') {
-          waitForQualityGate abortPipeline: true
+          waitForQualityGate true
         }
+
       }
     }
     stage('Package') {
@@ -45,21 +47,31 @@ pipeline {
       }
     }
   }
-   post {
+  post {
     always {
-        echo 'JENKINS PIPELINE'
+      echo 'JENKINS PIPELINE'
+
     }
+
     success {
-        echo 'JENKINS PIPELINE SUCCESSFUL'
+      echo 'JENKINS PIPELINE SUCCESSFUL'
+
     }
+
     failure {
-        echo 'JENKINS PIPELINE FAILED'
+      echo 'JENKINS PIPELINE FAILED'
+
     }
+
     unstable {
-        echo 'JENKINS PIPELINE WAS MARKED AS UNSTABLE'
+      echo 'JENKINS PIPELINE WAS MARKED AS UNSTABLE'
+
     }
+
     changed {
-        echo 'JENKINS PIPELINE STATUS HAS CHANGED SINCE LAST EXECUTION'
+      echo 'JENKINS PIPELINE STATUS HAS CHANGED SINCE LAST EXECUTION'
+
     }
+
   }
 }
