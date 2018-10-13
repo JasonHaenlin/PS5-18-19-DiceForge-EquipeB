@@ -14,10 +14,16 @@ pipeline {
     }
     stage('Test JUnit') {
       steps {
-        echo 'Testing n°1'
-        sh 'mvn test'
-        echo 'Testing n°2'
-        sh 'mvn test'
+        parallel(
+          a: {
+            echo 'Testing n°1'
+            sh 'mvn test'
+          },
+          b: {
+            echo 'Testing n°2'
+            sh 'mvn test'
+          }
+        )
       }
     }
     stage('Test Mutation') {
