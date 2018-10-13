@@ -41,7 +41,7 @@ pipeline {
         sh 'mvn package -DskipTests'
       }
     }
-    stage('End') {
+    stage('Done') {
       steps {
         echo 'Done'
       }
