@@ -21,7 +21,7 @@ pipeline {
     stage('Sonarqube') {
       agent any
       steps {
-        withSonarQubeEnv('Sonarqube_Local') {
+        withSonarQubeEnv('Sonarqube_Local_poker') {
           sh 'mvn clean package sonar:sonar'
         }
 
