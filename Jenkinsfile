@@ -16,8 +16,6 @@ pipeline {
       steps {
         echo 'Testing n°1'
         sh 'mvn test'
-      }
-      steps {
         echo 'Testing n°2'
         sh 'mvn test'
       }

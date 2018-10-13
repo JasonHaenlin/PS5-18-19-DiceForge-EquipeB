@@ -13,9 +13,9 @@ public class BotTest {
         assertEquals(0, bot.getVictoryPoint());
         int pv_before = bot.getVictoryPoint();
         bot.play();
-        assertTrue(pv_before < bot.getVictoryPoint());
+        assertTrue(pv_before <= bot.getVictoryPoint());
         pv_before = bot.getVictoryPoint();
         bot.play();
-        assertTrue(pv_before < bot.getVictoryPoint());
+        assertTrue(pv_before <= bot.getVictoryPoint());
     }
 }
