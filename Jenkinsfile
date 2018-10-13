@@ -12,17 +12,23 @@ pipeline {
         sh 'mvn clean compile'
       }
     }
-    stage('Test') {
+    stage('Test JUnit') {
       steps {
         echo 'Testing'
         sh 'mvn test'
+      }
+    }
+    stage('Test Mutation') {
+      steps {
+        echo 'PiTest Mutation'
+        sh 'mvn -Dthreads=4 org.pitest:pitest-maven:mutationCoverage'
       }
     }
     stage('Sonarqube') {
       agent any
       steps {
         withSonarQubeEnv('Sonarqube_Local_diceforge') {
-          sh 'mvn clean package sonar:sonar'
+          sh 'mvn clean package sonar:sonar -Dsonar.pitest.mode=reuseReport'
         }
 
       }
