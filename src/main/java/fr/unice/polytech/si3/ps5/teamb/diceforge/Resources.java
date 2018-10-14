@@ -1,4 +1,4 @@
-package teamb.otake.diceforge;
+package fr.unice.polytech.si3.ps5.teamb.diceforge;
 
 /**
  * Define different of resource

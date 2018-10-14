@@ -1,4 +1,4 @@
-package teamb.otake.diceforge;
+package fr.unice.polytech.si3.ps5.teamb.diceforge;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

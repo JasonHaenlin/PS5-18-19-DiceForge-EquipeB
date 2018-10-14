@@ -1,4 +1,4 @@
-package teamb.otake.diceforge;
+package fr.unice.polytech.si3.ps5.teamb.diceforge;
 
 /**
  * Create a dice Side with only 1 kind of ressource

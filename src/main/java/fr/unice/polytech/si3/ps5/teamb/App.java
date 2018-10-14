@@ -1,6 +1,6 @@
-package teamb.otake;
+package fr.unice.polytech.si3.ps5.teamb;
 
-import teamb.otake.diceforge.Game;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.Game;
 
 public class App {
 
