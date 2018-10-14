@@ -9,9 +9,9 @@ package teamB.otake.diceForge;
  * @author Jason Haenlin
  * 
  */
-public class SimpleDiceSide extends DiceSide {
+class SimpleDiceSide extends DiceSide {
 
-    public SimpleDiceSide(int value, Resources resources) {
+    SimpleDiceSide(int value, Resources resources) {
         super(value, resources);
     }
 }
