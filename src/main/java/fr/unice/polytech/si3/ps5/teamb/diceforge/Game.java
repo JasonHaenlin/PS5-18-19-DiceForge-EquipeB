@@ -3,6 +3,9 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Create a game with 2 bot
  *
@@ -14,41 +17,47 @@ import java.util.List;
 
 public class Game {
 
+    private static Logger log = LogManager.getLogger(Game.class);
+
     private List<Bot> bots;
 
     private final GameMaster gameMaster;
-    private String log;
+    private String msg;
     private int round;
 
     /**
      * Create a game
      */
     public Game() {
+        log.trace("init Game");
         bots = new ArrayList<>();
         gameMaster = new GameMaster();
         round = 1;
-        log = "";
+        msg = "";
     }
 
     public Game setUp(int round) {
+        log.trace("round :" + round);
         this.round = round;
         return this;
     }
 
     public String fire() {
+        log.trace("fire !");
         for (int i = 0; i < round; i++) {
             for (Bot bot : bots) {
                 bot.play();
-                log += "Le bot " + bot.getName() + " lance les dés \n";
-                log += "Le bot " + bot.getName() + " a obtenue " + bot.getVictoryPoint() + " points de Gloire \n";
+                msg += "Le bot " + bot.getName() + " lance les dés \n";
+                msg += "Le bot " + bot.getName() + " a obtenue " + bot.getVictoryPoint() + " points de Gloire \n";
             }
         }
         gameMaster.etablishWinner(bots);
-        log += gameMaster.getWinnerMsg();
-        return this.log;
+        msg += gameMaster.getWinnerMsg();
+        return this.msg;
     }
 
     public Game addBot(String name) {
+        log.trace("add bot :" + name);
         bots.add(new Bot(name));
         return this;
     }
