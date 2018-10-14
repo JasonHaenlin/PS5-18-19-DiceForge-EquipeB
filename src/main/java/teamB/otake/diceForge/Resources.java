@@ -8,7 +8,7 @@ package teamB.otake.diceForge;
  * @author Vincent Ung
  * @author Jason Haenlin
  */
-public enum Resources {
+enum Resources {
 
     PG("Point de Gloire");
 

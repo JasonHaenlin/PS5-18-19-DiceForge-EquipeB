@@ -12,7 +12,7 @@ package teamB.otake.diceForge;
  *
  */
 
-public class Bot {
+class Bot {
 
     private int victoryPoint;
     private Dice dice;
@@ -20,12 +20,12 @@ public class Bot {
     /**
      * constructor
      */
-    public Bot() {
+    Bot() {
         dice = new Dice();
         victoryPoint = 0;
     }
 
-    public void play() {
+    void play() {
         victoryPoint += rollDice();
     }
 
@@ -38,7 +38,7 @@ public class Bot {
         return dice.random();
     }
 
-    public int getVictoryPoint() {
+    int getVictoryPoint() {
         return victoryPoint;
     }
 }

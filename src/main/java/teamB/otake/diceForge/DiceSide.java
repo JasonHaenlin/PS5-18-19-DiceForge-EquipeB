@@ -7,7 +7,7 @@ package teamB.otake.diceForge;
  * @author Vincent Ung
  * @author Jason Haenlin
  */
-public class DiceSide {
+class DiceSide {
     protected int value;
     protected Resources type;
 
@@ -19,14 +19,14 @@ public class DiceSide {
     /**
      * @return the type
      */
-    public Resources getType() {
+    Resources getType() {
         return type;
     }
 
     /**
      * @return the value
      */
-    public int getValue() {
+    int getValue() {
         return value;
     }
 }

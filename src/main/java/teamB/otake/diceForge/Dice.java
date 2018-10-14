@@ -15,7 +15,7 @@ import java.util.Random;
  *
  */
 
-public class Dice {
+class Dice {
 
     private List<DiceSide> diceSides = new ArrayList<>();
 
@@ -23,7 +23,7 @@ public class Dice {
     private Random rnd;
     private int currentRnd = 0;
 
-    public Dice() {
+    Dice() {
         rnd = new Random();
         for (int i = 0; i < 6; i++) {
             diceSides.add(new DiceSide(i, Resources.PG));
@@ -31,7 +31,7 @@ public class Dice {
         this.size = diceSides.size();
     }
 
-    public Dice(List<DiceSide> Side) {
+    Dice(List<DiceSide> Side) {
         rnd = new Random();
         for (DiceSide s : Side) {
             diceSides.add(s);
@@ -43,7 +43,7 @@ public class Dice {
      *
      * @return the value of throw of the dice
      */
-    public int random() {
+    int random() {
         currentRnd = rnd.nextInt(size);
         return diceSides.get(currentRnd).getValue();
     }
@@ -52,7 +52,7 @@ public class Dice {
      *
      * @return the type of ressource of throw of the dice
      */
-    public String diceFaceType() {
+    String diceFaceType() {
         return diceSides.get(currentRnd).getType().toString();
     }
 
