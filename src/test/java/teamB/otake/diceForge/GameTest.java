@@ -1,15 +1,17 @@
 package teamB.otake.diceForge;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.Test;
-import static org.junit.Assert.assertNotEquals;
-import teamB.otake.diceForge.Game;
 
 public class GameTest {
 
     @Test
-    public void testLog(){
+    public void testLog() {
         Game game = new Game();
-        assertNotEquals("", game.getLog());
 
+        String result = game.setUp(1).addBot("Rondoudou").addBot("Pichu").fire();
+
+        assertTrue(!result.isEmpty());
     }
 }

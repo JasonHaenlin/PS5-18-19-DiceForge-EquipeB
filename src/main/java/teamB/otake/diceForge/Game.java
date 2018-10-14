@@ -1,7 +1,10 @@
 package teamB.otake.diceForge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- *Create a game with 2 bot
+ * Create a game with 2 bot
  *
  * @author Ruben Houri
  * @author Maxime Castellano
@@ -11,42 +14,42 @@ package teamB.otake.diceForge;
 
 public class Game {
 
-    private final Bot bot1;
-    private final Bot bot2;
+    private List<Bot> bots;
+
     private final GameMaster gameMaster;
     private String log;
+    private int round;
 
     /**
      * Create a game
      */
-    public Game(){
-        bot1 = new Bot();
-        bot2 = new Bot();
+    public Game() {
+        bots = new ArrayList<>();
         gameMaster = new GameMaster();
+        round = 1;
         log = "";
+    }
 
-        bot1.play();
-        log += "Le bot 1 lance les dés \n";
-        log += "Le bot 1 a obtenue " + bot1.getVictoryPoint() + " points de victoire \n";
+    public Game setUp(int round) {
+        this.round = round;
+        return this;
+    }
 
-        bot2.play();
-        log += "Le bot 2 lance les dés \n";
-        log += "Le bot 2 a obtenu " + bot2.getVictoryPoint() + " points de victoire \n";
-
-        //The log print the name of winner
-        gameMaster.etablishWinner(bot1,bot2);
+    public String fire() {
+        for (int i = 0; i < round; i++) {
+            for (Bot bot : bots) {
+                bot.play();
+                log += "Le bot " + bot.getName() + " lance les dés \n";
+                log += "Le bot " + bot.getName() + " a obtenue " + bot.getVictoryPoint() + " points de Gloire \n";
+            }
+        }
+        gameMaster.etablishWinner(bots);
         log += gameMaster.getWinnerMsg();
+        return this.log;
     }
 
-    //Use for test
-    String getLog(){
-        return log;
-    }
-
-    /**
-     * Print the log
-     */
-    public void printLog(){
-        System.out.println(log);
+    public Game addBot(String name) {
+        bots.add(new Bot(name));
+        return this;
     }
 }

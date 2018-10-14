@@ -1,5 +1,7 @@
 package teamB.otake.diceForge;
 
+import java.util.List;
+
 /**
  * Create a game master
  *
@@ -12,11 +14,9 @@ package teamB.otake.diceForge;
 class GameMaster {
 
     private String winnerMsg;
+    private Bot winner;
 
-    private int scoreBot1;
-    private int scoreBot2;
-
-    GameMaster(){
+    GameMaster() {
         this.winnerMsg = "";
     }
 
@@ -27,24 +27,44 @@ class GameMaster {
      * @param bot2
      */
 
-    void etablishWinner(Bot bot1, Bot bot2){
-        scoreBot1 = bot1.getVictoryPoint();
-        scoreBot2 = bot2.getVictoryPoint();
+    void etablishWinner(List<Bot> bots) {
+        bots.sort((Bot b1, Bot b2) -> Integer.compare(b1.getVictoryPoint(), b2.getVictoryPoint()));
+        this.winner = bots.get(bots.size() - 1);
+        if (isEquals(bots)) {
+            winnerMsg = "Equalite avec un total de " + winner.getVictoryPoint() + " points de Gloire";
+        } else {
+            winnerMsg = "Le bot " + winner.getName() + " gagne avec " + winner.getVictoryPoint()
+                    + " points de Gloire \n GG!";
+        }
 
-        if(scoreBot1 < scoreBot2){ winnerMsg = "Le bot 2 a gagné avec un score de : "+ scoreBot2;}
-        else if(scoreBot2 < scoreBot1){winnerMsg = "Le bot 1 a gagné avec un score de : "+ scoreBot1;}
-        else {winnerMsg = "Les deux bots sont à égalité avec un score de : " + scoreBot1;}
     }
 
-    int getScoreBot1(){
-        return scoreBot1;
+    /**
+     * This method manage equality between 2 bots only (need revision)
+     * 
+     * @param bots
+     * @return
+     */
+    private boolean isEquals(List<Bot> bots) {
+        Bot botBefore = null;
+        for (Bot bot : bots) {
+            if (bot.equals(botBefore)) {
+                return true;
+            }
+            botBefore = bot;
+        }
+        return false;
     }
 
-    int getScoreBot2(){
-        return scoreBot2;
-    }
-
-    String getWinnerMsg(){
+    String getWinnerMsg() {
         return winnerMsg;
     }
+
+    /**
+     * @return the winner
+     */
+    public Bot getWinner() {
+        return winner;
+    }
+
 }

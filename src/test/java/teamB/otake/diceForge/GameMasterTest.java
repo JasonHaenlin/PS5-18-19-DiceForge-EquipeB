@@ -1,35 +1,46 @@
 package teamB.otake.diceForge;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
 public class GameMasterTest {
 
+    GameMaster gm;
+    List<Bot> bots;
+
     @Test
     public void testWinner() {
         for (int i = 0; i < 100; i++) {
-            GameMaster gameMaster = new GameMaster();
+            gm = new GameMaster();
+            bots = new ArrayList<>();
+            bots.add(new Bot("b1"));
+            bots.add(new Bot("b2"));
 
-            Bot bot1 = new Bot();
-            Bot bot2 = new Bot();
+            bots.get(0).play();
+            bots.get(1).play();
 
-            bot1.play();
-            bot2.play();
+            gm.etablishWinner(bots);
 
-            gameMaster.etablishWinner(bot1, bot2);
-
-            int scoreBot1 = gameMaster.getScoreBot1();
-            int scoreBot2 = gameMaster.getScoreBot2();
-
-            if (scoreBot1 < scoreBot2) {
-                assertEquals("Le bot 2 a gagné avec un score de : " + scoreBot2, gameMaster.getWinnerMsg());
-            } else if (scoreBot2 < scoreBot1) {
-                assertEquals("Le bot 1 a gagné avec un score de : " + scoreBot1, gameMaster.getWinnerMsg());
-            } else {
-                assertEquals("Les deux bots sont à égalité avec un score de : " + scoreBot1, gameMaster.getWinnerMsg());
-            }
+            assertTrue(isWinnerCorrect());
         }
     }
-}
 
+    private boolean isWinnerCorrect() {
+
+        int winner = gm.getWinner().getVictoryPoint();
+        int bot1 = bots.get(0).getVictoryPoint();
+        int bot2 = bots.get(1).getVictoryPoint();
+
+        if (winner == bot1 && winner != bot2) {
+            return gm.getWinnerMsg().contains(bots.get(0).getName());
+        }
+        if (winner == bot2 && winner != bot1) {
+            return gm.getWinnerMsg().contains(bots.get(1).getName());
+        }
+        return true;
+    }
+}

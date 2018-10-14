@@ -16,6 +16,7 @@ class Bot {
 
     private int victoryPoint;
     private Dice dice;
+    private String name;
 
     /**
      * constructor
@@ -23,6 +24,13 @@ class Bot {
     Bot() {
         dice = new Dice();
         victoryPoint = 0;
+        name = "bot";
+    }
+
+    Bot(String name) {
+        dice = new Dice();
+        victoryPoint = 0;
+        this.name = name;
     }
 
     void play() {
@@ -40,5 +48,24 @@ class Bot {
 
     int getVictoryPoint() {
         return victoryPoint;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Bot)) {
+            return false;
+        }
+        Bot bot = (Bot) obj;
+        return this.getVictoryPoint() == bot.getVictoryPoint();
     }
 }
