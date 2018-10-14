@@ -15,11 +15,11 @@ pipeline {
     stage('Test JUnit') {
       steps {
         parallel(
-          a: {
+          test1: {
             echo 'Testing n°1'
             sh 'mvn test'
           },
-          b: {
+          test2: {
             echo 'Testing n°2'
             sh 'mvn test'
           }
