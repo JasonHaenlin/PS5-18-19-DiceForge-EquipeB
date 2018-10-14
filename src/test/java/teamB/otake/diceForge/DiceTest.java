@@ -1,4 +1,4 @@
-package teamB.otake.diceForge;
+package teamb.otake.diceforge;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

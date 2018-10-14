@@ -1,4 +1,4 @@
-package teamB.otake.diceForge;
+package teamb.otake.diceforge;
 
 /**
  * Create a dice Side with only 1 kind of ressource

@@ -1,4 +1,4 @@
-package teamB.otake.diceForge;
+package teamb.otake.diceforge;
 
 /**
  *

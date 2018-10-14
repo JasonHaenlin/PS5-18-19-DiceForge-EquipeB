@@ -109,7 +109,7 @@
           </execution>
         </executions>
         <configuration>
-          <mainClass>teamB.otake.App</mainClass>
+          <mainClass>teamb.otake.App</mainClass>
           <cleanupDaemonThreads>false</cleanupDaemonThreads>
         </configuration>
       </plugin>

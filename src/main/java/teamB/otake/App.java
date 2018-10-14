@@ -1,6 +1,6 @@
-package teamB.otake;
+package teamb.otake;
 
-import teamB.otake.diceForge.Game;
+import teamb.otake.diceforge.Game;
 
 public class App {
 
