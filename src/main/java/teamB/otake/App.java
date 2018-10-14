@@ -9,9 +9,11 @@ public class App {
         Game game = new Game();
 
         // @formatter:off
-        String result = game.setUp(1)
+        String result = game.setUp(2)
             .addBot("Rondoudou")
             .addBot("Pichu")
+            .addBot("Rem")
+            .addBot("Ram")
             .fire();
         //@formatter:on
 

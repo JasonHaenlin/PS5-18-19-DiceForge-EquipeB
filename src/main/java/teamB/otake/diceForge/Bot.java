@@ -68,4 +68,9 @@ class Bot {
         Bot bot = (Bot) obj;
         return this.getVictoryPoint() == bot.getVictoryPoint();
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
