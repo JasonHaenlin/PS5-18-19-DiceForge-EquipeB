@@ -23,20 +23,26 @@ class GameMaster {
     /**
      * Find the winner and edit winner msg
      *
-     * @param bot1
-     * @param bot2
+     * @param List bots
+     *
      */
 
     void etablishWinner(List<Bot> bots) {
         bots.sort((Bot b1, Bot b2) -> Integer.compare(b1.getVictoryPoint(), b2.getVictoryPoint()));
-        this.winner = bots.get(bots.size() - 1);
-        if (isEquals(bots)) {
-            winnerMsg = "Equalite avec un total de " + winner.getVictoryPoint() + " points de Gloire";
-        } else {
+        int i = bots.size() - 2;
+        this.winner = bots.get(i + 1);
+        while (winner.getVictoryPoint() == bots.get(i).getVictoryPoint() && i >= 0) {
+            if (i == bots.size() - 2) {
+                winnerMsg = "Egualite avec un total de " + winner.getVictoryPoint() +
+                        " points de Gloire entre : " + winner.getName() + ", " + bots.get(i).getName();
+            } else {
+                winnerMsg += ", " + bots.get(i).getName();
+            }
+            i --;
+        }if( winnerMsg == ""){
             winnerMsg = "Le bot " + winner.getName() + " gagne avec " + winner.getVictoryPoint()
                     + " points de Gloire \n GG!";
         }
-
     }
 
     /**

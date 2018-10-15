@@ -9,7 +9,7 @@ public class App {
         Game game = new Game();
 
         // @formatter:off
-        String result = game.setUp(2)
+        String result = game.setUp(1)
             .addBot("Rondoudou")
             .addBot("Pichu")
             .addBot("Rem")
