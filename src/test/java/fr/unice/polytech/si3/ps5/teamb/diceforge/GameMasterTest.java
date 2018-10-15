@@ -13,8 +13,8 @@ public class GameMasterTest {
     List<Bot> bots;
 
     @Test
-    public void testWinner() {
-        for (int i = 0; i < 1000; i++) {
+    public void testWinnerTwoPlayers() {
+        for (int i = 0; i < 100; i++) {
             gm = new GameMaster();
             bots = new ArrayList<>();
             bots.add(new Bot("b1"));
@@ -25,22 +25,196 @@ public class GameMasterTest {
 
             gm.etablishWinner(bots);
 
-            assertTrue(isWinnerCorrect());
+            assertTrue(this.isWinnerCorrectTwoPlayers());
         }
     }
 
-    private boolean isWinnerCorrect() {
+    @Test
+    public void testWinnerThreePlayers(){
+        for (int i = 0; i < 100; i++) {
+            gm = new GameMaster();
+            bots = new ArrayList<>();
+            bots.add(new Bot("b1"));
+            bots.add(new Bot("b2"));
+            bots.add(new Bot("b3"));
 
-        int winner = gm.getWinner().getVictoryPoint();
-        int bot1 = bots.get(0).getVictoryPoint();
-        int bot2 = bots.get(1).getVictoryPoint();
+            bots.get(0).play();
+            bots.get(1).play();
+            bots.get(2).play();
 
-        if (winner == bot1 && winner != bot2) {
-            return gm.getWinnerMsg().contains(bots.get(0).getName());
+            gm.etablishWinner(bots);
+
+            assertTrue(this.isWinnerCorrectThreePlayers());
         }
-        if (winner == bot2 && winner != bot1) {
-            return gm.getWinnerMsg().contains(bots.get(1).getName());
+    }
+
+    private boolean isWinnerCorrectTwoPlayers() {
+
+        ArrayList<Bot> listWinner = new ArrayList<>();
+        listWinner = gm.getWinner();
+        if(listWinner.size() == 2) {
+            return gm.getWinnerMsg().contains(bots.get(0).getName()) &&
+                    gm.getWinnerMsg().contains(bots.get(1).getName());
+        }else{
+            int winner = listWinner.get(0).getVictoryPoint();
+            int bot1 = bots.get(0).getVictoryPoint();
+            int bot2 = bots.get(1).getVictoryPoint();
+
+            if (winner == bot1 && winner != bot2) {
+                return gm.getWinnerMsg().contains(bots.get(0).getName());
+            }
+            if (winner == bot2 && winner != bot1) {
+                return gm.getWinnerMsg().contains(bots.get(1).getName());
+            }
+            return true;
+        }
+    }
+
+    @Test
+    public void testWinnerFourPlayers(){
+        for (int i = 0; i < 100; i++) {
+            gm = new GameMaster();
+            bots = new ArrayList<>();
+            bots.add(new Bot("b1"));
+            bots.add(new Bot("b2"));
+            bots.add(new Bot("b3"));
+            bots.add(new Bot("b4"));
+
+            bots.get(0).play();
+            bots.get(1).play();
+            bots.get(2).play();
+            bots.get(3).play();
+
+            gm.etablishWinner(bots);
+
+            assertTrue(this.isWinnerCorrectFourPlayers());
+        }
+    }
+
+    private boolean isWinnerCorrectThreePlayers(){
+        ArrayList<Bot> listWinner = new ArrayList<>();
+        listWinner = gm.getWinner();
+        if(listWinner.size() == 3) {
+            return gm.getWinnerMsg().contains(bots.get(0).getName()) &&
+                    gm.getWinnerMsg().contains(bots.get(1).getName()) &&
+                    gm.getWinnerMsg().contains(bots.get(2).getName());
+        }else if(listWinner.size() == 2){
+            int winner = listWinner.get(0).getVictoryPoint();
+            int bot1 = bots.get(0).getVictoryPoint();
+            int bot2 = bots.get(1).getVictoryPoint();
+            int bot3 = bots.get(2).getVictoryPoint();
+            if(winner == bot1 && winner == bot2 && winner != bot3){
+                return gm.getWinnerMsg().contains(bots.get(0).getName()) &&
+                        gm.getWinnerMsg().contains(bots.get(1).getName());
+            }
+            if(winner == bot1 && winner == bot3 && winner != bot2){
+                return gm.getWinnerMsg().contains(bots.get(0).getName()) &&
+                        gm.getWinnerMsg().contains(bots.get(2).getName());
+            }
+            if(winner == bot2 && winner == bot3 && winner != bot1){
+                return gm.getWinnerMsg().contains(bots.get(1).getName()) &&
+                        gm.getWinnerMsg().contains(bots.get(2).getName());
+            }
+        }else{
+            int winner = listWinner.get(0).getVictoryPoint();
+            int bot1 = bots.get(0).getVictoryPoint();
+            int bot2 = bots.get(1).getVictoryPoint();
+            int bot3 = bots.get(2).getVictoryPoint();
+            if(winner == bot1 && winner != bot2 && winner !=bot3){
+                return gm.getWinnerMsg().contains(bots.get(0).getName());
+            }if(winner == bot2 && winner != bot1 && winner !=bot3){
+                return gm.getWinnerMsg().contains(bots.get(1).getName());
+            }if(winner == bot3 && winner != bot2 && winner !=bot1){
+                return gm.getWinnerMsg().contains(bots.get(2).getName());
+            }
+        }
+        return true;
+    }
+
+    private boolean isWinnerCorrectFourPlayers(){
+        ArrayList<Bot> listWinner = new ArrayList<>();
+        listWinner = gm.getWinner();
+        if(listWinner.size() == 4) {
+            return gm.getWinnerMsg().contains(bots.get(0).getName()) &&
+                    gm.getWinnerMsg().contains(bots.get(1).getName()) &&
+                    gm.getWinnerMsg().contains(bots.get(2).getName()) &&
+                    gm.getWinnerMsg().contains(bots.get(3).getName());
+        }else if(listWinner.size() == 3){
+            int winner = listWinner.get(0).getVictoryPoint();
+            int bot1 = bots.get(0).getVictoryPoint();
+            int bot2 = bots.get(1).getVictoryPoint();
+            int bot3 = bots.get(2).getVictoryPoint();
+            int bot4 = bots.get(3).getVictoryPoint();
+            if(winner == bot1 && winner == bot2 && winner == bot3 && winner != bot4){
+                return gm.getWinnerMsg().contains(bots.get(0).getName()) &&
+                        gm.getWinnerMsg().contains(bots.get(1).getName()) &&
+                        gm.getWinnerMsg().contains(bots.get(2).getName());
+            }
+            if(winner == bot1 && winner == bot2 && winner != bot3 && winner == bot4){
+                return gm.getWinnerMsg().contains(bots.get(0).getName()) &&
+                        gm.getWinnerMsg().contains(bots.get(1).getName()) &&
+                        gm.getWinnerMsg().contains(bots.get(3).getName());
+            }
+            if(winner == bot1 && winner != bot2 && winner == bot3 && winner == bot4){
+                return gm.getWinnerMsg().contains(bots.get(0).getName()) &&
+                        gm.getWinnerMsg().contains(bots.get(3).getName()) &&
+                        gm.getWinnerMsg().contains(bots.get(2).getName());
+            }
+            if(winner != bot1 && winner == bot2 && winner == bot3 && winner != bot4){
+                return gm.getWinnerMsg().contains(bots.get(3).getName()) &&
+                        gm.getWinnerMsg().contains(bots.get(1).getName()) &&
+                        gm.getWinnerMsg().contains(bots.get(2).getName());
+            }
+        }else if(listWinner.size() == 2){
+            int winner = listWinner.get(0).getVictoryPoint();
+            int bot1 = bots.get(0).getVictoryPoint();
+            int bot2 = bots.get(1).getVictoryPoint();
+            int bot3 = bots.get(2).getVictoryPoint();
+            int bot4 = bots.get(3).getVictoryPoint();
+            if(winner == bot1 && winner == bot2 && winner != bot3 && winner != bot4){
+                return gm.getWinnerMsg().contains(bots.get(0).getName()) &&
+                        gm.getWinnerMsg().contains(bots.get(1).getName());
+            }
+            if(winner == bot1 && winner != bot2 && winner == bot3 && winner != bot4) {
+                return gm.getWinnerMsg().contains(bots.get(0).getName()) &&
+                        gm.getWinnerMsg().contains(bots.get(2).getName());
+            }
+            if(winner == bot1 && winner != bot2 && winner != bot3 && winner == bot4) {
+                return gm.getWinnerMsg().contains(bots.get(0).getName()) &&
+                        gm.getWinnerMsg().contains(bots.get(3).getName());
+            }
+            if(winner != bot1 && winner == bot2 && winner == bot3 && winner != bot4) {
+                return gm.getWinnerMsg().contains(bots.get(1).getName()) &&
+                        gm.getWinnerMsg().contains(bots.get(2).getName());
+            }
+            if(winner != bot1 && winner == bot2 && winner != bot3 && winner == bot4) {
+                return gm.getWinnerMsg().contains(bots.get(0).getName()) &&
+                        gm.getWinnerMsg().contains(bots.get(3).getName());
+            }
+            if(winner != bot1 && winner != bot2 && winner == bot3 && winner == bot4) {
+                return gm.getWinnerMsg().contains(bots.get(2).getName()) &&
+                        gm.getWinnerMsg().contains(bots.get(3).getName());
+            }
+        }else{
+            int winner = listWinner.get(0).getVictoryPoint();
+            int bot1 = bots.get(0).getVictoryPoint();
+            int bot2 = bots.get(1).getVictoryPoint();
+            int bot3 = bots.get(2).getVictoryPoint();
+            int bot4 = bots.get(3).getVictoryPoint();
+            if(winner == bot1 && winner != bot2 && winner != bot3 && winner != bot4) {
+                return gm.getWinnerMsg().contains(bots.get(0).getName());
+            }
+            if(winner != bot1 && winner == bot2 && winner != bot3 && winner != bot4) {
+                return gm.getWinnerMsg().contains(bots.get(1).getName());
+            }
+            if(winner != bot1 && winner != bot2 && winner == bot3 && winner != bot4) {
+                return gm.getWinnerMsg().contains(bots.get(2).getName());
+            }
+            if(winner != bot1 && winner != bot2 && winner != bot3 && winner == bot4) {
+                return gm.getWinnerMsg().contains(bots.get(3).getName());
+            }
         }
         return true;
     }
 }
+

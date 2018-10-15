@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,9 +15,10 @@ import java.util.List;
 class GameMaster {
 
     private String winnerMsg;
-    private Bot winner;
+    private ArrayList<Bot> winner;
 
     GameMaster() {
+        this.winner = new ArrayList<Bot>();
         this.winnerMsg = "";
     }
 
@@ -30,17 +32,18 @@ class GameMaster {
     void etablishWinner(List<Bot> bots) {
         bots.sort((Bot b1, Bot b2) -> Integer.compare(b1.getVictoryPoint(), b2.getVictoryPoint()));
         int i = bots.size() - 2;
-        this.winner = bots.get(i + 1);
-        while (winner.getVictoryPoint() == bots.get(i).getVictoryPoint() && i >= 1) {
+        winner.add(bots.get(i+1));
+        while (winner.get(0).getVictoryPoint() == bots.get(i).getVictoryPoint() && i >= 1) {
             if (i == bots.size() - 2) {
-                winnerMsg = "Egualite avec un total de " + winner.getVictoryPoint() +
-                        " points de Gloire entre : " + winner.getName() + ", " + bots.get(i).getName();
+                winnerMsg = "Egualite avec un total de " + winner.get(0).getVictoryPoint() +
+                        " points de Gloire entre : " + winner.get(0).getName() + ", " + bots.get(i).getName();
             } else {
                 winnerMsg += ", " + bots.get(i).getName();
             }
+            winner.add(bots.get(i));
             i --;
         }if( winnerMsg == ""){
-            winnerMsg = "Le bot " + winner.getName() + " gagne avec " + winner.getVictoryPoint()
+            winnerMsg = "Le bot " + winner.get(0).getName() + " gagne avec " + winner.get(0).getVictoryPoint()
                     + " points de Gloire \n GG!";
         }
     }
@@ -69,7 +72,7 @@ class GameMaster {
     /**
      * @return the winner
      */
-    public Bot getWinner() {
+    public ArrayList<Bot> getWinner() {
         return winner;
     }
 
