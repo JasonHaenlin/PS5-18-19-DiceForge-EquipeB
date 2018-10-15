@@ -31,7 +31,7 @@ class GameMaster {
         bots.sort((Bot b1, Bot b2) -> Integer.compare(b1.getVictoryPoint(), b2.getVictoryPoint()));
         int i = bots.size() - 2;
         this.winner = bots.get(i + 1);
-        while (winner.getVictoryPoint() == bots.get(i).getVictoryPoint() && i >= 0) {
+        while (winner.getVictoryPoint() == bots.get(i).getVictoryPoint() && i >= 1) {
             if (i == bots.size() - 2) {
                 winnerMsg = "Egualite avec un total de " + winner.getVictoryPoint() +
                         " points de Gloire entre : " + winner.getName() + ", " + bots.get(i).getName();

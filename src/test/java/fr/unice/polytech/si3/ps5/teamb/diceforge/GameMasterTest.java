@@ -14,7 +14,7 @@ public class GameMasterTest {
 
     @Test
     public void testWinner() {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1000; i++) {
             gm = new GameMaster();
             bots = new ArrayList<>();
             bots.add(new Bot("b1"));
