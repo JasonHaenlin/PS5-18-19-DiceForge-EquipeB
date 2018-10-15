@@ -36,7 +36,7 @@ pipeline {
       agent any
       steps {
         withSonarQubeEnv('Sonarqube_Local_diceforge') {
-          sh 'mvn clean package sonar:sonar -Dsonar.pitest.mode=reuseReport'
+          sh 'mvn package sonar:sonar -Dsonar.pitest.mode=reuseReport'
         }
 
       }
@@ -46,7 +46,6 @@ pipeline {
         timeout(time: 1, unit: 'HOURS') {
           waitForQualityGate true
         }
-
       }
     }
     stage('Package') {
