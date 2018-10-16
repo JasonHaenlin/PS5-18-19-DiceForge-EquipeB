@@ -20,11 +20,25 @@ public class DiceTest {
     }
 
     @Test
-    public void diceTest() {
-        int r1 = dice1.random();
-        assertTrue(r1 <= 6 && r1 >= 0);
-        int r2 = dice1.random();
-        assertTrue(r2 <= 6 && r2 >= 0);
+    public void diceTestValue() {
+        dice1.random();
+        int r1 = dice1.getRandomValue();
+        assertTrue(r1 <= 2 && r1 >= 0);
+        dice1.random();
+        int r2 = dice1.getRandomValue();
+        assertTrue(r2 <= 2 && r2 >= 0);
+    }
+
+    @Test
+    public void diceTestResources(){
+        dice1.random();
+        Resources r1 = dice1.getRandomResources();
+        assertTrue(r1 == Resources.PG || r1 ==Resources.G ||
+                r1 == Resources.MS || r1 == Resources.SS);
+        dice1.random();
+        Resources r2 = dice1.getRandomResources();
+        assertTrue(r2 == Resources.PG || r2 ==Resources.G ||
+                r2 == Resources.MS || r2 == Resources.SS);
     }
 
     @Test

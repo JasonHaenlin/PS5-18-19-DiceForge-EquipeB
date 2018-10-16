@@ -10,7 +10,10 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge;
  */
 enum Resources {
 
-    PG("Point de Gloire");
+    PG("Point de Gloire"),
+    G("Gold"),
+    MS("Moon Stone"),
+    SS("Sun Stone");
 
     String resource;
 

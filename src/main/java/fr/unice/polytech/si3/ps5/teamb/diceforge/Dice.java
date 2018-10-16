@@ -22,12 +22,22 @@ class Dice {
     private int size;
     private Random rnd;
     private int currentRnd = 0;
+    private DiceSide side;
 
+    /**
+     * Create a dice with 2 sides with MS
+     *                    2 sides with SS
+     *                    1 side with gold
+     *                    1 side with PG
+     */
     Dice() {
         rnd = new Random();
-        for (int i = 0; i < 6; i++) {
-            diceSides.add(new DiceSide(i, Resources.PG));
+        for (int i = 0; i < 2; i++) {
+            diceSides.add(new DiceSide(i, Resources.SS));
+            diceSides.add(new DiceSide(i, Resources.MS));
         }
+        diceSides.add(new DiceSide(2, Resources.G));
+        diceSides.add(new DiceSide(1, Resources.PG));
         this.size = diceSides.size();
     }
 
@@ -41,11 +51,23 @@ class Dice {
 
     /**
      *
-     * @return the value of throw of the dice
+     * Rolls Dice
      */
-    int random() {
+    void random() {
         currentRnd = rnd.nextInt(size);
-        return diceSides.get(currentRnd).getValue();
+        side = diceSides.get(currentRnd);
+    }
+
+    /**
+     *
+     * Get value after Rolls Dice
+     */
+    int getRandomValue(){
+        return side.getValue();
+    }
+
+    Resources getRandomResources(){
+        return side.getType();
     }
 
     /**

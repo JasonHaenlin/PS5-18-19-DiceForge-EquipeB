@@ -15,6 +15,13 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge;
 class Bot {
 
     private int victoryPoint;
+    private int gold;
+    private int sunStone;
+    private int moonStone;
+
+    private int lastValue;
+    private Resources lastResource;
+
     private Dice dice;
     private String name;
 
@@ -24,17 +31,32 @@ class Bot {
     Bot() {
         dice = new Dice();
         victoryPoint = 0;
+        gold = 0;
+        sunStone = 0;
+        moonStone = 0;
         name = "bot";
     }
 
     Bot(String name) {
         dice = new Dice();
         victoryPoint = 0;
+        gold = 0;
+        sunStone = 0;
+        moonStone = 0;
         this.name = name;
     }
 
     void play() {
-        victoryPoint += rollDice();
+        rollDice();
+        getResources();
+    }
+
+    int getLastValue(){
+        return lastValue;
+    }
+
+    Resources getLastResource(){
+        return lastResource;
     }
 
     /**
@@ -42,13 +64,36 @@ class Bot {
      * @return the number of dice
      */
 
-    private int rollDice() {
-        return dice.random();
+    private void rollDice() { dice.random(); }
+
+    private void getResources(){
+        lastValue = dice.getRandomValue();
+        lastResource = dice.getRandomResources();
+        switch(lastResource){
+            case PG:
+                victoryPoint += lastValue;
+                break;
+            case G:
+                gold += lastValue;
+                break;
+            case SS:
+                sunStone += lastValue;
+                break;
+            case MS:
+                moonStone += lastValue;
+                break;
+        }
     }
 
     int getVictoryPoint() {
         return victoryPoint;
     }
+
+    int getSunStone() { return sunStone; }
+
+    int getMoonStone() { return moonStone; }
+
+    int getGold() { return gold; }
 
     /**
      * @return the name

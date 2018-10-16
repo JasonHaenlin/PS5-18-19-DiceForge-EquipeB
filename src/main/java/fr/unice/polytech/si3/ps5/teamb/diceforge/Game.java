@@ -47,8 +47,9 @@ public class Game {
         for (int i = 0; i < round; i++) {
             for (Bot bot : bots) {
                 bot.play();
+
                 msg += "Le bot " + bot.getName() + " lance les dés \n";
-                msg += "Le bot " + bot.getName() + " a obtenue " + bot.getVictoryPoint() + " points de Gloire \n";
+                msg += "Le bot " + bot.getName() + " a obtenue " + bot.getLastValue() + " " + bot.getLastResource()+"\n";
             }
         }
         gameMaster.etablishWinner(bots);
