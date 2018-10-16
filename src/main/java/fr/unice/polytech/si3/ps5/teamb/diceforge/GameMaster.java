@@ -48,23 +48,6 @@ class GameMaster {
         }
     }
 
-    /**
-     * This method manage equality between 2 bots only (need revision)
-     * 
-     * @param bots
-     * @return
-     */
-    private boolean isEquals(List<Bot> bots) {
-        Bot botBefore = null;
-        for (Bot bot : bots) {
-            if (bot.equals(botBefore)) {
-                return true;
-            }
-            botBefore = bot;
-        }
-        return false;
-    }
-
     String getWinnerMsg() {
         return winnerMsg;
     }
