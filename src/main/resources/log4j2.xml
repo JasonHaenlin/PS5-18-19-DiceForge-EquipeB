@@ -6,14 +6,28 @@
                 <Pattern>%d{HH:mm:ss.SSS} %c{1}: %m%n</Pattern>
             </PatternLayout>
         </Console>
+        <File name="allInfos" fileName="target/logs/all.log" append = "false">
+            <PatternLayout>
+                <Pattern>%d %p %c{1}: %m%n</Pattern>
+            </PatternLayout>
+        </File>
+        <File name="lessInfos" fileName="target/logs/debug.log" append = "false">
+            <PatternLayout>
+                <Pattern>%d %p %c{1}: %m%n</Pattern>
+            </PatternLayout>
+        </File>
     </Appenders>
     <!-- Log levels: Trace < Debug < Info < Warn < Error < Fatal -->
     <Loggers>
-        <Logger name="fr.unice.polytech.si3.ps5.teamb.diceforge.Game" level="trace" additivity="false">
-            <AppenderRef ref="stdout"/>
+        <Logger name="fr.unice.polytech.si3.ps5.teamb.diceforge.Game" level="all" additivity="false">
+            <AppenderRef ref="stdout" level = "trace"/>
+            <AppenderRef ref="allInfos" level = "all"/>
+            <AppenderRef ref="lessInfos" level = "info"/>
         </Logger>
-        <Logger name="fr.unice.polytech.si3.ps5.teamb.App" level="trace" additivity="false">
-            <AppenderRef ref="stdout"/>
+        <Logger name="fr.unice.polytech.si3.ps5.teamb.App" level="all" additivity="false">
+            <AppenderRef ref="stdout" level = "trace"/>
+            <AppenderRef ref="allInfos" level = "all"/>
+            <AppenderRef ref="lessInfos" level = "info"/>
         </Logger>
     </Loggers>
 </Configuration>

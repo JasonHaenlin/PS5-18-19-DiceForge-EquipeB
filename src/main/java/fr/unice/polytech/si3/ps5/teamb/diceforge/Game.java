@@ -17,48 +17,45 @@ import org.apache.logging.log4j.Logger;
 
 public class Game {
 
-    private static Logger log = LogManager.getLogger(Game.class);
+    private static Logger LOGGER = LogManager.getLogger(Game.class);
 
     private List<Bot> bots;
 
     private final GameMaster gameMaster;
-    private String msg;
     private int round;
 
     /**
      * Create a game
      */
     public Game() {
-        log.trace("init Game");
+        LOGGER.debug("init Game");
         bots = new ArrayList<>();
         gameMaster = new GameMaster();
         round = 1;
-        msg = "";
     }
 
     public Game setUp(int round) {
-        log.trace("round :" + round);
+        LOGGER.info("round :" + round);
         this.round = round;
         return this;
     }
 
     public String fire() {
-        log.trace("fire !");
+        LOGGER.debug("fire !");
         for (int i = 0; i < round; i++) {
             for (Bot bot : bots) {
                 bot.play();
-
-                msg += "Le bot " + bot.getName() + " lance les dés \n";
-                msg += "Le bot " + bot.getName() + " a obtenue " + bot.getLastValue() + " " + bot.getLastResource()+"\n";
+                LOGGER.info("Le bot " + bot.getName() + " lance les dés");
+                LOGGER.info(
+                        "Le bot " + bot.getName() + " a obtenue " + bot.getLastValue() + " " + bot.getLastResource());
             }
         }
         gameMaster.etablishWinner(bots);
-        msg += gameMaster.getWinnerMsg();
-        return this.msg;
+        return gameMaster.getWinnerMsg();
     }
 
     public Game addBot(String name) {
-        log.trace("add bot :" + name);
+        LOGGER.info("add bot :" + name);
         bots.add(new Bot(name));
         return this;
     }
