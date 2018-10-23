@@ -1,5 +1,10 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import uk.org.lidalia.sysoutslf4j.context.SysOutOverSLF4J;
+
 /**
  * Create a bot
  *
@@ -25,6 +30,8 @@ class Bot {
     private Dice dice;
     private String name;
 
+    private List<Card> cards = new ArrayList<>();
+
     /**
      * constructor
      */
@@ -46,16 +53,28 @@ class Bot {
         this.name = name;
     }
 
-    void play() {
+    void play(Board board) {
         rollDice();
         getResources();
+        exploit(board);
+
     }
 
-    int getLastValue(){
+    void exploit(Board board) {
+        List<Card> feasible = board.getEligibleCards(moonStone, sunStone);
+        if (feasible.size() != 0) {
+            cards.add(feasible.get(feasible.size() - 1));
+            victoryPoint = victoryPoint + feasible.get(feasible.size() - 1).getVictoryPoint();
+            moonStone = moonStone - feasible.get(feasible.size() - 1).getMoonStone();
+        }
+
+    }
+
+    int getLastValue() {
         return lastValue;
     }
 
-    Resources getLastResource(){
+    Resources getLastResource() {
         return lastResource;
     }
 
@@ -64,24 +83,26 @@ class Bot {
      * @return the number of dice
      */
 
-    private void rollDice() { dice.random(); }
+    private void rollDice() {
+        dice.random();
+    }
 
-    private void getResources(){
+    private void getResources() {
         lastValue = dice.getRandomValue();
         lastResource = dice.getRandomResources();
-        switch(lastResource){
-            case PG:
-                victoryPoint += lastValue;
-                break;
-            case G:
-                gold += lastValue;
-                break;
-            case SS:
-                sunStone += lastValue;
-                break;
-            case MS:
-                moonStone += lastValue;
-                break;
+        switch (lastResource) {
+        case PG:
+            victoryPoint += lastValue;
+            break;
+        case G:
+            gold += lastValue;
+            break;
+        case SS:
+            sunStone += lastValue;
+            break;
+        case MS:
+            moonStone += lastValue;
+            break;
         }
     }
 
@@ -89,11 +110,17 @@ class Bot {
         return victoryPoint;
     }
 
-    int getSunStone() { return sunStone; }
+    int getSunStone() {
+        return sunStone;
+    }
 
-    int getMoonStone() { return moonStone; }
+    int getMoonStone() {
+        return moonStone;
+    }
 
-    int getGold() { return gold; }
+    int getGold() {
+        return gold;
+    }
 
     /**
      * @return the name

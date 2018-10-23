@@ -23,6 +23,7 @@ public class Game {
 
     private final GameMaster gameMaster;
     private int round;
+    private Board board;
 
     /**
      * Create a game
@@ -31,6 +32,7 @@ public class Game {
         LOGGER.debug("init Game");
         bots = new ArrayList<>();
         gameMaster = new GameMaster();
+        board = new Board();
         round = 1;
     }
 
@@ -44,10 +46,10 @@ public class Game {
         LOGGER.debug("fire !");
         for (int i = 0; i < round; i++) {
             for (Bot bot : bots) {
-                bot.play();
+                bot.play(this.board);
                 LOGGER.info("Le bot " + bot.getName() + " lance les dés");
-                LOGGER.info(
-                        "Le bot " + bot.getName() + " a obtenue " + bot.getLastValue() + " " + bot.getLastResource());
+                LOGGER.info("Le bot " + bot.getName() + " a obtenue " + bot.getLastValue() + " "
+                        + bot.getLastResource().toString());
             }
         }
         gameMaster.etablishWinner(bots);
@@ -59,4 +61,10 @@ public class Game {
         bots.add(new Bot(name));
         return this;
     }
+
+    public Game addCard() {
+        board.createCard();
+        return this;
+    }
+
 }

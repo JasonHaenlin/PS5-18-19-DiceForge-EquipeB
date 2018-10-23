@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.apache.maven.scm.command.export.ExportScmResultWithRevision;
 import org.junit.Test;
 
 public class BotTest {
@@ -11,12 +12,14 @@ public class BotTest {
     @Test
     public void botTest() {
         Bot bot = new Bot();
+        Board board = new Board();
+        board.createCard();
         assertEquals(0, bot.getVictoryPoint());
         int pv_before = bot.getVictoryPoint();
-        bot.play();
+        bot.play(board);
         assertTrue(pv_before <= bot.getVictoryPoint());
         pv_before = bot.getVictoryPoint();
-        bot.play();
+        bot.play(board);
         assertTrue(pv_before <= bot.getVictoryPoint());
     }
 
@@ -25,9 +28,11 @@ public class BotTest {
         Bot bot1 = new Bot("b1");
         Bot bot2 = new Bot("b2");
         Bot bot3 = new Bot("b3");
+        Board board = new Board();
+        board.createCard();
 
         while (bot3.getVictoryPoint() == 0) {
-            bot3.play();
+            bot3.play(board);
         }
 
         assertTrue(bot1.equals(bot2));
@@ -35,4 +40,5 @@ public class BotTest {
         assertFalse(bot3.equals(bot1));
         assertFalse(bot2.equals(bot3));
     }
+
 }

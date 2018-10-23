@@ -16,6 +16,7 @@ public class App {
         String result = game.setUp(1)
             .addBot("Rondoudou")
             .addBot("Pichu")
+            .addCard()
             .fire();
         //@formatter:on
 

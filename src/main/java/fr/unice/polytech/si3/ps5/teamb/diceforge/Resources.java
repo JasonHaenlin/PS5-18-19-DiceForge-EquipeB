@@ -10,15 +10,17 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge;
  */
 enum Resources {
 
-    PG("Point de Gloire"),
-    G("Gold"),
-    MS("Moon Stone"),
-    SS("Sun Stone");
+    PG("Point de Gloire"), G("Or"), MS("Pierre Lune"), SS("Pierre Soleil");
 
     String resource;
 
     Resources(String resource) {
         this.resource = resource;
+    }
+
+    @Override
+    public String toString() {
+        return resource;
     }
 
 }
