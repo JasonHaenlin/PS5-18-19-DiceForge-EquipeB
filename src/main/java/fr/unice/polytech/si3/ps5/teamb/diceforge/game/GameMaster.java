@@ -1,7 +1,9 @@
-package fr.unice.polytech.si3.ps5.teamb.diceforge;
+package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.Bot;
 
 /**
  * Create a game master

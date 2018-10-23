@@ -1,4 +1,6 @@
-package fr.unice.polytech.si3.ps5.teamb.diceforge;
+package fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge;
+
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 
 /**
  *

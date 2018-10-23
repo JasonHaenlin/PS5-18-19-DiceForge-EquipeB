@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.ps5.teamb.diceforge;
+package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

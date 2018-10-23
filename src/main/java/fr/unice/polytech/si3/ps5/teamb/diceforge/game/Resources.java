@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.ps5.teamb.diceforge;
+package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
 /**
  * Define different of resource
@@ -8,9 +8,14 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge;
  * @author Vincent Ung
  * @author Jason Haenlin
  */
-enum Resources {
+public enum Resources {
 
-    PG("Point de Gloire"), G("Or"), MS("Pierre Lune"), SS("Pierre Soleil");
+    //@formatter:off
+    VICTORY_POINT("Point de Gloire"), 
+    GOLD("Or"), 
+    MOON_STONE("Pierre Lune"), 
+    SUN_STUNE("Pierre Soleil");
+    //@formatter:on
 
     String resource;
 

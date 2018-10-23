@@ -1,10 +1,12 @@
-package fr.unice.polytech.si3.ps5.teamb.diceforge;
+package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.Bot;
 
 /**
  * Create a game with 2 bot
@@ -15,7 +17,7 @@ import org.apache.logging.log4j.Logger;
  * @author Jason Haenlin
  */
 
-public class Game {
+public class Game extends Board {
 
     private static Logger LOGGER = LogManager.getLogger(Game.class);
 
@@ -23,16 +25,15 @@ public class Game {
 
     private final GameMaster gameMaster;
     private int round;
-    private Board board;
 
     /**
      * Create a game
      */
     public Game() {
+        super();
         LOGGER.debug("init Game");
         bots = new ArrayList<>();
         gameMaster = new GameMaster();
-        board = new Board();
         round = 1;
     }
 
@@ -46,7 +47,7 @@ public class Game {
         LOGGER.debug("fire !");
         for (int i = 0; i < round; i++) {
             for (Bot bot : bots) {
-                bot.play(this.board);
+                bot.play(getBoardView());
                 LOGGER.info("Le bot " + bot.getName() + " lance les dés");
                 LOGGER.info("Le bot " + bot.getName() + " a obtenue " + bot.getLastValue() + " "
                         + bot.getLastResource().toString());
@@ -61,10 +62,4 @@ public class Game {
         bots.add(new Bot(name));
         return this;
     }
-
-    public Game addCard() {
-        board.createCard();
-        return this;
-    }
-
 }

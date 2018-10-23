@@ -1,13 +1,20 @@
-package fr.unice.polytech.si3.ps5.teamb.diceforge;
+package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
 import java.util.ArrayList;
 
-class Board {
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.Card;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.SimpleCard;
 
-    public ArrayList<Card> MoonCards = new ArrayList<Card>();
-    public ArrayList<Card> SunCards = new ArrayList<Card>();
+public class Board {
 
-    public void createCard() {
+    private ArrayList<Card> MoonCards = new ArrayList<Card>();
+    private ArrayList<Card> SunCards = new ArrayList<Card>();
+
+    protected Board() {
+        createCard();
+    }
+
+    protected void createCard() {
 
         for (int moon = 1; moon < 4; moon++) {
             MoonCards.add(new SimpleCard(moon, 0, 10 + moon));
@@ -34,6 +41,10 @@ class Board {
                 a2.getMoonStone() + a2.getSunStone()));
 
         return Buyable;
+    }
+
+    public Board getBoardView() {
+        return this;
     }
 
 }

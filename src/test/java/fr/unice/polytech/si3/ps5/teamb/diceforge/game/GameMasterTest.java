@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.ps5.teamb.diceforge;
+package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
+
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.Bot;
 
 public class GameMasterTest {
 
