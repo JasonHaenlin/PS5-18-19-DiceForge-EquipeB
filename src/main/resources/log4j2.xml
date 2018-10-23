@@ -29,5 +29,10 @@
             <AppenderRef ref="allInfos" level = "all"/>
             <AppenderRef ref="lessInfos" level = "info"/>
         </Logger>
+        <Logger name="fr.unice.polytech.si3.ps5.teamb.diceforge.bot.Bot" level="all" additivity="false">
+            <AppenderRef ref="stdout" level = "trace"/>
+            <AppenderRef ref="allInfos" level = "all"/>
+            <AppenderRef ref="lessInfos" level = "info"/>
+        </Logger>
     </Loggers>
 </Configuration>

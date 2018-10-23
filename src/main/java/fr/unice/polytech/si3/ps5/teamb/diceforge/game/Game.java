@@ -48,7 +48,7 @@ public class Game extends Board {
         for (int i = 0; i < round; i++) {
             for (Bot bot : bots) {
                 bot.play(getBoardView());
-                LOGGER.info("Le bot " + bot.getName() + " lance les dés");
+                LOGGER.info("Le bot " + bot.getName() + " lance les des");
                 LOGGER.info("Le bot " + bot.getName() + " a obtenue " + bot.getLastValue() + " "
                         + bot.getLastResource().toString());
             }

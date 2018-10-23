@@ -9,7 +9,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
  * @author Vincent Ung
  * @author Jason Haenlin
  */
-class DiceSide {
+public class DiceSide {
     protected int value;
     protected Resources type;
 
@@ -21,14 +21,14 @@ class DiceSide {
     /**
      * @return the type
      */
-    Resources getType() {
+    public Resources getType() {
         return type;
     }
 
     /**
      * @return the value
      */
-    int getValue() {
+    public int getValue() {
         return value;
     }
 }

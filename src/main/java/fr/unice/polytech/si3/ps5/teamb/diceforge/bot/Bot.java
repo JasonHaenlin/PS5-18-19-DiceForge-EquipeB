@@ -5,10 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Board;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.Card;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.Dice;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.DiceSide;
 
 /**
  * Create a bot
@@ -23,6 +27,8 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.Dice;
  */
 
 public class Bot {
+
+    private static Logger LOGGER = LogManager.getLogger(Bot.class);
 
     private Resources currRes = Resources.GOLD;
     private int currValue = 0;
@@ -48,17 +54,19 @@ public class Bot {
     public void play(Board board) {
         rollDice();
         exploit(board);
-
     }
 
     void exploit(Board board) {
         List<Card> feasible = board.getEligibleCards(treasury.get(Resources.SUN_STUNE),
                 treasury.get(Resources.MOON_STONE));
         if (feasible.size() != 0) {
+            currValue = feasible.get(feasible.size() - 1).getVictoryPoint();
+            currRes = Resources.VICTORY_POINT;
             cards.add(feasible.get(feasible.size() - 1));
             updateBag(feasible, Resources.VICTORY_POINT);
             updateBag(feasible, Resources.SUN_STUNE);
             updateBag(feasible, Resources.MOON_STONE);
+            LOGGER.debug("le bot " + this.name + "a fait un exploit et a obtenue " + currValue + " " + currRes);
         }
 
     }
@@ -73,7 +81,12 @@ public class Bot {
      */
 
     private void rollDice() {
-        dice.random(treasury);
+        updateCurrentStateValue(dice.random(treasury));
+    }
+
+    private void updateCurrentStateValue(DiceSide side) {
+        currValue = side.getValue();
+        currRes = side.getType();
     }
 
     public int getVictoryPoint() {
@@ -85,6 +98,14 @@ public class Bot {
      */
     public String getName() {
         return name;
+    }
+
+    public int getLastValue() {
+        return currValue;
+    }
+
+    public Resources getLastResource() {
+        return currRes;
     }
 
     @Override
@@ -104,11 +125,4 @@ public class Bot {
         return super.hashCode();
     }
 
-    public int getLastValue() {
-        return currValue;
-    }
-
-    public Resources getLastResource() {
-        return currRes;
-    }
 }

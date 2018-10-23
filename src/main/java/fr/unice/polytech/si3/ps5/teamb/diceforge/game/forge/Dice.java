@@ -32,7 +32,7 @@ public class Dice {
      */
     public Dice() {
         rnd = new Random();
-        for (int i = 0; i < 2; i++) {
+        for (int i = 1; i < 3; i++) {
             diceSides.add(new DiceSide(i, Resources.SUN_STUNE));
             diceSides.add(new DiceSide(i, Resources.MOON_STONE));
         }
@@ -55,9 +55,10 @@ public class Dice {
      * 
      * @param treasury
      */
-    public void random(Map<Resources, Integer> treasury) {
+    public DiceSide random(Map<Resources, Integer> treasury) {
         side = diceSides.get(rnd.nextInt(size));
         treasury.replace(side.getType(), side.getValue() + treasury.get(side.getType()));
+        return side;
     }
 
     int getRandomValue() {

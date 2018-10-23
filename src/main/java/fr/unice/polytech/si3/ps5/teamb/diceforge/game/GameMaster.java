@@ -47,7 +47,7 @@ class GameMaster {
         }
         if (winnerMsg == "") {
             winnerMsg = "Le bot " + winner.get(0).getName() + " gagne avec " + winner.get(0).getVictoryPoint()
-                    + " points de Gloire \t GG!";
+                    + " points de Gloire";
         }
     }
 
