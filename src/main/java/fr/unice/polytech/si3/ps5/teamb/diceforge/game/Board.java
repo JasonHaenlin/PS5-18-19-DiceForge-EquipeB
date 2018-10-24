@@ -16,11 +16,11 @@ public class Board {
 
     protected void createCard() {
 
-        for (int moon = 1; moon < 4; moon++) {
-            MoonCards.add(new SimpleCard(moon, 0, 10 + moon));
+        for (int moon = 2; moon < 6; moon++) {
+            MoonCards.add(new SimpleCard(moon, 0, 5 + moon));
         }
-        for (int sun = 1; sun < 4; sun++) {
-            SunCards.add(new SimpleCard(0, sun, 10 + sun));
+        for (int sun = 2; sun < 5; sun++) {
+            SunCards.add(new SimpleCard(0, sun, 5 + sun));
         }
 
     }

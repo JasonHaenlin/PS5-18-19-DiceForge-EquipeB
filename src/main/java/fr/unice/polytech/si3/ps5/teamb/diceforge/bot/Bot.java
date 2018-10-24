@@ -57,22 +57,27 @@ public class Bot {
     }
 
     void exploit(Board board) {
-        List<Card> feasible = board.getEligibleCards(treasury.get(Resources.SUN_STUNE),
-                treasury.get(Resources.MOON_STONE));
+        List<Card> feasible = board.getEligibleCards(treasury.get(Resources.MOON_STONE),
+                treasury.get(Resources.SUN_STUNE));
         if (feasible.size() != 0) {
-            currValue = feasible.get(feasible.size() - 1).getVictoryPoint();
+            Card card = feasible.get(feasible.size() - 1);
+            currValue = card.getVictoryPoint();
             currRes = Resources.VICTORY_POINT;
             cards.add(feasible.get(feasible.size() - 1));
-            updateBag(feasible, Resources.VICTORY_POINT);
-            updateBag(feasible, Resources.SUN_STUNE);
-            updateBag(feasible, Resources.MOON_STONE);
-            LOGGER.debug("Le bot " + this.name + "a fait un exploit et a obtenue " + currValue + " " + currRes);
+            updateBag(card.getVictoryPoint(), Resources.VICTORY_POINT, true);
+            updateBag(card.getSunStone(), Resources.SUN_STUNE, false);
+            updateBag(card.getMoonStone(), Resources.MOON_STONE, false);
+            LOGGER.debug("Le bot " + this.name + " a fait un exploit et a obtenue " + currValue + " " + currRes);
         }
 
     }
 
-    private void updateBag(List<Card> feasible, Resources res) {
-        treasury.replace(res, treasury.get(res) + feasible.get(feasible.size() - 1).getVictoryPoint());
+    private void updateBag(int amout, Resources res, boolean op) {
+        if (op)
+            treasury.replace(res, treasury.get(res) + amout);
+        else
+            treasury.replace(res, treasury.get(res) - amout);
+        LOGGER.debug(treasury.toString());
     }
 
     /**
