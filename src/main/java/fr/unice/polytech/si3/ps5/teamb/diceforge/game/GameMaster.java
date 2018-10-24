@@ -36,18 +36,19 @@ class GameMaster {
         int i = bots.size() - 2;
         winner.add(bots.get(i + 1));
         while (winner.get(0).getVictoryPoint() == bots.get(i).getVictoryPoint() && i >= 1) {
-            if (i == bots.size() - 2) {
-                winnerMsg = "Egualite avec un total de " + winner.get(0).getVictoryPoint()
-                        + " points de Gloire entre : " + winner.get(0).getName() + ", " + bots.get(i).getName();
-            } else {
-                winnerMsg += ", " + bots.get(i).getName();
-            }
             winner.add(bots.get(i));
             i--;
         }
-        if (winnerMsg == "") {
+        if(winner.size() == 1){
             winnerMsg = "Le bot " + winner.get(0).getName() + " gagne avec " + winner.get(0).getVictoryPoint()
                     + " points de Gloire";
+        }
+        else{
+            winnerMsg = "Egualite avec un total de " + winner.get(0).getVictoryPoint()
+                    + " points de Gloire entre : ";
+            for(int j = 0; j < winner.size(); j++){
+                winnerMsg += winner.get(j).getName() + ", ";
+            }
         }
     }
 
