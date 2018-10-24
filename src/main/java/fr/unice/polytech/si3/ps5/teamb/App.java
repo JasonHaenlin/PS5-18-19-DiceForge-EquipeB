@@ -13,7 +13,7 @@ public class App {
         Game game = new Game();
 
         // @formatter:off
-        String result = game.setUp(5)
+        String result = game.setUp(9)
             .addBot("Rondoudou")
             .addBot("Pichu")
             .fire();

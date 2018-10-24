@@ -66,7 +66,7 @@ public class Bot {
             updateBag(feasible, Resources.VICTORY_POINT);
             updateBag(feasible, Resources.SUN_STUNE);
             updateBag(feasible, Resources.MOON_STONE);
-            LOGGER.debug("le bot " + this.name + "a fait un exploit et a obtenue " + currValue + " " + currRes);
+            LOGGER.debug("Le bot " + this.name + "a fait un exploit et a obtenue " + currValue + " " + currRes);
         }
 
     }
