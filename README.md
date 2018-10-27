@@ -24,7 +24,7 @@ To run the program, run the following command in the root directory:
 - Think about the comments in the code and in the tests, so that other members will understand more easily.
 
 ### After coding
-- cmd : `mvn test` <strong style="color:brown">! not IntelliJ</strong>
+- cmd : `mvn test`
 - cmd : `git add *` 
 - cmd : `git commit -m "#<task id> <write a message>"`
 - cmd : `git push`

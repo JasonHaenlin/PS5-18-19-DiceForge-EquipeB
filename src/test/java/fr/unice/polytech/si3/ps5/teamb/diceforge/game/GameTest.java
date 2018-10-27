@@ -10,7 +10,7 @@ public class GameTest {
     public void game2BotTest() {
         Game game = new Game();
 
-        String result = game.setUp(1).addBot("Rondoudou").addBot("Pichu").fire();
+        String result = game.setup(1).addBot("Rondoudou").addBot("Pichu").fire();
 
         assertTrue(!result.isEmpty());
     }
@@ -19,7 +19,7 @@ public class GameTest {
     public void game3BotTest() {
         Game game = new Game();
 
-        String result = game.setUp(1).addBot("Rondoudou").addBot("Pichu").addBot("Ronflex").fire();
+        String result = game.setup(1).addBot("Rondoudou").addBot("Pichu").addBot("Ronflex").fire();
 
         assertTrue(!result.isEmpty());
     }

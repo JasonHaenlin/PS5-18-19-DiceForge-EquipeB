@@ -49,11 +49,12 @@ public class Game extends Board {
         initialize();
         for (int i = 0; i < round; i++) {
             bots.forEach((bot, score) -> {
-                bot.play(getBoardView());
+                // bot.play(getBoardView()); //TODO
+                Map<Resources, Integer> result = rolldice(bot.getName());
                 bots.replace(bot, score + getVictoryPoint(bot.getName()));
                 LOGGER.info("Le bot " + bot.getName() + " lance les des");
-                LOGGER.info("Le bot " + bot.getName() + " a obtenue " + bot.getLastValue() + " "
-                        + bot.getLastResource().toString());
+                result.forEach((res, amout) -> LOGGER
+                        .info("Le bot " + bot.getName() + " a obtenue " + amout + " " + res.toString()));
             });
         }
         return etablishWinner();
@@ -69,7 +70,7 @@ public class Game extends Board {
 
     private String etablishWinner() {
         StringBuilder winnerMsg = new StringBuilder();
-        Map<String, Integer> winners = getWinnersList(new TreeMap<>(new ValueComparator(bots)));
+        Map<String, Integer> winners = getWinnersList();
         if (winners.size() == 1) {
             winners.forEach((name, score) -> {
                 winnerMsg.append("Le bot " + name + " gagne avec " + score + " points de Gloire");
@@ -77,19 +78,21 @@ public class Game extends Board {
         } else {
             winnerMsg.append("Egalite entre les joueurs ");
             winners.forEach((name, score) -> {
-                winnerMsg.append(name + " , ");
+                winnerMsg.append(" [" + name + "]");
                 finalScore = score;
             });
-            winnerMsg.append(". Avec un total de " + finalScore);
+            winnerMsg.append(". Avec un total de " + finalScore + " points de Gloire");
         }
         return winnerMsg.toString();
     }
 
-    private Map<String, Integer> getWinnersList(TreeMap<Bot, Integer> scoreMap) {
+    private Map<String, Integer> getWinnersList() {
+        TreeMap<Bot, Integer> sorted = new TreeMap<>(new ScoreComparator(bots));
+        sorted.putAll(bots);
         Map<String, Integer> winners = new HashMap<>();
-        winners.put(scoreMap.firstEntry().getKey().getName(), scoreMap.firstEntry().getValue());
-        int highestScore = scoreMap.pollFirstEntry().getValue();
-        scoreMap.forEach((bot, score) -> {
+        winners.put(sorted.firstEntry().getKey().getName(), sorted.firstEntry().getValue());
+        int highestScore = sorted.pollFirstEntry().getValue();
+        sorted.forEach((bot, score) -> {
             if (score == highestScore) {
                 winners.put(bot.getName(), score);
             }
@@ -99,10 +102,10 @@ public class Game extends Board {
 
 }
 
-class ValueComparator implements Comparator<Bot> {
+class ScoreComparator implements Comparator<Bot> {
     Map<Bot, Integer> base;
 
-    public ValueComparator(Map<Bot, Integer> base) {
+    public ScoreComparator(Map<Bot, Integer> base) {
         this.base = base;
     }
 

@@ -18,6 +18,7 @@ public class Board {
     private Map<String, Inventory> playerInventory;
 
     protected Board() {
+        playerRegistered = new HashMap<>();
     }
 
     protected void initialize() {
@@ -33,7 +34,6 @@ public class Board {
     }
 
     protected boolean registrationToBoard(Bot bot) {
-        playerRegistered = new HashMap<>();
         if (playerRegistered.containsKey(bot.getName())) {
             return false;
         }
@@ -72,7 +72,7 @@ public class Board {
     }
 
     protected int getVictoryPoint(String name) {
-        return playerInventory.get(name).getResource(Resources.GOLD);
+        return playerInventory.get(name).getResource(Resources.VICTORY_POINT);
     }
 
     public Board getBoardView() {
@@ -84,6 +84,14 @@ public class Board {
         int moon = inv.getResource(Resources.MOON_STONE);
         int sun = inv.getResource(Resources.SUN_STUNE);
         return getEligibleCards(moon, sun);
+    }
+
+    protected void rollAllDices() {
+        playerInventory.forEach((name, inv) -> inv.rolldice());
+    }
+
+    public Map<Resources, Integer> rolldice(String name) {
+        return playerInventory.get(name).rolldice();
     }
 
 }

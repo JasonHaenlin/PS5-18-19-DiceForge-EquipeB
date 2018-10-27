@@ -55,10 +55,8 @@ public class Dice {
      * 
      * @param treasury
      */
-    public DiceSide random(Map<Resources, Integer> treasury) {
-        side = diceSides.get(rnd.nextInt(size));
-        treasury.replace(side.getType(), side.getValue() + treasury.get(side.getType()));
-        return side;
+    public DiceSide random() {
+        return diceSides.get(rnd.nextInt(size));
     }
 
     int getRandomValue() {
