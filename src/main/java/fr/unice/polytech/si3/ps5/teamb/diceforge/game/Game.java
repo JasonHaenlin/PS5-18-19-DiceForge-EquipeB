@@ -2,7 +2,6 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -47,6 +46,7 @@ public class Game extends Board {
 
     public String fire() {
         LOGGER.debug("fire !");
+        initialize();
         for (int i = 0; i < round; i++) {
             bots.forEach((bot, score) -> {
                 bot.play(getBoardView());
