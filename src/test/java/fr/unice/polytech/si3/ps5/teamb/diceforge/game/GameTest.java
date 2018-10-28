@@ -1,16 +1,29 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Before;
 import org.junit.Test;
 
-public class GameTest {
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.OnlyDice;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.SimpleHighestExploit;
 
-    @Test
-    public void game2BotTest() {
-        Game game = new Game();
+public class GameTest {
+    Game game;
+
+    @Before
+    public void setup() {
+        game = new Game();
     }
 
     @Test
-    public void game3BotTest() {
-        Game game = new Game();
+    public void game2BotTest() throws Exception {
+        //@formatter:off
+        String result = game.setup(2)
+            .addBot(OnlyDice.class)
+            .addBot(SimpleHighestExploit.class)
+            .fire();
+        //@formatter:on
+        assertTrue(result.contains("SimpleHighestExploit"));
     }
 }
