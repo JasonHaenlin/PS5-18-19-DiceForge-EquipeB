@@ -67,7 +67,7 @@ public class Game extends Board {
         player.setup();
         log.info("add bot :" + bot.toString());
         bots.put(player, 0);
-        registrationToBoard(player);
+        registrationToBoard(player.toString(), player.hashCode());
         return this;
     }
 

@@ -7,13 +7,16 @@ import org.junit.Test;
  * InventoryTest
  */
 public class BoardTest {
+
+    BoardExtends board;
+
     @Before
     public void setup() {
-
+        board = new BoardExtends();
     }
 
     @Test
-    public void test() {
-
+    public void gameBoardTest() {
+        board.BoardTest();
     }
 }

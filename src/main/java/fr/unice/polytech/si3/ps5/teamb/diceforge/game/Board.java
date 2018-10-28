@@ -1,6 +1,7 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,11 +33,11 @@ public class Board {
         });
     }
 
-    protected boolean registrationToBoard(Player bot) {
-        if (playerRegistered.containsKey(bot.toString())) {
+    protected boolean registrationToBoard(String player, int token) {
+        if (playerRegistered.containsKey(player)) {
             return false;
         }
-        playerRegistered.put(bot.toString(), bot.hashCode());
+        playerRegistered.put(player, token);
         return true;
     }
 
@@ -67,7 +68,7 @@ public class Board {
         Buyable.sort((Card a1, Card a2) -> Integer.compare(a1.getMoonStone() + a1.getSunStone(),
                 a2.getMoonStone() + a2.getSunStone()));
 
-        return Buyable;
+        return Buyable.isEmpty() ? Collections.emptyList() : Buyable;
     }
 
     protected int getVictoryPoint(String name) {
@@ -92,10 +93,6 @@ public class Board {
         int moon = inv.getResource(Resources.MOON_STONE);
         int sun = inv.getResource(Resources.SUN_STUNE);
         return getEligibleCards(moon, sun);
-    }
-
-    protected void rollAllDices() {
-        playerInventory.forEach((name, inv) -> inv.rolldice());
     }
 
     public Map<Resources, Integer> rolldice(String name) {
