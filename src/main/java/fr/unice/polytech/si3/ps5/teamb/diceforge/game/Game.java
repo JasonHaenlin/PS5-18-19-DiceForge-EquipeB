@@ -8,8 +8,6 @@ import java.util.TreeMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.Bot;
-
 /**
  * Create a game with 2 bot
  *
@@ -23,7 +21,7 @@ public class Game extends Board {
 
     private static Logger LOGGER = LogManager.getLogger(Game.class);
 
-    private Map<Bot, Integer> bots;
+    private Map<Player, Integer> bots;
 
     private int finalScore;
     private int round;
@@ -49,22 +47,22 @@ public class Game extends Board {
         initialize();
         for (int i = 0; i < round; i++) {
             bots.forEach((bot, score) -> {
-                // bot.play(getBoardView()); //TODO
-                Map<Resources, Integer> result = rolldice(bot.getName());
-                bots.replace(bot, score + getVictoryPoint(bot.getName()));
-                LOGGER.info("Le bot " + bot.getName() + " lance les des");
+                Map<Resources, Integer> result = rolldice(bot.toString());
+                bots.replace(bot, score + getVictoryPoint(bot.toString()));
+                LOGGER.info("Le bot " + bot.toString() + " lance les des");
                 result.forEach((res, amout) -> LOGGER
-                        .info("Le bot " + bot.getName() + " a obtenue " + amout + " " + res.toString()));
+                        .info("Le bot " + bot.toString() + " a obtenue " + amout + " " + res.toString()));
             });
+            bots.forEach((bot, score) -> bot.play(getBoardView()));
         }
         return etablishWinner();
     }
 
-    public Game addBot(String name) {
-        LOGGER.info("add bot :" + name);
-        Bot bot = new Bot(name);
-        bots.put(bot, 0);
-        registrationToBoard(bot);
+    public Game addBot(Class<? extends Player> bot) throws Exception {
+        Player player = bot.newInstance();
+        LOGGER.info("add bot :" + bot.toString());
+        bots.put(player, 0);
+        registrationToBoard(player);
         return this;
     }
 
@@ -87,14 +85,14 @@ public class Game extends Board {
     }
 
     private Map<String, Integer> getWinnersList() {
-        TreeMap<Bot, Integer> sorted = new TreeMap<>(new ScoreComparator(bots));
+        TreeMap<Player, Integer> sorted = new TreeMap<>(new ScoreComparator(bots));
         sorted.putAll(bots);
         Map<String, Integer> winners = new HashMap<>();
-        winners.put(sorted.firstEntry().getKey().getName(), sorted.firstEntry().getValue());
+        winners.put(sorted.firstEntry().getKey().toString(), sorted.firstEntry().getValue());
         int highestScore = sorted.pollFirstEntry().getValue();
         sorted.forEach((bot, score) -> {
             if (score == highestScore) {
-                winners.put(bot.getName(), score);
+                winners.put(bot.toString(), score);
             }
         });
         return winners;
@@ -102,14 +100,14 @@ public class Game extends Board {
 
 }
 
-class ScoreComparator implements Comparator<Bot> {
-    Map<Bot, Integer> base;
+class ScoreComparator implements Comparator<Player> {
+    Map<Player, Integer> base;
 
-    public ScoreComparator(Map<Bot, Integer> base) {
+    public ScoreComparator(Map<Player, Integer> base) {
         this.base = base;
     }
 
-    public int compare(Bot a, Bot b) {
+    public int compare(Player a, Player b) {
         if (base.get(a) >= base.get(b)) {
             return -1;
         } else {

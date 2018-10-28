@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.Bot;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.Card;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.SimpleCard;
 
@@ -33,11 +32,11 @@ public class Board {
         });
     }
 
-    protected boolean registrationToBoard(Bot bot) {
-        if (playerRegistered.containsKey(bot.getName())) {
+    protected boolean registrationToBoard(Player bot) {
+        if (playerRegistered.containsKey(bot.toString())) {
             return false;
         }
-        playerRegistered.put(bot.getName(), bot.hashCode());
+        playerRegistered.put(bot.toString(), bot.hashCode());
         return true;
     }
 
@@ -54,7 +53,7 @@ public class Board {
     }
 
     protected List<Card> getEligibleCards(int moonBank, int sunBank) {
-        ArrayList<Card> Buyable = new ArrayList<Card>();
+        ArrayList<Card> Buyable = new ArrayList<>();
         for (Card Card : MoonCards) {
             if (Card.getMoonStone() <= moonBank) {
                 Buyable.add(Card);
