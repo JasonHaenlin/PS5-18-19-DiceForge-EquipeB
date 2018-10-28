@@ -46,16 +46,22 @@ public class Inventory {
         treasury.replace(res, treasury.get(res) + amout);
     }
 
-    void removeResourceFromBag(int amout, Resources res) {
+    boolean removeResourceFromBag(int amout, Resources res) {
+        if (treasury.get(res) < amout) {
+            return false;
+        }
         treasury.replace(res, treasury.get(res) - amout);
+        return true;
     }
 
-    void addCardToBag(Card card) {
+    boolean addCardToBag(Card card) {
         cards.add(card);
         lastUpdate = card.getVictoryPoint();
         addResourceToBag(card.getVictoryPoint(), Resources.VICTORY_POINT);
-        removeResourceFromBag(card.getMoonStone(), Resources.MOON_STONE);
-        removeResourceFromBag(card.getSunStone(), Resources.SUN_STUNE);
+        if (!removeResourceFromBag(card.getMoonStone(), Resources.MOON_STONE)
+                || !removeResourceFromBag(card.getSunStone(), Resources.SUN_STUNE))
+            return false;
+        return true;
     }
 
     int getResource(Resources rsc) {
