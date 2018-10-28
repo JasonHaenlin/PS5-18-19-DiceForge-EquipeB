@@ -19,7 +19,7 @@ import org.apache.logging.log4j.Logger;
 
 public class Game extends Board {
 
-    private static Logger LOGGER = LogManager.getLogger(Game.class);
+    private static Logger log = LogManager.getLogger(Game.class);
 
     private Map<Player, Integer> bots;
 
@@ -31,36 +31,41 @@ public class Game extends Board {
      */
     public Game() {
         super();
-        LOGGER.debug("init Game");
+        log.debug("init Game");
         bots = new HashMap<>();
         round = 1;
     }
 
     public Game setup(int round) {
-        LOGGER.info("round :" + round);
+        log.info("round :" + round);
         this.round = round;
         return this;
     }
 
     public String fire() {
-        LOGGER.debug("fire !");
+        log.debug("fire !");
         initialize();
         for (int i = 0; i < round; i++) {
             bots.forEach((bot, score) -> {
                 Map<Resources, Integer> result = rolldice(bot.toString());
                 bots.replace(bot, score + getVictoryPoint(bot.toString()));
-                LOGGER.info("Le bot " + bot.toString() + " lance les des");
-                result.forEach((res, amout) -> LOGGER
+                log.info("Le bot " + bot.toString() + " lance les des");
+                result.forEach((res, amout) -> log
                         .info("Le bot " + bot.toString() + " a obtenue " + amout + " " + res.toString()));
             });
-            bots.forEach((bot, score) -> bot.play(getBoardView()));
+            bots.forEach((bot, score) -> {
+                bot.play(getBoardView());
+                bots.replace(bot, score + getVictoryPoint(bot.toString()));
+            });
         }
+        bots.forEach((bot, score) -> log.info(bot.toString() + "\t: " + score + " Point de Gloire"));
         return etablishWinner();
     }
 
     public Game addBot(Class<? extends Player> bot) throws Exception {
         Player player = bot.newInstance();
-        LOGGER.info("add bot :" + bot.toString());
+        player.setup();
+        log.info("add bot :" + bot.toString());
         bots.put(player, 0);
         registrationToBoard(player);
         return this;

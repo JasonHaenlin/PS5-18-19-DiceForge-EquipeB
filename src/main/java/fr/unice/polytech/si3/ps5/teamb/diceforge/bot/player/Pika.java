@@ -19,6 +19,7 @@ public class Pika extends Player {
 
     @Override
     public void play(Board boardView) {
+
     }
 
 }

@@ -71,11 +71,20 @@ public class Board {
     }
 
     protected int getVictoryPoint(String name) {
-        return playerInventory.get(name).getResource(Resources.VICTORY_POINT);
+        return playerInventory.get(name).getLastVIctoryPoint();
     }
 
-    public Board getBoardView() {
+    protected Board getBoardView() {
         return this;
+    }
+
+    public boolean playCard(Card card, String name) {
+        // need to add token for further permission
+        if (card == null) {
+            return false;
+        }
+        playerInventory.get(name).addCardToBag(card);
+        return true;
     }
 
     public List<Card> getEligibleCards(String name) {

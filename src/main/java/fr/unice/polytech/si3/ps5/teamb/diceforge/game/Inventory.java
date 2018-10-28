@@ -17,6 +17,8 @@ public class Inventory {
     private List<Dice> dices = new ArrayList<>();
     private List<Card> cards = new ArrayList<>();
 
+    private int lastUpdate = 0;
+
     Inventory() {
         for (Resources rsc : Resources.values()) {
             treasury.put(rsc, 0);
@@ -30,6 +32,9 @@ public class Inventory {
         dices.forEach(dice -> {
             DiceSide side = dice.random();
             addResourceToBag(side.getValue(), side.getType());
+            if (side.getType().equals(Resources.VICTORY_POINT)) {
+                lastUpdate += side.getValue();
+            }
             if (newResources.containsKey(side.getType()))
                 newResources.replace(side.getType(), newResources.get(side.getType()) + side.getValue());
             newResources.put(side.getType(), side.getValue());
@@ -47,9 +52,19 @@ public class Inventory {
 
     void addCardToBag(Card card) {
         cards.add(card);
+        lastUpdate = card.getVictoryPoint();
+        addResourceToBag(card.getVictoryPoint(), Resources.VICTORY_POINT);
+        removeResourceFromBag(card.getMoonStone(), Resources.MOON_STONE);
+        removeResourceFromBag(card.getSunStone(), Resources.SUN_STUNE);
     }
 
     int getResource(Resources rsc) {
         return treasury.get(rsc);
+    }
+
+    public int getLastVIctoryPoint() {
+        int point = lastUpdate;
+        lastUpdate = 0;
+        return point;
     }
 }
