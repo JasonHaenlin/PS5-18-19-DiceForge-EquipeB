@@ -91,7 +91,7 @@ public class Board {
     public List<Card> getEligibleCards(String name) {
         Inventory inv = playerInventory.get(name);
         int moon = inv.getResource(Resources.MOON_STONE);
-        int sun = inv.getResource(Resources.SUN_STUNE);
+        int sun = inv.getResource(Resources.SUN_STONE);
         return getEligibleCards(moon, sun);
     }
 

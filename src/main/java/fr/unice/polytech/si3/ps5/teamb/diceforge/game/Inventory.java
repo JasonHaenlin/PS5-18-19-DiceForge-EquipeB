@@ -59,7 +59,7 @@ public class Inventory {
         lastUpdate = card.getVictoryPoint();
         addResourceToBag(card.getVictoryPoint(), Resources.VICTORY_POINT);
         if (!removeResourceFromBag(card.getMoonStone(), Resources.MOON_STONE)
-                || !removeResourceFromBag(card.getSunStone(), Resources.SUN_STUNE))
+                || !removeResourceFromBag(card.getSunStone(), Resources.SUN_STONE))
             return false;
         return true;
     }

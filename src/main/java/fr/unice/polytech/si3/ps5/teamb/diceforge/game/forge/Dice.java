@@ -23,7 +23,6 @@ public class Dice {
 
     private int size;
     private Random rnd;
-    DiceSide side;
 
     /**
      * Create a dice with 2 sides with MS 2 sides with SS 1 side with gold 1 side
@@ -32,7 +31,7 @@ public class Dice {
     public Dice() {
         rnd = new Random();
         for (int i = 1; i < 3; i++) {
-            diceSides.add(new DiceSide(i, Resources.SUN_STUNE));
+            diceSides.add(new DiceSide(i, Resources.SUN_STONE));
             diceSides.add(new DiceSide(i, Resources.MOON_STONE));
         }
         diceSides.add(new DiceSide(2, Resources.GOLD));
@@ -49,20 +48,11 @@ public class Dice {
     }
 
     /**
-     *
      * Rolls Dice
-     * 
+     *
      * @param treasury
      */
     public DiceSide random() {
         return diceSides.get(rnd.nextInt(size));
-    }
-
-    int getRandomValue() {
-        return side.getValue();
-    }
-
-    Resources getRandomResources() {
-        return side.getType();
     }
 }

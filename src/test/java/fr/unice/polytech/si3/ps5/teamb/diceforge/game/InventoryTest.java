@@ -27,7 +27,7 @@ public class InventoryTest {
         assertEquals(0, inv.getResource(Resources.GOLD));
         assertEquals(0, inv.getResource(Resources.VICTORY_POINT));
         assertEquals(0, inv.getResource(Resources.MOON_STONE));
-        assertEquals(0, inv.getResource(Resources.SUN_STUNE));
+        assertEquals(0, inv.getResource(Resources.SUN_STONE));
     }
 
     @Test
@@ -36,12 +36,12 @@ public class InventoryTest {
         assertEquals(5, inv.getResource(Resources.GOLD));
         assertEquals(0, inv.getResource(Resources.VICTORY_POINT));
         assertEquals(0, inv.getResource(Resources.MOON_STONE));
-        assertEquals(0, inv.getResource(Resources.SUN_STUNE));
+        assertEquals(0, inv.getResource(Resources.SUN_STONE));
         inv.addResourceToBag(10, Resources.MOON_STONE);
         assertEquals(5, inv.getResource(Resources.GOLD));
         assertEquals(0, inv.getResource(Resources.VICTORY_POINT));
         assertEquals(10, inv.getResource(Resources.MOON_STONE));
-        assertEquals(0, inv.getResource(Resources.SUN_STUNE));
+        assertEquals(0, inv.getResource(Resources.SUN_STONE));
     }
 
     @Test
@@ -61,10 +61,10 @@ public class InventoryTest {
         Card card = new SimpleCard(5, 5, 10);
         assertFalse(inv.addCardToBag(card));
         inv.addResourceToBag(5, Resources.MOON_STONE);
-        inv.addResourceToBag(7, Resources.SUN_STUNE);
+        inv.addResourceToBag(7, Resources.SUN_STONE);
         assertTrue(inv.addCardToBag(card));
         assertEquals(0, inv.getResource(Resources.MOON_STONE));
-        assertEquals(2, inv.getResource(Resources.SUN_STUNE));
+        assertEquals(2, inv.getResource(Resources.SUN_STONE));
         assertEquals(10, inv.getLastVIctoryPoint());
         assertEquals(0, inv.getLastVIctoryPoint());
     }
