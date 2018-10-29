@@ -27,11 +27,6 @@ public abstract class Player {
     public abstract void play(Board boardView);
 
     @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
     public String toString() {
         return name;
     }
