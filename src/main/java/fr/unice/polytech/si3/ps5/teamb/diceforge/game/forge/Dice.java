@@ -39,9 +39,9 @@ public class Dice {
         this.size = diceSides.size();
     }
 
-    public Dice(List<DiceSide> Side) {
+    public Dice(List<DiceSide> side) {
         rnd = new Random();
-        for (DiceSide s : Side) {
+        for (DiceSide s : side) {
             diceSides.add(s);
         }
         this.size = diceSides.size();

@@ -11,8 +11,8 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.SimpleCard;
 
 public class Board {
 
-    private List<Card> MoonCards;
-    private List<Card> SunCards;
+    private List<Card> moonCards;
+    private List<Card> sunCards;
 
     private Map<String, Integer> playerRegistered;
     private Map<String, Inventory> playerInventory;
@@ -28,9 +28,7 @@ public class Board {
 
     private void createInventory() {
         playerInventory = new HashMap<>();
-        playerRegistered.forEach((name, Integer) -> {
-            playerInventory.put(name, new Inventory());
-        });
+        playerRegistered.forEach((name, Integer) -> playerInventory.put(name, new Inventory()));
     }
 
     protected boolean registrationToBoard(String player, int token) {
@@ -42,33 +40,33 @@ public class Board {
     }
 
     private void createCard() {
-        MoonCards = new ArrayList<Card>();
-        SunCards = new ArrayList<Card>();
+        moonCards = new ArrayList<>();
+        sunCards = new ArrayList<>();
         for (int moon = 2; moon < 6; moon++) {
-            MoonCards.add(new SimpleCard(moon, 0, 5 + moon));
+            moonCards.add(new SimpleCard(moon, 0, 5 + moon));
         }
         for (int sun = 2; sun < 5; sun++) {
-            SunCards.add(new SimpleCard(0, sun, 5 + sun));
+            sunCards.add(new SimpleCard(0, sun, 5 + sun));
         }
 
     }
 
     protected List<Card> getEligibleCards(int moonBank, int sunBank) {
-        ArrayList<Card> Buyable = new ArrayList<>();
-        for (Card Card : MoonCards) {
+        ArrayList<Card> buyable = new ArrayList<>();
+        for (Card Card : moonCards) {
             if (Card.getMoonStone() <= moonBank) {
-                Buyable.add(Card);
+                buyable.add(Card);
             }
         }
-        for (Card Card : SunCards) {
+        for (Card Card : sunCards) {
             if (Card.getSunStone() <= sunBank) {
-                Buyable.add(Card);
+                buyable.add(Card);
             }
         }
-        Buyable.sort((Card a1, Card a2) -> Integer.compare(a1.getMoonStone() + a1.getSunStone(),
+        buyable.sort((Card a1, Card a2) -> Integer.compare(a1.getMoonStone() + a1.getSunStone(),
                 a2.getMoonStone() + a2.getSunStone()));
 
-        return Buyable.isEmpty() ? Collections.emptyList() : Buyable;
+        return buyable.isEmpty() ? Collections.emptyList() : buyable;
     }
 
     protected int getVictoryPoint(String name) {
