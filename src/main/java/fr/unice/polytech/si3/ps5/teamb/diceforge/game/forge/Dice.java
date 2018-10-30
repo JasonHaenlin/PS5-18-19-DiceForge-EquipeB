@@ -55,4 +55,18 @@ public class Dice {
     public DiceSide random() {
         return diceSides.get(rnd.nextInt(size));
     }
+
+    List<DiceSide> getDiceSides(){return diceSides;}
+
+    /**
+     * To change the Dice, we need to know what side remove
+     * and what side to add
+     * Il faut rajouter un système de sécurité
+     * @param sideRemove
+     * @param sideAdd
+     */
+    void setDiceSides(DiceSide sideRemove, DiceSide sideAdd){
+            diceSides.remove(sideRemove);
+            diceSides.add(sideAdd);
+    }
 }

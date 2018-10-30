@@ -8,6 +8,8 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.DiceSide;
 
 /**
  * Inventory
+ * WARNING
+ * Method to set resources use only for test
  */
 public class Inventory {
     private Map<Resources, Integer> treasury = new HashMap<>();
@@ -16,7 +18,8 @@ public class Inventory {
 
     private int lastUpdate = 0;
 
-    Inventory() {
+    //Public for test
+    public Inventory() {
         for (Resources rsc : Resources.values()) {
             treasury.put(rsc, 0);
         }
@@ -69,5 +72,28 @@ public class Inventory {
         int point = lastUpdate;
         lastUpdate = 0;
         return point;
+    }
+
+    /**
+     * Method to spend ressources
+     * @param resources
+     * @param quantity
+     */
+    public void spendResources(Resources resources, int quantity){
+        int quantityResource = treasury.get(resources);
+        if(quantityResource > quantity){
+            treasury.put(resources,quantityResource-quantity);
+        }
+    }
+
+    /**
+     * WARNING !!!!!!!!!
+     * This method is only use for test
+     *
+     * @param resources
+     * @param quantity
+     */
+    public void setTreasury(Resources resources, int quantity){
+        treasury.put(resources,quantity);
     }
 }
