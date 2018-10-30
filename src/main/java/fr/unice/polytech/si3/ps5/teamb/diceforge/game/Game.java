@@ -75,9 +75,8 @@ public class Game extends Board {
         StringBuilder winnerMsg = new StringBuilder();
         Map<String, Integer> winners = getWinnersList();
         if (winners.size() == 1) {
-            winners.forEach((name, score) -> {
-                winnerMsg.append("Le bot " + name + " gagne avec " + score + " points de Gloire");
-            });
+            winners.forEach((name, score) ->
+                winnerMsg.append("Le bot " + name + " gagne avec " + score + " points de Gloire"));
         } else {
             winnerMsg.append("Egalite entre les joueurs ");
             winners.forEach((name, score) -> {

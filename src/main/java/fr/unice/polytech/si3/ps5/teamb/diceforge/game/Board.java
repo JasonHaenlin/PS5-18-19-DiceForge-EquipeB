@@ -28,7 +28,7 @@ public class Board {
 
     private void createInventory() {
         playerInventory = new HashMap<>();
-        playerRegistered.forEach((name, Integer) -> playerInventory.put(name, new Inventory()));
+        playerRegistered.forEach((name, integer) -> playerInventory.put(name, new Inventory()));
     }
 
     protected boolean registrationToBoard(String player, int token) {
