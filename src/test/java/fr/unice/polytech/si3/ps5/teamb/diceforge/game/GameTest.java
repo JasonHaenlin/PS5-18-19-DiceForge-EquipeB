@@ -22,7 +22,7 @@ public class GameTest {
         String result = game.setup(2)
             .addBot(OnlyDice.class)
             .addBot(SimpleHighestExploit.class)
-            .fire();
+            .oneGameFire();
         //@formatter:on
         assertTrue(result.contains("SimpleHighestExploit"));
     }
