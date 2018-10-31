@@ -31,4 +31,17 @@ public class DiceSide {
     public int getValue() {
         return value;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof DiceSide)) {
+            return false;
+        }
+        DiceSide diceSide = (DiceSide) obj;
+        return this.type == diceSide.type && this.value == diceSide.value;
+    }
+
 }

@@ -75,31 +75,16 @@ public class Board {
         return buyable.isEmpty() ? Collections.emptyList() : buyable;
     }
 
-    List<DiceSide> getEligibleSides(int gold){
+    List<DiceSide> getEligibleSides(int gold) {
         return forge.forgeAvailable(gold);
     }
 
-    void forge(String player,int number, DiceSide sideRemove, DiceSide sideAdd, int cost){
-        Inventory inv;
-        inv = playerInventory.get(player);
-
-        Resources res = sideAdd.getType();
-        int value = sideAdd.getValue();
-
-        List<DiceSide> available = getEligibleSides(cost);
-        List<Resources> listRes = new ArrayList<>();
-        List<Integer> listValue = new ArrayList<>();
-        for(DiceSide side:available){
-            listRes.add(side.getType());
-            listValue.add(side.getValue());
+    boolean forge(String player, int diceNumber, DiceSide sideToRemove, DiceSide sideToAdd, int cost) {
+        if (!forge.removeSide(sideToRemove, cost)) {
+            return false;
         }
-        //Verif if we can buy the side
-        if(listRes.contains(res) && listValue.contains(value) && inv.removeResourceFromBag(cost,Resources.GOLD)) {
-            inv.getDice(number).setDiceSides(sideRemove, sideAdd);
-
-        }
+        return playerInventory.get(player).replaceDiceSide(diceNumber, sideToRemove, sideToAdd, cost);
     }
-
 
     protected int getVictoryPoint(String name) {
         return playerInventory.get(name).getLastVIctoryPoint();
@@ -125,7 +110,9 @@ public class Board {
         return getEligibleCards(moon, sun);
     }
 
-    public Dice getDice(String player, int number){return playerInventory.get(player).getDice(number);}
+    public Dice getDice(String player, int number) {
+        return playerInventory.get(player).getDice(number);
+    }
 
     public Map<Resources, Integer> rolldice(String name) {
         return playerInventory.get(name).rolldice();
