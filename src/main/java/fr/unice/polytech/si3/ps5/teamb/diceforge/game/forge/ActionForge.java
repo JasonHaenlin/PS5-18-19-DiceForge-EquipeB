@@ -23,15 +23,22 @@ import java.util.Map;
 public class ActionForge {
 
     private Map<Integer,DiceSide> sideGoldAvailable;
-    private Inventory inventory;
     //The key is the cost and the second param is side
 
-    ActionForge(Map<Integer,DiceSide> sides, Inventory inventory){
+    public ActionForge(Map<Integer,DiceSide> sides){
         sideGoldAvailable = new HashMap<>(sides);
-        this.inventory = inventory; //Same reference
     }
 
-    List<DiceSide> forgeAvailable(int cost) {
+    public ActionForge(){
+        Map<Integer, DiceSide> sides = new HashMap<>();
+        for(int i = 1; i <7; i++){
+            DiceSide side = new DiceSide(i,Resources.GOLD);
+            sides.put(i,side);
+        }
+        sideGoldAvailable = new HashMap<>(sides);
+    }
+
+    public List<DiceSide> forgeAvailable(int cost) {
         List<DiceSide> available = new ArrayList<>();
         for (int i = 1; i <= cost; i++) {
             if (sideGoldAvailable.containsKey(i)) {
@@ -39,21 +46,6 @@ public class ActionForge {
             }
         }
         return available;
-    }
-
-    /**
-     * Il faut rajouter un système de securité
-     * @param dice
-     * @param sideForge
-     * @param sideRemove
-     * @param cost
-     */
-    void forge(Dice dice, DiceSide sideForge, DiceSide sideRemove, int cost){
-        List<DiceSide> diceSides = dice.getDiceSides();
-        //if(forgeAvailable(cost).contains(sideForge) && diceSides.contains(sideRemove)){
-            dice.setDiceSides(sideRemove,sideForge);
-            inventory.spendResources(Resources.GOLD,cost);
-        //}
     }
 
 }

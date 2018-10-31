@@ -13,7 +13,7 @@ public class DiceSide {
     protected int value;
     protected Resources type;
 
-    DiceSide(int value, Resources type) {
+    public DiceSide(int value, Resources type) {
         this.value = value;
         this.type = type;
     }

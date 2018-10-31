@@ -74,26 +74,7 @@ public class Inventory {
         return point;
     }
 
-    /**
-     * Method to spend ressources
-     * @param resources
-     * @param quantity
-     */
-    public void spendResources(Resources resources, int quantity){
-        int quantityResource = treasury.get(resources);
-        if(quantityResource > quantity){
-            treasury.put(resources,quantityResource-quantity);
-        }
-    }
-
-    /**
-     * WARNING !!!!!!!!!
-     * This method is only use for test
-     *
-     * @param resources
-     * @param quantity
-     */
-    public void setTreasury(Resources resources, int quantity){
-        treasury.put(resources,quantity);
+    Dice getDice(int number){
+        return dices.get(number);
     }
 }

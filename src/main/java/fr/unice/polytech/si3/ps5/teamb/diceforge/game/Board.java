@@ -8,6 +8,9 @@ import java.util.Map;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.Card;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.SimpleCard;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.ActionForge;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.Dice;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.DiceSide;
 
 public class Board {
 
@@ -17,6 +20,8 @@ public class Board {
     private Map<String, Integer> playerRegistered;
     private Map<String, Inventory> playerInventory;
 
+    private ActionForge forge;
+
     protected Board() {
         playerRegistered = new HashMap<>();
     }
@@ -24,6 +29,7 @@ public class Board {
     protected void initialize() {
         createCard();
         createInventory();
+        forge = new ActionForge();
     }
 
     private void createInventory() {
@@ -69,6 +75,32 @@ public class Board {
         return buyable.isEmpty() ? Collections.emptyList() : buyable;
     }
 
+    List<DiceSide> getEligibleSides(int gold){
+        return forge.forgeAvailable(gold);
+    }
+
+    void forge(String player,int number, DiceSide sideRemove, DiceSide sideAdd, int cost){
+        Inventory inv;
+        inv = playerInventory.get(player);
+
+        Resources res = sideAdd.getType();
+        int value = sideAdd.getValue();
+
+        List<DiceSide> available = getEligibleSides(cost);
+        List<Resources> listRes = new ArrayList<>();
+        List<Integer> listValue = new ArrayList<>();
+        for(DiceSide side:available){
+            listRes.add(side.getType());
+            listValue.add(side.getValue());
+        }
+        //Verif if we can buy the side
+        if(listRes.contains(res) && listValue.contains(value) && inv.removeResourceFromBag(cost,Resources.GOLD)) {
+            inv.getDice(number).setDiceSides(sideRemove, sideAdd);
+
+        }
+    }
+
+
     protected int getVictoryPoint(String name) {
         return playerInventory.get(name).getLastVIctoryPoint();
     }
@@ -92,6 +124,8 @@ public class Board {
         int sun = inv.getResource(Resources.SUN_STONE);
         return getEligibleCards(moon, sun);
     }
+
+    public Dice getDice(String player, int number){return playerInventory.get(player).getDice(number);}
 
     public Map<Resources, Integer> rolldice(String name) {
         return playerInventory.get(name).rolldice();
