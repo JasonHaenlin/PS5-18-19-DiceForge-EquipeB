@@ -74,13 +74,14 @@ public class BoardTest {
         assertEquals(0, emptyEligibleCardsList.size());
 
 
-
+/*
         //TODO print à changer quand l'initialisation sera plus précise
         for (Card c : eligibleCardsList){
             System.out.println("Coût en pierre de lune : " + c.getMoonStone());
             System.out.println("Coût en pierre de soleil : " + c.getSunStone());
             System.out.println("Nombre de pts de victoire : " + c.getVictoryPoint());
-        }
+
+        }*/
     }
 
 

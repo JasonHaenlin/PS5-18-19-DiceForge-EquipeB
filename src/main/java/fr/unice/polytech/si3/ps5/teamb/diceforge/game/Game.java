@@ -42,8 +42,8 @@ public class Game extends Board {
         return this;
     }
 
-    public String fire() {
-        log.debug("fire !");
+    public void fire() {
+        log.debug("oneGameFire !");
         initialize();
         for (int i = 0; i < round; i++) {
             bots.forEach((bot, score) -> {
@@ -59,7 +59,16 @@ public class Game extends Board {
             });
         }
         bots.forEach((bot, score) -> log.info(bot.toString() + "\t: " + score + " Point de Gloire"));
-        return etablishWinner();
+    }
+
+    public String oneGameFire() {
+        fire();
+        return establishWinner();
+    }
+
+    public Map<String, Integer> statsModeFire() {
+        fire();
+        return establishWinnerStatsMode();
     }
 
     public Game addBot(Class<? extends Player> bot) throws Exception {
@@ -71,7 +80,7 @@ public class Game extends Board {
         return this;
     }
 
-    private String etablishWinner() {
+    private String establishWinner() {
         StringBuilder winnerMsg = new StringBuilder();
         Map<String, Integer> winners = getWinnersList();
         if (winners.size() == 1) {
@@ -99,6 +108,20 @@ public class Game extends Board {
                 winners.put(bot.toString(), score);
             }
         });
+        return winners;
+    }
+
+    private Map<String, Integer> establishWinnerStatsMode() {
+        Map<String, Integer> winners = getWinnersList();
+        Map<String, Integer> winningAI = new HashMap<>();
+        if (winners.size() == 1) {
+            winners.forEach((name, score) ->
+                    winningAI.put(name, score));
+        } else {
+            winners.forEach((name, score) -> {
+                winningAI.put("egalite", score);
+            });
+        }
         return winners;
     }
 
