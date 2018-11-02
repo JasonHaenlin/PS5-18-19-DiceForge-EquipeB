@@ -15,6 +15,8 @@ public class App {
     private static final int NUMBEROFGAMES = 1000;
 
     private static Logger LOGGER = LogManager.getLogger(App.class);
+    private static String result;
+
 
     public static void main(String[] args) throws Exception {
 
@@ -31,7 +33,6 @@ public class App {
                     .oneGameFire();
             //@formatter:on
 
-            LOGGER.trace(result);
         } else {
             int winCountPika = 0;
             int winCountRem = 0;
@@ -67,14 +68,25 @@ public class App {
 
             }
 
-            LOGGER.info("AI Pika's winrate is " + winCountPika/10 + "% with a mean score of " + winningTotalScorePika/winCountPika +
-                    "\nAI Rem's winrate is " + winCountRem/10 + "% with a mean score of " + winningTotalScoreRem/winCountRem);
-            if (drawCount != 0) {
-                LOGGER.info("Draw rate is " + drawCount/20 + "% with a mean score of " + drawTotalScore/drawCount);
+            result = "AI Pika's winrate is " + winCountPika/10 + "% with a mean score of ";
+            if (winCountPika != 0) {
+                result = result + winningTotalScorePika/winCountPika +"\n";
             } else {
-                LOGGER.info("No draw game");
+                result = "AI Pika's winrate is 0%\n";
+            }
+            result = result + "AI Rem's winrate is " + winCountRem/10 + "% with a mean score of ";
+            if (winCountRem != 0) {
+                result = result + winningTotalScoreRem/winCountRem +"\n";
+            } else {
+                result = "AI Rem's winrate is 0%\n";
+            }
+            if (drawCount != 0) {
+                result = result + "Draw rate is " + drawCount/20 + "% with a mean score of " + drawTotalScore/drawCount + "\n";
+            } else {
+                LOGGER.info("No draw game\n");
             }
         }
+        LOGGER.trace(result);
 
     }
 }
