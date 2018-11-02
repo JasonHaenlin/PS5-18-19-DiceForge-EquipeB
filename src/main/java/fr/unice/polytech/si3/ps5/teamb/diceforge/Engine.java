@@ -7,14 +7,12 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Game;
 import java.util.Map;
 
 public class Engine {
-	private final int NUMBEROFGAMES = 1000;
-	private boolean makeStatistics;
-	private final int NUMBEROFROUNDS = 2;
-	public String result = "";
+	private static final int NUMBEROFGAMES = 1000;
+	private static final int NUMBEROFROUNDS = 2;
+	private String result = "";
 
 
-	public Engine(boolean makeStatistics) {
-		this.makeStatistics = makeStatistics;
+	public Engine() {
 	}
 
 	public void launchGame() throws Exception {
@@ -60,14 +58,14 @@ public class Engine {
 				}
 			}
 		}
-
-		result = "AI Pika's winrate is " + (float)winCountPika/10 + "% with a mean score of ";
+		String meanScore = "% with a mean score of ";
+		result = "AI Pika's winrate is " + (float)winCountPika/10 + meanScore;
 		if (winCountPika != 0) result = result + (float)winningTotalScorePika/winCountPika +"\n";
 		else result = "AI Pika's winrate is 0%\n";
-		result = result + "AI Rem's winrate is " + (float)winCountRem/10 + "% with a mean score of ";
+		result = result + "AI Rem's winrate is " + (float)winCountRem/10 + meanScore;
 		if (winCountRem != 0) result = result + (float)winningTotalScoreRem/winCountRem +"\n";
 		else result = "AI Rem's winrate is 0%\n";
-		if (drawCount != 0) result = result + "Draw rate is " + (float)drawCount/20 + "% with a mean score of " + (float)drawTotalScore/drawCount + "\n";
+		if (drawCount != 0) result = result + "Draw rate is " + (float)drawCount/20 + meanScore + (float)drawTotalScore/drawCount + "\n";
 		else result = result + "No draw game\n";
 	}
 

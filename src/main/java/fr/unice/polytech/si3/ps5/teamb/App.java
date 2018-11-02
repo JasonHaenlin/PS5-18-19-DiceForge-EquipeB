@@ -17,7 +17,7 @@ public class App {
 
 
 
-        Engine engine = new Engine(true);
+        Engine engine = new Engine();
         if (!MAKESTATISTICS){
             engine.launchGame();
         } else {
