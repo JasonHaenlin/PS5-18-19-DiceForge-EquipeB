@@ -42,7 +42,7 @@ public class App {
             int winningTotalScorePika = 0;
             int winningTotalScoreRem = 0;
             int drawTotalScore = 0;
-            String result;
+
             for (int i = 0; i < NUMBEROFGAMES; i++) {
                 Game game = new Game();
                 game.setup(2);
@@ -67,12 +67,12 @@ public class App {
 
             }
 
-            System.out.println("AI Pika's winrate is " + winCountPika/10 + "% with a mean score of" + winningTotalScorePika/winCountPika +
+            LOGGER.info("AI Pika's winrate is " + winCountPika/10 + "% with a mean score of " + winningTotalScorePika/winCountPika +
                     "\nAI Rem's winrate is " + winCountRem/10 + "% with a mean score of " + winningTotalScoreRem/winCountRem);
             if (drawCount != 0) {
-                System.out.println("Draw rate is " + drawCount/20 + "% with a mean score of " + drawTotalScore/drawCount);
+                LOGGER.info("Draw rate is " + drawCount/20 + "% with a mean score of " + drawTotalScore/drawCount);
             } else {
-                System.out.println("No draw game");
+                LOGGER.info("No draw game");
             }
         }
 
