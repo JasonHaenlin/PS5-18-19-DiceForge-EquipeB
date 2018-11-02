@@ -68,20 +68,20 @@ public class App {
 
             }
 
-            result = "AI Pika's winrate is " + winCountPika/10 + "% with a mean score of ";
+            result = "AI Pika's winrate is " + (float)winCountPika/10 + "% with a mean score of ";
             if (winCountPika != 0) {
-                result = result + winningTotalScorePika/winCountPika +"\n";
+                result = result + (float)winningTotalScorePika/winCountPika +"\n";
             } else {
                 result = "AI Pika's winrate is 0%\n";
             }
-            result = result + "AI Rem's winrate is " + winCountRem/10 + "% with a mean score of ";
+            result = result + "AI Rem's winrate is " + (float)winCountRem/10 + "% with a mean score of ";
             if (winCountRem != 0) {
-                result = result + winningTotalScoreRem/winCountRem +"\n";
+                result = result + (float)winningTotalScoreRem/winCountRem +"\n";
             } else {
                 result = "AI Rem's winrate is 0%\n";
             }
             if (drawCount != 0) {
-                result = result + "Draw rate is " + drawCount/20 + "% with a mean score of " + drawTotalScore/drawCount + "\n";
+                result = result + "Draw rate is " + (float)drawCount/20 + "% with a mean score of " + (float)drawTotalScore/drawCount + "\n";
             } else {
                 LOGGER.info("No draw game\n");
             }
