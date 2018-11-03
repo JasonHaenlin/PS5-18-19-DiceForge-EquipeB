@@ -1,75 +1,70 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge;
 
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.Pika;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.Rem;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Game;
-
+import java.util.HashMap;
 import java.util.Map;
 
-public class Engine {
-	private static final int NUMBEROFGAMES = 1000;
-	private static final int NUMBEROFROUNDS = 2;
-	private String result = "";
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Game;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
+
+public class Engine {
+
+	private static Logger log = LogManager.getLogger(Engine.class);
+
+	private Game diceForge;
+	private Map<Player, Integer> player;
+	private int numberOfParties;
 
 	public Engine() {
+		this.player = new HashMap<>();
 	}
 
-	public void launchGame() throws Exception {
-		Game game = new Game();
-		game.setup(NUMBEROFROUNDS);
-
-		// @formatter:off
-		this.result = game.setup(2)
-				.addBot(Pika.class)
-				.addBot(Rem.class)
-				.oneGameFire();
-		//@formatter:on
+	public Engine createGame(int numberOfParties) {
+		this.numberOfParties = numberOfParties;
+		return this;
 	}
 
-	public void statsModeLaunchGame() throws Exception {
-		int winCountPika = 0;
-		int winCountRem = 0;
-		int winningTotalScorePika = 0;
-		int winningTotalScoreRem = 0;
-		int drawCount = 0; //is multiplied by the number of players //TODO fix the player factor
-		int drawTotalScore = 0;
+	public Engine addBot(Class<? extends Player> bot) throws Exception {
+		player.put(bot.newInstance(), 0);
+		return this;
+	}
 
-		for (int i = 0; i < NUMBEROFGAMES; i++) {
-			Game game = new Game();
-			game.setup(NUMBEROFROUNDS)
-					.addBot(Pika.class)
-					.addBot(Rem.class);
-
-			Map<String, Integer> interResult = game.statsModeFire();
-			for (Map.Entry<String, Integer> entry : interResult.entrySet()) {
-				if (interResult.size() == 1) {
-					if (entry.getKey() == "Pikachu"){
-						winCountPika++;
-						winningTotalScorePika += entry.getValue();
-					}
-					else if (entry.getKey() == "Rem"){
-						winCountRem++;
-						winningTotalScoreRem += entry.getValue();
-					}
-				} else {
-					drawCount++;
-					drawTotalScore += entry.getValue();
+	public String fire() {
+		log.info("start the sequence");
+		for (int i = 0; i < numberOfParties; i++) {
+			log.info("start new game");
+			this.diceForge = new Game();
+			player.forEach((bot, score) -> {
+				try {
+					this.diceForge.addBot(bot.getClass());
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-			}
+			});
+			String res = this.diceForge.fire();
+			log.info(res);
+			computeResult(diceForge.getWinners());
 		}
-		String meanScore = "% with a mean score of ";
-		result = "AI Pika's winrate is " + (float)winCountPika/10 + meanScore;
-		if (winCountPika != 0) result = result + (float)winningTotalScorePika/winCountPika +"\n";
-		else result = "AI Pika's winrate is 0%\n";
-		result = result + "AI Rem's winrate is " + (float)winCountRem/10 + meanScore;
-		if (winCountRem != 0) result = result + (float)winningTotalScoreRem/winCountRem +"\n";
-		else result = "AI Rem's winrate is 0%\n";
-		if (drawCount != 0) result = result + "Draw rate is " + (float)drawCount/20 + meanScore + (float)drawTotalScore/drawCount + "\n";
-		else result = result + "No draw game\n";
+		log.info("end of the sequence");
+		return buildResult();
 	}
 
-	public String getResult() {
-		return result;
+	private void computeResult(Map<String, Integer> map) {
+		player.forEach((bot, score) -> {
+			if (map.containsKey(bot.toString())) {
+				player.replace(bot, player.get(bot) + 1);
+			}
+		});
+	}
+
+	public String buildResult() {
+		StringBuilder buildScore = new StringBuilder("Resultat de la sequence :");
+		player.forEach((bot, score) -> {
+			buildScore.append("\nle bot " + bot.toString() + " gagne " + score + " partie sur " + numberOfParties
+					+ "\t: " + (score != 0 ? (float) score / numberOfParties * 100 + " %" : "0%"));
+		});
+		return buildScore.toString();
 	}
 }

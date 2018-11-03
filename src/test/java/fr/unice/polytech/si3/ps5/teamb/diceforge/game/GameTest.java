@@ -19,10 +19,10 @@ public class GameTest {
     @Test
     public void game2BotTest() throws Exception {
         //@formatter:off
-        String result = game.setup(2)
+        String result = game
             .addBot(OnlyDice.class)
             .addBot(SimpleHighestExploit.class)
-            .oneGameFire();
+            .fire();
         //@formatter:on
         assertTrue(result.contains("SimpleHighestExploit"));
     }

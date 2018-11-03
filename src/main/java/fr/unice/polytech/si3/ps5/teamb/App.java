@@ -1,30 +1,29 @@
 package fr.unice.polytech.si3.ps5.teamb;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.Engine;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.Cloud;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.Pika;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.Rem;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
 public class App {
 
-    private static final boolean MAKESTATISTICS = true;
-
-    private static Logger LOGGER = LogManager.getLogger(App.class);
-    private static String result;
-
+    private static Logger log = LogManager.getLogger(App.class);
 
     public static void main(String[] args) throws Exception {
 
-
-
         Engine engine = new Engine();
-        if (!MAKESTATISTICS){
-            engine.launchGame();
-        } else {
-            engine.statsModeLaunchGame();
-        }
-        result = engine.getResult();
-        LOGGER.trace(result);
+        // @formatter:off
+        String result = engine.createGame(50)
+                .addBot(Pika.class)
+                .addBot(Rem.class)
+                .addBot(Cloud.class)
+                .fire();
+        //@formatter:on
+
+        log.info(result);
 
     }
 }

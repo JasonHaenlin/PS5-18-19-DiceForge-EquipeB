@@ -22,6 +22,7 @@ public class Game extends Board {
     private static Logger log = LogManager.getLogger(Game.class);
 
     private Map<Player, Integer> bots;
+    private Map<String, Integer> winners;
 
     private int finalScore;
     private int round;
@@ -32,17 +33,12 @@ public class Game extends Board {
     public Game() {
         super();
         log.debug("init Game");
-        bots = new HashMap<>();
-        round = 1;
+        this.round = 5;
+        this.bots = new HashMap<>();
+        this.winners = new HashMap<>();
     }
 
-    public Game setup(int round) {
-        log.info("round :" + round);
-        this.round = round;
-        return this;
-    }
-
-    public void fire() {
+    public String fire() {
         log.debug("oneGameFire !");
         initialize();
         for (int i = 0; i < round; i++) {
@@ -59,16 +55,7 @@ public class Game extends Board {
             });
         }
         bots.forEach((bot, score) -> log.info(bot.toString() + "\t: " + score + " Point de Gloire"));
-    }
-
-    public String oneGameFire() {
-        fire();
         return establishWinner();
-    }
-
-    public Map<String, Integer> statsModeFire() {
-        fire();
-        return establishWinnerStatsMode();
     }
 
     public Game addBot(Class<? extends Player> bot) throws Exception {
@@ -82,10 +69,10 @@ public class Game extends Board {
 
     private String establishWinner() {
         StringBuilder winnerMsg = new StringBuilder();
-        Map<String, Integer> winners = getWinnersList();
+        Map<String, Integer> winners = defineWinners();
         if (winners.size() == 1) {
-            winners.forEach((name, score) ->
-                winnerMsg.append("Le bot " + name + " gagne avec " + score + " points de Gloire"));
+            winners.forEach(
+                    (name, score) -> winnerMsg.append("Le bot " + name + " gagne avec " + score + " points de Gloire"));
         } else {
             winnerMsg.append("Egalite entre les joueurs ");
             winners.forEach((name, score) -> {
@@ -97,10 +84,10 @@ public class Game extends Board {
         return winnerMsg.toString();
     }
 
-    private Map<String, Integer> getWinnersList() {
+    private Map<String, Integer> defineWinners() {
         TreeMap<Player, Integer> sorted = new TreeMap<>(new ScoreComparator(bots));
         sorted.putAll(bots);
-        Map<String, Integer> winners = new HashMap<>();
+
         winners.put(sorted.firstEntry().getKey().toString(), sorted.firstEntry().getValue());
         int highestScore = sorted.pollFirstEntry().getValue();
         sorted.forEach((bot, score) -> {
@@ -111,17 +98,10 @@ public class Game extends Board {
         return winners;
     }
 
-    private Map<String, Integer> establishWinnerStatsMode() {
-        Map<String, Integer> winners = getWinnersList();
-        Map<String, Integer> winningAI = new HashMap<>();
-        if (winners.size() == 1) {
-            winners.forEach((name, score) ->
-                    winningAI.put(name, score));
-        } else {
-            winners.forEach((name, score) -> {
-                winningAI.put("egalite", score);
-            });
-        }
+    /**
+     * @return the winners
+     */
+    public Map<String, Integer> getWinners() {
         return winners;
     }
 
