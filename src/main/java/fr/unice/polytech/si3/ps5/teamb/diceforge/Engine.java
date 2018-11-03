@@ -40,7 +40,7 @@ public class Engine {
 				try {
 					this.diceForge.addBot(bot);
 				} catch (Exception e) {
-					e.printStackTrace();
+					log.error(e.toString());
 				}
 			});
 			String res = this.diceForge.fire();
