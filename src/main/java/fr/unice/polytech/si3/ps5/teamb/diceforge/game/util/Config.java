@@ -59,6 +59,7 @@ public class Config {
         inv.put(Resources.GOLD, ext.getInt("gold"));
         inv.put(Resources.SUN_STONE, ext.getInt("sunStone"));
         inv.put(Resources.MOON_STONE, ext.getInt("moonStone"));
+        inv.put(Resources.VICTORY_POINT, ext.getInt("victoryPoint"));
         return inv;
     }
 

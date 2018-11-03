@@ -5,7 +5,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import edu.emory.mathcs.backport.java.util.Collections;
+import java.util.Collections;
+
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 
 /**

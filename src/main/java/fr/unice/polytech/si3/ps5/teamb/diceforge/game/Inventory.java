@@ -25,7 +25,7 @@ public class Inventory {
     }
 
     public Inventory(Map<Resources, Integer> invConfig, List<DiceSide> dice1Config, List<DiceSide> dice2Config) {
-        this.treasury = invConfig;
+        this.treasury = new HashMap<Resources, Integer>(invConfig);
         dices.add(new Dice(dice1Config));
         dices.add(new Dice(dice2Config));
     }

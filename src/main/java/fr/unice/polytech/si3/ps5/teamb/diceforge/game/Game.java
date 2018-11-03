@@ -37,7 +37,7 @@ public class Game extends Board {
     public Game(Config conf) {
         super(conf);
         log.debug("init Game");
-        this.round = 5;
+        this.round = 9;
         this.bots = new HashMap<>();
         this.winners = new HashMap<>();
     }
@@ -64,7 +64,7 @@ public class Game extends Board {
 
     public Game addBot(Player bot) throws Exception {
         bot.setup();
-        log.info("add bot :" + bot.toString());
+        log.info("add bot : " + bot.toString());
         bots.put(bot, 0);
         registrationToBoard(bot.toString(), bot.hashCode());
         return this;

@@ -6,7 +6,8 @@
         "resources": {
             "gold": 3,
             "sunStone": 3,
-            "moonStone": 3
+            "moonStone": 3,
+            "victoryPoint": 0
         },
         "dices": [
             [{

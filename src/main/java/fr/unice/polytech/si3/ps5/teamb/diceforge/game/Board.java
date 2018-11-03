@@ -15,8 +15,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 
 public class Board {
 
-    private List<Card> moonCards;
-    private List<Card> sunCards;
+    private List<Card> cards;
 
     private Map<String, Integer> playerRegistered;
     private Map<String, Inventory> playerInventory;
@@ -50,25 +49,13 @@ public class Board {
     }
 
     private void createCard() {
-        moonCards = new ArrayList<>();
-        sunCards = new ArrayList<>();
-        for (int moon = 2; moon < 6; moon++) {
-            moonCards.add(new SimpleCard(moon, 0, 5 + moon));
-        }
-        for (int sun = 2; sun < 5; sun++) {
-            sunCards.add(new SimpleCard(0, sun, 5 + sun));
-        }
+        cards = conf.getExploitConfig();
     }
 
     protected List<Card> getEligibleCards(int moonBank, int sunBank) {
         ArrayList<Card> buyable = new ArrayList<>();
-        for (Card Card : moonCards) {
-            if (Card.getMoonStone() <= moonBank) {
-                buyable.add(Card);
-            }
-        }
-        for (Card Card : sunCards) {
-            if (Card.getSunStone() <= sunBank) {
+        for (Card Card : cards) {
+            if (Card.getMoonStone() <= moonBank && Card.getSunStone() <= sunBank) {
                 buyable.add(Card);
             }
         }
