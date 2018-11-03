@@ -29,7 +29,13 @@ public class Config {
     private String file;
     private JSONObject jsonConfig;
 
-    Config(String file) {
+    private List<DiceSide> dice1Config;
+    private List<DiceSide> dice2Config;
+    private List<Card> exploitConfig;
+    private Map<Resources, Integer> invConfig;
+    private Map<Integer, List<DiceSide>> forgeConfig;
+
+    public Config(String file) {
         this.file = file;
         try {
             this.jsonConfig = extractJson();
@@ -39,7 +45,15 @@ public class Config {
         }
     }
 
-    public Map<Resources, Integer> extractInventory() {
+    public void prepareConfig() {
+        this.invConfig = extractInventory();
+        this.exploitConfig = extractExploit();
+        this.forgeConfig = extractForge();
+        this.dice1Config = extractDice(0);
+        this.dice2Config = extractDice(1);
+    }
+
+    Map<Resources, Integer> extractInventory() {
         JSONObject ext = jsonConfig.getJSONObject("resources");
         Map<Resources, Integer> inv = new HashMap<>();
         inv.put(Resources.GOLD, ext.getInt("gold"));
@@ -48,7 +62,7 @@ public class Config {
         return inv;
     }
 
-    public List<DiceSide> extractDice(int diceNumber) {
+    List<DiceSide> extractDice(int diceNumber) {
         JSONArray extArray = jsonConfig.getJSONArray("dices").getJSONArray(diceNumber);
         List<DiceSide> side = new ArrayList<>();
         extArray.forEach(item -> {
@@ -58,7 +72,7 @@ public class Config {
         return side;
     }
 
-    public List<Card> extractExploit() {
+    List<Card> extractExploit() {
         JSONArray extArray = jsonConfig.getJSONArray("exploit");
         List<Card> cardList = new ArrayList<>();
         extArray.forEach(item -> {
@@ -70,7 +84,7 @@ public class Config {
         return cardList;
     }
 
-    public Map<Integer, List<DiceSide>> extractForge() {
+    Map<Integer, List<DiceSide>> extractForge() {
         JSONArray extArray = jsonConfig.getJSONArray("forge");
         Map<Integer, List<DiceSide>> forgeMap = new HashMap<>();
         extArray.forEach(itemCost -> {
@@ -106,4 +120,40 @@ public class Config {
         }
         return result;
     }
+
+    /**
+     * @return the dice1Config
+     */
+    public List<DiceSide> getDice1Config() {
+        return dice1Config;
+    }
+
+    /**
+     * @return the dice2Config
+     */
+    public List<DiceSide> getDice2Config() {
+        return dice2Config;
+    }
+
+    /**
+     * @return the exploitConfig
+     */
+    public List<Card> getExploitConfig() {
+        return exploitConfig;
+    }
+
+    /**
+     * @return the forgeConfig
+     */
+    public Map<Integer, List<DiceSide>> getForgeConfig() {
+        return forgeConfig;
+    }
+
+    /**
+     * @return the invConfig
+     */
+    public Map<Resources, Integer> getInvConfig() {
+        return invConfig;
+    }
+
 }

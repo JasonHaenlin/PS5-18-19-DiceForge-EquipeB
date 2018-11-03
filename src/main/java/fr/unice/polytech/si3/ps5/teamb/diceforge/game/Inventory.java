@@ -7,9 +7,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.Dice;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.DiceSide;
 
 /**
- * Inventory
- * WARNING
- * Method to set resources use only for test
+ * Inventory WARNING Method to set resources use only for test
  */
 public class Inventory {
     private Map<Resources, Integer> treasury = new HashMap<>();
@@ -18,13 +16,18 @@ public class Inventory {
 
     private int lastUpdate = 0;
 
-    //Public for test
     public Inventory() {
         for (Resources rsc : Resources.values()) {
             treasury.put(rsc, 0);
         }
         dices.add(new Dice());
         dices.add(new Dice());
+    }
+
+    public Inventory(Map<Resources, Integer> invConfig, List<DiceSide> dice1Config, List<DiceSide> dice2Config) {
+        this.treasury = invConfig;
+        dices.add(new Dice(dice1Config));
+        dices.add(new Dice(dice2Config));
     }
 
     Map<Resources, Integer> rolldice() {
@@ -74,7 +77,7 @@ public class Inventory {
         return point;
     }
 
-    Dice getDice(int number){
+    Dice getDice(int number) {
         return dices.get(number);
     }
 }

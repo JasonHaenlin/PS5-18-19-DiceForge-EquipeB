@@ -8,11 +8,9 @@ public class GameTest {
 
     @Before
     public void setup() {
-        game = new Game();
     }
 
     @Test
     public void game2BotTest() throws Exception {
-
     }
 }

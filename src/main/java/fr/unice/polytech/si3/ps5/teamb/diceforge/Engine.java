@@ -8,21 +8,27 @@ import org.apache.logging.log4j.Logger;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Game;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 
 public class Engine {
 
 	private static Logger log = LogManager.getLogger(Engine.class);
 
+	private static String confFile = "src/main/resources/configuration/basic.json";
+
 	private Game diceForge;
 	private Map<Player, Integer> player;
 	private int numberOfParties;
+	private Config conf;
 
 	public Engine() {
 		this.player = new HashMap<>();
+		this.conf = new Config(confFile);
 	}
 
 	public Engine createGame(int numberOfParties) {
 		this.numberOfParties = numberOfParties;
+		this.conf.prepareConfig();
 		return this;
 	}
 
@@ -35,7 +41,7 @@ public class Engine {
 		log.info("debut de la sequence");
 		for (int i = 0; i < numberOfParties; i++) {
 			log.info("debut de la partie");
-			this.diceForge = new Game();
+			this.diceForge = new Game(this.conf);
 			player.forEach((bot, score) -> {
 				try {
 					this.diceForge.addBot(bot);

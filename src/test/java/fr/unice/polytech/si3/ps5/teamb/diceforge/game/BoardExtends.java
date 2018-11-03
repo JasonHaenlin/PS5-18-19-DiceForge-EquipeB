@@ -6,14 +6,15 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import edu.emory.mathcs.backport.java.util.Collections;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 
 /**
  * BoardExtends
  */
 public class BoardExtends extends Board {
 
-    public BoardExtends() {
-        super();
+    public BoardExtends(Config conf) {
+        super(conf);
     }
 
     public void BoardRegisterTest() {

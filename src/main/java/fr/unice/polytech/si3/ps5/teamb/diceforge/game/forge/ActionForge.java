@@ -20,7 +20,6 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 public class ActionForge {
 
     private Map<Integer, DiceSide> sideGoldAvailable;
-    // The key is the cost and the second param is side
 
     public ActionForge(Map<Integer, DiceSide> sides) {
         sideGoldAvailable = new HashMap<>(sides);

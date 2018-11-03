@@ -11,6 +11,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.SimpleCard;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.ActionForge;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.Dice;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.DiceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 
 public class Board {
 
@@ -21,9 +22,11 @@ public class Board {
     private Map<String, Inventory> playerInventory;
 
     private ActionForge forge;
+    private Config conf;
 
-    protected Board() {
+    protected Board(Config conf) {
         playerRegistered = new HashMap<>();
+        this.conf = conf;
     }
 
     protected void initialize() {
@@ -34,7 +37,8 @@ public class Board {
 
     private void createInventory() {
         playerInventory = new HashMap<>();
-        playerRegistered.forEach((name, integer) -> playerInventory.put(name, new Inventory()));
+        playerRegistered.forEach((name, integer) -> playerInventory.put(name,
+                new Inventory(conf.getInvConfig(), conf.getDice1Config(), conf.getDice2Config())));
     }
 
     protected boolean registrationToBoard(String player, int token) {
@@ -54,7 +58,6 @@ public class Board {
         for (int sun = 2; sun < 5; sun++) {
             sunCards.add(new SimpleCard(0, sun, 5 + sun));
         }
-
     }
 
     protected List<Card> getEligibleCards(int moonBank, int sunBank) {
@@ -75,11 +78,11 @@ public class Board {
         return buyable.isEmpty() ? Collections.emptyList() : buyable;
     }
 
-    List<DiceSide> getEligibleSides(int gold){
+    List<DiceSide> getEligibleSides(int gold) {
         return forge.forgeAvailable(gold);
     }
 
-    void forge(String player,int number, DiceSide sideRemove, DiceSide sideAdd, int cost){
+    void forge(String player, int number, DiceSide sideRemove, DiceSide sideAdd, int cost) {
         Inventory inv;
         inv = playerInventory.get(player);
 
@@ -89,17 +92,16 @@ public class Board {
         List<DiceSide> available = getEligibleSides(cost);
         List<Resources> listRes = new ArrayList<>();
         List<Integer> listValue = new ArrayList<>();
-        for(DiceSide side:available){
+        for (DiceSide side : available) {
             listRes.add(side.getType());
             listValue.add(side.getValue());
         }
-        //Verif if we can buy the side
-        if(listRes.contains(res) && listValue.contains(value) && inv.removeResourceFromBag(cost,Resources.GOLD)) {
+        // Verif if we can buy the side
+        if (listRes.contains(res) && listValue.contains(value) && inv.removeResourceFromBag(cost, Resources.GOLD)) {
             inv.getDice(number).setDiceSides(sideRemove, sideAdd);
 
         }
     }
-
 
     protected int getVictoryPoint(String name) {
         return playerInventory.get(name).getLastVIctoryPoint();
@@ -125,7 +127,9 @@ public class Board {
         return getEligibleCards(moon, sun);
     }
 
-    public Dice getDice(String player, int number){return playerInventory.get(player).getDice(number);}
+    public Dice getDice(String player, int number) {
+        return playerInventory.get(player).getDice(number);
+    }
 
     public Map<Resources, Integer> rolldice(String name) {
         return playerInventory.get(name).rolldice();

@@ -8,6 +8,8 @@ import java.util.TreeMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
+
 /**
  * Create a game with 2 bot
  *
@@ -29,9 +31,11 @@ public class Game extends Board {
 
     /**
      * Create a game
+     * 
+     * @param conf
      */
-    public Game() {
-        super();
+    public Game(Config conf) {
+        super(conf);
         log.debug("init Game");
         this.round = 5;
         this.bots = new HashMap<>();
