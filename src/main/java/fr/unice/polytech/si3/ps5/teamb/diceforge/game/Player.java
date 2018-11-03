@@ -10,10 +10,13 @@ public abstract class Player {
 
     protected static Logger log = LogManager.getLogger(Player.class);
 
+    private static int countInstance = 0;
+
     protected String name;
 
     protected Player(String name) {
-        this.name = name;
+        countInstance++;
+        this.name = countInstance + "-" + name;
     }
 
     /**

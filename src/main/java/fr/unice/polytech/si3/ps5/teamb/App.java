@@ -19,7 +19,7 @@ public class App {
         String result = engine.createGame(50)
                 .addBot(Pika.class)
                 .addBot(Rem.class)
-                .addBot(Cloud.class)
+                .addBot(Rem.class)
                 .fire();
         //@formatter:on
 

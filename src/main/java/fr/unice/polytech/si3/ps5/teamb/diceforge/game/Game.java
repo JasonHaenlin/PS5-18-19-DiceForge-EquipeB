@@ -58,12 +58,11 @@ public class Game extends Board {
         return establishWinner();
     }
 
-    public Game addBot(Class<? extends Player> bot) throws Exception {
-        Player player = bot.newInstance();
-        player.setup();
+    public Game addBot(Player bot) throws Exception {
+        bot.setup();
         log.info("add bot :" + bot.toString());
-        bots.put(player, 0);
-        registrationToBoard(player.toString(), player.hashCode());
+        bots.put(bot, 0);
+        registrationToBoard(bot.toString(), bot.hashCode());
         return this;
     }
 

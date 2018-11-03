@@ -38,7 +38,7 @@ public class Engine {
 			this.diceForge = new Game();
 			player.forEach((bot, score) -> {
 				try {
-					this.diceForge.addBot(bot.getClass());
+					this.diceForge.addBot(bot);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -62,8 +62,9 @@ public class Engine {
 	public String buildResult() {
 		StringBuilder buildScore = new StringBuilder("Resultat de la sequence :");
 		player.forEach((bot, score) -> {
-			buildScore.append("\nle bot " + bot.toString() + " gagne " + score + " partie sur " + numberOfParties
-					+ "\t: " + (score != 0 ? (float) score / numberOfParties * 100 + " %" : "0%"));
+			buildScore.append("\nle bot " + bot.toString() + " gagne " + score + " "
+					+ (score > 1 ? "parties" : "partie") + " sur " + numberOfParties + "\t: "
+					+ (score != 0 ? String.format("%.1f", ((float) score / numberOfParties) * 100) + "%" : "0.0%"));
 		});
 		return buildScore.toString();
 	}
