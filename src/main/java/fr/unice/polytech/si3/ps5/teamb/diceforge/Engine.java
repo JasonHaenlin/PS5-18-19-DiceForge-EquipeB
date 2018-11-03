@@ -32,9 +32,9 @@ public class Engine {
 	}
 
 	public String fire() {
-		log.info("start the sequence");
+		log.info("debut de la sequence");
 		for (int i = 0; i < numberOfParties; i++) {
-			log.info("start new game");
+			log.info("debut de la partie");
 			this.diceForge = new Game();
 			player.forEach((bot, score) -> {
 				try {
@@ -46,8 +46,9 @@ public class Engine {
 			String res = this.diceForge.fire();
 			log.info(res);
 			computeResult(diceForge.getWinners());
+			log.info("fin de la partie");
 		}
-		log.info("end of the sequence");
+		log.info("fin de la sequence");
 		return buildResult();
 	}
 
@@ -59,7 +60,7 @@ public class Engine {
 		});
 	}
 
-	public String buildResult() {
+	private String buildResult() {
 		StringBuilder buildScore = new StringBuilder("Resultat de la sequence :");
 		player.forEach((bot, score) -> {
 			buildScore.append("\nle bot " + bot.toString() + " gagne " + score + " "

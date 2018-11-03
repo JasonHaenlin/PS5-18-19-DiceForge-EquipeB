@@ -16,7 +16,7 @@ public class BoardExtends extends Board {
         super();
     }
 
-    public void BoardTest() {
+    public void BoardRegisterTest() {
         assertTrue(registrationToBoard("Lightning", 1));
         assertTrue(registrationToBoard("Cloud", 1));
         assertFalse(registrationToBoard("Cloud", 1));
@@ -24,5 +24,9 @@ public class BoardExtends extends Board {
 
         assertEquals(Collections.emptyList(), getEligibleCards("Cloud"));
         assertNotNull(rolldice("Cloud"));
+    }
+
+    public void BoardForgeTest() {
+        assertEquals(Collections.emptyList(), getEligibleSides(0));
     }
 }
