@@ -31,7 +31,7 @@ public class Board {
     protected void initialize() {
         createCard();
         createInventory();
-        forge = new ActionForge();
+        this.forge = new ActionForge(conf.getForgeConfig());
     }
 
     private void createInventory() {
@@ -66,28 +66,7 @@ public class Board {
     }
 
     List<DiceSide> getEligibleSides(int gold) {
-        return forge.forgeAvailable(gold);
-    }
-
-    void forge(String player, int number, DiceSide sideRemove, DiceSide sideAdd, int cost) {
-        Inventory inv;
-        inv = playerInventory.get(player);
-
-        Resources res = sideAdd.getType();
-        int value = sideAdd.getValue();
-
-        List<DiceSide> available = getEligibleSides(cost);
-        List<Resources> listRes = new ArrayList<>();
-        List<Integer> listValue = new ArrayList<>();
-        for (DiceSide side : available) {
-            listRes.add(side.getType());
-            listValue.add(side.getValue());
-        }
-        // Verif if we can buy the side
-        if (listRes.contains(res) && listValue.contains(value) && inv.removeResourceFromBag(cost, Resources.GOLD)) {
-            inv.getDice(number).setDiceSides(sideRemove, sideAdd);
-
-        }
+        return forge.availableSides(gold);
     }
 
     protected int getVictoryPoint(String name) {
@@ -96,6 +75,13 @@ public class Board {
 
     protected Board getBoardView() {
         return this;
+    }
+
+    public boolean forge(String player, int diceNumber, DiceSide sideToRemove, DiceSide sideToAdd, int cost) {
+        if (!forge.removeSide(sideToRemove, cost)) {
+            return false;
+        }
+        return playerInventory.get(player).replaceDiceSide(diceNumber, sideToRemove, sideToAdd, cost);
     }
 
     public boolean playCard(Card card, String name) {

@@ -7,7 +7,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.Dice;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.DiceSide;
 
 /**
- * Inventory WARNING Method to set resources use only for test
+ * 
  */
 public class Inventory {
     private Map<Resources, Integer> treasury = new HashMap<>();
@@ -79,5 +79,18 @@ public class Inventory {
 
     Dice getDice(int number) {
         return dices.get(number);
+    }
+
+    boolean replaceDiceSide(int diceNumber, DiceSide sideToRemove, DiceSide sideToAdd, int cost) {
+        Dice dice = dices.get(diceNumber);
+        List<DiceSide> side = dice.getDiceSides();
+        for (int i = 0, n = dice.size(); i < n; i++) {
+            if (side.get(i).equals(sideToRemove)) {
+                side.remove(i);
+                side.add(sideToAdd);
+                return true;
+            }
+        }
+        return false;
     }
 }
