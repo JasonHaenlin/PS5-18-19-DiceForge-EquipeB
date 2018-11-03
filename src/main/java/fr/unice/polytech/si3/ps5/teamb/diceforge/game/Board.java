@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.Card;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.SimpleCard;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.ActionForge;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.Dice;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.DiceSide;

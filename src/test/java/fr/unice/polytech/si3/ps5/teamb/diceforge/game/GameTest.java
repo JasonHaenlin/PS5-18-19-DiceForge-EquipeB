@@ -4,6 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.Engine;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.OnlyDice;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.SimpleHighestExploit;
 
 public class GameTest {
     Engine engine;
@@ -13,8 +15,14 @@ public class GameTest {
         this.engine = new Engine();
     }
 
+    // TO DO
     @Test
     public void game2BotTest() throws Exception {
-
+        // @formatter:off
+        String result = engine.createGame(100)
+                .addBot(OnlyDice.class)
+                .addBot(SimpleHighestExploit.class)
+                .fire();
+        //@formatter:ons
     }
 }

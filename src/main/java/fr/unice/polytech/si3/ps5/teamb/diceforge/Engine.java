@@ -18,7 +18,7 @@ public class Engine {
 
 	private Game diceForge;
 	private Map<Player, Integer> player;
-	private int numberOfParties;
+	private int numberOfParties = 1;
 	private Config conf;
 
 	public Engine() {
