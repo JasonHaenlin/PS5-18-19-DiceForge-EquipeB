@@ -2,6 +2,7 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
@@ -85,5 +86,26 @@ public class Dice {
 
     public int size() {
         return diceSides.size();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Dice)) {
+            return false;
+        }
+        Dice dice = (Dice) obj;
+        return this.hashCode() == dice.hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        for (DiceSide side : diceSides) {
+            hash += side.hashCode();
+        }
+        return hash;
     }
 }

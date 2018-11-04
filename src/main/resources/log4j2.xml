@@ -20,22 +20,22 @@
     <!-- Log levels: Trace < Debug < Info < Warn < Error < Fatal -->
     <Loggers>
         <Logger name="fr.unice.polytech.si3.ps5.teamb.diceforge.game.Game" level="all" additivity="false">
-            <AppenderRef ref="stdout" level = "trace"/>
+            <AppenderRef ref="stdout" level = "info"/>
             <AppenderRef ref="allInfos" level = "all"/>
             <AppenderRef ref="lessInfos" level = "info"/>
         </Logger>
         <Logger name="fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player" level="all" additivity="false">
-            <AppenderRef ref="stdout" level = "trace"/>
+            <AppenderRef ref="stdout" level = "info"/>
             <AppenderRef ref="allInfos" level = "all"/>
             <AppenderRef ref="lessInfos" level = "info"/>
         </Logger>
         <Logger name="fr.unice.polytech.si3.ps5.teamb.App" level="all" additivity="false">
-            <AppenderRef ref="stdout" level = "trace"/>
+            <AppenderRef ref="stdout" level = "info"/>
             <AppenderRef ref="allInfos" level = "all"/>
             <AppenderRef ref="lessInfos" level = "info"/>
         </Logger>
         <Logger name="fr.unice.polytech.si3.ps5.teamb.diceforge.bot.Bot" level="all" additivity="false">
-            <AppenderRef ref="stdout" level = "trace"/>
+            <AppenderRef ref="stdout" level = "info"/>
             <AppenderRef ref="allInfos" level = "all"/>
             <AppenderRef ref="lessInfos" level = "info"/>
         </Logger>

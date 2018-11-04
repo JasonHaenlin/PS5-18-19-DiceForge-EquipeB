@@ -19,7 +19,6 @@ public class TestActionForge {
 
     @Before
     public void setup() {
-        conf.prepareConfig();
         forge = new ActionForge(conf.getForgeConfig());
     }
 

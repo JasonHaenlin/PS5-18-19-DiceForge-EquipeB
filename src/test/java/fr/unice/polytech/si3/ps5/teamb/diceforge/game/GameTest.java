@@ -1,6 +1,7 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.Engine;
@@ -19,7 +20,7 @@ public class GameTest {
     @Test
     public void game2BotTest() throws Exception {
         // @formatter:off
-        String result = engine.createGame(100)
+        engine.createGame(10)
                 .addBot(OnlyDice.class)
                 .addBot(SimpleHighestExploit.class)
                 .fire();

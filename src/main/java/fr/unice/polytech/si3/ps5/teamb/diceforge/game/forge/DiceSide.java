@@ -1,5 +1,7 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge;
 
+import java.util.Objects;
+
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 
 /**
@@ -10,8 +12,8 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
  * @author Jason Haenlin
  */
 public class DiceSide {
-    protected int value;
-    protected Resources type;
+    private int value;
+    private Resources type;
 
     public DiceSide(int value, Resources type) {
         this.value = value;
@@ -35,5 +37,22 @@ public class DiceSide {
     @Override
     public String toString() {
         return "[" + value + "," + type + "]";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof DiceSide)) {
+            return false;
+        }
+        DiceSide side = (DiceSide) obj;
+        return this.hashCode() == side.hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.value, this.type.ordinal());
     }
 }

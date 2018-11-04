@@ -88,6 +88,7 @@ public class Inventory {
             if (side.get(i).equals(sideToRemove)) {
                 side.remove(i);
                 side.add(sideToAdd);
+                removeResourceFromBag(cost, Resources.GOLD);
                 return true;
             }
         }

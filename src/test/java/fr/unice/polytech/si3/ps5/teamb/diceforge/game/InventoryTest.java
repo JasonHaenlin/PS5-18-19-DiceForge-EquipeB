@@ -9,17 +9,24 @@ import org.junit.Test;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.Card;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.SimpleCard;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.Dice;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.DiceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 
 /**
  * InventoryTest
  */
 public class InventoryTest {
 
+    Config conf = new Config("src/test/resources/config/basic.json");
+
     Inventory inv;
+    Inventory invPerso;
 
     @Before
     public void setup() {
         inv = new Inventory();
+        invPerso = new Inventory(conf.getInvConfig(), conf.getDice1Config(), conf.getDice2Config());
     }
 
     @Test
@@ -67,5 +74,21 @@ public class InventoryTest {
         assertEquals(2, inv.getResource(Resources.SUN_STONE));
         assertEquals(10, inv.getLastVIctoryPoint());
         assertEquals(0, inv.getLastVIctoryPoint());
+    }
+
+    @Test
+    public void replaceDiceSideTest() {
+        Dice dice1 = invPerso.getDice(0);
+        Dice dice2 = invPerso.getDice(1);
+        assertFalse(dice1.equals(dice2));
+
+        DiceSide side1 = new DiceSide(2, Resources.VICTORY_POINT);
+        DiceSide side2 = new DiceSide(1, Resources.MOON_STONE);
+
+        assertTrue(invPerso.replaceDiceSide(1, dice2.getDiceSides().get(0), side1, 0));
+        assertTrue(invPerso.replaceDiceSide(1, dice2.getDiceSides().get(1), side2, 0));
+
+        assertTrue(dice1.equals(dice2));
+
     }
 }

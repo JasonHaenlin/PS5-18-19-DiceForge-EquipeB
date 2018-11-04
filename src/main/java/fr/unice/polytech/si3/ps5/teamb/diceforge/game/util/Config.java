@@ -45,6 +45,9 @@ public class Config {
         }
     }
 
+    /**
+     * compute the config only one time for all the games
+     */
     public void prepareConfig() {
         this.invConfig = extractInventory();
         this.exploitConfig = extractExploit();
@@ -126,6 +129,9 @@ public class Config {
      * @return the dice1Config
      */
     public List<DiceSide> getDice1Config() {
+        if (dice1Config == null) {
+            this.dice1Config = extractDice(0);
+        }
         return dice1Config;
     }
 
@@ -133,6 +139,9 @@ public class Config {
      * @return the dice2Config
      */
     public List<DiceSide> getDice2Config() {
+        if (dice2Config == null) {
+            this.dice2Config = extractDice(1);
+        }
         return dice2Config;
     }
 
@@ -140,6 +149,9 @@ public class Config {
      * @return the exploitConfig
      */
     public List<Card> getExploitConfig() {
+        if (exploitConfig == null) {
+            this.exploitConfig = extractExploit();
+        }
         return exploitConfig;
     }
 
@@ -147,6 +159,9 @@ public class Config {
      * @return the forgeConfig
      */
     public Map<Integer, List<DiceSide>> getForgeConfig() {
+        if (forgeConfig == null) {
+            this.forgeConfig = extractForge();
+        }
         return forgeConfig;
     }
 
@@ -154,6 +169,9 @@ public class Config {
      * @return the invConfig
      */
     public Map<Resources, Integer> getInvConfig() {
+        if (invConfig == null) {
+            this.invConfig = extractInventory();
+        }
         return invConfig;
     }
 
