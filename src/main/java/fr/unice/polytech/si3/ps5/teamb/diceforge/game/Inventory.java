@@ -81,7 +81,8 @@ public class Inventory {
         return dices.get(number);
     }
 
-    boolean replaceDiceSide(int diceNumber, DiceSide sideToRemove, DiceSide sideToAdd, int cost) {
+    boolean replaceDiceSide(int diceNumber, DiceSide sideToRemove, DiceSide sideToAdd) {
+        int cost = sideToAdd.getCost();
         Dice dice = dices.get(diceNumber);
         List<DiceSide> side = dice.getDiceSides();
         for (int i = 0, n = dice.size(); i < n; i++) {

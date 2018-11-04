@@ -26,9 +26,9 @@ public class ActionForge {
     }
 
     public ActionForge() {
-        sidesAvailable.put(3, Arrays.asList(new DiceSide(2, Resources.GOLD), new DiceSide(2, Resources.GOLD)));
-        sidesAvailable.put(4, Arrays.asList(new DiceSide(3, Resources.GOLD), new DiceSide(3, Resources.GOLD)));
-        sidesAvailable.put(5, Arrays.asList(new DiceSide(4, Resources.GOLD), new DiceSide(4, Resources.GOLD)));
+        sidesAvailable.put(3, Arrays.asList(new DiceSide(2, Resources.GOLD, 3), new DiceSide(2, Resources.GOLD, 3)));
+        sidesAvailable.put(4, Arrays.asList(new DiceSide(3, Resources.GOLD, 4), new DiceSide(3, Resources.GOLD, 4)));
+        sidesAvailable.put(5, Arrays.asList(new DiceSide(4, Resources.GOLD, 5), new DiceSide(4, Resources.GOLD, 5)));
     }
 
     public List<DiceSide> availableSides(int cost) {
@@ -41,8 +41,12 @@ public class ActionForge {
         return available;
     }
 
-    public boolean removeSide(DiceSide sideToRemove, int cost) {
+    public boolean removeSide(DiceSide sideToRemove) {
+        int cost = sideToRemove.getCost();
         List<DiceSide> side = sidesAvailable.get(cost);
+        if (side == null) {
+            return false;
+        }
         for (int i = 0, n = side.size(); i < n; i++) {
             if (side.get(i).equals(sideToRemove)) {
                 sidesAvailable.get(cost).remove(i);

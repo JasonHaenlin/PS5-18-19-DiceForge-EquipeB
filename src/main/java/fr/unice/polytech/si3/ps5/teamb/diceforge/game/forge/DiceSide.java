@@ -14,10 +14,18 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 public class DiceSide {
     private int value;
     private Resources type;
+    private int cost;
 
     public DiceSide(int value, Resources type) {
         this.value = value;
         this.type = type;
+        this.cost = 0;
+    }
+
+    public DiceSide(int value, Resources type, int cost) {
+        this.value = value;
+        this.type = type;
+        this.cost = cost;
     }
 
     /**
@@ -32,6 +40,13 @@ public class DiceSide {
      */
     public int getValue() {
         return value;
+    }
+
+    /**
+     * @return the cost
+     */
+    public int getCost() {
+        return cost;
     }
 
     @Override

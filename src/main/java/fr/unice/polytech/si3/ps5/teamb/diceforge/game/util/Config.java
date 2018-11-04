@@ -98,7 +98,8 @@ public class Config {
             JSONArray objArray = obj.getJSONArray("side");
             objArray.forEach(item -> {
                 JSONObject sideObj = (JSONObject) item;
-                diceList.add(new DiceSide(sideObj.getInt("amount"), Resources.valueOf(sideObj.getString("resource"))));
+                diceList.add(new DiceSide(sideObj.getInt("amount"), Resources.valueOf(sideObj.getString("resource")),
+                        obj.getInt("cost")));
             });
             forgeMap.put(obj.getInt("cost"), diceList);
         });

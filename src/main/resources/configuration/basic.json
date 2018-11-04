@@ -111,31 +111,31 @@
             "victoryPoint": 6
         }],
         "forge": [{
+            "cost": 2,
+            "side": [{
+                "resource": "VICTORY_POINT",
+                "amount": 1
+            }, {
+                "resource": "VICTORY_POINT",
+                "amount": 1
+            }, {
+                "resource": "VICTORY_POINT",
+                "amount": 1
+            }]
+        }, {
             "cost": 3,
             "side": [{
                 "resource": "VICTORY_POINT",
-                "amount": 1
+                "amount": 2
             }, {
                 "resource": "VICTORY_POINT",
-                "amount": 1
+                "amount": 2
             }, {
                 "resource": "VICTORY_POINT",
-                "amount": 1
+                "amount": 2
             }]
         }, {
             "cost": 4,
-            "side": [{
-                "resource": "VICTORY_POINT",
-                "amount": 2
-            }, {
-                "resource": "VICTORY_POINT",
-                "amount": 2
-            }, {
-                "resource": "VICTORY_POINT",
-                "amount": 2
-            }]
-        }, {
-            "cost": 5,
             "side": [{
                 "resource": "VICTORY_POINT",
                 "amount": 3

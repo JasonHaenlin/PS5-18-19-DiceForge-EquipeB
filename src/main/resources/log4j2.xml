@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration infous="off">
-    <CustomLevels>
-        <CustomLevel name="info" intLevel="500" />
-        <CustomLevel name="all" intLevel="550" />
-        <CustomLevel name="debug" intLevel="650" />
-    </CustomLevels>
     <Appenders>
         <Console name="stdout">
             <PatternLayout>
@@ -40,6 +35,11 @@
             <AppenderRef ref="lessInfos" level = "debug"/>
         </Logger>
         <Logger name="fr.unice.polytech.si3.ps5.teamb.diceforge.bot.Bot" level="all" additivity="false">
+            <AppenderRef ref="stdout" level = "info"/>
+            <AppenderRef ref="allInfos" level = "all"/>
+            <AppenderRef ref="lessInfos" level = "debug"/>
+        </Logger>
+        <Logger name="fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.Dice" level="all" additivity="false">
             <AppenderRef ref="stdout" level = "info"/>
             <AppenderRef ref="allInfos" level = "all"/>
             <AppenderRef ref="lessInfos" level = "debug"/>

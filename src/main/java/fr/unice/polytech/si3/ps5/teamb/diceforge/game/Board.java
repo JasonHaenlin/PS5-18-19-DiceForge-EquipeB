@@ -64,7 +64,7 @@ public class Board {
         return buyable.isEmpty() ? Collections.emptyList() : buyable;
     }
 
-    List<DiceSide> getEligibleSides(int gold) {
+    protected List<DiceSide> getEligibleSides(int gold) {
         return forge.availableSides(gold);
     }
 
@@ -76,11 +76,14 @@ public class Board {
         return this;
     }
 
-    public boolean forge(String player, int diceNumber, DiceSide sideToRemove, DiceSide sideToAdd, int cost) {
-        if (!forge.removeSide(sideToRemove, cost)) {
+    public boolean forge(String player, int diceNumber, DiceSide sideToRemove, DiceSide sideToAdd) {
+        if (sideToAdd == null || sideToRemove == null) {
             return false;
         }
-        return playerInventory.get(player).replaceDiceSide(diceNumber, sideToRemove, sideToAdd, cost);
+        if (!forge.removeSide(sideToRemove)) {
+            return false;
+        }
+        return playerInventory.get(player).replaceDiceSide(diceNumber, sideToRemove, sideToAdd);
     }
 
     public boolean playCard(Card card, String name) {
@@ -90,6 +93,12 @@ public class Board {
         }
         playerInventory.get(name).addCardToBag(card);
         return true;
+    }
+
+    public List<DiceSide> getEligibleSides(String name) {
+        Inventory inv = playerInventory.get(name);
+        int gold = inv.getResource(Resources.GOLD);
+        return getEligibleSides(gold);
     }
 
     public List<Card> getEligibleCards(String name) {

@@ -31,13 +31,13 @@ public class TestActionForge {
     @Test
     public void forgeRemoveSideTest() {
         List<DiceSide> sides = forge.availableSides(3);
-        forge.removeSide(sides.get(0), 3);
+        forge.removeSide(sides.get(0));
         assertEquals(2, forge.availableSides(3).size());
         assertEquals(5, forge.availableSides(4).size());
-        assertTrue(forge.removeSide(sides.get(1), 3));
-        assertTrue(forge.removeSide(sides.get(2), 3));
+        assertTrue(forge.removeSide(sides.get(1)));
+        assertTrue(forge.removeSide(sides.get(2)));
         assertEquals(0, forge.availableSides(3).size());
-        assertFalse(forge.removeSide(sides.get(0), 3));
+        assertFalse(forge.removeSide(sides.get(0)));
     }
 
 }

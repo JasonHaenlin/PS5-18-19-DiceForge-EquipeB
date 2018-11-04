@@ -85,8 +85,8 @@ public class InventoryTest {
         DiceSide side1 = new DiceSide(2, Resources.VICTORY_POINT);
         DiceSide side2 = new DiceSide(1, Resources.MOON_STONE);
 
-        assertTrue(invPerso.replaceDiceSide(1, dice2.getDiceSides().get(0), side1, 0));
-        assertTrue(invPerso.replaceDiceSide(1, dice2.getDiceSides().get(1), side2, 0));
+        assertTrue(invPerso.replaceDiceSide(1, dice2.getDiceSides().get(0), side1));
+        assertTrue(invPerso.replaceDiceSide(1, dice2.getDiceSides().get(1), side2));
 
         assertTrue(dice1.equals(dice2));
 

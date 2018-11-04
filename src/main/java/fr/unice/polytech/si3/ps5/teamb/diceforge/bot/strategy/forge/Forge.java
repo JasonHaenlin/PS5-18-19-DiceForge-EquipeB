@@ -1,6 +1,7 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Board;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.DiceSide;
 
 /**
  * Forge
@@ -13,6 +14,6 @@ public abstract class Forge {
         this.id = id;
     }
 
-    public abstract void compute(Board board);
+    public abstract DiceSide compute(Board board);
 
 }
