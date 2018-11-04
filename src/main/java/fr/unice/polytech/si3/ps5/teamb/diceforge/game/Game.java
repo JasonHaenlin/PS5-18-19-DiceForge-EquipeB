@@ -21,7 +21,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 
 public class Game extends Board {
 
-    private static Logger log = LogManager.getLogger(Game.class);
+    private static Logger logger = LogManager.getLogger(Game.class);
 
     private Map<Player, Integer> bots;
     private Map<String, Integer> winners;
@@ -36,35 +36,35 @@ public class Game extends Board {
      */
     public Game(Config conf) {
         super(conf);
-        log.debug("init Game");
+        logger.debug("init Game");
         this.round = 9;
         this.bots = new HashMap<>();
         this.winners = new HashMap<>();
     }
 
     public String fire() {
-        log.debug("oneGameFire !");
+        logger.debug("oneGameFire !");
         initialize();
         for (int i = 0; i < round; i++) {
             bots.forEach((bot, score) -> {
                 Map<Resources, Integer> result = rolldice(bot.toString());
                 bots.replace(bot, score + getVictoryPoint(bot.toString()));
-                log.info("Le bot " + bot.toString() + " lance les des");
-                result.forEach((res, amout) -> log
-                        .info("Le bot " + bot.toString() + " a obtenue " + amout + " " + res.toString()));
+                logger.debug("Le bot '" + bot.toString() + "' lance les des");
+                result.forEach((res, amout) -> logger
+                        .debug("Le bot '" + bot.toString() + "' a obtenue " + amout + " " + res.toString()));
             });
             bots.forEach((bot, score) -> {
                 bot.play(getBoardView());
                 bots.replace(bot, score + getVictoryPoint(bot.toString()));
             });
         }
-        bots.forEach((bot, score) -> log.info(bot.toString() + "\t: " + score + " Point de Gloire"));
+        bots.forEach((bot, score) -> logger.debug("'" + bot.toString() + "'\t: " + score + " Point de Gloire"));
         return establishWinner();
     }
 
     public Game addBot(Player bot) throws Exception {
         bot.setup();
-        log.info("add bot : " + bot.toString());
+        logger.debug("add bot : '" + bot.toString() + "'");
         bots.put(bot, 0);
         registrationToBoard(bot.toString(), bot.hashCode());
         return this;
@@ -74,12 +74,12 @@ public class Game extends Board {
         StringBuilder winnerMsg = new StringBuilder();
         Map<String, Integer> winners = defineWinners();
         if (winners.size() == 1) {
-            winners.forEach(
-                    (name, score) -> winnerMsg.append("Le bot " + name + " gagne avec " + score + " points de Gloire"));
+            winners.forEach((name, score) -> winnerMsg
+                    .append("Le bot '" + name + "' gagne avec " + score + " points de Gloire"));
         } else {
             winnerMsg.append("Egalite entre les joueurs ");
             winners.forEach((name, score) -> {
-                winnerMsg.append(" [" + name + "]");
+                winnerMsg.append(" '" + name + "'");
                 finalScore = score;
             });
             winnerMsg.append(". Avec un total de " + finalScore + " points de Gloire");

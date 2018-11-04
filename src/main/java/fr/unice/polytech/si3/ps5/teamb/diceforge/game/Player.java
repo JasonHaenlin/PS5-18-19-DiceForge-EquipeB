@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
  */
 public abstract class Player {
 
-    protected static Logger log = LogManager.getLogger(Player.class);
+    protected static Logger logger = LogManager.getLogger(Player.class);
 
     private static int countInstance = 0;
 

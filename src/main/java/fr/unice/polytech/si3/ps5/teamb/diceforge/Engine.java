@@ -12,7 +12,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 
 public class Engine {
 
-	private static Logger log = LogManager.getLogger(Engine.class);
+	private static Logger logger = LogManager.getLogger(Engine.class);
 
 	private static String confFile = "src/main/resources/configuration/basic.json";
 
@@ -38,23 +38,23 @@ public class Engine {
 	}
 
 	public String fire() {
-		log.info("debut de la sequence");
+		logger.debug("debut de la sequence");
 		for (int i = 0; i < numberOfParties; i++) {
-			log.info("debut de la partie");
+			logger.debug("debut de la partie");
 			this.diceForge = new Game(this.conf);
 			player.forEach((bot, score) -> {
 				try {
 					this.diceForge.addBot(bot);
 				} catch (Exception e) {
-					log.error(e.toString());
+					logger.error(e.toString());
 				}
 			});
 			String res = this.diceForge.fire();
-			log.info(res);
+			logger.debug(res);
 			computeResult(diceForge.getWinners());
-			log.info("fin de la partie");
+			logger.debug("fin de la partie");
 		}
-		log.info("fin de la sequence");
+		logger.debug("fin de la sequence");
 		return buildResult();
 	}
 
@@ -69,7 +69,7 @@ public class Engine {
 	private String buildResult() {
 		StringBuilder buildScore = new StringBuilder("Resultat de la sequence :");
 		player.forEach((bot, score) -> {
-			buildScore.append("\nle bot " + bot.toString() + " gagne " + score + " "
+			buildScore.append("\nle bot '" + bot.toString() + "' gagne " + score + " "
 					+ (score > 1 ? "parties" : "partie") + " sur " + numberOfParties + " : "
 					+ (score != 0 ? String.format("%.1f", ((float) score / numberOfParties) * 100) + "%" : "0.0%"));
 		});

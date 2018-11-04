@@ -27,7 +27,7 @@ public class Cloud extends Player {
     public void play(Board boardView) {
         Card card = exploit.compute(boardView);
         if (boardView.playCard(card, name)) {
-            log.info("le bot " + name + " a fait un exploit et a obtenue " + card.getVictoryPoint() + " "
+            logger.debug("le bot '" + name + "' a fait un exploit et a obtenue " + card.getVictoryPoint() + " "
                     + Resources.VICTORY_POINT);
         }
     }

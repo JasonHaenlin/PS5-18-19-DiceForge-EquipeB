@@ -10,7 +10,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.Rem;
 
 public class App {
 
-    private static Logger log = LogManager.getLogger(App.class);
+    private static Logger logger = LogManager.getLogger(App.class);
 
     public static void main(String[] args) throws Exception {
 
@@ -23,7 +23,7 @@ public class App {
                 .fire();
         //@formatter:ons
 
-        log.info(result);
+        logger.info(result);
 
     }
 }
