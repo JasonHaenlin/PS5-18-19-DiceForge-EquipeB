@@ -10,7 +10,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.DiceSide;
  * 
  */
 public class Inventory {
-    private Map<Resources, Integer> treasury = new HashMap<>();
+    private Map<Resources, Integer> treasury = new EnumMap<>(Resources.class);
     private List<Dice> dices = new ArrayList<>();
     private List<Card> cards = new ArrayList<>();
 
@@ -24,8 +24,8 @@ public class Inventory {
         dices.add(new Dice());
     }
 
-    public Inventory(Map<Resources, Integer> invConfig, List<DiceSide> dice1Config, List<DiceSide> dice2Config) {
-        this.treasury = new HashMap<Resources, Integer>(invConfig);
+    public Inventory(EnumMap<Resources, Integer> invConfig, List<DiceSide> dice1Config, List<DiceSide> dice2Config) {
+        this.treasury = invConfig.clone();
         dices.add(new Dice(dice1Config));
         dices.add(new Dice(dice2Config));
     }

@@ -13,6 +13,6 @@ public abstract class Forge {
         this.id = id;
     }
 
-    abstract void compute(Board board);
+    public abstract void compute(Board board);
 
 }

@@ -62,7 +62,7 @@ public class Game extends Board {
         return establishWinner();
     }
 
-    public Game addBot(Player bot) throws Exception {
+    public Game addBot(Player bot) {
         bot.setup();
         logger.debug("add bot : '" + bot.toString() + "'");
         bots.put(bot, 0);
@@ -72,7 +72,7 @@ public class Game extends Board {
 
     private String establishWinner() {
         StringBuilder winnerMsg = new StringBuilder();
-        Map<String, Integer> winners = defineWinners();
+        defineWinners();
         if (winners.size() == 1) {
             winners.forEach((name, score) -> winnerMsg
                     .append("Le bot '" + name + "' gagne avec " + score + " points de Gloire"));
@@ -87,7 +87,7 @@ public class Game extends Board {
         return winnerMsg.toString();
     }
 
-    private Map<String, Integer> defineWinners() {
+    private void defineWinners() {
         TreeMap<Player, Integer> sorted = new TreeMap<>(new ScoreComparator(bots));
         sorted.putAll(bots);
 
@@ -98,7 +98,6 @@ public class Game extends Board {
                 winners.put(bot.toString(), score);
             }
         });
-        return winners;
     }
 
     /**

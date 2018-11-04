@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +33,7 @@ public class Config {
     private List<DiceSide> dice1Config;
     private List<DiceSide> dice2Config;
     private List<Card> exploitConfig;
-    private Map<Resources, Integer> invConfig;
+    private EnumMap<Resources, Integer> invConfig;
     private Map<Integer, List<DiceSide>> forgeConfig;
 
     public Config(String file) {
@@ -56,9 +57,9 @@ public class Config {
         this.dice2Config = extractDice(1);
     }
 
-    Map<Resources, Integer> extractInventory() {
+    EnumMap<Resources, Integer> extractInventory() {
         JSONObject ext = jsonConfig.getJSONObject("resources");
-        Map<Resources, Integer> inv = new HashMap<>();
+        EnumMap<Resources, Integer> inv = new EnumMap<>(Resources.class);
         inv.put(Resources.GOLD, ext.getInt("gold"));
         inv.put(Resources.SUN_STONE, ext.getInt("sunStone"));
         inv.put(Resources.MOON_STONE, ext.getInt("moonStone"));
@@ -168,7 +169,7 @@ public class Config {
     /**
      * @return the invConfig
      */
-    public Map<Resources, Integer> getInvConfig() {
+    public EnumMap<Resources, Integer> getInvConfig() {
         if (invConfig == null) {
             this.invConfig = extractInventory();
         }

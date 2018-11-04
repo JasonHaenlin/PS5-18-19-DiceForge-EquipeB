@@ -16,7 +16,7 @@ public class App {
 
         Engine engine = new Engine();
         // @formatter:off
-        String result = engine.createGame(100)
+        String result = engine.createGame(1000)
                 .addBot(Pika.class)
                 .addBot(Cloud.class)
                 .addBot(Rem.class)

@@ -1,7 +1,6 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.Engine;

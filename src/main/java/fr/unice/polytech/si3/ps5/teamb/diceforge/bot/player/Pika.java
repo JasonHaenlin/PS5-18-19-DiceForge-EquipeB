@@ -8,16 +8,18 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
  */
 public class Pika extends Player {
 
-    public Pika() { super("Pikachu"); }
+    public Pika() {
+        super("Pikachu");
+    }
 
     @Override
     protected void setup() {
-
+        // no specific setup
     }
 
     @Override
     public void play(Board boardView) {
-
+        // no strategies are applied to this bot
     }
 
 }

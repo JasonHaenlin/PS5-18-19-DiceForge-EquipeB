@@ -46,7 +46,6 @@ public class ActionForge {
         for (int i = 0, n = side.size(); i < n; i++) {
             if (side.get(i).equals(sideToRemove)) {
                 sidesAvailable.get(cost).remove(i);
-                System.out.println(sidesAvailable.get(cost).toString());
                 return true;
             }
         }
