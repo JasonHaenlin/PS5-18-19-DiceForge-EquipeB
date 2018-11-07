@@ -1,6 +1,8 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
-import org.junit.Before;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 
@@ -9,21 +11,35 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
  */
 public class BoardTest {
 
-    Config conf = new Config("src/test/resources/config/basic.json");
+    static final String basiccardConf = ("src/test/resources/config/basiccard.json");
+    static final String basicdiceConf = ("src/test/resources/config/basicdice.json");
+    static final String basicsideConf = ("src/test/resources/config/basicside.json");
+    static final String noresConf = ("src/test/resources/config/nores.json");
 
     BoardExtends board;
 
-    @Before
-    public void setup() {
-        board = new BoardExtends(conf);
-    }
-
+    @Test
     public void gameBoardTest() {
-        board.BoardRegisterTest();
+        board = new BoardExtends(new Config(noresConf));
+        assertTrue(board.BoardRegisterTest());
     }
 
+    @Test
     public void gameBoardForgeTest() {
-        board.BoardForgeTest();
+        board = new BoardExtends(new Config(basicsideConf));
+        assertTrue(board.BoardForgeTest());
+    }
+
+    @Test
+    public void gameBoardDiceTest() {
+        board = new BoardExtends(new Config(basicdiceConf));
+        assertTrue(board.BoardDiceTest());
+    }
+
+    @Test
+    public void gameBoardCardTest() {
+        board = new BoardExtends(new Config(basiccardConf));
+        assertTrue(board.BoardCardTest());
     }
 
 }

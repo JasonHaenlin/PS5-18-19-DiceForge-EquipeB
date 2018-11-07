@@ -18,17 +18,37 @@ public class BoardExtends extends Board {
         super(conf);
     }
 
-    public void BoardRegisterTest() {
+    public boolean BoardRegisterTest() {
         assertTrue(registrationToBoard("Lightning", 1));
         assertTrue(registrationToBoard("Cloud", 1));
         assertFalse(registrationToBoard("Cloud", 1));
         initialize();
 
         assertEquals(Collections.emptyList(), getEligibleCards("Cloud"));
+        assertEquals(Collections.emptyList(), getEligibleSides("Cloud"));
+
         assertNotNull(rolldice("Cloud"));
+        return true;
     }
 
-    public void BoardForgeTest() {
-        assertEquals(Collections.emptyList(), getEligibleSides(0));
+    public boolean BoardForgeTest() {
+        registrationToBoard("Cloud", 1);
+        initialize();
+        assertEquals(6, getEligibleSides("Cloud").size());
+        return true;
+    }
+
+    public boolean BoardDiceTest() {
+        registrationToBoard("Cloud", 1);
+        initialize();
+        assertEquals(2, (int) rolldice("Cloud").get(Resources.GOLD));
+        return true;
+    }
+
+    public boolean BoardCardTest() {
+        registrationToBoard("Cloud", 1);
+        initialize();
+        assertEquals(4, getEligibleCards("Cloud").size());
+        return true;
     }
 }

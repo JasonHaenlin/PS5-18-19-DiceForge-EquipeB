@@ -40,7 +40,8 @@ public class Inventory {
             }
             if (newResources.containsKey(side.getType()))
                 newResources.replace(side.getType(), newResources.get(side.getType()) + side.getValue());
-            newResources.put(side.getType(), side.getValue());
+            else
+                newResources.put(side.getType(), side.getValue());
         });
         return newResources;
     }
