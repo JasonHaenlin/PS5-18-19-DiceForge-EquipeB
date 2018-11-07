@@ -36,13 +36,12 @@ public class Config {
     private EnumMap<Resources, Integer> invConfig;
     private Map<Integer, List<DiceSide>> forgeConfig;
 
-    public Config(String file) {
+    public Config(String file) throws Exception {
         this.file = file;
         try {
             this.jsonConfig = extractJson();
         } catch (Exception e) {
-            log.error("erreur lors de l'extraction de la configuration\n" + e.toString());
-            System.exit(1);
+            throw new Exception("erreur lors de l'extraction de la configuration\n" + e.toString());
         }
     }
 

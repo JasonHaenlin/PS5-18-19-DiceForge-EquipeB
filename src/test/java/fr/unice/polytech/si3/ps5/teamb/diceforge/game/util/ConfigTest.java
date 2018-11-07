@@ -1,10 +1,13 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game.util;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.Map;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
@@ -16,7 +19,12 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.DiceSide;
  */
 public class ConfigTest {
 
-    Config conf = new Config("src/test/resources/config/basic.json");
+    Config conf;
+
+    @Before
+    public void setup() throws Exception {
+        conf = new Config("src/test/resources/config/basic.json");
+    }
 
     @Test
     public void extractResourcesTest() {
@@ -48,5 +56,15 @@ public class ConfigTest {
         assertEquals(Resources.VICTORY_POINT, fg.get(3).get(0).getType());
         assertEquals(3, fg.get(5).get(2).getValue());
         assertEquals(Resources.VICTORY_POINT, fg.get(3).get(2).getType());
+    }
+
+    @Test
+    public void failExtractTest() {
+        try {
+            new Config("path/to/file/json");
+            fail();
+        } catch (Exception e) {
+            assertTrue(true);
+        }
     }
 }

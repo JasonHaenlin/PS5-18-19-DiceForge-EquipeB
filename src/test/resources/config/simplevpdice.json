@@ -1,0 +1,121 @@
+{
+    "name": "JSONParser diceForge game config",
+    "version": "1.0.0",
+    "description": "basic game config",
+    "data": {
+        "resources": {
+            "gold": 3,
+            "sunStone": 3,
+            "moonStone": 3,
+            "victoryPoint": 0
+        },
+        "dices": [
+            [{
+                "resource": "VICTORY_POINT",
+                "amount": 1
+            }, {
+                "resource": "VICTORY_POINT",
+                "amount": 1
+            }, {
+                "resource": "VICTORY_POINT",
+                "amount": 1
+            }, {
+                "resource": "VICTORY_POINT",
+                "amount": 1
+            }, {
+                "resource": "VICTORY_POINT",
+                "amount": 1
+            }, {
+                "resource": "VICTORY_POINT",
+                "amount": 1
+            }],
+            [{
+                "resource": "VICTORY_POINT",
+                "amount": 1
+            }, {
+                "resource": "VICTORY_POINT",
+                "amount": 1
+            }, {
+                "resource": "VICTORY_POINT",
+                "amount": 1
+            }, {
+                "resource": "VICTORY_POINT",
+                "amount": 1
+            }, {
+                "resource": "VICTORY_POINT",
+                "amount": 1
+            }, {
+                "resource": "VICTORY_POINT",
+                "amount": 1
+            }]
+        ],
+        "exploit": [{
+            "type": "SimpleCard",
+            "sunStone": 3,
+            "moonStone": 0,
+            "victoryPoint": 2
+        }, {
+            "type": "SimpleCard",
+            "sunStone": 0,
+            "moonStone": 3,
+            "victoryPoint": 2
+        }, {
+            "type": "SimpleCard",
+            "sunStone": 4,
+            "moonStone": 2,
+            "victoryPoint": 5
+        }, {
+            "type": "SimpleCard",
+            "sunStone": 5,
+            "moonStone": 5,
+            "victoryPoint": 10
+        }, {
+            "type": "SimpleCard",
+            "sunStone": 1,
+            "moonStone": 1,
+            "victoryPoint": 1
+        }, {
+            "type": "SimpleCard",
+            "sunStone": 3,
+            "moonStone": 3,
+            "victoryPoint": 6
+        }],
+        "forge": [{
+            "cost": 3,
+            "side": [{
+                "resource": "VICTORY_POINT",
+                "amount": 1
+            }, {
+                "resource": "VICTORY_POINT",
+                "amount": 1
+            }, {
+                "resource": "VICTORY_POINT",
+                "amount": 1
+            }]
+        }, {
+            "cost": 4,
+            "side": [{
+                "resource": "VICTORY_POINT",
+                "amount": 2
+            }, {
+                "resource": "VICTORY_POINT",
+                "amount": 2
+            }, {
+                "resource": "VICTORY_POINT",
+                "amount": 2
+            }]
+        }, {
+            "cost": 5,
+            "side": [{
+                "resource": "VICTORY_POINT",
+                "amount": 3
+            }, {
+                "resource": "VICTORY_POINT",
+                "amount": 3
+            }, {
+                "resource": "VICTORY_POINT",
+                "amount": 3
+            }]
+        }]
+    }
+}

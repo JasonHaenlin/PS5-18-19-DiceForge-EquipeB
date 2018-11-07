@@ -18,13 +18,14 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
  */
 public class InventoryTest {
 
-    Config conf = new Config("src/test/resources/config/basic.json");
+    Config conf;
 
     Inventory inv;
     Inventory invPerso;
 
     @Before
-    public void setup() {
+    public void setup() throws Exception {
+        conf = new Config("src/test/resources/config/basic.json");
         inv = new Inventory();
         invPerso = new Inventory(conf.getInvConfig(), conf.getDice1Config(), conf.getDice2Config());
     }

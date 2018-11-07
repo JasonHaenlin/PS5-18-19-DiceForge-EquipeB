@@ -19,25 +19,25 @@ public class BoardTest {
     BoardExtends board;
 
     @Test
-    public void gameBoardTest() {
+    public void gameBoardTest() throws Exception {
         board = new BoardExtends(new Config(noresConf));
         assertTrue(board.BoardRegisterTest());
     }
 
     @Test
-    public void gameBoardForgeTest() {
+    public void gameBoardForgeTest() throws Exception {
         board = new BoardExtends(new Config(basicsideConf));
         assertTrue(board.BoardForgeTest());
     }
 
     @Test
-    public void gameBoardDiceTest() {
+    public void gameBoardDiceTest() throws Exception {
         board = new BoardExtends(new Config(basicdiceConf));
         assertTrue(board.BoardDiceTest());
     }
 
     @Test
-    public void gameBoardCardTest() {
+    public void gameBoardCardTest() throws Exception {
         board = new BoardExtends(new Config(basiccardConf));
         assertTrue(board.BoardCardTest());
     }

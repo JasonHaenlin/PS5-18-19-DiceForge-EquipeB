@@ -62,6 +62,15 @@ public class Game extends Board {
         return establishWinner();
     }
 
+    Game addBot(Class<? extends Player> bot) throws Exception {
+        Player player = bot.newInstance();
+        player.setup();
+        logger.info("add bot :" + bot.toString());
+        bots.put(player, 0);
+        registrationToBoard(player.toString(), player.hashCode());
+        return this;
+    }
+
     public Game addBot(Player bot) {
         bot.setup();
         logger.debug("add bot : '" + bot.toString() + "'");

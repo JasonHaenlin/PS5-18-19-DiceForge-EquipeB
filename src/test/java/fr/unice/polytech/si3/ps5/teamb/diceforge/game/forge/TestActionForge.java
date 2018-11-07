@@ -13,12 +13,13 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 
 public class TestActionForge {
 
-    Config conf = new Config("src/test/resources/config/basic.json");
+    Config conf;
 
     ActionForge forge;
 
     @Before
-    public void setup() {
+    public void setup() throws Exception {
+        conf = new Config("src/test/resources/config/basic.json");
         forge = new ActionForge(conf.getForgeConfig());
     }
 

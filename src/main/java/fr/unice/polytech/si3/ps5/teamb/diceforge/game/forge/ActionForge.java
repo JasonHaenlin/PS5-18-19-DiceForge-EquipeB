@@ -25,12 +25,6 @@ public class ActionForge {
         sidesAvailable = new HashMap<>(sides);
     }
 
-    public ActionForge() {
-        sidesAvailable.put(3, Arrays.asList(new DiceSide(2, Resources.GOLD, 3), new DiceSide(2, Resources.GOLD, 3)));
-        sidesAvailable.put(4, Arrays.asList(new DiceSide(3, Resources.GOLD, 4), new DiceSide(3, Resources.GOLD, 4)));
-        sidesAvailable.put(5, Arrays.asList(new DiceSide(4, Resources.GOLD, 5), new DiceSide(4, Resources.GOLD, 5)));
-    }
-
     public List<DiceSide> availableSides(int cost) {
         List<DiceSide> available = new ArrayList<>();
         for (int i = 1; i <= cost; i++) {

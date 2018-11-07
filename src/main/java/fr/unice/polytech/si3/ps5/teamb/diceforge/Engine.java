@@ -23,10 +23,10 @@ public class Engine {
 
 	public Engine() {
 		this.player = new HashMap<>();
-		this.conf = new Config(confFile);
 	}
 
-	public Engine createGame(int numberOfParties) {
+	public Engine createGame(int numberOfParties) throws Exception {
+		this.conf = new Config(confFile);
 		this.numberOfParties = numberOfParties;
 		this.conf.prepareConfig();
 		return this;
