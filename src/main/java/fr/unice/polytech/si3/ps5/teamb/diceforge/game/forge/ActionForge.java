@@ -1,12 +1,9 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 
 /**
  * Create the forge
