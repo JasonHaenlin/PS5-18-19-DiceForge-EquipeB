@@ -1,5 +1,8 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.Forge;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.VictoryPoint;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Board;
@@ -24,7 +27,7 @@ public class Cloud extends Player {
 
     @Override
     public void play(Board boardView) {
-        DiceSide side = forge.compute(boardView);
+        DiceSide side = forge.compute(new ArrayList<>(boardView.getEligibleSides(name)));
         logger.trace(side);
         if (boardView.forge(name, 0, boardView.getDice(name, 0).getDiceSides().get(0), side)) {
             logger.debug("le bot '" + name + "' a forge et a obtenue " + side.toString());

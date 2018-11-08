@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.Map;
 
 import org.junit.Test;
+import org.junit.Ignore;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.OnlyDice;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.SimpleHighestExploit;
@@ -17,6 +18,7 @@ public class EngineTest {
 
     Engine engine = new Engine();
 
+    @Ignore
     @Test
     public void engineResultTest1() throws Exception {
         String result = engine.createGame(1).addBot(OnlyDice.class).addBot(SimpleHighestExploit.class).fire();
