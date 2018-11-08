@@ -1,9 +1,7 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Board;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.DiceSide;
 
@@ -28,11 +26,16 @@ public class VictoryPoint extends Forge {
 
     private void keepOnlyVictoryPoint(List<DiceSide> feasible) {
         int size = feasible.size();
-        for (int i = 0; i < size; i++) {
-            if (!feasible.get(i).getType().equals(Resources.VICTORY_POINT)) {
+        int i = 0;
+        while (i < size) {
+            if (!(feasible.get(i).getType().equals(Resources.VICTORY_POINT))) {
                 feasible.remove(i);
+                size--;
+            } else {
+                i++;
             }
         }
+        System.out.println(feasible.toString());
     }
 
 }
