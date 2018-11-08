@@ -17,8 +17,7 @@ public class VictoryPoint extends Forge {
     }
 
     @Override
-    public DiceSide compute(Board board) {
-        List<DiceSide> feasible = new ArrayList<>(board.getEligibleSides(id));
+    public DiceSide compute(List<DiceSide> feasible) {
         if (!feasible.isEmpty()) {
             keepOnlyVictoryPoint(feasible);
             feasible.sort((DiceSide s1, DiceSide s2) -> Integer.compare(s1.getValue(), s2.getValue()));

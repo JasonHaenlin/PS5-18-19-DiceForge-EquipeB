@@ -1,5 +1,7 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge;
 
+import java.util.List;
+
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Board;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.DiceSide;
 
@@ -14,6 +16,6 @@ public abstract class Forge {
         this.id = id;
     }
 
-    public abstract DiceSide compute(Board board);
+    public abstract DiceSide compute(List<DiceSide> feasible);
 
 }

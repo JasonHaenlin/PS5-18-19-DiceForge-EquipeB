@@ -22,7 +22,7 @@ public class Board {
     private ActionForge forge;
     private Config conf;
 
-    protected Board(Config conf) {
+    public Board(Config conf) {
         playerRegistered = new HashMap<>();
         this.conf = conf;
     }
@@ -33,7 +33,7 @@ public class Board {
         this.forge = new ActionForge(conf.getForgeConfig());
     }
 
-    private void createInventory() {
+    protected void createInventory() {
         playerInventory = new HashMap<>();
         playerRegistered.forEach((name, integer) -> playerInventory.put(name,
                 new Inventory(conf.getInvConfig(), conf.getDice1Config(), conf.getDice2Config())));

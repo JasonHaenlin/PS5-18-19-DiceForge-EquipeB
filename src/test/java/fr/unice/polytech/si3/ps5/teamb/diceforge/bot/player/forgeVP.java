@@ -24,7 +24,7 @@ public class forgeVP extends Player {
 
     @Override
     public void play(Board boardView) {
-        DiceSide side = forge.compute(boardView);
+        DiceSide side = forge.compute(boardView.getEligibleSides(name));
         logger.trace(side);
         boardView.forge(name, 0, boardView.getDice(name, 0).getDiceSides().get(0), side);
     }
