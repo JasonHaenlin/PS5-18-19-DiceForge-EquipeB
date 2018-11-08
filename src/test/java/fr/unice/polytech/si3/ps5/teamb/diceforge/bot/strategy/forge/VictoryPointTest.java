@@ -28,7 +28,6 @@ public class VictoryPointTest {
         feasible.add(new DiceSide(3, Resources.VICTORY_POINT));
         feasible.add(new DiceSide(4, Resources.VICTORY_POINT));
         feasible.add(new DiceSide(5, Resources.VICTORY_POINT));
-        feasible.add(new DiceSide(5, Resources.VICTORY_POINT));
         feasible.add(new DiceSide(1, Resources.GOLD));
         feasible.add(new DiceSide(2, Resources.GOLD));
         feasible.add(new DiceSide(3, Resources.GOLD));
