@@ -11,8 +11,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.Card;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.DiceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 
 /**
  * ConfigTest

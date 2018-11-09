@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge;
+package fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice;
 
 import java.util.ArrayList;
 import java.util.List;

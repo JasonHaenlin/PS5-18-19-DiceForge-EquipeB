@@ -15,9 +15,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.Card;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.SimpleCard;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.DiceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.SimpleCard;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 
 /**
  * Config

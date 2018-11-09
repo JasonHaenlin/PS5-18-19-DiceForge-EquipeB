@@ -8,7 +8,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.Forge;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.VictoryPoint;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Board;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.DiceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 
 /**
  * Pika

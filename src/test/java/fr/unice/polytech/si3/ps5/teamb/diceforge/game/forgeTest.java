@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge;
+package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -9,18 +9,20 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.Temple;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 
-public class TestActionForge {
+public class forgeTest {
 
     Config conf;
 
-    ActionForge forge;
+    Temple forge;
 
     @Before
     public void setup() throws Exception {
         conf = new Config("src/test/resources/config/basic.json");
-        forge = new ActionForge(conf.getForgeConfig());
+        forge = new Temple(conf.getForgeConfig());
     }
 
     @Test
