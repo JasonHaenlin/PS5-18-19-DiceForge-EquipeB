@@ -7,7 +7,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.Highest;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Board;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.Card;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
 
 /**
  * Pika

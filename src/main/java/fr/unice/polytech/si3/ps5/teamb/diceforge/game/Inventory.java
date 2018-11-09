@@ -1,10 +1,14 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.Card;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.Dice;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.DiceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.Dice;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 
 /**
  * 

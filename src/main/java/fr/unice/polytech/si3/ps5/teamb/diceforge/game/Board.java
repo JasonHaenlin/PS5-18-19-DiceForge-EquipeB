@@ -1,20 +1,19 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.Card;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.Islands;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.ActionForge;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.Dice;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.DiceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.Dice;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 
 public class Board {
 
-    private List<Card> cards;
+    private Islands islands;
 
     private Map<String, Integer> playerRegistered;
     private Map<String, Inventory> playerInventory;
@@ -48,20 +47,7 @@ public class Board {
     }
 
     private void createCard() {
-        cards = conf.getExploitConfig();
-    }
-
-    protected List<Card> getEligibleCards(int moonBank, int sunBank) {
-        ArrayList<Card> buyable = new ArrayList<>();
-        for (Card Card : cards) {
-            if (Card.getMoonStone() <= moonBank && Card.getSunStone() <= sunBank) {
-                buyable.add(Card);
-            }
-        }
-        buyable.sort((Card a1, Card a2) -> Integer.compare(a1.getMoonStone() + a1.getSunStone(),
-                a2.getMoonStone() + a2.getSunStone()));
-
-        return buyable.isEmpty() ? Collections.emptyList() : buyable;
+        this.islands = new Islands(conf.getExploitConfig());
     }
 
     protected List<DiceSide> getEligibleSides(int gold) {
@@ -105,7 +91,7 @@ public class Board {
         Inventory inv = playerInventory.get(name);
         int moon = inv.getResource(Resources.MOON_STONE);
         int sun = inv.getResource(Resources.SUN_STONE);
-        return getEligibleCards(moon, sun);
+        return islands.getEligibleCards(moon, sun);
     }
 
     public Dice getDice(String player, int number) {

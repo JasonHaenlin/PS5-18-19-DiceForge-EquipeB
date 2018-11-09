@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 
 public class TestActionForge {
