@@ -6,7 +6,7 @@ import java.util.Map;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.Islands;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.ActionForge;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.Temple;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.Dice;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
@@ -14,11 +14,11 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 public class Board {
 
     private Islands islands;
+    private Temple temple;
 
     private Map<String, Integer> playerRegistered;
     private Map<String, Inventory> playerInventory;
 
-    private ActionForge forge;
     private Config conf;
 
     public Board(Config conf) {
@@ -29,7 +29,7 @@ public class Board {
     protected void initialize() {
         createCard();
         createInventory();
-        this.forge = new ActionForge(conf.getForgeConfig());
+        this.temple = new Temple(conf.getForgeConfig());
     }
 
     protected void createInventory() {
@@ -51,7 +51,7 @@ public class Board {
     }
 
     protected List<DiceSide> getEligibleSides(int gold) {
-        return forge.availableSides(gold);
+        return temple.availableSides(gold);
     }
 
     protected int getVictoryPoint(String name) {
@@ -66,7 +66,7 @@ public class Board {
         if (sideToAdd == null || sideToRemove == null) {
             return false;
         }
-        if (!forge.removeSide(sideToRemove)) {
+        if (!temple.removeSide(sideToRemove)) {
             return false;
         }
         return playerInventory.get(player).replaceDiceSide(diceNumber, sideToRemove, sideToAdd);
@@ -75,6 +75,9 @@ public class Board {
     public boolean playCard(Card card, String name) {
         // need to add token for further permission
         if (card == null) {
+            return false;
+        }
+        if (!islands.removeCard(card)) {
             return false;
         }
         playerInventory.get(name).addCardToBag(card);
@@ -91,7 +94,7 @@ public class Board {
         Inventory inv = playerInventory.get(name);
         int moon = inv.getResource(Resources.MOON_STONE);
         int sun = inv.getResource(Resources.SUN_STONE);
-        return islands.getEligibleCards(moon, sun);
+        return islands.getBuyableCards(moon, sun);
     }
 
     public Dice getDice(String player, int number) {

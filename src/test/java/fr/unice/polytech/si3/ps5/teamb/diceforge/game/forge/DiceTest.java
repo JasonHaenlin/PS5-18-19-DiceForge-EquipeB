@@ -1,13 +1,16 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge;
 
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.Before;
+import org.junit.Test;
+
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.Dice;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 
 /**
  * InventoryTest
