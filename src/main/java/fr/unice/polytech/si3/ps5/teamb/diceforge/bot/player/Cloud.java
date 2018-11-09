@@ -1,6 +1,8 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.Forge;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.VictoryPoint;
@@ -28,9 +30,36 @@ public class Cloud extends Player {
     public void play(Board boardView) {
         DiceSide side = forge.compute(new ArrayList<>(boardView.getEligibleSides(name)));
         logger.trace(side);
-        if (boardView.forge(name, 0, boardView.getDice(name, 0).getDiceSides().get(0), side)) {
+        if (boardView.forge(name, 0, removableDiceSide(boardView), side)) {
             logger.debug("le bot '" + name + "' a forge et a obtenue " + side.toString());
         }
+    }
+
+    public DiceSide removableDiceSide(Board boardView) {
+        List<DiceSide> sides1 = boardView.getDice(name, 1).getDiceSides();
+        List<DiceSide> sides2 = boardView.getDice(name, 0).getDiceSides();
+        Random rand = new Random();
+        int random = rand.nextInt(2);
+        if (random == 0) {
+
+            for (DiceSide diceside : sides1) {
+                if (diceside.getType().ordinal() == 3 || diceside.getType().ordinal() == 4) {
+                    return diceside;
+                }
+            }
+
+        } else {
+
+            for (DiceSide diceside : sides2) {
+                if (diceside.getType().ordinal() == 3 || diceside.getType().ordinal() == 4) {
+                    return diceside;
+                }
+            }
+
+        }
+
+        return null;
+
     }
 
 }

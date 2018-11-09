@@ -34,13 +34,10 @@ public class TestBoardforge {
     @Test
     public void boardForgeTest() {
         board.TestBoardforge();
-        System.out.println(board.getDice("Forgetest", 1).toString());
-        System.out.println(board.getDice("Forgetest", 0).toString());
         assertTrue(board.forge("Forgetest", 0, remove, add));
         this.dicetest = board.getDice("Forgetest", 0);
-        System.out.println(board.getDice("Forgetest", 1).toString());
-        System.out.println(board.getDice("Forgetest", 0).toString());
         assertTrue(checkremove());
+
     }
 
     public boolean checkremove() {
@@ -48,7 +45,7 @@ public class TestBoardforge {
         int intadd[] = { 0 };
         int intremove[] = { 1 };
         for (DiceSide diceside : dicesides) {
-            System.out.println(diceside.equals(add));
+
             if (diceside.equals(add)) {
                 intadd[0] = 1;
             }
