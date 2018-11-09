@@ -51,4 +51,10 @@ public class BoardExtends extends Board {
         assertEquals(4, getEligibleCards("Cloud").size());
         return true;
     }
+
+    public boolean TestBoardforge() {
+        registrationToBoard("Forgetest", 1);
+        initialize();
+        return true;
+    }
 }

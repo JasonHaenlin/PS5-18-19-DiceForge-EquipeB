@@ -80,7 +80,7 @@ public class Board {
         if (sideToAdd == null || sideToRemove == null) {
             return false;
         }
-        if (!forge.removeSide(sideToRemove)) {
+        if (!forge.removeSide(sideToAdd)) {
             return false;
         }
         return playerInventory.get(player).replaceDiceSide(diceNumber, sideToRemove, sideToAdd);

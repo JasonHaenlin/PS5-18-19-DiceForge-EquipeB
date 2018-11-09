@@ -90,4 +90,9 @@ public class Dice {
         }
         return hash;
     }
+
+    @Override
+    public String toString() {
+        return diceSides.toString();
+    }
 }

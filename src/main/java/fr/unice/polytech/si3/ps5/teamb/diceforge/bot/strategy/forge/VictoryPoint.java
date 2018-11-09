@@ -35,7 +35,6 @@ public class VictoryPoint extends Forge {
                 i++;
             }
         }
-        System.out.println(feasible.toString());
     }
 
 }
