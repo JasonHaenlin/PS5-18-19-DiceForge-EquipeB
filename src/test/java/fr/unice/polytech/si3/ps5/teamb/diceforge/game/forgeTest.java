@@ -26,14 +26,12 @@ public class forgeTest {
         forge = new Temple(conf.getForgeConfig());
     }
 
-    @Ignore
     @Test
     public void forgeAvailabeTest() {
         assertEquals(3, forge.availableSides(3).size());
         assertEquals(9, forge.availableSides(5).size());
     }
 
-    @Ignore
     @Test
     public void forgeRemoveSideTest() {
         List<DiceSide> sides = forge.availableSides(3);
