@@ -20,7 +20,7 @@ public class EngineTest {
     @Test
     public void engineResultTest1() throws Exception {
         String result = engine.createGame(1).addBot(OnlyDice.class).addBot(SimpleHighestExploit.class).fire();
-        Map<String, String> res = ParseHelper.parseResult("1-onlyDice", "2-SimpleHighestExploit", result);
-        assertTrue(res.get("2-SimpleHighestExploit").contains("gagne 1"));
+        Map<String, String> res = ParseHelper.parseResult("onlyDice", "SimpleHighestExploit", result);
+        assertTrue(res.get("SimpleHighestExploit").contains("gagne 1"));
     }
 }
