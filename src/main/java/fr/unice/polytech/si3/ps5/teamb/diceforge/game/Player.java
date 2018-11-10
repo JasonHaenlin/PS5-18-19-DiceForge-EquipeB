@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * Player
+ * Player class to be use to create a bot for the game
  */
 public abstract class Player {
 
@@ -14,6 +14,11 @@ public abstract class Player {
 
     protected String name;
 
+    /**
+     * create a new player for the game
+     * 
+     * @param bot name
+     */
     protected Player(String name) {
         countInstance++;
         this.name = countInstance + "-" + name;

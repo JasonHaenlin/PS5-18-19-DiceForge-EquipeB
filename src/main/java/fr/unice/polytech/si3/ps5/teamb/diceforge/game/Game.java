@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 
 /**
- * Create a game with 2 bot
+ * Create a game
  *
  * @author Ruben Houri
  * @author Maxime Castellano
@@ -42,6 +42,11 @@ public class Game extends Board {
         this.winners = new HashMap<>();
     }
 
+    /**
+     * Launch the game
+     * 
+     * @return
+     */
     public String fire() {
         logger.debug("oneGameFire !");
         initialize();
@@ -71,6 +76,12 @@ public class Game extends Board {
         return this;
     }
 
+    /**
+     * add a bot to the current game and register it in the board
+     * 
+     * @param bot
+     * @return Game
+     */
     public Game addBot(Player bot) {
         bot.setup();
         logger.debug("add bot : '" + bot.toString() + "'");

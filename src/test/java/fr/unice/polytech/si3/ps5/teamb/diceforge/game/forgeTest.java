@@ -27,19 +27,19 @@ public class forgeTest {
 
     @Test
     public void forgeAvailabeTest() {
-        assertEquals(3, forge.availableSides(3).size());
-        assertEquals(9, forge.availableSides(5).size());
+        assertEquals(3, forge.obtainReplaceableSides(3).size());
+        assertEquals(9, forge.obtainReplaceableSides(5).size());
     }
 
     @Test
     public void forgeRemoveSideTest() {
-        List<DiceSide> sides = forge.availableSides(3);
+        List<DiceSide> sides = forge.obtainReplaceableSides(3);
         forge.removeSide(sides.get(0));
-        assertEquals(2, forge.availableSides(3).size());
-        assertEquals(5, forge.availableSides(4).size());
+        assertEquals(2, forge.obtainReplaceableSides(3).size());
+        assertEquals(5, forge.obtainReplaceableSides(4).size());
         assertTrue(forge.removeSide(sides.get(1)));
         assertTrue(forge.removeSide(sides.get(2)));
-        assertEquals(0, forge.availableSides(3).size());
+        assertEquals(0, forge.obtainReplaceableSides(3).size());
         assertFalse(forge.removeSide(sides.get(0)));
     }
 

@@ -9,7 +9,6 @@ import org.junit.Test;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.BoardExtends;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.Dice;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 
@@ -22,7 +21,6 @@ public class TestBoardforge {
     private BoardExtends board;
     private DiceSide remove = new DiceSide(1, Resources.MOON_STONE);
     private DiceSide add = new DiceSide(1, Resources.VICTORY_POINT, 3);
-    private Dice dicetest;
 
     @Before
     public void setup() throws Exception {
@@ -36,13 +34,12 @@ public class TestBoardforge {
     public void boardForgeTest() {
         board.TestBoardforge();
         assertTrue(board.forge("Forgetest", 0, remove, add));
-        this.dicetest = board.getDice("Forgetest", 0);
         assertTrue(checkremove());
 
     }
 
     public boolean checkremove() {
-        List<DiceSide> dicesides = dicetest.getDiceSides();
+        List<DiceSide> dicesides = board.getDiceSide("Forgetest", 0);
         int intadd[] = { 0 };
         int intremove[] = { 1 };
         for (DiceSide diceside : dicesides) {

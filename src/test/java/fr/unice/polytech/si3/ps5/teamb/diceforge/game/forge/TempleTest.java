@@ -39,19 +39,19 @@ public class TempleTest {
     @Test
     public void AvailableSideTest() {
         temple = new Temple(temp);
-        assertEquals(3, temple.availableSides(3).size());
-        assertEquals(6, temple.availableSides(4).size());
-        assertEquals(9, temple.availableSides(5).size());
+        assertEquals(3, temple.obtainReplaceableSides(3).size());
+        assertEquals(6, temple.obtainReplaceableSides(4).size());
+        assertEquals(9, temple.obtainReplaceableSides(5).size());
     }
 
     @Test
     public void removeSideTest() {
         temple = new Temple(temp);
         assertTrue(temple.removeSide(side1));
-        assertEquals(2, temple.availableSides(3).size());
+        assertEquals(2, temple.obtainReplaceableSides(3).size());
         assertTrue(temple.removeSide(side2));
-        assertEquals(7, temple.availableSides(5).size());
+        assertEquals(7, temple.obtainReplaceableSides(5).size());
         assertTrue(temple.removeSide(side3));
-        assertEquals(6, temple.availableSides(5).size());
+        assertEquals(6, temple.obtainReplaceableSides(5).size());
     }
 }

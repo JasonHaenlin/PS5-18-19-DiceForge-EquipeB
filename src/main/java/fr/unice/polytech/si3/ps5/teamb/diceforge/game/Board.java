@@ -7,10 +7,12 @@ import java.util.Map;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.Islands;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.Temple;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.Dice;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 
+/**
+ * The board regroup all the interaction with the game items
+ */
 public class Board {
 
     private Islands islands;
@@ -21,23 +23,43 @@ public class Board {
 
     private Config conf;
 
+    /**
+     * create a new board for the current game
+     * 
+     * @param conf of the game
+     */
     public Board(Config conf) {
         playerRegistered = new HashMap<>();
         this.conf = conf;
     }
 
+    /**
+     * initialize the game for the current registered bot It includes, the card, the
+     * inventory of each player and the dice sides
+     */
     protected void initialize() {
         createCard();
         createInventory();
         this.temple = new Temple(conf.getForgeConfig());
     }
 
+    /**
+     * create the default inventory for each player registered
+     */
     protected void createInventory() {
         playerInventory = new HashMap<>();
         playerRegistered.forEach((name, integer) -> playerInventory.put(name,
                 new Inventory(conf.getInvConfig(), conf.getDice1Config(), conf.getDice2Config())));
     }
 
+    /**
+     * register a new player on the current game
+     * 
+     * @param player name
+     * @param token  secret passed by the game
+     * @return true if the player has been correctly added, false otherwise when the
+     *         player is already in the board
+     */
     protected boolean registrationToBoard(String player, int token) {
         if (playerRegistered.containsKey(player)) {
             return false;
@@ -46,22 +68,45 @@ public class Board {
         return true;
     }
 
+    /**
+     * retrieve the default cards configuration and create the islands
+     */
     private void createCard() {
         this.islands = new Islands(conf.getExploitConfig());
     }
 
-    protected List<DiceSide> getEligibleSides(int gold) {
-        return temple.availableSides(gold);
+    /**
+     * roll the dices for the selected player
+     * 
+     * @param player name
+     * @return result of the rolling dices
+     */
+    public Map<Resources, Integer> rolldice(String player) {
+        return playerInventory.get(player).rolldice();
     }
 
-    protected int getVictoryPoint(String name) {
-        return playerInventory.get(name).getLastVIctoryPoint();
+    /**
+     * retrieve the playable sides base on the player inventory
+     * 
+     * @param player
+     * @return the playable sides
+     */
+    public List<DiceSide> playableSides(String player) {
+        Inventory inv = playerInventory.get(player);
+        int gold = inv.getResource(Resources.GOLD);
+        return temple.obtainReplaceableSides(gold);
     }
 
-    protected Board getBoardView() {
-        return this;
-    }
-
+    /**
+     * Forge action
+     * 
+     * @param player       name
+     * @param diceNumber   where to forge the new face. On the first or second dice
+     *                     (0 or 1)
+     * @param sideToRemove side to be replace
+     * @param sideToAdd    new side
+     * @return true if successfully forge
+     */
     public boolean forge(String player, int diceNumber, DiceSide sideToRemove, DiceSide sideToAdd) {
         // need to add token for further permission
         if (sideToAdd == null || sideToRemove == null) {
@@ -73,7 +118,27 @@ public class Board {
         return playerInventory.get(player).replaceDiceSide(diceNumber, sideToRemove, sideToAdd);
     }
 
-    public boolean playCard(Card card, String name) {
+    /**
+     * retrieve the playable cards base on the player inventory
+     * 
+     * @param player name
+     * @return
+     */
+    public List<Card> playableCards(String player) {
+        Inventory inv = playerInventory.get(player);
+        int moon = inv.getResource(Resources.MOON_STONE);
+        int sun = inv.getResource(Resources.SUN_STONE);
+        return islands.getBuyableCards(moon, sun);
+    }
+
+    /**
+     * Exploit action
+     * 
+     * @param card   to be played
+     * @param player name
+     * @return true if the card has been played
+     */
+    public boolean exploit(Card card, String player) {
         // need to add token for further permission
         if (card == null) {
             return false;
@@ -81,29 +146,36 @@ public class Board {
         if (!islands.removeCard(card)) {
             return false;
         }
-        playerInventory.get(name).addCardToBag(card);
-        return true;
+        return playerInventory.get(player).addCardToBag(card);
     }
 
-    public List<DiceSide> getEligibleSides(String name) {
-        Inventory inv = playerInventory.get(name);
-        int gold = inv.getResource(Resources.GOLD);
-        return getEligibleSides(gold);
+    /**
+     * 
+     * @param player
+     * @param number
+     * @return
+     */
+    public List<DiceSide> getDiceSide(String player, int number) {
+        return playerInventory.get(player).getDice(number).getDiceSides();
     }
 
-    public List<Card> getEligibleCards(String name) {
-        Inventory inv = playerInventory.get(name);
-        int moon = inv.getResource(Resources.MOON_STONE);
-        int sun = inv.getResource(Resources.SUN_STONE);
-        return islands.getBuyableCards(moon, sun);
+    /**
+     * get the last updated victory points
+     * 
+     * @param player name
+     * @return the amount of victory point
+     */
+    protected int getVictoryPoint(String player) {
+        return playerInventory.get(player).pollLastVictoryPoint();
     }
 
-    public Dice getDice(String player, int number) {
-        return playerInventory.get(player).getDice(number);
-    }
-
-    public Map<Resources, Integer> rolldice(String name) {
-        return playerInventory.get(name).rolldice();
+    /**
+     * get a view of the board for the player
+     * 
+     * @return board
+     */
+    protected Board getBoardView() {
+        return this;
     }
 
 }

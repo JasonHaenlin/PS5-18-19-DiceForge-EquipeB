@@ -13,6 +13,9 @@ public class Pool {
     private List<DiceSide> sides;
     private int cost;
 
+    /**
+     * create a pool of sides
+     */
     public Pool(List<DiceSide> sides, int cost) {
         this.sides = new ArrayList<>(sides);
         this.cost = cost;

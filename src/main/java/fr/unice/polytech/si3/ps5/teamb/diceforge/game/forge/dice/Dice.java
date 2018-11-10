@@ -62,8 +62,12 @@ public class Dice {
         return diceSides.get(rnd.nextInt(size));
     }
 
-    public List<DiceSide> getDiceSides() {
+    public List<DiceSide> retrieveCurrentSides() {
         return diceSides;
+    }
+
+    public List<DiceSide> getDiceSides() {
+        return new ArrayList<>(diceSides);
     }
 
     public int size() {
@@ -95,4 +99,5 @@ public class Dice {
     public String toString() {
         return diceSides.toString();
     }
+
 }

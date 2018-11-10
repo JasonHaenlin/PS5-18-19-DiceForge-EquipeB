@@ -24,9 +24,9 @@ public class forgeVP extends Player {
 
     @Override
     public void play(Board boardView) {
-        List<DiceSide> feasible = new ArrayList<>(boardView.getEligibleSides(name));
+        List<DiceSide> feasible = new ArrayList<>(boardView.playableSides(name));
         DiceSide side = forge.compute(feasible);
-        boardView.forge(name, 0, boardView.getDice(name, 0).getDiceSides().get(0), side);
+        boardView.forge(name, 0, boardView.getDiceSide(name, 0).get(0), side);
 
     }
 

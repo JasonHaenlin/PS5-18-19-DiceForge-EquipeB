@@ -28,7 +28,7 @@ public class Cloud extends Player {
 
     @Override
     public void play(Board boardView) {
-        DiceSide side = forge.compute(new ArrayList<>(boardView.getEligibleSides(name)));
+        DiceSide side = forge.compute(new ArrayList<>(boardView.playableSides(name)));
         logger.trace(side);
         if (boardView.forge(name, 0, removableDiceSide(boardView), side)) {
             logger.debug("le bot '" + name + "' a forge et a obtenue " + side.toString());
@@ -36,8 +36,8 @@ public class Cloud extends Player {
     }
 
     public DiceSide removableDiceSide(Board boardView) {
-        List<DiceSide> sides1 = boardView.getDice(name, 1).getDiceSides();
-        List<DiceSide> sides2 = boardView.getDice(name, 0).getDiceSides();
+        List<DiceSide> sides1 = boardView.getDiceSide(name, 1);
+        List<DiceSide> sides2 = boardView.getDiceSide(name, 0);
         Random rand = new Random();
         int random = rand.nextInt(2);
         if (random == 0) {

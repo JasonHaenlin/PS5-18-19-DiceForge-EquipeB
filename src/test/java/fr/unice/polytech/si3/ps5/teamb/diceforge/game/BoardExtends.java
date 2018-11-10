@@ -24,8 +24,8 @@ public class BoardExtends extends Board {
         assertFalse(registrationToBoard("Cloud", 1));
         initialize();
 
-        assertEquals(Collections.emptyList(), getEligibleCards("Cloud"));
-        assertEquals(Collections.emptyList(), getEligibleSides("Cloud"));
+        assertEquals(Collections.emptyList(), playableCards("Cloud"));
+        assertEquals(Collections.emptyList(), playableSides("Cloud"));
 
         assertNotNull(rolldice("Cloud"));
         return true;
@@ -34,7 +34,7 @@ public class BoardExtends extends Board {
     public boolean BoardForgeTest() {
         registrationToBoard("Cloud", 1);
         initialize();
-        assertEquals(6, getEligibleSides("Cloud").size());
+        assertEquals(6, playableSides("Cloud").size());
         return true;
     }
 
@@ -48,7 +48,7 @@ public class BoardExtends extends Board {
     public boolean BoardCardTest() {
         registrationToBoard("Cloud", 1);
         initialize();
-        assertEquals(4, getEligibleCards("Cloud").size());
+        assertEquals(4, playableCards("Cloud").size());
         return true;
     }
 

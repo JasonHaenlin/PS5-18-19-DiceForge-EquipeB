@@ -27,8 +27,8 @@ public class Rem extends Player {
 
     @Override
     public void play(Board boardView) {
-        Card card = exploit.compute(new ArrayList<>(boardView.getEligibleCards(name)));
-        if (boardView.playCard(card, name)) {
+        Card card = exploit.compute(new ArrayList<>(boardView.playableCards(name)));
+        if (boardView.exploit(card, name)) {
             logger.debug("le bot '" + name + "' a fait un exploit et a obtenue " + card.getVictoryPoint() + " "
                     + Resources.VICTORY_POINT);
         }

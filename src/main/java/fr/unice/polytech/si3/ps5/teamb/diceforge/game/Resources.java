@@ -1,7 +1,7 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
 /**
- * Define different of resource
+ * Define the different resources of the game
  *
  * @author Ruben Houri
  * @author Maxime Castellano
