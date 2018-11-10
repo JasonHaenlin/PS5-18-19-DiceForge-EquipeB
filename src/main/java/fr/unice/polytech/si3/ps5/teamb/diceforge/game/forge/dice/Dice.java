@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 
 /**
@@ -21,8 +18,6 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
  */
 
 public class Dice {
-
-    private static Logger logger = LogManager.getLogger(Dice.class);
 
     private List<DiceSide> diceSides = new ArrayList<>();
 
@@ -58,7 +53,6 @@ public class Dice {
      * @param treasury
      */
     public DiceSide random() {
-        logger.trace(diceSides.toString());
         return diceSides.get(rnd.nextInt(size));
     }
 

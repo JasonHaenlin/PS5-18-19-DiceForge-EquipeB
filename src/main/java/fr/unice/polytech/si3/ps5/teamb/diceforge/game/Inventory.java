@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.Dice;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
@@ -15,6 +18,9 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
  * current resources of the player
  */
 public class Inventory {
+
+    private static Logger logger = LogManager.getLogger(Inventory.class);
+
     private Map<Resources, Integer> treasury = new EnumMap<>(Resources.class);
     private List<Dice> dices = new ArrayList<>();
     private List<Card> cards = new ArrayList<>();
@@ -53,6 +59,7 @@ public class Inventory {
     Map<Resources, Integer> rolldice() {
         Map<Resources, Integer> newResources = new HashMap<>();
         dices.forEach(dice -> {
+            logger.trace(dice.toString());
             DiceSide side = dice.random();
             addResourceToBag(side.getValue(), side.getType());
             if (side.getType().equals(Resources.VICTORY_POINT)) {

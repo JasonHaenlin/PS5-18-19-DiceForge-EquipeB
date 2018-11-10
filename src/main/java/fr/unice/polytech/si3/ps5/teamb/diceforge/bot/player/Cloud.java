@@ -15,7 +15,8 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
  */
 public class Cloud extends Player {
 
-    Forge forge;
+    private Forge forge;
+    private int randomDice = 0;
 
     public Cloud() {
         super("Cloud");
@@ -29,8 +30,7 @@ public class Cloud extends Player {
     @Override
     public void play(Board boardView) {
         DiceSide side = forge.compute(new ArrayList<>(boardView.playableSides(name)));
-        logger.trace(side);
-        if (boardView.forge(name, 0, removableDiceSide(boardView), side)) {
+        if (boardView.forge(name, randomDice, removableDiceSide(boardView), side)) {
             logger.debug("le bot '" + name + "' a forge et a obtenue " + side.toString());
         }
     }
@@ -39,8 +39,8 @@ public class Cloud extends Player {
         List<DiceSide> sides1 = boardView.getDiceSide(name, 1);
         List<DiceSide> sides2 = boardView.getDiceSide(name, 0);
         Random rand = new Random();
-        int random = rand.nextInt(2);
-        if (random == 0) {
+        randomDice = rand.nextInt(2);
+        if (randomDice == 0) {
 
             for (DiceSide diceside : sides1) {
                 if (diceside.getType().ordinal() == 3 || diceside.getType().ordinal() == 4) {
