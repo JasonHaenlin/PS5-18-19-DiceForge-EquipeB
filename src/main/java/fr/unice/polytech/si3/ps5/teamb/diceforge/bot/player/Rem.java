@@ -1,7 +1,5 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player;
 
-import java.util.ArrayList;
-
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.Exploit;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.Highest;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Board;

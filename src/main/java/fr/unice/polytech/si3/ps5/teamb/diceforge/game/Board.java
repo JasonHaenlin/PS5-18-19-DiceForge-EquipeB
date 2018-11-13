@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.Temple;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Guard;
 
 /**
  * The board regroup all the interaction with the game items
@@ -17,8 +19,9 @@ public class Board {
 
     private Islands islands;
     private Temple temple;
+    private Guard guard;
 
-    private Map<String, Integer> playerRegistered;
+    private List<String> playerRegistered;
     private Map<String, Inventory> playerInventory;
 
     private Config conf;
@@ -29,7 +32,8 @@ public class Board {
      * @param conf of the game
      */
     public Board(Config conf) {
-        playerRegistered = new HashMap<>();
+        playerRegistered = new ArrayList<>();
+        this.guard = new Guard(2);
         this.conf = conf;
     }
 
@@ -48,7 +52,7 @@ public class Board {
      */
     protected void createInventory() {
         playerInventory = new HashMap<>();
-        playerRegistered.forEach((name, integer) -> playerInventory.put(name,
+        playerRegistered.forEach(name -> playerInventory.put(name,
                 new Inventory(conf.getInvConfig(), conf.getDice1Config(), conf.getDice2Config())));
     }
 
@@ -61,11 +65,15 @@ public class Board {
      *         player is already in the board
      */
     protected boolean registrationToBoard(String player, int token) {
-        if (playerRegistered.containsKey(player)) {
-            return false;
+        if (guard.add(player, token)) {
+            playerRegistered.add(player);
+            return true;
         }
-        playerRegistered.put(player, token);
-        return true;
+        return false;
+    }
+
+    protected boolean temporaryAuthorization(String player) {
+        return guard.enableAuthorization(player);
     }
 
     /**
@@ -157,6 +165,19 @@ public class Board {
      */
     public List<DiceSide> getDiceSide(String player, int number) {
         return playerInventory.get(player).getDice(number).getDiceSides();
+    }
+
+    /**
+     * 
+     * @param player
+     * @return
+     */
+    public boolean isPlayingAgainPossible(String player) {
+        int sunStone = playerInventory.get(player).getResource(Resources.SUN_STONE);
+        if (sunStone < 2) {
+            return false;
+        }
+        return true;
     }
 
     /**

@@ -59,6 +59,7 @@ public class Game extends Board {
                         .debug("Le bot '" + bot.toString() + "' a obtenu " + amout + " " + res.toString()));
             });
             bots.forEach((bot, score) -> {
+                temporaryAuthorization(bot.toString());
                 bot.play(getBoardView());
                 bots.replace(bot, score + getVictoryPoint(bot.toString()));
             });
