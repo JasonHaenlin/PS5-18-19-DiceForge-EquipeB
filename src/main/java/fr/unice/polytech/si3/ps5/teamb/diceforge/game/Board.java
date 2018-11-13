@@ -123,7 +123,11 @@ public class Board {
         if (!temple.removeSide(sideToAdd)) {
             return false;
         }
-        return playerInventory.get(player).replaceDiceSide(diceNumber, sideToRemove, sideToAdd);
+        if (playerInventory.get(player).replaceDiceSide(diceNumber, sideToRemove, sideToAdd)) {
+            guard.removeAuthorization();
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -154,7 +158,11 @@ public class Board {
         if (!islands.removeCard(card)) {
             return false;
         }
-        return playerInventory.get(player).addCardToBag(card);
+        if (playerInventory.get(player).addCardToBag(card)) {
+            guard.removeAuthorization();
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -174,10 +182,11 @@ public class Board {
      */
     public boolean isPlayingAgainPossible(String player) {
         int sunStone = playerInventory.get(player).getResource(Resources.SUN_STONE);
-        if (sunStone < 2) {
-            return false;
+        if (sunStone >= 2 && guard.repeatAuth()) {
+            playerInventory.get(player).removeResourceFromBag(2, Resources.SUN_STONE);
+            return true;
         }
-        return true;
+        return false;
     }
 
     /**
