@@ -55,6 +55,9 @@ public class Guard {
     }
 
     public boolean repeatAuth() {
+        if (token != 0) {
+            return false;
+        }
         if (authCt < authNb) {
             token = last_token;
             authCt++;

@@ -117,7 +117,7 @@ public class Board {
      */
     public boolean forge(String player, int diceNumber, DiceSide sideToRemove, DiceSide sideToAdd) {
         // need to add token for further permission
-        if (sideToAdd == null || sideToRemove == null) {
+        if (sideToAdd == null || sideToRemove == null || !guard.isAuthorizated(player)) {
             return false;
         }
         if (!temple.removeSide(sideToAdd)) {
@@ -152,7 +152,7 @@ public class Board {
      */
     public boolean exploit(Card card, String player) {
         // need to add token for further permission
-        if (card == null) {
+        if (card == null || !guard.isAuthorizated(player)) {
             return false;
         }
         if (!islands.removeCard(card)) {

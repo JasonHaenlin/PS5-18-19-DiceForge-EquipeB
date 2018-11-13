@@ -42,4 +42,10 @@ public class BoardTest {
         assertTrue(board.BoardCardTest());
     }
 
+    @Test
+    public void repeatMoveAgainTest() throws Exception {
+        board = new BoardExtends(new Config(basiccardConf));
+        assertTrue(board.BoardRepeatTest());
+    }
+
 }

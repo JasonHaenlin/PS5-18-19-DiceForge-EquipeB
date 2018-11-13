@@ -55,6 +55,15 @@ public class BoardExtends extends Board {
     public boolean TestBoardforge() {
         registrationToBoard("Forgetest", 1);
         initialize();
+        temporaryAuthorization("Forgetest");
+        return true;
+    }
+
+    public boolean BoardRepeatTest() {
+        registrationToBoard("repeat", 1);
+        initialize();
+        temporaryAuthorization("repeat");
+        assertFalse(isPlayingAgainPossible("repeat"));
         return true;
     }
 }
