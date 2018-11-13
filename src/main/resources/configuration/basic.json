@@ -125,22 +125,31 @@
         }, {
             "cost": 3,
             "side": [{
-                "resource": "VICTORY_POINT",
+                "resource": "SUN_STONE",
+                "amount": 2
+            }, {
+                "resource": "SUN_STONE",
                 "amount": 2
             }, {
                 "resource": "VICTORY_POINT",
                 "amount": 2
             }, {
                 "resource": "VICTORY_POINT",
+                "amount": 2
+            }, {
+                "resource": "MOON_STONE",
+                "amount": 2
+            }, {
+                "resource": "MOON_STONE",
                 "amount": 2
             }]
         }, {
             "cost": 4,
             "side": [{
-                "resource": "VICTORY_POINT",
+                "resource": "MOON_STONE",
                 "amount": 3
             }, {
-                "resource": "VICTORY_POINT",
+                "resource": "SUN_STONE",
                 "amount": 3
             }, {
                 "resource": "VICTORY_POINT",

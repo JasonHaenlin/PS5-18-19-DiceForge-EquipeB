@@ -7,6 +7,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.Engine;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.Cloud;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.Pika;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.Rem;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.Totoro;
 
 public class App {
 
@@ -20,6 +21,7 @@ public class App {
                 .addBot(Pika.class)
                 .addBot(Cloud.class)
                 .addBot(Rem.class)
+                .addBot(Totoro.class)
                 .fire();
         //@formatter:ons
 
