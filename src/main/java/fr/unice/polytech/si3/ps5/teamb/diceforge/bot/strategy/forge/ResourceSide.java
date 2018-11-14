@@ -6,17 +6,17 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 
 /**
- * SunMoon
+ * Highest
  */
-public class SunMoon extends Forge {
+public class ResourceSide extends Forge {
 
-    public SunMoon(String id) {
-        super(id);
+    public ResourceSide(String id, Resources resource) {
+        super(id, resource);
     }
 
     @Override
     public DiceSide compute(List<DiceSide> feasible) {
-        keepOnlySunAndMoon(feasible);
+        keepOnlyResource(feasible);
         if (feasible.isEmpty()) {
             return null;
         }
@@ -24,12 +24,11 @@ public class SunMoon extends Forge {
         return feasible.get(feasible.size() - 1);
     }
 
-    private void keepOnlySunAndMoon(List<DiceSide> feasible) {
+    private void keepOnlyResource(List<DiceSide> feasible) {
         int size = feasible.size();
         int i = 0;
         while (i < size) {
-            if (!(feasible.get(i).getType().equals(Resources.SUN_STONE))
-                    || !(feasible.get(i).getType().equals(Resources.MOON_STONE))) {
+            if (!(feasible.get(i).getType().equals(resource))) {
                 feasible.remove(i);
                 size--;
             } else {

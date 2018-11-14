@@ -3,7 +3,6 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge;
 import java.util.List;
 import java.util.Random;
 
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Board;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 
@@ -13,10 +12,12 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 public abstract class Forge {
 
     protected final String id;
+    protected final Resources resource;
     private int randomDice;
 
-    protected Forge(String id) {
+    protected Forge(String id, Resources resource) {
         this.id = id;
+        this.resource = resource;
     }
 
     public abstract DiceSide compute(List<DiceSide> feasible);

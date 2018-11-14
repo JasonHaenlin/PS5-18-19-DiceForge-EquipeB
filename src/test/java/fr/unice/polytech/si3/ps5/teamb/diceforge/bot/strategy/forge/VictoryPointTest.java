@@ -12,11 +12,11 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 
 public class VictoryPointTest {
-    private VictoryPoint vPoint;
+    private ResourceSide vPoint;
 
     @Before
     public void setup() {
-        vPoint = new VictoryPoint("BotTest");
+        vPoint = new ResourceSide("BotTest", Resources.VICTORY_POINT);
 
     }
 

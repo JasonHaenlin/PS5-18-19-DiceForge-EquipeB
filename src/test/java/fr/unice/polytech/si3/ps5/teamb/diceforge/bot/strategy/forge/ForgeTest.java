@@ -16,7 +16,7 @@ public class ForgeTest {
 
     @Before
     public void setup() {
-        forge = new VictoryPoint("BotTest");
+        forge = new ResourceSide("BotTest", Resources.VICTORY_POINT);
 
     }
 

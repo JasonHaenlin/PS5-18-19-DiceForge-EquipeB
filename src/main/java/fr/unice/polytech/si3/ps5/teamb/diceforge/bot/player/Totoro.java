@@ -1,11 +1,9 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player;
 
-import java.util.Random;
-
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.Exploit;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.Highest;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.Forge;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.SunMoon;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.ResourceSide;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Board;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
@@ -27,7 +25,7 @@ public class Totoro extends Player {
 
     @Override
     protected void setup() {
-        forge = new SunMoon(name);
+        forge = new ResourceSide(name, Resources.MOON_STONE);
         exploit = new Highest(name);
     }
 

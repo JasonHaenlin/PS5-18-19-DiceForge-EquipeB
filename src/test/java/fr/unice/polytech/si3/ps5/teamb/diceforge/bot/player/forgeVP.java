@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.Forge;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.VictoryPoint;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.ResourceSide;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Board;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 
 public class forgeVP extends Player {
@@ -19,7 +20,7 @@ public class forgeVP extends Player {
 
     @Override
     public void setup() {
-        forge = new VictoryPoint(name);
+        forge = new ResourceSide(name, Resources.VICTORY_POINT);
     }
 
     @Override
