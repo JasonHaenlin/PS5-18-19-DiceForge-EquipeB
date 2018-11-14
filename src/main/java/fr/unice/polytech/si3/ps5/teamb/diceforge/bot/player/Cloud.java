@@ -1,11 +1,10 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player;
 
-import java.util.Random;
-
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.Forge;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.VictoryPoint;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Board;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 
 /**
@@ -28,27 +27,10 @@ public class Cloud extends Player {
     @Override
     public void play(Board boardView) {
         DiceSide side = forge.compute(boardView.playableSides(name));
-        if (boardView.forge(name, randomDice, removableDiceSide(boardView), side)) {
+        if (boardView.forge(name, randomDice, forge.removableDiceSide(boardView.getDiceSide(name, 0),
+                boardView.getDiceSide(name, 1), Resources.VICTORY_POINT), side)) {
             logger.debug("le bot '" + name + "' a forge et a obtenu une face " + side.toString());
         }
-    }
-
-    public DiceSide removableDiceSide(Board boardView) {
-        randomDice = new Random().nextInt(2);
-        if (randomDice == 0) {
-            for (DiceSide diceside : boardView.getDiceSide(name, 0)) {
-                if (diceside.getType().ordinal() == 3 || diceside.getType().ordinal() == 4) {
-                    return diceside;
-                }
-            }
-        } else {
-            for (DiceSide diceside : boardView.getDiceSide(name, 1)) {
-                if (diceside.getType().ordinal() == 3 || diceside.getType().ordinal() == 4) {
-                    return diceside;
-                }
-            }
-        }
-        return null;
     }
 
 }
