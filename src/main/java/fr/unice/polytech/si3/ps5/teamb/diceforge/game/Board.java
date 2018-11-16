@@ -177,10 +177,11 @@ public class Board {
     }
 
     /**
-     * 
-     * @param player
-     * @param number
-     * @return
+     * Returns a list of sides corresponding to the player's dice selected.
+     * Example getDiceSide("Cloud",0) returns Cloud's first dice's sides.
+     * @param player the name of the player as a String.
+     * @param number the number of the dice to get (0 or 1)
+     * @return the list of sides of a the specified player's dice.
      */
     public List<DiceSide> getDiceSide(String player, int number) {
         return playerInventory.get(player).getDice(number).getDiceSides();
