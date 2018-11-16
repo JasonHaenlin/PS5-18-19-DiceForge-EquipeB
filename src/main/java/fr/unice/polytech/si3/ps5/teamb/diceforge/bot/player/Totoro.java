@@ -25,7 +25,7 @@ public class Totoro extends Player {
 
     @Override
     protected void setup() {
-        forge = new ResourceSide(name, Resources.MOON_STONE);
+        forge = new ResourceSide(name, Resources.SUN_STONE);
         exploit = new Highest(name);
     }
 
