@@ -20,13 +20,13 @@ public class forgeVP extends Player {
 
     @Override
     public void setup() {
-        forge = new ResourceSide(name, Resources.VICTORY_POINT);
+        forge = new ResourceSide(name);
     }
 
     @Override
     public void play(Board boardView) {
         List<DiceSide> feasible = new ArrayList<>(boardView.playableSides(name));
-        DiceSide side = forge.compute(feasible);
+        DiceSide side = forge.compute(feasible, Resources.VICTORY_POINT);
         boardView.forge(name, 0, boardView.getDiceSide(name, 0).get(0), side);
 
     }

@@ -16,7 +16,7 @@ public class ForgeTest {
 
     @Before
     public void setup() {
-        forge = new ResourceSide("BotTest", Resources.VICTORY_POINT);
+        forge = new ResourceSide("BotTest");
 
     }
 
@@ -32,7 +32,7 @@ public class ForgeTest {
         dice1.add(new DiceSide(5, Resources.MOON_STONE));
         dice1.add(new DiceSide(5, Resources.SUN_STONE));
 
-        DiceSide removable = forge.removableDiceSide(dice0, dice1, Resources.VICTORY_POINT);
+        DiceSide removable = forge.removableDiceSide(dice0, dice1);
         assertEquals(Resources.VICTORY_POINT, removable.getType());
 
         List<DiceSide> dice2 = new ArrayList<>();
@@ -45,7 +45,7 @@ public class ForgeTest {
         dice3.add(new DiceSide(5, Resources.MOON_STONE));
         dice3.add(new DiceSide(5, Resources.SUN_STONE));
 
-        DiceSide removable2 = forge.removableDiceSide(dice2, dice3, Resources.VICTORY_POINT);
+        DiceSide removable2 = forge.removableDiceSide(dice2, dice3);
         assertEquals(Resources.GOLD, removable2.getType());
 
     }

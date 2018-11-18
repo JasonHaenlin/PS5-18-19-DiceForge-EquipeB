@@ -16,6 +16,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 public class Totoro extends Player {
     private Forge forge;
     private Exploit exploit;
+    private Resources resource;
 
     private int randomDice = 0;
 
@@ -25,15 +26,16 @@ public class Totoro extends Player {
 
     @Override
     protected void setup() {
-        forge = new ResourceSide(name, Resources.SUN_STONE);
+        forge = new ResourceSide(name);
         exploit = new Highest(name);
+        resource = Resources.SUN_STONE;
     }
 
     @Override
     public void play(Board boardView) {
-        DiceSide side = forge.compute(boardView.playableSides(name));
+        DiceSide side = forge.compute(boardView.playableSides(name), resource);
         if (boardView.forge(name, randomDice, forge.removableDiceSide(boardView.getDiceSide(name, 0),
-                boardView.getDiceSide(name, 1), Resources.SUN_STONE), side)) {
+                boardView.getDiceSide(name, 1)), side)) {
             logger.debug("le bot '" + name + "' a forge et a obtenu une face " + side.toString());
         } else {
             Card card = exploit.compute(boardView.playableCards(name));

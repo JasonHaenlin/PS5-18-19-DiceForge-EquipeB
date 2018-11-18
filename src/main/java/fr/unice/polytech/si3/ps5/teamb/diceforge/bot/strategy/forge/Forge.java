@@ -13,19 +13,17 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 public abstract class Forge {
 
     protected final String id;
-    protected final Resources resource;
     private int randomDice;
     private int diceToForge;
 
 
-    protected Forge(String id, Resources resource) {
+    protected Forge(String id) {
         this.id = id;
-        this.resource = resource;
     }
 
-    public abstract DiceSide compute(List<DiceSide> feasible);
+    public abstract DiceSide compute(List<DiceSide> feasible, Resources resources);
 
-    public DiceSide removableDiceSide(List<DiceSide> dice0, List<DiceSide> dice1, Resources resources) { //TODO enlever ressources
+    public DiceSide removableDiceSide(List<DiceSide> dice0, List<DiceSide> dice1) {
         randomDice = new Random().nextInt(2);
         if (randomDice == 0) {
             for (DiceSide diceside : dice0) {
@@ -52,7 +50,7 @@ public abstract class Forge {
      * @param diceSides
      * @return an int equal to the score given to the dice
      */
-    private int computeDiceValue(List<DiceSide> diceSides) {
+    private int computeDiceValue(List<DiceSide> diceSides, Resources resource) {
         int diceValue = 0;
         for (DiceSide side : diceSides) {
             if (side.getType() == resource){
@@ -69,9 +67,9 @@ public abstract class Forge {
      * @param diceSides0 corresponds to the first dice's sides to compare
      * @param diceSides1 corresponds to the second dice's sides to compare
      */
-    public void setDiceToForge(List<DiceSide> diceSides0, List<DiceSide> diceSides1) {
-        int valueOfDice0 = computeDiceValue(diceSides0);
-        int valueOfDice1 = computeDiceValue(diceSides1);
+    public void setDiceToForge(List<DiceSide> diceSides0, List<DiceSide> diceSides1, Resources resources) {
+        int valueOfDice0 = computeDiceValue(diceSides0, resources);
+        int valueOfDice1 = computeDiceValue(diceSides1, resources);
         if (valueOfDice0 != valueOfDice1) {
             this.diceToForge = (valueOfDice0 > valueOfDice1) ? 0 : 1;
         } else {
@@ -88,7 +86,4 @@ public abstract class Forge {
         return diceToForge;
     }
 
-    public Resources getResource() {
-        return resource;
-    }
 }
