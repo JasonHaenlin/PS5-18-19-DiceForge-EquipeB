@@ -16,7 +16,7 @@ public class VictoryPointTest {
 
     @Before
     public void setup() {
-        vPoint = new ResourceSide("BotTest", Resources.VICTORY_POINT);
+        vPoint = new ResourceSide("BotTest");
 
     }
 
@@ -43,7 +43,7 @@ public class VictoryPointTest {
         feasible.add(new DiceSide(3, Resources.SUN_STONE));
         feasible.add(new DiceSide(4, Resources.SUN_STONE));
         feasible.add(new DiceSide(5, Resources.SUN_STONE));
-        DiceSide test = vPoint.compute(feasible);
+        DiceSide test = vPoint.compute(feasible, Resources.VICTORY_POINT);
         assertEquals(5, test.getValue());
         assertEquals(Resources.VICTORY_POINT, test.getType());
 

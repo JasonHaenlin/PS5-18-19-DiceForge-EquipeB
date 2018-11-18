@@ -10,13 +10,13 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
  */
 public class ResourceSide extends Forge {
 
-    public ResourceSide(String id, Resources resource) {
-        super(id, resource);
+    public ResourceSide(String id) {
+        super(id);
     }
 
     @Override
-    public DiceSide compute(List<DiceSide> feasible) {
-        keepOnlyResource(feasible);
+    public DiceSide compute(List<DiceSide> feasible, Resources resources) {
+        keepOnlyResource(feasible, resources);
         if (feasible.isEmpty()) {
             return null;
         }
@@ -24,7 +24,7 @@ public class ResourceSide extends Forge {
         return feasible.get(feasible.size() - 1);
     }
 
-    private void keepOnlyResource(List<DiceSide> feasible) {
+    private void keepOnlyResource(List<DiceSide> feasible, Resources resource) {
         int size = feasible.size();
         int i = 0;
         while (i < size) {
