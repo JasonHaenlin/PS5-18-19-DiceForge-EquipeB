@@ -1,16 +1,12 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.helper;
 
 import org.json.JSONObject;
-import org.junit.Ignore;
-import org.junit.Test;
 
 public class JsonExtractTest {
 
     String file = "src/test/resources/config/directExploitBasic.json";
     String key = "data";
 
-    @Ignore
-    @Test
     public void extractDirectExploitTest() {
         JSONObject obj;
         obj = ReadFile.extractJSON(file, key);
