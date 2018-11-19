@@ -16,7 +16,6 @@ import org.json.JSONObject;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.SimpleCard;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 
 /**
@@ -81,11 +80,22 @@ public class Config {
         List<Card> cardList = new ArrayList<>();
         extArray.forEach(item -> {
             JSONObject obj = (JSONObject) item;
-            if (obj.getString("type").equals("SimpleCard"))
-                cardList.add(
-                        new SimpleCard(obj.getInt("moonStone"), obj.getInt("sunStone"), obj.getInt("victoryPoint")));
+            if (obj.getString("action").equals("")) {
+                JSONObject cost = obj.getJSONObject("cost");
+                cardList.add(new Card(cost.getInt("moonStone"), cost.getInt("sunStone"),
+                        buildEarnings(obj.getJSONArray("earnings"))));
+            }
         });
         return cardList;
+    }
+
+    private Map<Resources, Integer> buildEarnings(JSONArray jsonArray) {
+        Map<Resources, Integer> earnings = new HashMap<>();
+        jsonArray.forEach(item -> {
+            JSONObject obj = (JSONObject) item;
+            earnings.put(obj.getEnum(Resources.class, "resource"), obj.getInt("amount"));
+        });
+        return earnings;
     }
 
     Map<Integer, List<DiceSide>> extractForge() {

@@ -60,7 +60,7 @@ public class Inventory {
         Map<Resources, Integer> newResources = new HashMap<>();
         dices.forEach(dice -> {
             logger.trace(dice.toString());
-            DiceSide side = dice.random();
+            DiceSide side = dice.roll();
             addResourceToBag(side.getValue(), side.getType());
             if (side.getType().equals(Resources.VICTORY_POINT)) {
                 lastUpdate += side.getValue();
@@ -170,5 +170,9 @@ public class Inventory {
             }
         }
         return false;
+    }
+
+    public Card peekLastCard() {
+        return cards.get(cards.size() - 1);
     }
 }

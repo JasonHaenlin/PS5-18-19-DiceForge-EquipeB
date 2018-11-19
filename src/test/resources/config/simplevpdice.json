@@ -50,35 +50,65 @@
             }]
         ],
         "exploit": [{
-            "type": "SimpleCard",
-            "sunStone": 3,
-            "moonStone": 0,
-            "victoryPoint": 2
+            "action": "",
+            "cost": {
+                "sunStone": 3,
+                "moonStone": 0
+            },
+            "earnings": [{
+                "resource": "VICTORY_POINT",
+                "amount": 2
+            }]
         }, {
-            "type": "SimpleCard",
-            "sunStone": 0,
-            "moonStone": 3,
-            "victoryPoint": 2
+            "action": "",
+            "cost": {
+                "sunStone": 0,
+                "moonStone": 3
+            },
+            "earnings": [{
+                "resource": "VICTORY_POINT",
+                "amount": 2
+            }]
         }, {
-            "type": "SimpleCard",
-            "sunStone": 4,
-            "moonStone": 2,
-            "victoryPoint": 5
+            "action": "",
+            "cost": {
+                "sunStone": 4,
+                "moonStone": 2
+            },
+            "earnings": [{
+                "resource": "VICTORY_POINT",
+                "amount": 5
+            }]
         }, {
-            "type": "SimpleCard",
-            "sunStone": 5,
-            "moonStone": 5,
-            "victoryPoint": 10
+            "action": "",
+            "cost": {
+                "sunStone": 5,
+                "moonStone": 5
+            },
+            "earnings": [{
+                "resource": "VICTORY_POINT",
+                "amount": 10
+            }]
         }, {
-            "type": "SimpleCard",
-            "sunStone": 1,
-            "moonStone": 1,
-            "victoryPoint": 1
+            "action": "",
+            "cost": {
+                "sunStone": 1,
+                "moonStone": 1
+            },
+            "earnings": [{
+                "resource": "VICTORY_POINT",
+                "amount": 1
+            }]
         }, {
-            "type": "SimpleCard",
-            "sunStone": 3,
-            "moonStone": 3,
-            "victoryPoint": 6
+            "action": "",
+            "cost": {
+                "sunStone": 3,
+                "moonStone": 3
+            },
+            "earnings": [{
+                "resource": "VICTORY_POINT",
+                "amount": 6
+            }]
         }],
         "forge": [{
             "cost": 3,

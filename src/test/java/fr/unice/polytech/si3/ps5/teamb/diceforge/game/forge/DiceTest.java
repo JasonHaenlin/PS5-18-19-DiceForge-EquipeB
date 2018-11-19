@@ -36,11 +36,11 @@ public class DiceTest {
 
     @Test
     public void test() {
-        DiceSide gold = diceGold.random();
+        DiceSide gold = diceGold.roll();
         assertEquals(1, gold.getValue());
         assertEquals(Resources.GOLD, gold.getType());
 
-        DiceSide sun = diceSun.random();
+        DiceSide sun = diceSun.roll();
         assertEquals(3, sun.getValue());
         assertEquals(Resources.SUN_STONE, sun.getType());
     }

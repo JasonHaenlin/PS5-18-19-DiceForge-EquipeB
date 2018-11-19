@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.Islands;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Action;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.Temple;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
@@ -163,6 +164,24 @@ public class Board {
             return true;
         }
         return false;
+    }
+
+    /**
+     * check if an other action can be made after forge or exploit
+     * 
+     * @return
+     */
+    public boolean hasNextAction() {
+        return !playerInventory.get(guard.peekLastPlayer()).peekLastCard().hasNextAction().equals(Action.NO_ACTION);
+    }
+
+    /**
+     * play the next action. e.g. rolling the dice and choose resources.
+     * 
+     * @return
+     */
+    public Map<Resources, Integer> nextAction() {
+        return null;
     }
 
     /**

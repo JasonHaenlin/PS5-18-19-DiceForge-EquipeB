@@ -52,7 +52,7 @@ public class Dice {
      *
      * @param treasury
      */
-    public DiceSide random() {
+    public DiceSide roll() {
         return diceSides.get(rnd.nextInt(size));
     }
 
