@@ -4,7 +4,6 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.Exploit;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.Highest;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.Forge;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.ResourceSide;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Board;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
@@ -30,7 +29,7 @@ public class Totoro extends Player {
     }
 
     @Override
-    public void play(Board boardView) {
+    public void play() {
         DiceSide side = forge.compute(boardView.playableSides(name));
         if (boardView.forge(name, randomDice, forge.removableDiceSide(boardView.getDiceSide(name, 0),
                 boardView.getDiceSide(name, 1), Resources.SUN_STONE), side)) {
@@ -42,6 +41,11 @@ public class Totoro extends Player {
                         + Resources.VICTORY_POINT);
             }
         }
+    }
+
+    @Override
+    public int callBackDice() {
+        return 0;
     }
 
 }

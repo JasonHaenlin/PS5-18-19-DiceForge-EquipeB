@@ -69,17 +69,18 @@ public class Game extends Board {
     }
 
     private void playerTurn(Player bot) {
-        bot.play(getBoardView());
+        bot.play();
         // ask if the bot want to play again
         if (bot.replayOnceAgain() && isPlayingAgainPossible(bot.toString())) {
             logger.debug("Le bot '" + bot.toString() + "' rejoue son tour");
             removeResourcesToPlayAgain(bot.toString());
-            bot.play(getBoardView());
+            bot.play();
         }
     }
 
     Game addBot(Class<? extends Player> bot) throws Exception {
         Player player = bot.newInstance();
+        player.addBoard(getBoardView());
         player.setup();
         logger.info("add bot :" + bot.toString());
         bots.put(player, 0);

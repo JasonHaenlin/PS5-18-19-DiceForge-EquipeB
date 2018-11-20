@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 public abstract class Player {
 
     protected static Logger logger = LogManager.getLogger(Player.class);
+    protected Board boardView;
 
     private static int countInstance = 0;
 
@@ -32,13 +33,19 @@ public abstract class Player {
     /**
      * make a new move based on the updated board
      */
-    public abstract void play(Board boardView);
+    public abstract void play();
 
     /**
      * override this methode if you want to use the possibiliy to play again
      */
     public boolean replayOnceAgain() {
         return false;
+    }
+
+    public abstract int callBackDice();
+
+    public void addBoard(Board boardView) {
+        this.boardView = boardView;
     }
 
     @Override

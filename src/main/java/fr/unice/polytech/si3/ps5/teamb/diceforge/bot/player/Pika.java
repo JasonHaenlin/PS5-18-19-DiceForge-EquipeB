@@ -1,6 +1,5 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player;
 
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Board;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
 
 /**
@@ -18,8 +17,13 @@ public class Pika extends Player {
     }
 
     @Override
-    public void play(Board boardView) {
+    public void play() {
         // no strategies are applied to this bot
+    }
+
+    @Override
+    public int callBackDice() {
+        return 0;
     }
 
 }
