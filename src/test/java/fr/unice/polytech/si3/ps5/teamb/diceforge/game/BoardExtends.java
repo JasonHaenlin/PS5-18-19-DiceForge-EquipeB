@@ -62,7 +62,8 @@ public class BoardExtends extends Board {
     public boolean BoardRepeatTest() {
         registrationToBoard("repeat", 1);
         initialize();
-        temporaryAuthorization("repeat");
+        assertTrue(isPlayingAgainPossible("repeat"));
+        removeResourcesToPlayAgain("repeat");
         assertFalse(isPlayingAgainPossible("repeat"));
         return true;
     }

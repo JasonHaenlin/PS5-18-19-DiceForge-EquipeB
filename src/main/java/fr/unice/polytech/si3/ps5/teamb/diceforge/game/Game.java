@@ -60,12 +60,22 @@ public class Game extends Board {
             });
             bots.forEach((bot, score) -> {
                 temporaryAuthorization(bot.toString());
-                bot.play(getBoardView());
+                playerTurn(bot);
                 bots.replace(bot, score + getVictoryPoints(bot.toString()));
             });
         }
         bots.forEach((bot, score) -> logger.debug("'" + bot.toString() + "'\t: " + score + " Point de Gloire"));
         return establishWinner();
+    }
+
+    private void playerTurn(Player bot) {
+        bot.play(getBoardView());
+        // ask if the bot want to play again
+        if (bot.replayOnceAgain() && isPlayingAgainPossible(bot.toString())) {
+            logger.debug("Le bot '" + bot.toString() + "' rejoue son tour");
+            removeResourcesToPlayAgain(bot.toString());
+            bot.play(getBoardView());
+        }
     }
 
     Game addBot(Class<? extends Player> bot) throws Exception {

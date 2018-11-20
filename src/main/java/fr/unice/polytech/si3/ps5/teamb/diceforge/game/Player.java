@@ -34,6 +34,13 @@ public abstract class Player {
      */
     public abstract void play(Board boardView);
 
+    /**
+     * override this methode if you want to use the possibiliy to play again
+     */
+    public boolean replayOnceAgain() {
+        return false;
+    }
+
     @Override
     public String toString() {
         return name;

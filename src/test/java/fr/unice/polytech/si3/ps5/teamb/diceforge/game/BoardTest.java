@@ -12,6 +12,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 public class BoardTest {
 
     static final String basiccardConf = ("src/test/resources/config/basiccard.json");
+    static final String basic = ("src/test/resources/config/basic.json");
     static final String basicdiceConf = ("src/test/resources/config/basicdice.json");
     static final String basicsideConf = ("src/test/resources/config/basicside.json");
     static final String noresConf = ("src/test/resources/config/nores.json");
@@ -44,7 +45,7 @@ public class BoardTest {
 
     @Test
     public void repeatMoveAgainTest() throws Exception {
-        board = new BoardExtends(new Config(basiccardConf));
+        board = new BoardExtends(new Config(basic));
         assertTrue(board.BoardRepeatTest());
     }
 

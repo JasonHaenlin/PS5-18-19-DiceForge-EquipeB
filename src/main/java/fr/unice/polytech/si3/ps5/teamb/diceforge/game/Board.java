@@ -182,11 +182,19 @@ public class Board {
      */
     public boolean isPlayingAgainPossible(String player) {
         int sunStone = playerInventory.get(player).getResource(Resources.SUN_STONE);
-        if (sunStone >= 2 && guard.repeatAuth()) {
-            playerInventory.get(player).removeResourceFromBag(2, Resources.SUN_STONE);
+        if (sunStone >= 2) {
             return true;
         }
         return false;
+    }
+
+    /**
+     * remove 2 sun fragments if the bot replay the current turn
+     * 
+     * @param player
+     */
+    public void removeResourcesToPlayAgain(String player) {
+        playerInventory.get(player).removeResourceFromBag(2, Resources.SUN_STONE);
     }
 
     /**

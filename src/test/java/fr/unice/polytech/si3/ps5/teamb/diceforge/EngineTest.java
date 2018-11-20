@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.OnlyDice;
