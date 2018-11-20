@@ -106,8 +106,8 @@ public class Inventory {
      */
     boolean addCardToBag(Card card) {
         cards.add(card);
-        lastUpdate = card.getVictoryPoint();
-        addResourceToBag(card.getVictoryPoint(), Resources.VICTORY_POINT);
+        lastUpdate = card.getVictoryPoints();
+        addResourceToBag(card.getVictoryPoints(), Resources.VICTORY_POINT);
 
         return !(!removeResourceFromBag(card.getMoonStone(), Resources.MOON_STONE)
                 || !removeResourceFromBag(card.getSunStone(), Resources.SUN_STONE));

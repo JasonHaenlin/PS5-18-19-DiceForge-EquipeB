@@ -38,7 +38,7 @@ public class Totoro extends Player {
         } else {
             Card card = exploit.compute(boardView.playableCards(name));
             if (boardView.exploit(card, name)) {
-                logger.debug("le bot '" + name + "' a fait un exploit et a obtenu " + card.getVictoryPoint() + " "
+                logger.debug("le bot '" + name + "' a fait un exploit et a obtenu " + card.getVictoryPoints() + " "
                         + Resources.VICTORY_POINT);
             }
         }

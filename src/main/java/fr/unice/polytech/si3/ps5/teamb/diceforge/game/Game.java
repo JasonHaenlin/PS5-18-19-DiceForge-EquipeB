@@ -53,7 +53,7 @@ public class Game extends Board {
         for (int i = 0; i < round; i++) {
             bots.forEach((bot, score) -> {
                 Map<Resources, Integer> result = rolldice(bot.toString());
-                bots.replace(bot, score + getVictoryPoint(bot.toString()));
+                bots.replace(bot, score + getVictoryPoints(bot.toString()));
                 logger.debug("Le bot '" + bot.toString() + "' lance les des");
                 result.forEach((res, amout) -> logger
                         .debug("Le bot '" + bot.toString() + "' a obtenu " + amout + " " + res.toString()));
@@ -61,7 +61,7 @@ public class Game extends Board {
             bots.forEach((bot, score) -> {
                 temporaryAuthorization(bot.toString());
                 bot.play(getBoardView());
-                bots.replace(bot, score + getVictoryPoint(bot.toString()));
+                bots.replace(bot, score + getVictoryPoints(bot.toString()));
             });
         }
         bots.forEach((bot, score) -> logger.debug("'" + bot.toString() + "'\t: " + score + " Point de Gloire"));

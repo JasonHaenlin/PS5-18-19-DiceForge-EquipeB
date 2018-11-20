@@ -50,96 +50,43 @@
             }]
         ],
         "exploit": [{
-            "action": "",
-            "cost": {
-                "sunStone": 3,
-                "moonStone": 0
-            },
-            "earnings": [{
-                "resource": "VICTORY_POINT",
-                "amount": 2
-            }]
-        }, {
-            "action": "",
-            "cost": {
-                "sunStone": 0,
-                "moonStone": 3
-            },
-            "earnings": [{
-                "resource": "VICTORY_POINT",
-                "amount": 2
-            }]
-        }, {
-            "action": "",
-            "cost": {
-                "sunStone": 4,
-                "moonStone": 2
-            },
-            "earnings": [{
-                "resource": "VICTORY_POINT",
-                "amount": 5
-            }]
-        }, {
-            "action": "",
-            "cost": {
+                "name": "GORDON",
                 "sunStone": 5,
-                "moonStone": 5
-            },
-            "earnings": [{
-                "resource": "VICTORY_POINT",
-                "amount": 10
-            }]
-        }, {
-            "action": "",
-            "cost": {
-                "sunStone": 1,
-                "moonStone": 1
-            },
-            "earnings": [{
-                "resource": "VICTORY_POINT",
-                "amount": 1
-            }]
-        }, {
-            "action": "",
-            "cost": {
-                "sunStone": 3,
-                "moonStone": 3
-            },
-            "earnings": [{
-                "resource": "VICTORY_POINT",
-                "amount": 6
-            }]
-        }, {
-            "action": "",
-            "cost": {
-                "sunStone": 3,
-                "moonStone": 0
-            },
-            "earnings": [{
-                "resource": "VICTORY_POINT",
-                "amount": 2
-            }]
-        }, {
-            "action": "",
-            "cost": {
-                "sunStone": 3,
-                "moonStone": 0
-            },
-            "earnings": [{
-                "resource": "VICTORY_POINT",
-                "amount": 2
-            }]
-        }, {
-            "action": "",
-            "cost": {
-                "sunStone": 3,
-                "moonStone": 0
-            },
-            "earnings": [{
-                "resource": "VICTORY_POINT",
-                "amount": 2
-            }]
-        }],
+                "moonStone": 4,
+                "victoryPoint": 4
+            }, {
+                "name": "GORDON",
+                "sunStone": 5,
+                "moonStone": 4,
+                "victoryPoint": 4
+            }, {
+                "name": "GORDON",
+                "sunStone": 5,
+                "moonStone": 4,
+                "victoryPoint": 4
+            }, {
+                "name": "GORDON",
+                "sunStone": 5,
+                "moonStone": 4,
+                "victoryPoint": 4
+            }, {
+                "name": "GORDON",
+                "sunStone": 5,
+                "moonStone": 4,
+                "victoryPoint": 4
+            }, {
+                "name": "GORDON",
+                "sunStone": 5,
+                "moonStone": 4,
+                "victoryPoint": 4
+            }, {
+                "name": "GORDON",
+                "sunStone": 5,
+                "moonStone": 4,
+                "victoryPoint": 4
+            }
+
+        ],
         "forge": [{
             "cost": 2,
             "side": [{
