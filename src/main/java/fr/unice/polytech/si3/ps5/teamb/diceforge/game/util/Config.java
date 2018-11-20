@@ -90,7 +90,7 @@ public class Config {
         int sunStone = obj.getInt("sunStone");
         int moonStone = obj.getInt("moonStone");
         int victoryPoints = obj.getInt("victoryPoint");
-        return obj.getEnum(CardEnum.class, "name").Build(moonStone, sunStone, victoryPoints);
+        return obj.getEnum(CardEnum.class, "name").build(moonStone, sunStone, victoryPoints);
     }
 
     Map<Integer, List<DiceSide>> extractForge() {

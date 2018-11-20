@@ -72,7 +72,7 @@ public class Engine {
 	 * @return the result of the game (stats of the bot over the all sequence)
 	 * @throws Exception
 	 */
-	public String fire() throws Exception {
+	public String fire() {
 		Game diceForge;
 		logger.debug("debut de la sequence");
 		for (int i = 0; i < numberOfParties; i++) {

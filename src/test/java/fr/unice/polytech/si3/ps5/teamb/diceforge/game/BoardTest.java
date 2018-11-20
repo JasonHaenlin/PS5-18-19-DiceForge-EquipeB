@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.OnlyDice;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 
 /**
@@ -39,7 +40,7 @@ public class BoardTest {
 
     @Test
     public void gameBoardCardTest() throws Exception {
-        board = new BoardExtends(new Config(basiccardConf));
+        board = new BoardExtends(new Config(basiccardConf), new OnlyDice());
         assertTrue(board.BoardCardTest());
     }
 

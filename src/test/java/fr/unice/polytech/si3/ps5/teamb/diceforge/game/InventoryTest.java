@@ -73,7 +73,7 @@ public class InventoryTest {
         assertTrue(inv.addCardToBag(card));
         assertEquals(0, inv.getResource(Resources.MOON_STONE));
         assertEquals(2, inv.getResource(Resources.SUN_STONE));
-        assertEquals(10, inv.pollLastVictoryPoint());
+        assertEquals(20, inv.pollLastVictoryPoint());
         assertEquals(0, inv.pollLastVictoryPoint());
     }
 

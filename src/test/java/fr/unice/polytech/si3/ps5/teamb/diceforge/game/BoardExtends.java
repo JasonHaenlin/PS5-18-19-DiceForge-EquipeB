@@ -6,16 +6,24 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Collections;
+import java.util.List;
 
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 
 /**
  * BoardExtends
  */
 public class BoardExtends extends Board {
+    Player bot;
 
     public BoardExtends(Config conf) {
         super(conf);
+    }
+
+    public BoardExtends(Config conf, Player bot) {
+        super(conf);
+        this.bot = bot;
     }
 
     public boolean BoardRegisterTest() {
@@ -46,9 +54,14 @@ public class BoardExtends extends Board {
     }
 
     public boolean BoardCardTest() {
-        registrationToBoard("Cloud", 1);
+        registrationToBoard(bot.toString(), 1);
         initialize();
-        assertEquals(4, playableCards("Cloud").size());
+        List<Card> card = playableCards(bot.toString());
+        temporaryAuthorization(bot.toString());
+        assertEquals(4, card.size());
+        exploit(card.get(0), bot.toString());
+        playLastCard(bot);
+        assertTrue(getVictoryPoints(bot.toString()) != 0);
         return true;
     }
 

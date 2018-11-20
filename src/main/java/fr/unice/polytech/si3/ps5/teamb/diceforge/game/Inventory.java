@@ -2,7 +2,6 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,8 +44,8 @@ public class Inventory {
      * @param dice1Config first dice configuration
      * @param dice2Config second dice configuration
      */
-    public Inventory(EnumMap<Resources, Integer> invConfig, List<DiceSide> dice1Config, List<DiceSide> dice2Config) {
-        this.treasury = invConfig.clone();
+    public Inventory(Map<Resources, Integer> invConfig, List<DiceSide> dice1Config, List<DiceSide> dice2Config) {
+        this.treasury.putAll(invConfig);
         dices.add(new Dice(dice1Config));
         dices.add(new Dice(dice2Config));
     }
@@ -69,7 +68,7 @@ public class Inventory {
      * @return the resources got by the dices
      */
     Map<Resources, Integer> rolldices() {
-        Map<Resources, Integer> newResources = new HashMap<>();
+        Map<Resources, Integer> newResources = new EnumMap<>(Resources.class);
         dices.forEach(dice -> {
             logger.trace(dice.toString());
             DiceSide side = dice.roll();
@@ -80,9 +79,6 @@ public class Inventory {
 
     private void updateResources(Map<Resources, Integer> newResources, DiceSide side) {
         addResourceToBag(side.getValue(), side.getType());
-        if (side.getType().equals(Resources.VICTORY_POINT)) {
-            lastUpdate += side.getValue();
-        }
         if (newResources.containsKey(side.getType()))
             newResources.replace(side.getType(), newResources.get(side.getType()) + side.getValue());
         else
@@ -96,6 +92,8 @@ public class Inventory {
      * @param res   [gold, victory point, sun stone, moon stone]
      */
     void addResourceToBag(int amout, Resources res) {
+        if (res.equals(Resources.VICTORY_POINT))
+            lastUpdate += amout;
         treasury.replace(res, treasury.get(res) + amout);
     }
 
@@ -122,7 +120,6 @@ public class Inventory {
      */
     boolean addCardToBag(Card card) {
         cards.add(card);
-        lastUpdate = card.getVictoryPoints();
         addResourceToBag(card.getVictoryPoints(), Resources.VICTORY_POINT);
 
         return !(!removeResourceFromBag(card.getMoonStone(), Resources.MOON_STONE)

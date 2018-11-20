@@ -36,7 +36,7 @@ public class Temple {
     public List<DiceSide> obtainReplaceableSides(int cost) {
         List<DiceSide> available = new ArrayList<>();
         for (int i = 1; i <= cost; i++) {
-            Pool p = RetrievePool(i);
+            Pool p = retrievePool(i);
             if (p != null) {
                 available.addAll(p.getSides());
             }
@@ -52,7 +52,7 @@ public class Temple {
      */
     public boolean removeSide(DiceSide sideToRemove) {
         int cost = sideToRemove.getCost();
-        Pool curPool = RetrievePool(cost);
+        Pool curPool = retrievePool(cost);
         if (curPool == null) {
             return false;
         }
@@ -65,7 +65,7 @@ public class Temple {
      * @param cost
      * @return the pool
      */
-    private Pool RetrievePool(int cost) {
+    private Pool retrievePool(int cost) {
         for (Pool p : sidesAvailable) {
             if (p.getCost() == cost) {
                 return p;

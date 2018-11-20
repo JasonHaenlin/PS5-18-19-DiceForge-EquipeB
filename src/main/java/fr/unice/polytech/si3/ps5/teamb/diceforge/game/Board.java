@@ -172,9 +172,7 @@ public class Board {
             card.hasImmEffect(bot, inv);
             card.hasAfterEffect(inv);
             card.hasToken(inv);
-            card.hasResourcesToStore().forEach((r, n) -> {
-                inv.addResourceToBag(n, r);
-            });
+            card.hasResourcesToStore().forEach((r, n) -> inv.addResourceToBag(n, r));
         }
     }
 
@@ -195,10 +193,7 @@ public class Board {
      */
     public boolean isPlayingAgainPossible(String player) {
         int sunStone = playerInventory.get(player).getResource(Resources.SUN_STONE);
-        if (sunStone >= 2) {
-            return true;
-        }
-        return false;
+        return sunStone >= 2;
     }
 
     /**
