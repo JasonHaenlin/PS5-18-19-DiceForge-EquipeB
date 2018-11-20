@@ -30,12 +30,12 @@ public class Dice {
      */
     public Dice() {
         rnd = new Random();
-        for (int i = 1; i < 3; i++) {
-            diceSides.add(new DiceSide(i, Resources.SUN_STONE));
-            diceSides.add(new DiceSide(i, Resources.MOON_STONE));
-        }
-        diceSides.add(new DiceSide(2, Resources.GOLD));
-        diceSides.add(new DiceSide(1, Resources.VICTORY_POINT));
+        diceSides.add(new DiceSide(2, Resources.VICTORY_POINT));
+        diceSides.add(new DiceSide(1, Resources.SUN_STONE));
+        diceSides.add(new DiceSide(1, Resources.MOON_STONE));
+        diceSides.add(new DiceSide(1, Resources.GOLD));
+        diceSides.add(new DiceSide(1, Resources.GOLD));
+        diceSides.add(new DiceSide(1, Resources.GOLD));
         this.size = diceSides.size();
     }
 

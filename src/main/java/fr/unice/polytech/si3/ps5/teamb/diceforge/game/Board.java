@@ -166,14 +166,16 @@ public class Board {
     }
 
     public void playLastCard(Player bot) {
-        Inventory inv = playerInventory.get(bot.toString());
-        Card card = inv.peekLastCard();
-        card.hasImmEffect(bot, inv);
-        card.hasAfterEffect(inv);
-        card.hasToken(inv);
-        card.hasResourcesToStore().forEach((r, n) -> {
-            inv.addResourceToBag(n, r);
-        });
+        if (bot.toString().equals(guard.peekLastPlayer())) {
+            Inventory inv = playerInventory.get(bot.toString());
+            Card card = inv.peekLastCard();
+            card.hasImmEffect(bot, inv);
+            card.hasAfterEffect(inv);
+            card.hasToken(inv);
+            card.hasResourcesToStore().forEach((r, n) -> {
+                inv.addResourceToBag(n, r);
+            });
+        }
     }
 
     /**
