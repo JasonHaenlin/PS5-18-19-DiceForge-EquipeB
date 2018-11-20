@@ -52,25 +52,41 @@ public class Inventory {
     }
 
     /**
+     * roll the selected dice and return the side (number can be 0 or 1)
+     * 
+     * @param number
+     * @return the dice side
+     */
+    public DiceSide rolldice(int number) {
+        if (number > dices.size() - 1 || number < 0)
+            return new DiceSide(0, Resources.GOLD);
+        return dices.get(number).roll();
+    }
+
+    /**
      * roll the player dices and update the bag
      * 
      * @return the resources got by the dices
      */
-    Map<Resources, Integer> rolldice() {
+    Map<Resources, Integer> rolldices() {
         Map<Resources, Integer> newResources = new HashMap<>();
         dices.forEach(dice -> {
             logger.trace(dice.toString());
             DiceSide side = dice.roll();
-            addResourceToBag(side.getValue(), side.getType());
-            if (side.getType().equals(Resources.VICTORY_POINT)) {
-                lastUpdate += side.getValue();
-            }
-            if (newResources.containsKey(side.getType()))
-                newResources.replace(side.getType(), newResources.get(side.getType()) + side.getValue());
-            else
-                newResources.put(side.getType(), side.getValue());
+            updateResources(newResources, side);
         });
         return newResources;
+    }
+
+    void updateResources(Map<Resources, Integer> newResources, DiceSide side) {
+        addResourceToBag(side.getValue(), side.getType());
+        if (side.getType().equals(Resources.VICTORY_POINT)) {
+            lastUpdate += side.getValue();
+        }
+        if (newResources.containsKey(side.getType()))
+            newResources.replace(side.getType(), newResources.get(side.getType()) + side.getValue());
+        else
+            newResources.put(side.getType(), side.getValue());
     }
 
     /**

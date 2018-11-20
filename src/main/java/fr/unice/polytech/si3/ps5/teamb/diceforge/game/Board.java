@@ -90,7 +90,7 @@ public class Board {
      * @return result of the rolling dices
      */
     public Map<Resources, Integer> rolldice(String player) {
-        return playerInventory.get(player).rolldice();
+        return playerInventory.get(player).rolldices();
     }
 
     /**

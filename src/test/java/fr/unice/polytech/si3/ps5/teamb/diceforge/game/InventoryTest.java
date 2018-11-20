@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Hydra;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.Dice;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
@@ -65,7 +66,7 @@ public class InventoryTest {
 
     @Test
     public void addCardToBagTest() {
-        Card card = new Card(5, 5, 10);
+        Card card = new Hydra(5, 5, 10);
         assertFalse(inv.addCardToBag(card));
         inv.addResourceToBag(5, Resources.MOON_STONE);
         inv.addResourceToBag(7, Resources.SUN_STONE);
