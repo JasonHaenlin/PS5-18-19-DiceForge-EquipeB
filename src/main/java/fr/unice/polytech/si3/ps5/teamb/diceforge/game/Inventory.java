@@ -78,7 +78,7 @@ public class Inventory {
         return newResources;
     }
 
-    void updateResources(Map<Resources, Integer> newResources, DiceSide side) {
+    private void updateResources(Map<Resources, Integer> newResources, DiceSide side) {
         addResourceToBag(side.getValue(), side.getType());
         if (side.getType().equals(Resources.VICTORY_POINT)) {
             lastUpdate += side.getValue();

@@ -96,6 +96,7 @@ public class Game extends Board {
      */
     public Game addBot(Player bot) {
         bot.setup();
+        bot.addBoard(getBoardView());
         logger.debug("add bot : '" + bot.toString() + "'");
         bots.put(bot, 0);
         registrationToBoard(bot.toString(), bot.hashCode());
