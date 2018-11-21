@@ -165,10 +165,17 @@ public class Board {
         return false;
     }
 
+    /**
+     * play the last card exploit by the bot
+     * 
+     * @param bot
+     */
     public void playLastCard(Player bot) {
         if (bot.toString().equals(guard.peekLastPlayer())) {
+
             Inventory inv = playerInventory.get(bot.toString());
             Card card = inv.peekLastCard();
+            // Card effect
             card.hasImmEffect(bot, inv);
             card.hasAfterEffect(inv);
             card.hasToken(inv);
@@ -177,10 +184,19 @@ public class Board {
     }
 
     /**
+<<<<<<< Updated upstream
      * 
      * @param player
      * @param number
      * @return
+=======
+     * Returns a list of sides corresponding to the player's dice selected. Example
+     * getDiceSide("Cloud",0) returns Cloud's first dice's sides.
+     * 
+     * @param player the name of the player as a String.
+     * @param number the number of the dice to get (0 or 1)
+     * @return the list of sides of a the specified player's dice.
+>>>>>>> Stashed changes
      */
     public List<DiceSide> getDiceSide(String player, int number) {
         return playerInventory.get(player).getDice(number).getDiceSides();

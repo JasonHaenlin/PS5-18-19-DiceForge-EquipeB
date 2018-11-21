@@ -60,7 +60,7 @@ public class Game extends Board {
             });
             bots.forEach((bot, score) -> {
                 temporaryAuthorization(bot.toString());
-                playerTurn(bot);
+                startPlayerTurn(bot);
                 bots.replace(bot, score + getVictoryPoints(bot.toString()));
             });
         }
@@ -68,7 +68,7 @@ public class Game extends Board {
         return establishWinner();
     }
 
-    private void playerTurn(Player bot) {
+    private void startPlayerTurn(Player bot) {
         bot.play();
         // ask if the bot want to play again
         if (bot.replayOnceAgain() && isPlayingAgainPossible(bot.toString())) {

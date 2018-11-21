@@ -29,7 +29,8 @@ public class Engine {
 
 	private static String confFile = "src/main/resources/configuration/basic.json";
 
-	private Map<Player, Integer> player;
+	private static Map<Player, Integer> player;
+
 	private int numberOfParties = 1;
 	private Config conf;
 
@@ -37,7 +38,6 @@ public class Engine {
 	 * create a new engine object
 	 */
 	public Engine() {
-		this.player = new HashMap<>();
 	}
 
 	/**
@@ -48,6 +48,11 @@ public class Engine {
 	 * @throws Exception if the config is not found
 	 */
 	public Engine createGame(int numberOfParties) throws Exception {
+		// warn that the player map will be overide because it's a static field
+		if (player != null)
+			logger.warn("Player map is OVERIDE");
+		player = new HashMap<>();
+
 		this.conf = new Config(confFile);
 		this.numberOfParties = numberOfParties;
 		this.conf.prepareConfig();
@@ -62,7 +67,8 @@ public class Engine {
 	 * @throws Exception if the bot classe is not a player
 	 */
 	public Engine addBot(Class<? extends Player> bot) throws Exception {
-		player.put(bot.newInstance(), 0);
+		Player newPlayer = bot.newInstance();
+		player.put(newPlayer, 0);
 		return this;
 	}
 
@@ -104,5 +110,19 @@ public class Engine {
 				+ (score > 1 ? "parties" : "partie") + " sur " + numberOfParties + " : "
 				+ (score != 0 ? String.format("%.1f", ((float) score / numberOfParties) * 100) + "%" : "0.0%")));
 		return buildScore.toString();
+	}
+
+	/**
+	 * get the instance of the selected player
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public static Player getPlayerByName(String name) {
+		for (Entry<Player, Integer> pl : player.entrySet()) {
+			if (pl.toString().equals(name))
+				return pl.getKey();
+		}
+		return null;
 	}
 }

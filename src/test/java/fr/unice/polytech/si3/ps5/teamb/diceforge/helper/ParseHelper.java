@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.ps5.teamb.diceforge.game.util;
+package fr.unice.polytech.si3.ps5.teamb.diceforge.helper;
 
 import java.util.HashMap;
 import java.util.Map;
