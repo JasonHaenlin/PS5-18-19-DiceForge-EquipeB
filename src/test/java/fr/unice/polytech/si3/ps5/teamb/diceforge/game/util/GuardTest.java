@@ -16,34 +16,34 @@ public class GuardTest {
     @Before
     public void setup() {
         guard = new Guard(2);
-        guard.add("bot1", 12345);
-        guard.add("bot2", 12124);
-    }
-
-    @Test
-    public void addPlayerAuthTest() {
-        assertTrue(guard.add("bot3", 87654));
-        assertFalse(guard.add("bot3", 87654));
     }
 
     @Test
     public void authTest() {
-        assertFalse(guard.isAuthorizated("bot1"));
+        assertFalse(guard.isAuthorizated("bot1", 1));
         guard.enableAuthorization("bot1");
-        assertTrue(guard.isAuthorizated("bot1"));
-        guard.removeAuthorization();
-        assertFalse(guard.isAuthorizated("bot1"));
+        assertTrue(guard.isAuthorizated("bot1", 1));
+        guard.revokeAuthorization();
+        assertFalse(guard.isAuthorizated("bot1", 1));
     }
 
     @Test
-    public void repeatAuthTest() {
+    public void authPartialTest() {
+        assertFalse(guard.isAuthorizated("bot1", 1));
+        assertFalse(guard.isAuthorizated("bot1", 2));
         guard.enableAuthorization("bot1");
-        guard.removeAuthorization();
-        assertTrue(guard.repeatAuth());
-        assertTrue(guard.isAuthorizated("bot1"));
-        guard.removeAuthorization();
-        assertFalse(guard.repeatAuth());
-        assertFalse(guard.isAuthorizated("bot1"));
+        assertTrue(guard.isAuthorizated("bot1", 1));
+        assertTrue(guard.isAuthorizated("bot1", 2));
 
+        guard.revokeAuthorizationPartially("bot1", 1);
+        assertFalse(guard.isAuthorizated("bot1", 1));
+        assertTrue(guard.isAuthorizated("bot1", 2));
+
+        guard.revokeAuthorizationPartially("bot1", 2);
+        assertFalse(guard.isAuthorizated("bot1", 1));
+        assertFalse(guard.isAuthorizated("bot1", 2));
+
+        assertTrue(guard.peekLastPlayer().equals("bot1"));
     }
+
 }

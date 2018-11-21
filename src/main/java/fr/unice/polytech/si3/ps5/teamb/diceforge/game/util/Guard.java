@@ -1,7 +1,7 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game.util;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Guard
@@ -9,65 +9,55 @@ import java.util.Map;
 public class Guard {
 
     private String playerToken;
-    private String LastPlayer;
-    private int authNb;
-    private int authCt;
+    private int nbOfSlot;
 
-    private Map<String, Integer> tokenMap;
+    private List<Boolean> slotAuth;
 
-    public Guard(int authNb) {
-        setup(authNb);
+    public Guard(int slotAuth) {
+        setup(slotAuth);
     }
 
     public Guard() {
         setup(1);
     }
 
-    private void setup(int authNb) {
-        this.authCt = 1;
-        this.authNb = authNb;
+    private void setup(int nbOfSlot) {
+        this.nbOfSlot = nbOfSlot;
         this.playerToken = "";
-        this.LastPlayer = "";
-        this.tokenMap = new HashMap<>();
-    }
-
-    public boolean add(String name, int playerToken) {
-        if (tokenMap.containsKey(name)) {
-            return false;
+        this.slotAuth = new ArrayList<>();
+        for (int i = 0; i < nbOfSlot; i++) {
+            slotAuth.add(false);
         }
-        tokenMap.put(name, playerToken);
-        return true;
     }
 
     public boolean enableAuthorization(String player) {
-        authCt = 1;
         playerToken = player;
-        LastPlayer = player;
+        switchAuth(true);
         return playerToken != null;
     }
 
-    public void removeAuthorization() {
-        playerToken = "";
+    public void revokeAuthorization() {
+        switchAuth(false);
     }
 
-    public boolean isAuthorizated(String player) {
-        return playerToken.equals(player);
+    public void revokeAuthorizationPartially(String player, int slot) {
+        if (playerToken.equals(player))
+            slotAuth.set(slot - 1, false);
+    }
+
+    public boolean isAuthorizated(String player, int slot) {
+        return slotAuth.get(slot - 1) && playerToken.equals(player);
+
     }
 
     public String peekLastPlayer() {
-        return LastPlayer;
+        return playerToken;
     }
 
-    public boolean repeatAuth() {
-        if (!playerToken.equals("")) {
-            return false;
+    private void switchAuth(boolean state) {
+        for (int i = 0; i < nbOfSlot; i++) {
+            slotAuth.set(i, state);
         }
-        if (authCt < authNb) {
-            playerToken = LastPlayer;
-            authCt++;
-            return true;
-        }
-        return false;
     }
 
 }

@@ -64,12 +64,10 @@ public class Board {
      * @return true if the player has been correctly added, false otherwise when the
      *         player is already in the board
      */
-    protected boolean registrationToBoard(String player, int token) {
-        if (guard.add(player, token)) {
-            playerRegistered.add(player);
-            return true;
-        }
-        return false;
+    protected boolean registrationToBoard(String player) {
+        if (playerRegistered.contains(player))
+            return false;
+        return playerRegistered.add(player);
     }
 
     protected boolean temporaryAuthorization(String player) {
@@ -117,14 +115,14 @@ public class Board {
      */
     public boolean forge(String player, int diceNumber, DiceSide sideToRemove, DiceSide sideToAdd) {
         // need to add token for further permission
-        if (sideToAdd == null || sideToRemove == null || !guard.isAuthorizated(player)) {
+        if (sideToAdd == null || sideToRemove == null || !guard.isAuthorizated(player, 1)) {
             return false;
         }
         if (!temple.removeSide(sideToAdd)) {
             return false;
         }
         if (playerInventory.get(player).replaceDiceSide(diceNumber, sideToRemove, sideToAdd)) {
-            guard.removeAuthorization();
+            guard.revokeAuthorizationPartially(player, 2);
             return true;
         }
         return false;
@@ -152,14 +150,14 @@ public class Board {
      */
     public boolean exploit(Card card, String player) {
         // need to add token for further permission
-        if (card == null || !guard.isAuthorizated(player)) {
+        if (card == null || !guard.isAuthorizated(player, 2)) {
             return false;
         }
         if (!islands.removeCard(card)) {
             return false;
         }
         if (playerInventory.get(player).addCardToBag(card)) {
-            guard.removeAuthorization();
+            guard.revokeAuthorization();
             return true;
         }
         return false;
@@ -184,19 +182,12 @@ public class Board {
     }
 
     /**
-<<<<<<< Updated upstream
-     * 
-     * @param player
-     * @param number
-     * @return
-=======
      * Returns a list of sides corresponding to the player's dice selected. Example
      * getDiceSide("Cloud",0) returns Cloud's first dice's sides.
      * 
      * @param player the name of the player as a String.
      * @param number the number of the dice to get (0 or 1)
      * @return the list of sides of a the specified player's dice.
->>>>>>> Stashed changes
      */
     public List<DiceSide> getDiceSide(String player, int number) {
         return playerInventory.get(player).getDice(number).getDiceSides();

@@ -84,7 +84,7 @@ public class Game extends Board {
         player.setup();
         logger.info("add bot :" + bot.toString());
         bots.put(player, 0);
-        registrationToBoard(player.toString(), player.hashCode());
+        registrationToBoard(player.toString());
         return this;
     }
 
@@ -99,7 +99,7 @@ public class Game extends Board {
         bot.addBoard(getBoardView());
         logger.debug("add bot : '" + bot.toString() + "'");
         bots.put(bot, 0);
-        registrationToBoard(bot.toString(), bot.hashCode());
+        registrationToBoard(bot.toString());
         return this;
     }
 
