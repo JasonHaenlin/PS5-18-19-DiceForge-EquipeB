@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.Islands;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.Temple;
@@ -16,6 +19,8 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Guard;
  * The board regroup all the interaction with the game items
  */
 public class Board {
+
+    private static Logger logger = LogManager.getLogger(Board.class);
 
     private Islands islands;
     private Temple temple;
@@ -123,6 +128,7 @@ public class Board {
         }
         if (playerInventory.get(player).replaceDiceSide(diceNumber, sideToRemove, sideToAdd)) {
             guard.revokeAuthorizationPartially(player, 2);
+            logger.debug("le bot '" + player + "' a forge et a obtenu une face " + sideToAdd.toString());
             return true;
         }
         return false;
@@ -158,6 +164,8 @@ public class Board {
         }
         if (playerInventory.get(player).addCardToBag(card)) {
             guard.revokeAuthorization();
+            logger.debug("le bot '" + player + "' a fait un exploit et a obtenu " + card.getVictoryPoints() + " "
+                    + Resources.VICTORY_POINT);
             return true;
         }
         return false;
@@ -174,6 +182,7 @@ public class Board {
             Inventory inv = playerInventory.get(bot.toString());
             Card card = inv.peekLastCard();
             // Card effect
+            logger.debug("le bot '" + bot.toString() + "' joue la carte " + card.toString());
             card.hasImmEffect(bot, inv);
             card.hasAfterEffect(inv);
             card.hasToken(inv);

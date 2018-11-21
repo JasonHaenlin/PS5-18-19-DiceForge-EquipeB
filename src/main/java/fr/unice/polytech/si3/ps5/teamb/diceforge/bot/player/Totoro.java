@@ -33,13 +33,9 @@ public class Totoro extends Player {
         DiceSide side = forge.compute(boardView.playableSides(name));
         if (boardView.forge(name, randomDice, forge.removableDiceSide(boardView.getDiceSide(name, 0),
                 boardView.getDiceSide(name, 1), Resources.SUN_STONE), side)) {
-            logger.debug("le bot '" + name + "' a forge et a obtenu une face " + side.toString());
         } else {
             Card card = exploit.compute(boardView.playableCards(name));
-            if (boardView.exploit(card, name)) {
-                logger.debug("le bot '" + name + "' a fait un exploit et a obtenu " + card.getVictoryPoints() + " "
-                        + Resources.VICTORY_POINT);
-            }
+            boardView.exploit(card, name);
         }
     }
 

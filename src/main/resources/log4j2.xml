@@ -49,5 +49,10 @@
             <AppenderRef ref="allInfos" level = "all"/>
             <AppenderRef ref="lessInfos" level = "debug"/>
         </Logger>
+        <Logger name="fr.unice.polytech.si3.ps5.teamb.diceforge.game.Board" level="all" additivity="false">
+            <AppenderRef ref="stdout" level = "info"/>
+            <AppenderRef ref="allInfos" level = "all"/>
+            <AppenderRef ref="lessInfos" level = "debug"/>
+        </Logger>
     </Loggers>
 </Configuration>

@@ -52,13 +52,8 @@ public class Game extends Board {
         initialize();
         for (int i = 0; i < round; i++) {
             bots.forEach((bot, score) -> {
-                Map<Resources, Integer> result = rolldice(bot.toString());
-                bots.replace(bot, score + getVictoryPoints(bot.toString()));
-                logger.debug("Le bot '" + bot.toString() + "' lance les des");
-                result.forEach((res, amout) -> logger
-                        .debug("Le bot '" + bot.toString() + "' a obtenu " + amout + " " + res.toString()));
-            });
-            bots.forEach((bot, score) -> {
+                rollAllDices();
+                logger.debug("-----------Debut du tour pour '" + bot.toString() + "' -----------");
                 temporaryAuthorization(bot.toString());
                 startPlayerTurn(bot);
                 bots.replace(bot, score + getVictoryPoints(bot.toString()));
@@ -66,6 +61,16 @@ public class Game extends Board {
         }
         bots.forEach((bot, score) -> logger.debug("'" + bot.toString() + "'\t: " + score + " Point de Gloire"));
         return establishWinner();
+    }
+
+    private void rollAllDices() {
+        bots.forEach((botdice, scoredice) -> {
+            Map<Resources, Integer> result = rolldice(botdice.toString());
+            bots.replace(botdice, scoredice + getVictoryPoints(botdice.toString()));
+            logger.debug("Le bot '" + botdice.toString() + "' lance les des");
+            result.forEach((res, amout) -> logger
+                    .debug("Le bot '" + botdice.toString() + "' a obtenu " + amout + " " + res.toString()));
+        });
     }
 
     private void startPlayerTurn(Player bot) {
