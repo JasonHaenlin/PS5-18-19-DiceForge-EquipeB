@@ -16,7 +16,7 @@ public class GameTest {
 
     @Before
     public void setup() throws Exception {
-        this.game = new Game(new Config(path));
+        this.game = new Game(new Config(path), 9);
     }
 
     // TO DO

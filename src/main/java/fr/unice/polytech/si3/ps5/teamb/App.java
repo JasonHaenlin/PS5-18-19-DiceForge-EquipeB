@@ -19,6 +19,7 @@ public class App {
                 .addBot(Cloud.class)
                 .addBot(Hephaestos.class)
                 .addBot(Totoro.class)
+                .addBot(Rem.class)
                 .fire();
         //@formatter:ons
 

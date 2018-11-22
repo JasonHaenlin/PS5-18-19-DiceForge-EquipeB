@@ -3,19 +3,18 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 
-import javax.annotation.Resource;
 import java.util.*;
 
 public class SingleRessource extends Forge {
-
 
 	public SingleRessource(String id) {
 		super(id);
 	}
 
 	/**
-	 * Returns the best side to forge on, depends on the resource to forge and
-	 * the available sides in the temple.
+	 * Returns the best side to forge on, depends on the resource to forge and the
+	 * available sides in the temple.
+	 * 
 	 * @param feasible
 	 * @return
 	 */
@@ -43,63 +42,69 @@ public class SingleRessource extends Forge {
 	}
 
 	/**
-	 * Analyse the Dice to find the ressources predominant (If equalities pref sun or moon stone)
+	 * Analyse the Dice to find the ressources predominant (If equalities pref sun
+	 * or moon stone)
+	 * 
 	 * @param diceSides
 	 * @return Ressources predominant
 	 */
-	public Resources analyseDice(List<DiceSide> diceSides){
-		Map<Resources,Integer> ressources = new HashMap<>();
-		ressources.put(Resources.GOLD , 0);
-		ressources.put(Resources.VICTORY_POINT , 0);
-		ressources.put(Resources.MOON_STONE , 0);
-		ressources.put(Resources.SUN_STONE , 0);
+	public Resources analyseDice(List<DiceSide> diceSides) {
+		Map<Resources, Integer> ressources = new HashMap<>();
+		ressources.put(Resources.GOLD, 0);
+		ressources.put(Resources.VICTORY_POINT, 0);
+		ressources.put(Resources.MOON_STONE, 0);
+		ressources.put(Resources.SUN_STONE, 0);
 
-		for(DiceSide diceSide : diceSides){	//Calculate the ressource average of Dice
+		for (DiceSide diceSide : diceSides) { // Calculate the ressource average of Dice
 			Resources type = diceSide.getType();
 			int value = diceSide.getValue();
-			ressources.put(type,ressources.get(type) + value);
+			ressources.put(type, ressources.get(type) + value);
 		}
 
 		int maxValue = Collections.max(ressources.values());
 		List<Resources> listResourcesMax = new ArrayList<>();
-		for(Resources type : ressources.keySet()){
-			if(ressources.get(type) == maxValue){
+		for (Resources type : ressources.keySet()) {
+			if (ressources.get(type) == maxValue) {
 				listResourcesMax.add(type);
 			}
 		}
-		return listResourcesMax.get(listResourcesMax.size()-1);
+		return listResourcesMax.get(listResourcesMax.size() - 1);
 	}
 
-    /**
-     * Chose the dice for forge (select the dice where analyseDice doesn't
-     * return the resource like sun or moon stone)
-     * par default, select the dice with gold or the Dice number 1
-	 * We can't chose resource = gold
-     * @param diceSides0, diceSides1, Resources
-     */
-	int choseDice(List<DiceSide> diceSides0, List<DiceSide> diceSides1, Resources resources){	//TODO à revoir
-        if(analyseDice(diceSides0).equals(Resources.GOLD) && !analyseDice(diceSides1).equals(Resources.GOLD)) return 0;
-        else {if(analyseDice(diceSides0).equals(Resources.GOLD) && !analyseDice(diceSides1).equals(Resources.GOLD)) return 1;
-        else return 0;
-        }
-    }
+	/**
+	 * Chose the dice for forge (select the dice where analyseDice doesn't return
+	 * the resource like sun or moon stone) par default, select the dice with gold
+	 * or the Dice number 1 We can't chose resource = gold
+	 * 
+	 * @param diceSides0, diceSides1, Resources
+	 */
+	int choseDice(List<DiceSide> diceSides0, List<DiceSide> diceSides1, Resources resources) { // TODO à revoir
+		if (analyseDice(diceSides0).equals(Resources.GOLD) && !analyseDice(diceSides1).equals(Resources.GOLD))
+			return 0;
+		else {
+			if (analyseDice(diceSides0).equals(Resources.GOLD) && !analyseDice(diceSides1).equals(Resources.GOLD))
+				return 1;
+			else
+				return 0;
+		}
+	}
 
-    DiceSide choseSideRemove(List<DiceSide> dicesSides, Resources resources){
+	DiceSide choseSideRemove(List<DiceSide> dicesSides, Resources resources) {
 		List<DiceSide> potentielSides = new ArrayList<>();
-		for(DiceSide side : dicesSides){
-			if(side.getType() == Resources.GOLD){
+		for (DiceSide side : dicesSides) {
+			if (side.getType() == Resources.GOLD) {
 				potentielSides.add(side);
 			}
 		}
-		if(potentielSides.size() == 0) return null;
-		for(int i = 0; i <= 6; i++){	//Récupère la valeur min
-			for(DiceSide side : potentielSides) {
-				if(side.getValue() == i) return side;
+		if (potentielSides.size() == 0)
+			return null;
+		for (int i = 0; i <= 6; i++) { // Récupère la valeur min
+			for (DiceSide side : potentielSides) {
+				if (side.getValue() == i)
+					return side;
 			}
 		}
 		return null;
 	}
-
-
 
 }

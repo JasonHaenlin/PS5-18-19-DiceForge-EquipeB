@@ -34,10 +34,10 @@ public class Game extends Board {
      * 
      * @param conf
      */
-    public Game(Config conf) {
+    public Game(Config conf, int round) {
         super(conf);
         logger.debug("init Game");
-        this.round = 9;
+        this.round = round;
         this.bots = new HashMap<>();
         this.winners = new HashMap<>();
     }

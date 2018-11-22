@@ -54,6 +54,27 @@ public class Engine {
 		return this;
 	}
 
+	public int numberofRound() {
+		int round;
+		switch (player.size()) {
+		case 4:
+			round = 9;
+			break;
+		case 3:
+			round = 10;
+			break;
+		case 2:
+			round = 9;
+			break;
+
+		default:
+			round = 0;
+			break;
+		}
+		return round;
+
+	}
+
 	/**
 	 * add a new bot in the game
 	 * 
@@ -62,7 +83,10 @@ public class Engine {
 	 * @throws Exception if the bot classe is not a player
 	 */
 	public Engine addBot(Class<? extends Player> bot) throws Exception {
-		player.put(bot.newInstance(), 0);
+		if (player.size() <= 3) {
+			player.put(bot.newInstance(), 0);
+		}
+
 		return this;
 	}
 
@@ -75,9 +99,14 @@ public class Engine {
 	public String fire() {
 		Game diceForge;
 		logger.debug("debut de la sequence");
+		if (player.size() == 1 || player.size() == 0) {
+			logger.debug("Nombre de joueurs insufisant : fin de la partie");
+			return "Error : insufficient number of players";
+
+		}
 		for (int i = 0; i < numberOfParties; i++) {
 			logger.debug("debut de la partie");
-			diceForge = new Game(this.conf);
+			diceForge = new Game(this.conf, numberofRound());
 			for (Entry<Player, Integer> bot : player.entrySet()) {
 				diceForge.addBot(bot.getKey());
 			}

@@ -10,127 +10,167 @@
             "victoryPoint": 0
         },
         "dices": [
-            [{
-                "resource": "VICTORY_POINT",
-                "amount": 2
-            }, {
-                "resource": "MOON_STONE",
-                "amount": 1
-            }, {
-                "resource": "GOLD",
-                "amount": 1
-            }, {
-                "resource": "GOLD",
-                "amount": 1
-            }, {
-                "resource": "GOLD",
-                "amount": 1
-            }, {
-                "resource": "GOLD",
-                "amount": 1
-            }],
-            [{
-                "resource": "SUN_STONE",
-                "amount": 1
-            }, {
-                "resource": "GOLD",
-                "amount": 1
-            }, {
-                "resource": "GOLD",
-                "amount": 1
-            }, {
-                "resource": "GOLD",
-                "amount": 1
-            }, {
-                "resource": "GOLD",
-                "amount": 1
-            }, {
-                "resource": "GOLD",
-                "amount": 1
-            }]
+            [
+                {
+                    "resource": "VICTORY_POINT",
+                    "amount": 2
+                },
+                {
+                    "resource": "MOON_STONE",
+                    "amount": 1
+                },
+                {
+                    "resource": "GOLD",
+                    "amount": 1
+                },
+                {
+                    "resource": "GOLD",
+                    "amount": 1
+                },
+                {
+                    "resource": "GOLD",
+                    "amount": 1
+                },
+                {
+                    "resource": "GOLD",
+                    "amount": 1
+                }
+            ],
+            [
+                {
+                    "resource": "SUN_STONE",
+                    "amount": 1
+                },
+                {
+                    "resource": "GOLD",
+                    "amount": 1
+                },
+                {
+                    "resource": "GOLD",
+                    "amount": 1
+                },
+                {
+                    "resource": "GOLD",
+                    "amount": 1
+                },
+                {
+                    "resource": "GOLD",
+                    "amount": 1
+                },
+                {
+                    "resource": "GOLD",
+                    "amount": 1
+                }
+            ]
         ],
-        "exploit": [{
-            "name": "GORDON",
-            "sunStone": 3,
-            "moonStone": 0,
-            "victoryPoint": 4
-        }, {
-            "name": "GORDON",
-            "sunStone": 0,
-            "moonStone": 3,
-            "victoryPoint": 4
-        }, {
-            "name": "GORDON",
-            "sunStone": 4,
-            "moonStone": 2,
-            "victoryPoint": 5
-        }, {
-            "name": "GORDON",
-            "sunStone": 5,
-            "moonStone": 5,
-            "victoryPoint": 10
-        }, {
-            "name": "GORDON",
-            "sunStone": 1,
-            "moonStone": 1,
-            "victoryPoint": 1
-        }, {
-            "name": "GORDON",
-            "sunStone": 3,
-            "moonStone": 3,
-            "victoryPoint": 6
-        }, {
-            "name": "GORDON",
-            "sunStone": 3,
-            "moonStone": 0,
-            "victoryPoint": 2
-        }, {
-            "name": "GORDON",
-            "sunStone": 3,
-            "moonStone": 0,
-            "victoryPoint": 2
-        }, {
-            "name": "GORDON",
-            "sunStone": 3,
-            "moonStone": 0,
-            "victoryPoint": 2
-        }],
-        "forge": [{
-            "cost": 3,
-            "side": [{
-                "resource": "VICTORY_POINT",
-                "amount": 1
-            }, {
-                "resource": "VICTORY_POINT",
-                "amount": 1
-            }, {
-                "resource": "VICTORY_POINT",
-                "amount": 1
-            }]
-        }, {
-            "cost": 4,
-            "side": [{
-                "resource": "VICTORY_POINT",
-                "amount": 2
-            }, {
-                "resource": "VICTORY_POINT",
-                "amount": 2
-            }, {
-                "resource": "VICTORY_POINT",
-                "amount": 2
-            }]
-        }, {
-            "cost": 5,
-            "side": [{
-                "resource": "VICTORY_POINT",
-                "amount": 3
-            }, {
-                "resource": "VICTORY_POINT",
-                "amount": 3
-            }, {
-                "resource": "VICTORY_POINT",
-                "amount": 3
-            }]
-        }]
+        "exploit": [
+            {
+                "name": "CANCER",
+                "sunStone": 0,
+                "moonStone": 6,
+                "victoryPoint": 8
+            },
+            {
+                "name": "GORDON",
+                "sunStone": 0,
+                "moonStone": 3,
+                "victoryPoint": 4
+            },
+            {
+                "name": "FERRYMAN",
+                "sunStone": 0,
+                "moonStone": 4,
+                "victoryPoint": 12
+            },
+            {
+                "name": "HYDRA",
+                "sunStone": 5,
+                "moonStone": 5,
+                "victoryPoint": 26
+            },
+            {
+                "name": "SPHINX",
+                "sunStone": 6,
+                "moonStone": 0,
+                "victoryPoint": 10
+            },
+            {
+                "name": "WILD_SPIRITS",
+                "sunStone": 1,
+                "moonStone": 0,
+                "victoryPoint": 2
+            },
+            {
+                "name": "GORDON",
+                "sunStone": 0,
+                "moonStone": 3,
+                "victoryPoint": 4
+            },
+            {
+                "name": "GORDON",
+                "sunStone": 0,
+                "moonStone": 3,
+                "victoryPoint": 4
+            },
+            {
+                "name": "GORDON",
+                "sunStone": 0,
+                "moonStone": 3,
+                "victoryPoint": 4
+            }
+        ],
+        "forge": [
+            {
+                "cost": 3,
+                "side": [
+                    {
+                        "resource": "VICTORY_POINT",
+                        "amount": 1
+                    },
+                    {
+                        "resource": "VICTORY_POINT",
+                        "amount": 1
+                    },
+                    {
+                        "resource": "VICTORY_POINT",
+                        "amount": 1
+                    }
+                ]
+            },
+            {
+                "cost": 4,
+                "side": [
+                    {
+                        "resource": "VICTORY_POINT",
+                        "amount": 2
+                    },
+                    {
+                        "resource": "VICTORY_POINT",
+                        "amount": 2
+                    },
+                    {
+                        "resource": "VICTORY_POINT",
+                        "amount": 2
+                    }
+                ]
+            },
+            {
+                "cost": 5,
+                "side": [
+                    {
+                        "resource": "VICTORY_POINT",
+                        "amount": 3
+                    },
+                    {
+                        "resource": "VICTORY_POINT",
+                        "amount": 3
+                    },
+                    {
+                        "resource": "VICTORY_POINT",
+                        "amount": 3
+                    }
+                ]
+            }
+        ]
     }
 }
