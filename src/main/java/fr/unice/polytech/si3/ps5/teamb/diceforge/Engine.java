@@ -6,6 +6,8 @@ import java.util.Map.Entry;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.LoggerContext;
+import org.apache.logging.log4j.core.config.Configuration;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Game;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
@@ -25,9 +27,12 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
  */
 public class Engine {
 
-	private static Logger logger = LogManager.getLogger(Engine.class);
+	private static final LoggerContext ctx = (LoggerContext) LogManager.getContext(false);
+	private static final Configuration config = ctx.getConfiguration();
 
-	private static String confFile = "src/main/resources/configuration/basic.json";
+	private static final Logger logger = LogManager.getLogger(Engine.class);
+
+	private static final String confFile = "src/main/resources/configuration/basic.json";
 
 	private static Map<Player, Integer> player;
 
@@ -91,9 +96,18 @@ public class Engine {
 			logger.debug(res);
 			computeResult(diceForge.getWinners());
 			logger.debug("fin de la partie");
+			removeLogger(i);
 		}
 		logger.debug("fin de la sequence");
 		return buildResult();
+	}
+
+	private void removeLogger(int i) {
+		if (i == 0) {
+			config.getRootLogger().removeAppender("allInfos");
+			config.getRootLogger().removeAppender("lessInfos");
+			ctx.updateLoggers();
+		}
 	}
 
 	private void computeResult(Map<String, Integer> map) {

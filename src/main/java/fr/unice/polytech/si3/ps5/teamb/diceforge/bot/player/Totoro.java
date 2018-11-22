@@ -35,7 +35,8 @@ public class Totoro extends Player {
                 boardView.getDiceSide(name, 1), Resources.SUN_STONE), side)) {
         } else {
             Card card = exploit.compute(boardView.playableCards(name));
-            boardView.exploit(card, name);
+            if (boardView.exploit(card, name))
+                boardView.playLastCard(this);
         }
     }
 

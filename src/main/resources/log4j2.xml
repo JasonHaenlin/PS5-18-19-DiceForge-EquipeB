@@ -19,7 +19,12 @@
     </Appenders>
     <!-- Log levels: Trace < Debug < Info < Warn < Error < Fatal -->
     <Loggers>
-        <Logger name="fr.unice.polytech.si3.ps5.teamb.diceforge.game.Game" level="all" additivity="false">
+        <Root level="all">
+            <AppenderRef ref="stdout" level = "info"/>
+            <AppenderRef ref="allInfos" level = "all"/>
+            <AppenderRef ref="lessInfos" level = "debug"/>
+        </Root>
+        <!-- <Logger name="fr.unice.polytech.si3.ps5.teamb.diceforge.game.Game" level="all" additivity="false">
             <AppenderRef ref="stdout" level = "info"/>
             <AppenderRef ref="allInfos" level = "all"/>
             <AppenderRef ref="lessInfos" level = "debug"/>
@@ -53,6 +58,6 @@
             <AppenderRef ref="stdout" level = "info"/>
             <AppenderRef ref="allInfos" level = "all"/>
             <AppenderRef ref="lessInfos" level = "debug"/>
-        </Logger>
+        </Logger> -->
     </Loggers>
 </Configuration>
