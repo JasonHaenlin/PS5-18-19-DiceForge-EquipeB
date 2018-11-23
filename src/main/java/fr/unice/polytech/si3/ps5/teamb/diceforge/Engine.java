@@ -1,6 +1,7 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 

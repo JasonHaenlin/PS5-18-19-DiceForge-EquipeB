@@ -2,6 +2,7 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -38,7 +39,7 @@ public class Game extends Board {
         super(conf);
         logger.debug("init Game");
         this.round = round;
-        this.bots = new HashMap<>();
+        this.bots = new LinkedHashMap<>();
         this.winners = new HashMap<>();
     }
 

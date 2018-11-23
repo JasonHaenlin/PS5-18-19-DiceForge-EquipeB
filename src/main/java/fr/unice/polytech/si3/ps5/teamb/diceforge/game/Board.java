@@ -1,7 +1,9 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,9 +53,14 @@ public class Board {
      * create the default inventory for each player registered
      */
     protected void createInventory() {
-        playerInventory = new HashMap<>();
-        playerRegistered.forEach(name -> playerInventory.put(name,
-                new Inventory(conf.getInvConfig(), conf.getDice1Config(), conf.getDice2Config())));
+        playerInventory = new LinkedHashMap<>();
+        EnumMap<Resources, Integer> inv = conf.getInvConfig();
+        inv.put(Resources.GOLD, inv.get(Resources.GOLD) + 1);
+
+        for (String name : playerRegistered) {
+            inv.put(Resources.GOLD, inv.get(Resources.GOLD) - 1);
+            playerInventory.put(name, new Inventory(inv, conf.getDice1Config(), conf.getDice2Config()));
+        }
     }
 
     /**
@@ -177,8 +184,9 @@ public class Board {
     }
 
     /**
-     * Returns a list of sides corresponding to the player's dice selected.
-     * Example getDiceSide("Cloud",0) returns Cloud's first dice's sides.
+     * Returns a list of sides corresponding to the player's dice selected. Example
+     * getDiceSide("Cloud",0) returns Cloud's first dice's sides.
+     * 
      * @param player the name of the player as a String.
      * @param number the number of the dice to get (0 or 1)
      * @return the list of sides of a the specified player's dice.

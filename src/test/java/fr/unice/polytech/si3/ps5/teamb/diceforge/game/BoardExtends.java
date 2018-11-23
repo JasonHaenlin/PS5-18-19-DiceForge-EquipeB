@@ -41,8 +41,13 @@ public class BoardExtends extends Board {
 
     public boolean BoardForgeTest() {
         registrationToBoard("Cloud", 1);
+        registrationToBoard("Carl", 2);
+        registrationToBoard("Philipe", 3);
         initialize();
         assertEquals(6, playableSides("Cloud").size());
+        assertEquals(3, playableSides("Carl").size());
+        assertEquals(0, playableSides("Philipe").size());
+
         return true;
     }
 
