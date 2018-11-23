@@ -45,8 +45,8 @@ public class ConfigTest {
     @Test
     public void extractExploitTest() {
         List<Card> cd = conf.extractExploit();
-        assertEquals(3, cd.get(0).getSunStone());
-        assertEquals(5, cd.get(2).getVictoryPoints());
+        assertEquals(0, cd.get(0).getSunStone());
+        assertEquals(12, cd.get(2).getVictoryPoints());
     }
 
     @Test
