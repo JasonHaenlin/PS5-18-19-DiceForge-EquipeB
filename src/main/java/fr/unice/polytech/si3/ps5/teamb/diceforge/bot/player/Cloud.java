@@ -27,9 +27,10 @@ public class Cloud extends Player {
 
     @Override
     public void play() {
+        int numberDice = forge.choseDice(boardView.getDiceSide(name, 0), boardView.getDiceSide(name, 1),null);
         DiceSide side = forge.compute(boardView.playableSides(name), resource);
         if (boardView.forge(name, randomDice,
-                forge.removableDiceSide(boardView.getDiceSide(name, 0), boardView.getDiceSide(name, 1)), side)) {
+                forge.choseSideRemove(boardView.getDiceSide(name, numberDice),Resources.VICTORY_POINT), side)) {
             logger.debug("le bot '" + name + "' a forge et a obtenu une face " + side.toString());
         }
     }

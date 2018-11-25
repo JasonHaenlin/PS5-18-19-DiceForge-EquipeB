@@ -35,10 +35,13 @@ public class Hephaestos extends Player {
 	@Override
 	public void play() {
 		DiceSide sideToAdd = forge.compute(boardView.playableSides(name), resource);
+
 		List<DiceSide> diceSides0 = boardView.getDiceSide(name, 0);
 		List<DiceSide> diceSides1 = boardView.getDiceSide(name, 1);
-		forge.setDiceToForge(diceSides0, diceSides1, resource); // TODO if à améliorer
-		if (boardView.forge(name, forge.getDiceToForge(), forge.removableDiceSide(diceSides0, diceSides1), sideToAdd)) {
+
+		int numberDice = forge.choseDice(diceSides0,diceSides1,null);
+
+		if (boardView.forge(name, numberDice, forge.choseSideRemove(boardView.getDiceSide(name, numberDice), resource), sideToAdd)) {
 			logger.debug("le bot '" + name + "' a forge et a obtenu une face " + sideToAdd.toString());
 		} else {
 			Card card = exploit.compute(boardView.playableCards(name));

@@ -1,6 +1,7 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge;
 
 import java.util.List;
+import java.util.Random;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
@@ -22,6 +23,26 @@ public class ResourceSide extends Forge {
         }
         feasible.sort((DiceSide s1, DiceSide s2) -> Integer.compare(s1.getValue(), s2.getValue()));
         return feasible.get(feasible.size() - 1);
+    }
+
+    @Override
+    public int analyseDice(List<DiceSide> diceSides, Resources resources){
+        return 0;
+    }
+
+    @Override
+    public int choseDice(List<DiceSide> diceSides0, List<DiceSide> diceSides1, Resources resources){
+        return new Random().nextInt(2);
+    }
+
+    @Override
+    public DiceSide choseSideRemove(List<DiceSide> dicesSides, Resources resources){
+        for (DiceSide diceside : dicesSides) {
+            if (diceside.getType().ordinal() == 0 || diceside.getType().ordinal() == 1) {
+                return diceside;
+                }
+            }
+        return null;
     }
 
     private void keepOnlyResource(List<DiceSide> feasible, Resources resource) {
