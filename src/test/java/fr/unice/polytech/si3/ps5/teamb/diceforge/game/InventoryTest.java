@@ -48,8 +48,23 @@ public class InventoryTest {
         inv.addResourceToBag(10, Resources.MOON_STONE);
         assertEquals(5, inv.getResource(Resources.GOLD));
         assertEquals(0, inv.getResource(Resources.VICTORY_POINT));
-        assertEquals(10, inv.getResource(Resources.MOON_STONE));
+        assertEquals(6, inv.getResource(Resources.MOON_STONE));
         assertEquals(0, inv.getResource(Resources.SUN_STONE));
+        inv.addResourceToBag(10, Resources.GOLD);
+        assertEquals(12, inv.getResource(Resources.GOLD));
+        assertEquals(0, inv.getResource(Resources.VICTORY_POINT));
+        assertEquals(6, inv.getResource(Resources.MOON_STONE));
+        assertEquals(0, inv.getResource(Resources.SUN_STONE));
+        inv.addResourceToBag(10, Resources.SUN_STONE);
+        assertEquals(12, inv.getResource(Resources.GOLD));
+        assertEquals(0, inv.getResource(Resources.VICTORY_POINT));
+        assertEquals(6, inv.getResource(Resources.MOON_STONE));
+        assertEquals(6, inv.getResource(Resources.SUN_STONE));
+        inv.addResourceToBag(24, Resources.VICTORY_POINT);
+        assertEquals(12, inv.getResource(Resources.GOLD));
+        assertEquals(24, inv.getResource(Resources.VICTORY_POINT));
+        assertEquals(6, inv.getResource(Resources.MOON_STONE));
+        assertEquals(6, inv.getResource(Resources.SUN_STONE));
     }
 
     @Test
@@ -72,7 +87,7 @@ public class InventoryTest {
         inv.addResourceToBag(7, Resources.SUN_STONE);
         assertTrue(inv.addCardToBag(card));
         assertEquals(0, inv.getResource(Resources.MOON_STONE));
-        assertEquals(2, inv.getResource(Resources.SUN_STONE));
+        assertEquals(1, inv.getResource(Resources.SUN_STONE));
         assertEquals(20, inv.pollLastVictoryPoint());
         assertEquals(0, inv.pollLastVictoryPoint());
     }

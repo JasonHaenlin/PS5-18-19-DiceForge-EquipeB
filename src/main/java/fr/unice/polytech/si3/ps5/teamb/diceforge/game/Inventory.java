@@ -94,7 +94,32 @@ public class Inventory {
     void addResourceToBag(int amout, Resources res) {
         if (res.equals(Resources.VICTORY_POINT))
             lastUpdate += amout;
-        treasury.replace(res, treasury.get(res) + amout);
+        treasury.replace(res, maxRessourcesLimit(amout, res));
+    }
+
+    int maxRessourcesLimit(int amout, Resources res) {
+        switch (res) {
+        case GOLD:
+            if (treasury.get(res) + amout >= 12) {
+                return 12;
+            } else {
+                return treasury.get(res) + amout;
+            }
+        case MOON_STONE:
+            if (treasury.get(res) + amout >= 6) {
+                return 6;
+            } else {
+                return treasury.get(res) + amout;
+            }
+        case SUN_STONE:
+            if (treasury.get(res) + amout >= 6) {
+                return 6;
+            } else {
+                return treasury.get(res) + amout;
+            }
+        default:
+            return treasury.get(res) + amout;
+        }
     }
 
     /**
