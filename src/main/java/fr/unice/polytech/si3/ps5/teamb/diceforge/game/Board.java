@@ -21,6 +21,9 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Guard;
  */
 public class Board {
 
+    private static final int FORGE = 1;
+    private static final int EXPLOIT = 2;
+
     private static Logger logger = LogManager.getLogger(Board.class);
 
     private Islands islands;
@@ -126,14 +129,14 @@ public class Board {
      */
     public boolean forge(String player, int diceNumber, DiceSide sideToRemove, DiceSide sideToAdd) {
         // need to add token for further permission
-        if (sideToAdd == null || sideToRemove == null || !guard.isAuthorizated(player, 1)) {
+        if (sideToAdd == null || sideToRemove == null || !guard.isAuthorizated(player, FORGE)) {
             return false;
         }
         if (!temple.removeSide(sideToAdd)) {
             return false;
         }
         if (playerInventory.get(player).replaceDiceSide(diceNumber, sideToRemove, sideToAdd)) {
-            guard.revokeAuthorizationPartially(player, 2);
+            guard.revokeAuthorizationPartially(player, EXPLOIT);
             logger.debug("le bot '" + player + "' a forge et a obtenu une face " + sideToAdd.toString());
             return true;
         }

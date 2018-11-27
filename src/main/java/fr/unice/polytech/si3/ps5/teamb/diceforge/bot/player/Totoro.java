@@ -49,4 +49,9 @@ public class Totoro extends Player {
         return 0;
     }
 
+    @Override
+    protected boolean replayOnceAgain() {
+        return !boardView.playableCards(name).isEmpty();
+    }
+
 }

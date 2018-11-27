@@ -28,8 +28,8 @@ public class Game extends Board {
     private Map<String, Integer> winners;
 
     private int finalScore;
-    private int round; //number of rounds in a game
-    private static int currentRound; //number of the current round
+    private int round; // number of rounds in a game
+    private static int currentRound; // number of the current round
 
     /**
      * Create a game
@@ -53,14 +53,14 @@ public class Game extends Board {
         logger.debug("oneGameFire !");
         initialize();
         for (int i = 0; i < round; i++) {
-            Game.currentRound = i+1;
-            logger.debug("tour actuel : " + Game.currentRound);
+            Game.currentRound = i + 1;
+            logger.debug("-----------tour actuel : " + Game.currentRound + " -----------");
             bots.forEach((bot, score) -> {
                 rollAllDices();
-                logger.debug("-----------Debut du tour pour '" + bot.toString() + "' -----------");
-                temporaryAuthorization(bot.toString());
+                logger.debug("-------Debut du tour pour '" + bot.toString() + "' -------");
                 startPlayerTurn(bot);
                 bots.replace(bot, score + getVictoryPoints(bot.toString()));
+                logger.debug("-------Fin du tour pour '" + bot.toString() + "' ---------");
             });
         }
         bots.forEach((bot, score) -> logger.debug("'" + bot.toString() + "'\t: " + score + " Point de Gloire"));
@@ -78,11 +78,13 @@ public class Game extends Board {
     }
 
     private void startPlayerTurn(Player bot) {
+        temporaryAuthorization(bot.toString());
         bot.play();
         // ask if the bot want to play again
         if (bot.replayOnceAgain() && isPlayingAgainPossible(bot.toString())) {
             logger.debug("Le bot '" + bot.toString() + "' rejoue son tour");
             removeResourcesToPlayAgain(bot.toString());
+            temporaryAuthorization(bot.toString());
             bot.play();
         }
     }
@@ -151,6 +153,7 @@ public class Game extends Board {
 
     /**
      * The round counter begins at round 1
+     * 
      * @return an int equal to the number of the current round
      */
     public static int getCurrentRound() {
