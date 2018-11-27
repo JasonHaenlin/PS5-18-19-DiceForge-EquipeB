@@ -39,6 +39,7 @@ public class Hephaestos extends Player {
 	public void play() {
 		DiceSide sideToAdd1 = forge.compute(boardView.playableSides(name), resourceToForge1);
 		DiceSide sideToAdd2 = forge.compute(boardView.playableSides(name), resourceToForge2);
+		DiceSide sideToAdd3 = forge.compute(boardView.playableSides(name), Resources.SUN_STONE);
 
 		List<DiceSide> diceSides0 = boardView.getDiceSide(name, 0);
 		List<DiceSide> diceSides1 = boardView.getDiceSide(name, 1);
@@ -46,10 +47,15 @@ public class Hephaestos extends Player {
 		int diceToForge1 = forge.choseDice(diceSides0,diceSides1,null);
 		int diceToForge2 = 1; //TODO change to choseDice when changeDice is OK
 
-		if (Game.getCurrentRound() < 4){
-			forgeOrBuyExploit(diceToForge1, sideToAdd1, resourceToForge1);
+		if (Game.getCurrentRound() < 3){
+			while (forgeOrBuyExploit(diceToForge1, sideToAdd1, resourceToForge1) == 1){
+			}
 		} else if (Game.getCurrentRound() < 6){
-			forgeOrBuyExploit(diceToForge2, sideToAdd2, resourceToForge2);
+			while (forgeOrBuyExploit(diceToForge2, sideToAdd2, resourceToForge2) == 1) {
+			}
+			while (forgeOrBuyExploit(diceToForge2, sideToAdd3, Resources.SUN_STONE) == 1) {
+			}
+
 		} else {
 			buyExploitOrForge(diceToForge2, sideToAdd2, resourceToForge2);
 		}
@@ -61,16 +67,18 @@ public class Hephaestos extends Player {
 	}
 
 	//TODO resourceToForge isn't used at the moment check choseSideRemove
-	private void forgeOrBuyExploit(int diceToForge, DiceSide sideToAdd, Resources resourceToForge) {
+	private int forgeOrBuyExploit(int diceToForge, DiceSide sideToAdd, Resources resourceToForge) {
 		if (boardView.forge(name, diceToForge, forge.choseSideRemove(boardView.getDiceSide(name, diceToForge), resourceToForge), sideToAdd)) {
-			logger.debug("le bot '" + name + "' a forge et a obtenu une face " + sideToAdd.toString());
+			return 0;
 		} else {
 			Card card = exploit.compute(boardView.playableCards(name));
 			if (boardView.exploit(card, name)) {
 				logger.debug("le bot '" + name + "' a fait un exploit et a obtenu " + card.getVictoryPoints() + " "
 						+ Resources.VICTORY_POINT);
+				return 1;
 			}
 		}
+		return -1;
 	}
 	private void buyExploitOrForge(int diceToForge, DiceSide sideToAdd, Resources resourceToForge) {
 		Card card = exploit.compute(boardView.playableCards(name));
