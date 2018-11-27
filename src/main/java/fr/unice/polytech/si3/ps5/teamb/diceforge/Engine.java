@@ -42,6 +42,7 @@ public class Engine {
 	 * create a new engine object
 	 */
 	public Engine() {
+		//Do nothing because doesn't need to initialize attributs
 	}
 
 	/**

@@ -35,6 +35,8 @@ public class Board {
 
     private Config conf;
 
+    private String le_bot = "Le bot '";
+
     /**
      * create a new board for the current game
      * 
@@ -137,7 +139,7 @@ public class Board {
         }
         if (playerInventory.get(player).replaceDiceSide(diceNumber, sideToRemove, sideToAdd)) {
             guard.revokeAuthorizationPartially(player, EXPLOIT);
-            logger.debug("le bot '" + player + "' a forge et a obtenu une face " + sideToAdd.toString());
+            logger.debug(le_bot + player + "' a forge et a obtenu une face " + sideToAdd.toString());
             return true;
         }
         return false;
@@ -173,7 +175,7 @@ public class Board {
         }
         if (playerInventory.get(player).addCardToBag(card)) {
             guard.revokeAuthorization();
-            logger.debug("le bot '" + player + "' a fait un exploit et a obtenu " + card.getVictoryPoints() + " "
+            logger.debug(le_bot + player + "' a fait un exploit et a obtenu " + card.getVictoryPoints() + " "
                     + Resources.VICTORY_POINT);
             return true;
         }
@@ -191,7 +193,7 @@ public class Board {
             Inventory inv = playerInventory.get(bot.toString());
             Card card = inv.peekLastCard();
             // Card effect
-            logger.debug("le bot '" + bot.toString() + "' joue la carte " + card.toString());
+            logger.debug(le_bot + bot.toString() + "' joue la carte " + card.toString());
             card.hasImmEffect(bot, inv);
             card.hasAfterEffect(inv);
             card.hasToken(inv);

@@ -55,7 +55,7 @@ public class Hephaestos extends Player {
 
 		if (Game.getCurrentRound() < 3) {
 			while (forgeOrBuyExploit(diceToForge1, sideToAdd1, resourceToForge1) == 1) {
-			}
+            }
 		} else if (Game.getCurrentRound() < 6) {
 			while (forgeOrBuyExploit(diceToForge2, sideToAdd2, resourceToForge2) == 1) {
 			}

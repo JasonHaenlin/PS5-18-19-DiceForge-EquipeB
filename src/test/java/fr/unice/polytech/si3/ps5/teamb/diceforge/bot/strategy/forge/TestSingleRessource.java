@@ -23,6 +23,9 @@ public class TestSingleRessource {
 
     private List<DiceSide> feasible1;
     private List<DiceSide> feasible2;
+    private List<DiceSide> feasible3;
+
+    private List<DiceSide> diceSides3;
 
     private DiceSide diceSideAnswer;
 
@@ -43,6 +46,11 @@ public class TestSingleRessource {
 
         assertEquals(diceSideAnswer, forge.choseSideRemove(diceSides1, Resources.GOLD));
         assertEquals(diceSideAnswer, forge.choseSideRemove(diceSides2, Resources.GOLD));
+
+        diceSides3 = new ArrayList<>();
+        for(int i = 1; i < 7; i++) diceSides3.add(new DiceSide(1, Resources.VICTORY_POINT));
+
+        assertEquals(null, forge.choseSideRemove(diceSides3, Resources.GOLD));
     }
 
     @Test
@@ -60,6 +68,10 @@ public class TestSingleRessource {
         feasible2.add(new DiceSide(3, Resources.GOLD));
 
         assertEquals(new DiceSide(3, Resources.GOLD), forge.compute(feasible2,Resources.GOLD));
+
+        feasible3 = new ArrayList<>();
+
+        assertEquals(null , forge.compute(feasible3,Resources.GOLD));
     }
 
     @Test
