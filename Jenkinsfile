@@ -13,23 +13,25 @@ pipeline {
       }
     }
     stage('Test JUnit') {
-      steps {
-        parallel(
-          test1: {
+      parallel {
+        stage('test1') {
+          steps {
             echo 'Testing n°1'
             sh 'mvn test'
-          },
-          test2: {
+          }
+        }
+        stage('test2') {
+          steps {
             echo 'Testing n°2'
             sh 'mvn test'
           }
-        )
+        }
       }
     }
     stage('Test Mutation') {
       steps {
         echo 'PiTest Mutation'
-        sh 'mvn -Dthreads=4 org.pitest:pitest-maven:mutationCoverage'
+        sh 'mvn org.pitest:pitest-maven:mutationCoverage'
       }
     }
     stage('Sonarqube') {
@@ -46,6 +48,7 @@ pipeline {
         timeout(time: 1, unit: 'HOURS') {
           waitForQualityGate true
         }
+
       }
     }
     stage('Package') {
@@ -62,7 +65,7 @@ pipeline {
   }
   post {
     always {
-      archiveArtifacts artifacts: 'target/**/*', fingerprint: true
+      archiveArtifacts(artifacts: 'target/**/*', fingerprint: true)
       junit 'target/surefire-reports/*.xml'
       echo 'JENKINS PIPELINE'
 
