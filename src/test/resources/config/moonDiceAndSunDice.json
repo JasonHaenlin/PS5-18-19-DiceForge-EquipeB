@@ -1,0 +1,104 @@
+{
+    "name": "JSONParser diceForge game config",
+    "version": "1.0.0",
+    "description": "test game config, moon and sun on dice",
+    "data": {
+        "resources": {
+            "gold": 0,
+            "sunStone": 0,
+            "moonStone": 0,
+            "victoryPoint": 0
+        },
+        "dices": [
+            [{
+                "resource": "MOON_STONE",
+                "amount": 6
+            }, {
+                "resource": "MOON_STONE",
+                "amount": 6
+            }, {
+                "resource": "MOON_STONE",
+                "amount": 6
+            },{
+                "resource": "MOON_STONE",
+                "amount": 6
+            },{
+                "resource": "MOON_STONE",
+                "amount": 6
+            },{
+                "resource": "MOON_STONE",
+                "amount": 6
+            }],
+            [{
+                "resource": "SUN_STONE",
+                "amount": 6
+            }, {
+                "resource": "SUN_STONE",
+                "amount": 6
+            }, {
+                "resource": "SUN_STONE",
+                "amount": 6
+            }, {
+                "resource": "SUN_STONE",
+                "amount": 6
+            }, {
+                "resource": "SUN_STONE",
+                "amount": 6
+            }, {
+                "resource": "SUN_STONE",
+                "amount": 6
+            }]
+        ],
+        "exploit": [{
+                "name": "GORDON",
+                "sunStone": 3,
+                "moonStone": 3,
+                "victoryPoint": 12
+            }, {
+                "name": "GORDON",
+                "sunStone": 3,
+                "moonStone": 3,
+                "victoryPoint": 12
+            }, {
+                "name": "GORDON",
+                "sunStone": 3,
+                "moonStone": 3,
+                "victoryPoint": 12
+            }, {
+                "name": "GORDON",
+                "sunStone": 3,
+                "moonStone": 3,
+                "victoryPoint": 12
+            }, {
+                "name": "GORDON",
+                "sunStone": 3,
+                "moonStone": 3,
+                "victoryPoint": 12
+            }, {
+                "name": "GORDON",
+                "sunStone": 3,
+                "moonStone": 3,
+                "victoryPoint": 12
+            }, {
+                "name": "GORDON",
+                "sunStone": 3,
+                "moonStone": 3,
+                "victoryPoint": 12
+            }
+
+        ],
+        "forge": [{
+            "cost": 2,
+            "side": [{
+                "resource": "VICTORY_POINT",
+                "amount": 1
+            }, {
+                "resource": "VICTORY_POINT",
+                "amount": 1
+            }, {
+                "resource": "VICTORY_POINT",
+                "amount": 1
+            }]
+        }]
+    }
+}
