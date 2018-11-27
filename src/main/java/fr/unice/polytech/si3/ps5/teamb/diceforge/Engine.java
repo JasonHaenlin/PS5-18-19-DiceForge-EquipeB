@@ -106,6 +106,8 @@ public class Engine {
 
 		}
 		for (int i = 0; i < numberOfParties; i++) {
+			logger.debug("initialisation du plateau");
+			this.conf.prepareConfig();
 			logger.debug("debut de la partie");
 			diceForge = new Game(this.conf, numberofRound());
 			for (Entry<Player, Integer> bot : player.entrySet()) {
