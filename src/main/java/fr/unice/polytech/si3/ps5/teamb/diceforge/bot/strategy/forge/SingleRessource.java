@@ -29,6 +29,11 @@ public class SingleRessource extends Forge {
 		return feasible.get(feasible.size() - 1);
 	}
 
+    /**
+     * Select only DiceSide with the ressouces in parametre
+     * @param feasible
+     * @param resource
+     */
 	private void keepOnlyResource(List<DiceSide> feasible, Resources resource) {
 		int size = feasible.size();
 		int i = 0;
@@ -42,6 +47,12 @@ public class SingleRessource extends Forge {
 		}
 	}
 
+	/**
+	 * Calculate a score of dice depend of ressource in param
+	 * @param diceSides
+	 * @param resources
+	 * @return the sum of side value ressources
+	 */
 	@Override
     public int analyseDice(List<DiceSide> diceSides, Resources resources){
 	    int potential = 0;
@@ -66,7 +77,13 @@ public class SingleRessource extends Forge {
         return 0;
     }
 
-    @Override //TODO change the method to fix the parameter resources which is not used
+	/**
+	 * Chose the better side to remove get the littlest gold side
+	 * @param dicesSides
+	 * @param resources
+	 * @return side to remove
+	 */
+	@Override //TODO change the method to fix the parameter resources which is not used
 	public DiceSide choseSideRemove(List<DiceSide> dicesSides, Resources resources) {
 		List<DiceSide> potentielSides = new ArrayList<>();
 		for (DiceSide side : dicesSides) {
