@@ -15,7 +15,8 @@ public class SingleRessource extends Forge {
 	 * Returns the best side to forge on, depends on the resource to forge and the
 	 * available sides in the temple.
 	 * 
-	 * @param feasible
+	 * @param feasible is the list of sides available in the temple
+	 * @param resource
 	 * @return
 	 */
 	@Override
@@ -65,7 +66,7 @@ public class SingleRessource extends Forge {
         return 0;
     }
 
-    @Override
+    @Override //TODO change the method to fix the parameter resources which is not used
 	public DiceSide choseSideRemove(List<DiceSide> dicesSides, Resources resources) {
 		List<DiceSide> potentielSides = new ArrayList<>();
 		for (DiceSide side : dicesSides) {
