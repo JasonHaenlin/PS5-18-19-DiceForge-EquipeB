@@ -70,7 +70,7 @@ public class Inventory {
     Map<Resources, Integer> rolldices() {
         Map<Resources, Integer> newResources = new EnumMap<>(Resources.class);
         dices.forEach(dice -> {
-            logger.trace(dice.toString());
+            logger.trace("[DICE] " + dice.toString());
             DiceSide side = dice.roll();
             updateResources(newResources, side);
         });

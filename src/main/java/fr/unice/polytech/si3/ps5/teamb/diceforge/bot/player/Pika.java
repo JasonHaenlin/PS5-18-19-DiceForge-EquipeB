@@ -17,7 +17,7 @@ public class Pika extends Player {
     }
 
     @Override
-    public void play() {
+    protected void play() {
         // no strategies are applied to this bot
     }
 

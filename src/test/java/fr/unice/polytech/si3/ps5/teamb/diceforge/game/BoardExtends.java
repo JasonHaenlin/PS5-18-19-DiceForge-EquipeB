@@ -27,9 +27,9 @@ public class BoardExtends extends Board {
     }
 
     public boolean BoardRegisterTest() {
-        assertTrue(registrationToBoard("Lightning", 1));
-        assertTrue(registrationToBoard("Cloud", 1));
-        assertFalse(registrationToBoard("Cloud", 1));
+        assertTrue(registrationToBoard("Lightning"));
+        assertTrue(registrationToBoard("Cloud"));
+        assertFalse(registrationToBoard("Cloud"));
         initialize();
 
         assertEquals(Collections.emptyList(), playableCards("Cloud"));
@@ -40,9 +40,9 @@ public class BoardExtends extends Board {
     }
 
     public boolean BoardForgeTest() {
-        registrationToBoard("Cloud", 1);
-        registrationToBoard("Carl", 2);
-        registrationToBoard("Philipe", 3);
+        registrationToBoard("Cloud");
+        registrationToBoard("Carl");
+        registrationToBoard("Philipe");
         initialize();
         assertEquals(6, playableSides("Cloud").size());
         assertEquals(3, playableSides("Carl").size());
@@ -52,14 +52,14 @@ public class BoardExtends extends Board {
     }
 
     public boolean BoardDiceTest() {
-        registrationToBoard("Cloud", 1);
+        registrationToBoard("Cloud");
         initialize();
         assertEquals(2, (int) rolldice("Cloud").get(Resources.GOLD));
         return true;
     }
 
     public boolean BoardCardTest() {
-        registrationToBoard(bot.toString(), 1);
+        registrationToBoard(bot.toString());
         initialize();
         List<Card> card = playableCards(bot.toString());
         temporaryAuthorization(bot.toString());
@@ -71,14 +71,14 @@ public class BoardExtends extends Board {
     }
 
     public boolean TestBoardforge() {
-        registrationToBoard("Forgetest", 1);
+        registrationToBoard("Forgetest");
         initialize();
         temporaryAuthorization("Forgetest");
         return true;
     }
 
     public boolean BoardRepeatTest() {
-        registrationToBoard("repeat", 1);
+        registrationToBoard("repeat");
         initialize();
         assertTrue(isPlayingAgainPossible("repeat"));
         removeResourcesToPlayAgain("repeat");
