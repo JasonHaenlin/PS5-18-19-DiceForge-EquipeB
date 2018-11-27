@@ -18,7 +18,7 @@ public abstract class Player {
     /**
      * create a new player for the game
      * 
-     * @param bot name
+     * @param name of the bot
      */
     protected Player(String name) {
         countInstance++;

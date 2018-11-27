@@ -29,7 +29,7 @@ public class Game extends Board {
 
     private int finalScore;
     private int round; //number of rounds in a game
-    private int currentRound; //number of the current round
+    private static int currentRound; //number of the current round
 
     /**
      * Create a game
@@ -53,9 +53,8 @@ public class Game extends Board {
         logger.debug("oneGameFire !");
         initialize();
         for (int i = 0; i < round; i++) {
-            this.round = i;
-           // logger.debug("current round : " + this.round);
-           // logger.debug("current i : " + i);
+            this.currentRound = i+1;
+            logger.debug("tour actuel : " + this.currentRound);
             bots.forEach((bot, score) -> {
                 Map<Resources, Integer> result = rolldice(bot.toString());
                 bots.replace(bot, score + getVictoryPoints(bot.toString()));
@@ -143,6 +142,14 @@ public class Game extends Board {
      */
     public Map<String, Integer> getWinners() {
         return winners;
+    }
+
+    /**
+     * The round counter begins at round 1
+     * @return an int equal to the number of the current round
+     */
+    public static int getCurrentRound() {
+        return currentRound;
     }
 
 }

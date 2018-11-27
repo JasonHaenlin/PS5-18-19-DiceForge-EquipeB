@@ -14,7 +14,7 @@ public class App {
 
         Engine engine = new Engine();
         // @formatter:off
-        String result = engine.createGame(1000)
+        String result = engine.createGame(1)
                 .addBot(Pika.class)
                 .addBot(Cloud.class)
                 .addBot(Hephaestos.class)
