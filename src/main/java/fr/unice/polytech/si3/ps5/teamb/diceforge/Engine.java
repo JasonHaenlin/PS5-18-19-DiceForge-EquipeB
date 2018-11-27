@@ -28,7 +28,7 @@ public class Engine {
 
 	private static Logger logger = LogManager.getLogger(Engine.class);
 
-	private static String confFile = "src/main/resources/configuration/basic.json";
+	private static String confFile = "src/main/resources/configuration/AllSimpleTempleFace.json";
 
 	private Map<Player, Integer> player;
 	private int numberOfParties = 1;

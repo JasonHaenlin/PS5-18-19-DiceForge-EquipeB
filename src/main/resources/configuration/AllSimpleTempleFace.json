@@ -1,0 +1,206 @@
+{
+    "name": "JSONParser diceForge game config",
+    "version": "1.0.0",
+    "description": "basic game config",
+    "data": {
+        "resources": {
+            "gold": 3,
+            "sunStone": 0,
+            "moonStone": 0,
+            "victoryPoint": 0
+        },
+        "dices": [
+            [{
+                "resource": "VICTORY_POINT",
+                "amount": 2
+            }, {
+                "resource": "MOON_STONE",
+                "amount": 1
+            }, {
+                "resource": "GOLD",
+                "amount": 1
+            }, {
+                "resource": "GOLD",
+                "amount": 1
+            }, {
+                "resource": "GOLD",
+                "amount": 1
+            }, {
+                "resource": "GOLD",
+                "amount": 1
+            }],
+            [{
+                "resource": "SUN_STONE",
+                "amount": 1
+            }, {
+                "resource": "GOLD",
+                "amount": 1
+            }, {
+                "resource": "GOLD",
+                "amount": 1
+            }, {
+                "resource": "GOLD",
+                "amount": 1
+            }, {
+                "resource": "GOLD",
+                "amount": 1
+            }, {
+                "resource": "GOLD",
+                "amount": 1
+            }]
+        ],
+        "exploit": [{
+                "name": "GORDON",
+                "sunStone": 3,
+                "moonStone": 3,
+                "victoryPoint": 12
+            }, {
+                "name": "GORDON",
+                "sunStone": 3,
+                "moonStone": 3,
+                "victoryPoint": 12
+            }, {
+                "name": "GORDON",
+                "sunStone": 3,
+                "moonStone": 3,
+                "victoryPoint": 12
+            }, {
+                "name": "GORDON",
+                "sunStone": 3,
+                "moonStone": 3,
+                "victoryPoint": 12
+            }, {
+                "name": "GORDON",
+                "sunStone": 3,
+                "moonStone": 3,
+                "victoryPoint": 12
+            }, {
+                "name": "GORDON",
+                "sunStone": 3,
+                "moonStone": 3,
+                "victoryPoint": 12
+            }, {
+                "name": "GORDON",
+                "sunStone": 3,
+                "moonStone": 3,
+                "victoryPoint": 12
+            }, {
+                "name": "FERRYMAN",
+                "sunStone": 0,
+                "moonStone": 4,
+                "victoryPoint": 12
+            }, {
+                "name": "FERRYMAN",
+                "sunStone": 0,
+                "moonStone": 4,
+                "victoryPoint": 12
+            }, {
+                "name": "FERRYMAN",
+                "sunStone": 0,
+                "moonStone": 4,
+                "victoryPoint": 12
+            }
+
+        ],
+        "forge": [{
+            "cost": 2,
+            "side": [{
+                "resource": "MOON_STONE",
+                "amount": 1
+            }, {
+                "resource": "MOON_STONE",
+                "amount": 1
+            }, {
+                "resource": "MOON_STONE",
+                "amount": 1
+            }, {
+                "resource": "MOON_STONE",
+                "amount": 1
+            }, {
+                "resource": "GOLD",
+                "amount": 3
+            }, {
+                "resource": "GOLD",
+                "amount": 3
+            }, {
+                "resource": "GOLD",
+                "amount": 3
+            }, {
+                "resource": "GOLD",
+                "amount": 3
+            }]
+        }, {
+            "cost": 3,
+            "side": [{
+                "resource": "SUN_STONE",
+                "amount": 1
+            }, {
+                "resource": "SUN_STONE",
+                "amount": 1
+            }, {
+                "resource": "SUN_STONE",
+                "amount": 1
+            }, {
+                "resource": "SUN_STONE",
+                "amount": 1
+            }, {
+                "resource": "GOLD",
+                "amount": 4
+            }, {
+                "resource": "GOLD",
+                "amount": 4
+            }, {
+                "resource": "GOLD",
+                "amount": 4
+            }, {
+                "resource": "GOLD",
+                "amount": 4
+            }]
+        }, {
+            "cost": 6,
+            "side": [{
+                "resource": "MOON_STONE",
+                "amount": 2
+            }, {
+                "resource": "MOON_STONE",
+                "amount": 2
+            }, {
+                "resource": "MOON_STONE",
+                "amount": 2
+            }]
+        }, {
+            "cost": 8,
+            "side": [{
+                "resource": "SUN_STONE",
+                "amount": 2
+            }, {
+                "resource": "SUN_STONE",
+                "amount": 2
+            }, {
+                "resource": "SUN_STONE",
+                "amount": 2
+            }, {
+                "resource": "SUN_STONE",
+                "amount": 2
+            }, {
+                "resource": "VICTORY_POINT",
+                "amount": 3
+            }, {
+                "resource": "VICTORY_POINT",
+                "amount": 3
+            }, {
+                "resource": "VICTORY_POINT",
+                "amount": 3
+            }, {
+                "resource": "VICTORY_POINT",
+                "amount": 3
+            }]
+        }, {
+            "cost": 12,
+            "side": [{
+                "resource": "VICTORY_POINT",
+                "amount": 4
+            }]
+        }]
+    }
+}
