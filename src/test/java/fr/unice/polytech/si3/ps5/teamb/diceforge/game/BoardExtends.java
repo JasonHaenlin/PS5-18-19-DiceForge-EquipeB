@@ -70,6 +70,16 @@ public class BoardExtends extends Board {
         return true;
     }
 
+    public boolean BoardCardTest2() {
+        registrationToBoard(bot.toString());
+        initialize();
+        List<Card> card = playableCards(bot.toString(), Resources.SUN_STONE, 2);
+        assertEquals(2, card.size());
+        card = playableCards(bot.toString(), Resources.SUN_STONE, -2);
+        assertEquals(4, card.size());
+        return true;
+    }
+
     public boolean TestBoardforge() {
         registrationToBoard("Forgetest");
         initialize();
@@ -85,4 +95,5 @@ public class BoardExtends extends Board {
         assertFalse(isPlayingAgainPossible("repeat"));
         return true;
     }
+
 }

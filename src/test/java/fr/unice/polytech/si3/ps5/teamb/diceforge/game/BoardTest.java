@@ -45,6 +45,12 @@ public class BoardTest {
     }
 
     @Test
+    public void gameBoardCardReduceAmountTest() throws Exception {
+        board = new BoardExtends(new Config(basiccardConf), new OnlyDice());
+        assertTrue(board.BoardCardTest2());
+    }
+
+    @Test
     public void repeatMoveAgainTest() throws Exception {
         board = new BoardExtends(new Config(basic));
         assertTrue(board.BoardRepeatTest());
