@@ -28,7 +28,8 @@ public class Game extends Board {
     private Map<String, Integer> winners;
 
     private int finalScore;
-    private int round;
+    private int round; //number of rounds in a game
+    private int currentRound; //number of the current round
 
     /**
      * Create a game
@@ -52,6 +53,9 @@ public class Game extends Board {
         logger.debug("oneGameFire !");
         initialize();
         for (int i = 0; i < round; i++) {
+            this.round = i;
+           // logger.debug("current round : " + this.round);
+           // logger.debug("current i : " + i);
             bots.forEach((bot, score) -> {
                 Map<Resources, Integer> result = rolldice(bot.toString());
                 bots.replace(bot, score + getVictoryPoints(bot.toString()));
