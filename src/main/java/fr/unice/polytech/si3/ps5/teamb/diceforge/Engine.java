@@ -28,7 +28,7 @@ public class Engine {
 
 	private static Logger logger = LogManager.getLogger(Engine.class);
 
-	private static String confFile = "src/main/resources/configuration/AllSimpleTempleFace.json";
+	private String confFile = "src/main/resources/configuration/allSimpleTempleFace.json";
 
 	private Map<Player, Integer> player;
 	private int numberOfParties = 1;
@@ -107,7 +107,7 @@ public class Engine {
 		}
 		for (int i = 0; i < numberOfParties; i++) {
 			logger.debug("initialisation du plateau");
-			this.conf.prepareConfig();
+			this.conf.prepareConfig();                      //pour initialiser le plateau à chaque partie
 			logger.debug("debut de la partie");
 			diceForge = new Game(this.conf, numberofRound());
 			for (Entry<Player, Integer> bot : player.entrySet()) {
@@ -136,5 +136,9 @@ public class Engine {
 				+ (score > 1 ? "parties" : "partie") + " sur " + numberOfParties + " : "
 				+ (score != 0 ? String.format("%.1f", ((float) score / numberOfParties) * 100) + "%" : "0.0%")));
 		return buildScore.toString();
+	}
+
+	public void setConfFile(String confFile) {
+		this.confFile = confFile;
 	}
 }
