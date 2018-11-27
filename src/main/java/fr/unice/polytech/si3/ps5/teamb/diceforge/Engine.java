@@ -64,24 +64,7 @@ public class Engine {
 	}
 
 	public int numberofRound() {
-		int round;
-		switch (player.size()) {
-		case 4:
-			round = 9;
-			break;
-		case 3:
-			round = 10;
-			break;
-		case 2:
-			round = 9;
-			break;
-
-		default:
-			round = 0;
-			break;
-		}
-		return round;
-
+		return 9 + player.size() % 2;
 	}
 
 	/**
