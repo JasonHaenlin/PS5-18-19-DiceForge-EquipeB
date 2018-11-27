@@ -35,6 +35,12 @@ public class Hephaestos extends Player {
 		resourceToForge2 = Resources.MOON_STONE;
 	}
 
+	/**
+	 * Bot distinguish 3 phases (count round number)
+     * First phase, the bot forges gold,
+     * Second phase, the bot forges ressources
+     * And last phase, the bots does exploit
+     */
 	@Override
 	public void play() {
 		DiceSide sideToAdd1 = forge.compute(boardView.playableSides(name), resourceToForge1);
