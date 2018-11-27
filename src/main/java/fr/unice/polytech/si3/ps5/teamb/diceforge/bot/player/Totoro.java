@@ -51,7 +51,7 @@ public class Totoro extends Player {
 
     @Override
     protected boolean replayOnceAgain() {
-        return !boardView.playableCards(name).isEmpty();
+        return !boardView.playableCards(name, Resources.SUN_STONE, 2).isEmpty();
     }
 
 }

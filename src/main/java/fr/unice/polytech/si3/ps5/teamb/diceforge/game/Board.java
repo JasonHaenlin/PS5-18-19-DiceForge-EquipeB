@@ -157,6 +157,33 @@ public class Board {
     }
 
     /**
+     * retrieve the playable cards with an option to substract a resources to get
+     * les options or to play multiple times by paying less
+     * 
+     * @param player            name
+     * @param rsc               selected resources
+     * @param amountToSubstract (need to be > 0)
+     * @return
+     */
+    public List<Card> playableCards(String player, Resources rsc, int amountToSubstract) {
+        Inventory inv = playerInventory.get(player);
+        int sun = inv.getResource(Resources.SUN_STONE);
+        int moon = inv.getResource(Resources.MOON_STONE);
+        if (amountToSubstract > 0)
+            switch (rsc) {
+            case SUN_STONE:
+                sun -= amountToSubstract;
+                break;
+            case MOON_STONE:
+                moon -= amountToSubstract;
+                break;
+            default:
+                break;
+            }
+        return islands.getBuyableCards(moon, sun);
+    }
+
+    /**
      * Exploit action
      * 
      * @param card   to be played
