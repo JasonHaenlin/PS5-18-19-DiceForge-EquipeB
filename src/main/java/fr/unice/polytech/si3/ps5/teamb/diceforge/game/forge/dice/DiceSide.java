@@ -68,6 +68,6 @@ public class DiceSide {
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.value, this.type.ordinal());
+        return Objects.hash(this.value, this.type.ordinal(), this.cost);
     }
 }

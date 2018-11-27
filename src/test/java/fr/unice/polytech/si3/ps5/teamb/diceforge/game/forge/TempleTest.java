@@ -52,10 +52,12 @@ public class TempleTest {
     public void removeSideTest() {
         temple = new Temple(temp);
         assertTrue(temple.removeSide(side1));
-        assertEquals(2, temple.obtainReplaceableSides(3).size());
+        assertEquals(0, temple.obtainReplaceableSides(3).size());
         assertTrue(temple.removeSide(side2));
-        assertEquals(7, temple.obtainReplaceableSides(5).size());
+        assertEquals(3, temple.obtainReplaceableSides(5).size());
         assertTrue(temple.removeSide(side3));
+        assertEquals(0, temple.obtainReplaceableSides(4).size());
+        temple.resetTurn();
         assertEquals(6, temple.obtainReplaceableSides(5).size());
     }
 
