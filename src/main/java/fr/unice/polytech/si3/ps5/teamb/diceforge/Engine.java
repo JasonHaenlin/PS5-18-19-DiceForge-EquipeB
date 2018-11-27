@@ -1,12 +1,13 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.LoggerContext;
+import org.apache.logging.log4j.core.config.Configuration;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Game;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
@@ -26,11 +27,14 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
  */
 public class Engine {
 
-	private static Logger logger = LogManager.getLogger(Engine.class);
+	private static final LoggerContext ctx = (LoggerContext) LogManager.getContext(false);
+	private static final Configuration config = ctx.getConfiguration();
 
-	private static String confFile = "src/main/resources/configuration/AllSimpleTempleFace.json";
+	private String confFile = "src/main/resources/configuration/allSimpleTempleFace.json";
+	private static final Logger logger = LogManager.getLogger(Engine.class);
 
-	private Map<Player, Integer> player;
+	private static Map<Player, Integer> player;
+
 	private int numberOfParties = 1;
 	private Config conf;
 
@@ -38,7 +42,6 @@ public class Engine {
 	 * create a new engine object
 	 */
 	public Engine() {
-		this.player = new HashMap<>();
 	}
 
 	/**
@@ -49,6 +52,11 @@ public class Engine {
 	 * @throws Exception if the config is not found
 	 */
 	public Engine createGame(int numberOfParties) throws Exception {
+		// warn that the player map will be overide because it's a static field
+		if (player != null)
+			logger.warn("Player map is OVERIDE");
+		player = new HashMap<>();
+
 		this.conf = new Config(confFile);
 		this.numberOfParties = numberOfParties;
 		this.conf.prepareConfig();
@@ -107,7 +115,7 @@ public class Engine {
 		}
 		for (int i = 0; i < numberOfParties; i++) {
 			logger.debug("initialisation du plateau");
-			this.conf.prepareConfig();
+			this.conf.prepareConfig(); // pour initialiser le plateau à chaque partie
 			logger.debug("debut de la partie");
 			diceForge = new Game(this.conf, numberofRound());
 			for (Entry<Player, Integer> bot : player.entrySet()) {
@@ -117,9 +125,18 @@ public class Engine {
 			logger.debug(res);
 			computeResult(diceForge.getWinners());
 			logger.debug("fin de la partie");
+			removeLogger(i);
 		}
 		logger.debug("fin de la sequence");
 		return buildResult();
+	}
+
+	private void removeLogger(int i) {
+		if (i == 0) {
+			config.getRootLogger().removeAppender("allInfos");
+			config.getRootLogger().removeAppender("lessInfos");
+			ctx.updateLoggers();
+		}
 	}
 
 	private void computeResult(Map<String, Integer> map) {
@@ -136,5 +153,23 @@ public class Engine {
 				+ (score > 1 ? "parties" : "partie") + " sur " + numberOfParties + " : "
 				+ (score != 0 ? String.format("%.1f", ((float) score / numberOfParties) * 100) + "%" : "0.0%")));
 		return buildScore.toString();
+	}
+
+	public void setConfFile(String confFile) {
+		this.confFile = confFile;
+	}
+
+	/**
+	 * get the instance of the selected player
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public static Player getPlayerByName(String name) {
+		for (Entry<Player, Integer> pl : player.entrySet()) {
+			if (pl.toString().equals(name))
+				return pl.getKey();
+		}
+		return null;
 	}
 }

@@ -53,18 +53,13 @@ public class Game extends Board {
         logger.debug("oneGameFire !");
         initialize();
         for (int i = 0; i < round; i++) {
-            this.currentRound = i+1;
-            logger.debug("tour actuel : " + this.currentRound);
+            Game.currentRound = i+1;
+            logger.debug("tour actuel : " + Game.currentRound);
             bots.forEach((bot, score) -> {
-                Map<Resources, Integer> result = rolldice(bot.toString());
-                bots.replace(bot, score + getVictoryPoints(bot.toString()));
-                logger.debug("Le bot '" + bot.toString() + "' lance les des");
-                result.forEach((res, amout) -> logger
-                        .debug("Le bot '" + bot.toString() + "' a obtenu " + amout + " " + res.toString()));
-            });
-            bots.forEach((bot, score) -> {
+                rollAllDices();
+                logger.debug("-----------Debut du tour pour '" + bot.toString() + "' -----------");
                 temporaryAuthorization(bot.toString());
-                playerTurn(bot);
+                startPlayerTurn(bot);
                 bots.replace(bot, score + getVictoryPoints(bot.toString()));
             });
         }
@@ -72,7 +67,17 @@ public class Game extends Board {
         return establishWinner();
     }
 
-    private void playerTurn(Player bot) {
+    private void rollAllDices() {
+        bots.forEach((botdice, scoredice) -> {
+            Map<Resources, Integer> result = rolldice(botdice.toString());
+            bots.replace(botdice, scoredice + getVictoryPoints(botdice.toString()));
+            logger.debug("Le bot '" + botdice.toString() + "' lance les des");
+            result.forEach((res, amout) -> logger
+                    .debug("Le bot '" + botdice.toString() + "' a obtenu " + amout + " " + res.toString()));
+        });
+    }
+
+    private void startPlayerTurn(Player bot) {
         bot.play();
         // ask if the bot want to play again
         if (bot.replayOnceAgain() && isPlayingAgainPossible(bot.toString())) {
@@ -88,7 +93,7 @@ public class Game extends Board {
         player.setup();
         logger.info("add bot :" + bot.toString());
         bots.put(player, 0);
-        registrationToBoard(player.toString(), player.hashCode());
+        registrationToBoard(player.toString());
         return this;
     }
 
@@ -103,7 +108,7 @@ public class Game extends Board {
         bot.addBoard(getBoardView());
         logger.debug("add bot : '" + bot.toString() + "'");
         bots.put(bot, 0);
-        registrationToBoard(bot.toString(), bot.hashCode());
+        registrationToBoard(bot.toString());
         return this;
     }
 

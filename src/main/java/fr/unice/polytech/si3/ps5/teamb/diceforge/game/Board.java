@@ -2,10 +2,12 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.Islands;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
@@ -18,6 +20,8 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Guard;
  * The board regroup all the interaction with the game items
  */
 public class Board {
+
+    private static Logger logger = LogManager.getLogger(Board.class);
 
     private Islands islands;
     private Temple temple;
@@ -71,12 +75,10 @@ public class Board {
      * @return true if the player has been correctly added, false otherwise when the
      *         player is already in the board
      */
-    protected boolean registrationToBoard(String player, int token) {
-        if (guard.add(player, token)) {
-            playerRegistered.add(player);
-            return true;
-        }
-        return false;
+    protected boolean registrationToBoard(String player) {
+        if (playerRegistered.contains(player))
+            return false;
+        return playerRegistered.add(player);
     }
 
     protected boolean temporaryAuthorization(String player) {
@@ -124,14 +126,15 @@ public class Board {
      */
     public boolean forge(String player, int diceNumber, DiceSide sideToRemove, DiceSide sideToAdd) {
         // need to add token for further permission
-        if (sideToAdd == null || sideToRemove == null || !guard.isAuthorizated(player)) {
+        if (sideToAdd == null || sideToRemove == null || !guard.isAuthorizated(player, 1)) {
             return false;
         }
         if (!temple.removeSide(sideToAdd)) {
             return false;
         }
         if (playerInventory.get(player).replaceDiceSide(diceNumber, sideToRemove, sideToAdd)) {
-            guard.removeAuthorization();
+            guard.revokeAuthorizationPartially(player, 2);
+            logger.debug("le bot '" + player + "' a forge et a obtenu une face " + sideToAdd.toString());
             return true;
         }
         return false;
@@ -159,23 +162,33 @@ public class Board {
      */
     public boolean exploit(Card card, String player) {
         // need to add token for further permission
-        if (card == null || !guard.isAuthorizated(player)) {
+        if (card == null || !guard.isAuthorizated(player, 2)) {
             return false;
         }
         if (!islands.removeCard(card)) {
             return false;
         }
         if (playerInventory.get(player).addCardToBag(card)) {
-            guard.removeAuthorization();
+            guard.revokeAuthorization();
+            logger.debug("le bot '" + player + "' a fait un exploit et a obtenu " + card.getVictoryPoints() + " "
+                    + Resources.VICTORY_POINT);
             return true;
         }
         return false;
     }
 
+    /**
+     * play the last card exploit by the bot
+     * 
+     * @param bot
+     */
     public void playLastCard(Player bot) {
         if (bot.toString().equals(guard.peekLastPlayer())) {
+
             Inventory inv = playerInventory.get(bot.toString());
             Card card = inv.peekLastCard();
+            // Card effect
+            logger.debug("le bot '" + bot.toString() + "' joue la carte " + card.toString());
             card.hasImmEffect(bot, inv);
             card.hasAfterEffect(inv);
             card.hasToken(inv);

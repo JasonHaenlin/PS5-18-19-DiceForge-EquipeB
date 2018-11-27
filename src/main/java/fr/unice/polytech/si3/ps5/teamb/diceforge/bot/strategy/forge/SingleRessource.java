@@ -74,7 +74,7 @@ public class SingleRessource extends Forge {
 				potentielSides.add(side);
 			}
 		}
-		if (potentielSides.size() == 0)
+		if (potentielSides.isEmpty())
 			return null;
 		for (int i = 0; i <= 6; i++) { // Récupère la valeur min
 			for (DiceSide side : potentielSides) {

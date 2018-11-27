@@ -33,18 +33,18 @@ public abstract class Player {
     /**
      * make a new move based on the updated board
      */
-    public abstract void play();
+    protected abstract void play();
 
     /**
      * override this methode if you want to use the possibiliy to play again
      */
-    public boolean replayOnceAgain() {
+    protected boolean replayOnceAgain() {
         return false;
     }
 
     public abstract int callBackDice();
 
-    public void addBoard(Board boardView) {
+    void addBoard(Board boardView) {
         this.boardView = boardView;
     }
 

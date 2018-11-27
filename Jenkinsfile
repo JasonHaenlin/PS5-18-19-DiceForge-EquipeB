@@ -29,7 +29,7 @@ pipeline {
     stage('Test Mutation') {
       steps {
         echo 'PiTest Mutation'
-        sh 'mvn -Dthreads=4 org.pitest:pitest-maven:mutationCoverage'
+        sh 'mvn org.pitest:pitest-maven:mutationCoverage'
       }
     }
     stage('Sonarqube') {
