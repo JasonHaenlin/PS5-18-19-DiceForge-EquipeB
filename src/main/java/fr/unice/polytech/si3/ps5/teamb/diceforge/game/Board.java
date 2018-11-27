@@ -85,6 +85,7 @@ public class Board {
     }
 
     protected boolean temporaryAuthorization(String player) {
+        temple.resetTurn();
         return guard.enableAuthorization(player);
     }
 

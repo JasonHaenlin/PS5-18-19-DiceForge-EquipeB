@@ -10,8 +10,7 @@
             "victoryPoint": 0
         },
         "dices": [
-            [
-                {
+            [{
                     "resource": "VICTORY_POINT",
                     "amount": 2
                 },
@@ -36,8 +35,7 @@
                     "amount": 1
                 }
             ],
-            [
-                {
+            [{
                     "resource": "SUN_STONE",
                     "amount": 1
                 },
@@ -63,8 +61,7 @@
                 }
             ]
         ],
-        "exploit": [
-            {
+        "exploit": [{
                 "name": "CANCER",
                 "sunStone": 0,
                 "moonStone": 6,
@@ -119,11 +116,9 @@
                 "victoryPoint": 4
             }
         ],
-        "forge": [
-            {
+        "forge": [{
                 "cost": 3,
-                "side": [
-                    {
+                "side": [{
                         "resource": "VICTORY_POINT",
                         "amount": 1
                     },
@@ -139,8 +134,7 @@
             },
             {
                 "cost": 4,
-                "side": [
-                    {
+                "side": [{
                         "resource": "VICTORY_POINT",
                         "amount": 2
                     },
@@ -156,8 +150,7 @@
             },
             {
                 "cost": 5,
-                "side": [
-                    {
+                "side": [{
                         "resource": "VICTORY_POINT",
                         "amount": 3
                     },

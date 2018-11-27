@@ -14,11 +14,15 @@ import org.junit.Test;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 
 /**
  * TempleTest
  */
 public class TempleTest {
+
+    static final String file = ("src/test/resources/config/basicforgepool.json");
+    Config conf;
 
     Temple temple;
     List<Pool> pool;
@@ -53,5 +57,17 @@ public class TempleTest {
         assertEquals(7, temple.obtainReplaceableSides(5).size());
         assertTrue(temple.removeSide(side3));
         assertEquals(6, temple.obtainReplaceableSides(5).size());
+    }
+
+    @Test
+    public void checkPooltest() throws Exception {
+        conf = new Config(file);
+        temple = new Temple(conf.getForgeConfig());
+        assertEquals(0, temple.obtainReplaceableSides(1).size());
+        assertEquals(8, temple.obtainReplaceableSides(2).size());
+        assertEquals(16, temple.obtainReplaceableSides(3).size());
+        assertEquals(19, temple.obtainReplaceableSides(6).size());
+        assertEquals(27, temple.obtainReplaceableSides(8).size());
+        assertEquals(28, temple.obtainReplaceableSides(12).size());
     }
 }

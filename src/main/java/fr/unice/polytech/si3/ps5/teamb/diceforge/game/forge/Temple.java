@@ -11,9 +11,11 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
  */
 public class Temple {
     private List<Pool> sidesAvailable;
+    private List<DiceSide> cardAlreadyPlayed;
 
     public Temple(Map<Integer, List<DiceSide>> sides) {
         putInTemple(sides);
+        cardAlreadyPlayed = new ArrayList<>();
     }
 
     /**
@@ -38,10 +40,21 @@ public class Temple {
         for (int i = 1; i <= cost; i++) {
             Pool p = retrievePool(i);
             if (p != null) {
-                available.addAll(p.getSides());
+                addAllAuthSide(available, p.getSides());
             }
         }
         return available;
+    }
+
+    private void addAllAuthSide(List<DiceSide> available, List<DiceSide> sides) {
+        sides.forEach(side -> {
+            if (!cardAlreadyPlayed.contains(side))
+                available.add(side);
+        });
+    }
+
+    public void resetTurn() {
+        cardAlreadyPlayed = new ArrayList<>();
     }
 
     /**
@@ -56,7 +69,10 @@ public class Temple {
         if (curPool == null) {
             return false;
         }
-        return curPool.tryToRemoveSide(sideToRemove);
+        if (curPool.tryToRemoveSide(sideToRemove)) {
+            return cardAlreadyPlayed.add(sideToRemove);
+        }
+        return false;
     }
 
     /**
