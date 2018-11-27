@@ -7,7 +7,7 @@ import java.util.Map;
 import org.junit.Test;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.OnlyDice;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.SimpleHighestExploit;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.Totoro;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.ParseHelper;
 
 /**
@@ -17,10 +17,12 @@ public class EngineTest {
 
     Engine engine = new Engine();
 
+
     @Test
-    public void engineResultTest1() throws Exception {
-        String result = engine.createGame(1).addBot(OnlyDice.class).addBot(SimpleHighestExploit.class).fire();
-        Map<String, String> res = ParseHelper.parseResult("onlyDice", "SimpleHighestExploit", result);
-        assertTrue(res.get("SimpleHighestExploit").contains("gagne 1"));
+    public void engineResultTest1() throws Exception { //Totoro is a SimpleHighestExploit strategy bot
+        String result = engine.createGame(1).addBot(OnlyDice.class).addBot(Totoro.class).fire();
+        Map<String, String> res = ParseHelper.parseResult("onlyDice", "Totoro", result);
+        System.out.println(ParseHelper.parseResult("onlyDice", "Totoro", result));
+        assertTrue(res.get("Totoro").contains("gagne 1"));
     }
 }
