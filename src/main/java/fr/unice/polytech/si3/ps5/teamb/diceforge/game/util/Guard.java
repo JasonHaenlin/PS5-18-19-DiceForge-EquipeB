@@ -9,7 +9,7 @@ import java.util.Map;
 public class Guard {
 
     private String playerToken;
-    private String LastPlayer;
+    private String lastPlayer;
     private int authNb;
     private int authCt;
 
@@ -27,7 +27,7 @@ public class Guard {
         this.authCt = 1;
         this.authNb = authNb;
         this.playerToken = "";
-        this.LastPlayer = "";
+        this.lastPlayer = "";
         this.tokenMap = new HashMap<>();
     }
 
@@ -42,7 +42,7 @@ public class Guard {
     public boolean enableAuthorization(String player) {
         authCt = 1;
         playerToken = player;
-        LastPlayer = player;
+        lastPlayer = player;
         return playerToken != null;
     }
 
@@ -55,7 +55,7 @@ public class Guard {
     }
 
     public String peekLastPlayer() {
-        return LastPlayer;
+        return lastPlayer;
     }
 
     public boolean repeatAuth() {
@@ -63,7 +63,7 @@ public class Guard {
             return false;
         }
         if (authCt < authNb) {
-            playerToken = LastPlayer;
+            playerToken = lastPlayer;
             authCt++;
             return true;
         }

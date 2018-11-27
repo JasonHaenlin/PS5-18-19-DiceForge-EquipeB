@@ -53,8 +53,8 @@ public class Game extends Board {
         logger.debug("oneGameFire !");
         initialize();
         for (int i = 0; i < round; i++) {
-            this.currentRound = i+1;
-            logger.debug("tour actuel : " + this.currentRound);
+            Game.currentRound = i+1;
+            logger.debug("tour actuel : " + Game.currentRound);
             bots.forEach((bot, score) -> {
                 Map<Resources, Integer> result = rolldice(bot.toString());
                 bots.replace(bot, score + getVictoryPoints(bot.toString()));
