@@ -83,8 +83,8 @@ public class Game extends Board {
         temporaryAuthorization(bot.toString());
         bot.play();
         // ask if the bot want to play again
-        if (bot.replayOnceAgain() && isPlayingAgainPossible(bot.toString())) {
-            logger.debug(le_bot + bot.toString() + "' rejoue son tour");
+        if (isPlayingAgainPossible(bot.toString()) && bot.replayOnceAgain()) {
+            logger.debug(le_bot + bot.toString() + "'  rejoue son tour");
             removeResourcesToPlayAgain(bot.toString());
             temporaryAuthorization(bot.toString());
             bot.play();
@@ -120,8 +120,8 @@ public class Game extends Board {
         StringBuilder winnerMsg = new StringBuilder();
         defineWinners();
         if (winners.size() == 1) {
-            winners.forEach((name, score) -> winnerMsg
-                    .append(le_bot + name + "' gagne avec " + score + " points de Gloire"));
+            winners.forEach(
+                    (name, score) -> winnerMsg.append(le_bot + name + "' gagne avec " + score + " points de Gloire"));
         } else {
             winnerMsg.append("Egalite entre les joueurs ");
             winners.forEach((name, score) -> {
