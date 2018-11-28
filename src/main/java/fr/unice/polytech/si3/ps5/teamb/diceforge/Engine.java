@@ -39,13 +39,6 @@ public class Engine {
 	private Config conf;
 
 	/**
-	 * create a new engine object
-	 */
-	public Engine() {
-		//Do nothing because doesn't need to initialize attributs
-	}
-
-	/**
 	 * setup to create a new game
 	 * 
 	 * @param numberOfParties
@@ -73,13 +66,14 @@ public class Engine {
 	 * 
 	 * @param bot implemented with the abstract classe player
 	 * @return
-	 * @throws Exception if the bot classe is not a player
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws Exception              if the bot classe is not a player
 	 */
-	public Engine addBot(Class<? extends Player> bot) throws Exception {
+	public Engine addBot(Class<? extends Player> bot) throws InstantiationException, IllegalAccessException {
 		if (player.size() <= 3) {
 			player.put(bot.newInstance(), 0);
 		}
-
 		return this;
 	}
 

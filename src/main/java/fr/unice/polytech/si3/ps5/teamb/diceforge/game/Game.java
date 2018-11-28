@@ -29,9 +29,6 @@ public class Game extends Board {
 
     private int finalScore;
     private int round; // number of rounds in a game
-    private static int currentRound; // number of the current round
-
-    private String le_bot = "Le bot'";
 
     /**
      * Create a game
@@ -55,14 +52,14 @@ public class Game extends Board {
         logger.debug("oneGameFire !");
         initialize();
         for (int i = 0; i < round; i++) {
-            Game.currentRound = i + 1;
-            logger.debug("-----------tour actuel : " + Game.currentRound + " -----------");
+            logger.debug(
+                    "---------------------------------tour actuel : " + (i + 1) + " ---------------------------------");
             bots.forEach((bot, score) -> {
                 rollAllDices();
-                logger.debug("-------Debut du tour pour '" + bot.toString() + "' -------");
+                logger.debug("------------------Debut du tour pour '" + bot.toString() + "' ------------------");
                 startPlayerTurn(bot);
                 bots.replace(bot, score + getVictoryPoints(bot.toString()));
-                logger.debug("-------Fin du tour pour '" + bot.toString() + "' ---------");
+                logger.debug("------------------Fin du tour pour '" + bot.toString() + "' --------------------");
             });
         }
         bots.forEach((bot, score) -> logger.debug("'" + bot.toString() + "'\t: " + score + " Point de Gloire"));
@@ -75,7 +72,7 @@ public class Game extends Board {
             bots.replace(botdice, scoredice + getVictoryPoints(botdice.toString()));
             logger.debug("Le bot '" + botdice.toString() + "' lance les des");
             result.forEach((res, amout) -> logger
-                    .debug(le_bot + botdice.toString() + "' a obtenu " + amout + " " + res.toString()));
+                    .debug("Le bot'" + botdice.toString() + "' a obtenu " + amout + " " + res.toString()));
         });
     }
 
@@ -84,14 +81,14 @@ public class Game extends Board {
         bot.play();
         // ask if the bot want to play again
         if (isPlayingAgainPossible(bot.toString()) && bot.replayOnceAgain()) {
-            logger.debug(le_bot + bot.toString() + "'  rejoue son tour");
+            logger.debug("Le bot'" + bot.toString() + "'  rejoue son tour");
             removeResourcesToPlayAgain(bot.toString());
             temporaryAuthorization(bot.toString());
             bot.play();
         }
     }
 
-    Game addBot(Class<? extends Player> bot) throws Exception {
+    Game addBot(Class<? extends Player> bot) throws InstantiationException, IllegalAccessException {
         Player player = bot.newInstance();
         player.addBoard(getBoardView());
         player.setup();
@@ -120,8 +117,8 @@ public class Game extends Board {
         StringBuilder winnerMsg = new StringBuilder();
         defineWinners();
         if (winners.size() == 1) {
-            winners.forEach(
-                    (name, score) -> winnerMsg.append(le_bot + name + "' gagne avec " + score + " points de Gloire"));
+            winners.forEach((name, score) -> winnerMsg
+                    .append("Le bot'" + name + "' gagne avec " + score + " points de Gloire"));
         } else {
             winnerMsg.append("Egalite entre les joueurs ");
             winners.forEach((name, score) -> {
@@ -151,15 +148,6 @@ public class Game extends Board {
      */
     public Map<String, Integer> getWinners() {
         return winners;
-    }
-
-    /**
-     * The round counter begins at round 1
-     * 
-     * @return an int equal to the number of the current round
-     */
-    public static int getCurrentRound() {
-        return currentRound;
     }
 
 }

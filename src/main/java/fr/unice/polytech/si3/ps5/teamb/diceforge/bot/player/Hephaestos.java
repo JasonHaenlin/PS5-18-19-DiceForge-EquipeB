@@ -6,7 +6,6 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.Exploit;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.Highest;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.Forge;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.SingleRessource;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Game;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
@@ -23,6 +22,8 @@ public class Hephaestos extends Player {
 	private Resources resourceToForge1;
 	private Resources resourceToForge2;
 
+	private int round = 0;
+
 	public Hephaestos() {
 		super("Hephaestos");
 	}
@@ -36,13 +37,13 @@ public class Hephaestos extends Player {
 	}
 
 	/**
-	 * Bot distinguish 3 phases (count round number)
-     * First phase, the bot forges gold,
-     * Second phase, the bot forges ressources
-     * And last phase, the bots does exploit
-     */
+	 * Bot distinguish 3 phases (count round number) First phase, the bot forges
+	 * gold, Second phase, the bot forges ressources And last phase, the bots does
+	 * exploit
+	 */
 	@Override
 	public void play() {
+		round++;
 		DiceSide sideToAdd1 = forge.compute(boardView.playableSides(name), resourceToForge1);
 		DiceSide sideToAdd2 = forge.compute(boardView.playableSides(name), resourceToForge2);
 		DiceSide sideToAdd3 = forge.compute(boardView.playableSides(name), Resources.SUN_STONE);
@@ -53,18 +54,19 @@ public class Hephaestos extends Player {
 		int diceToForge1 = forge.choseDice(diceSides0, diceSides1, null);
 		int diceToForge2 = 1; // TODO change to choseDice when changeDice is OK
 
-		if (Game.getCurrentRound() < 3) {
-			while (forgeOrBuyExploit(diceToForge1, sideToAdd1, resourceToForge1) == 1) {
-            }
-		} else if (Game.getCurrentRound() < 6) {
-			while (forgeOrBuyExploit(diceToForge2, sideToAdd2, resourceToForge2) == 1) {
-			}
-			while (forgeOrBuyExploit(diceToForge2, sideToAdd3, Resources.SUN_STONE) == 1) {
-			}
+		if (round < 2) {
+			while (forgeOrBuyExploit(diceToForge1, sideToAdd1, resourceToForge1) == 1)
+				;
+		} else if (round < 5) {
+			while (forgeOrBuyExploit(diceToForge2, sideToAdd2, resourceToForge2) == 1)
+				;
+			while (forgeOrBuyExploit(diceToForge2, sideToAdd3, Resources.SUN_STONE) == 1)
+				;
 
 		} else {
 			buyExploitOrForge(diceToForge2, sideToAdd2, resourceToForge2);
 		}
+
 	}
 
 	@Override
@@ -80,6 +82,7 @@ public class Hephaestos extends Player {
 		} else {
 			Card card = exploit.compute(boardView.playableCards(name));
 			if (boardView.exploit(card, name)) {
+				boardView.playLastCard(this);
 				return 1;
 			}
 		}
@@ -89,6 +92,8 @@ public class Hephaestos extends Player {
 	private void buyExploitOrForge(int diceToForge, DiceSide sideToAdd, Resources resourceToForge) {
 		Card card = exploit.compute(boardView.playableCards(name));
 		if (boardView.exploit(card, name)) {
+			boardView.playLastCard(this);
+		} else {
 			boardView.forge(name, diceToForge,
 					forge.choseSideRemove(boardView.getDiceSide(name, diceToForge), resourceToForge), sideToAdd);
 		}
@@ -96,6 +101,10 @@ public class Hephaestos extends Player {
 
 	@Override
 	protected boolean replayOnceAgain() {
-		return !boardView.playableCards(name, Resources.SUN_STONE, 2).isEmpty();
+		if (!boardView.playableCards(name, Resources.SUN_STONE, 2).isEmpty()) {
+			round--;
+			return true;
+		}
+		return false;
 	}
 }

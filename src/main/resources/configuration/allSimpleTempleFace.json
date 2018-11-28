@@ -109,6 +109,26 @@
                 "sunStone": 0,
                 "moonStone": 6,
                 "victoryPoint": 8
+            }, {
+                "name": "SPHINX",
+                "sunStone": 6,
+                "moonStone": 0,
+                "victoryPoint": 10
+            }, {
+                "name": "SPHINX",
+                "sunStone": 6,
+                "moonStone": 0,
+                "victoryPoint": 10
+            }, {
+                "name": "WILD_SPIRITS",
+                "sunStone": 1,
+                "moonStone": 0,
+                "victoryPoint": 2
+            }, {
+                "name": "WILD_SPIRITS",
+                "sunStone": 1,
+                "moonStone": 0,
+                "victoryPoint": 2
             }
 
         ],

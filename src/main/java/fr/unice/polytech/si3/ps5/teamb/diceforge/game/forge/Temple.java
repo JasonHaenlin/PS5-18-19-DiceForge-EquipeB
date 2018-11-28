@@ -1,8 +1,12 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 
@@ -10,6 +14,9 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
  * Temple
  */
 public class Temple {
+
+    private static Logger logger = LogManager.getLogger(Temple.class);
+
     private List<Pool> sidesAvailable;
     private List<DiceSide> cardAlreadyPlayed;
 
@@ -43,7 +50,8 @@ public class Temple {
                 addAllAuthSide(available, p.getSides());
             }
         }
-        return available;
+        // logger.trace("[TEMPLE] " + available.toString());
+        return available.isEmpty() ? Collections.emptyList() : available;
     }
 
     private void addAllAuthSide(List<DiceSide> available, List<DiceSide> sides) {

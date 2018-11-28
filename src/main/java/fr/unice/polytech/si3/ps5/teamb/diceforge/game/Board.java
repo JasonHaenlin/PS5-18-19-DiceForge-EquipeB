@@ -17,7 +17,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Guard;
 
 /**
- * The board regroup all the interaction with the game items
+ * The board regroup all the inteith the game items
  */
 public class Board {
 
@@ -34,8 +34,6 @@ public class Board {
     private Map<String, Inventory> playerInventory;
 
     private Config conf;
-
-    private String le_bot = "Le bot '";
 
     /**
      * create a new board for the current game
@@ -87,6 +85,7 @@ public class Board {
     }
 
     protected boolean temporaryAuthorization(String player) {
+        logger.trace(playerInventory.get(player).toString());
         temple.resetTurn();
         return guard.enableAuthorization(player);
     }
@@ -121,7 +120,7 @@ public class Board {
     }
 
     /**
-     * Forge action
+     * Forge *
      * 
      * @param player       name
      * @param diceNumber   where to forge the new face. On the first or second dice
@@ -143,7 +142,8 @@ public class Board {
         }
         if (inv.replaceDiceSide(diceNumber, sideToRemove, sideToAdd)) {
             guard.revokeAuthorizationPartially(player, EXPLOIT);
-            logger.debug(le_bot + player + "' a forge et a obtenu une face " + sideToAdd.toString());
+            logger.debug("Le bot '" + player + "' a forge et a obtenu une face " + sideToAdd.toString());
+            logger.trace(inv.toString());
             return true;
         }
         return false;
@@ -190,7 +190,7 @@ public class Board {
     }
 
     /**
-     * Exploit action
+     * Exploit *
      * 
      * @param card   to be played
      * @param player name
@@ -210,8 +210,9 @@ public class Board {
         }
         if (inv.addCardToBag(card)) {
             guard.revokeAuthorization();
-            logger.debug(le_bot + player + "' a fait un exploit et a obtenu " + card.getVictoryPoints() + " "
+            logger.debug("Le bot '" + player + "' a fait un exploit et a obtenu " + card.getVictoryPoints() + " "
                     + Resources.VICTORY_POINT);
+            logger.trace(inv.toString());
             return true;
         }
         return false;
@@ -228,11 +229,13 @@ public class Board {
             Inventory inv = playerInventory.get(bot.toString());
             Card card = inv.peekLastCard();
             // Card effect
-            logger.debug(le_bot + bot.toString() + "' joue la carte " + card.toString());
+            logger.debug("Le bot '" + bot.toString() + "' joue la carte " + card.toString());
             card.hasImmEffect(bot, inv);
             card.hasAfterEffect(inv);
             card.hasToken(inv);
             card.hasResourcesToStore().forEach((r, n) -> inv.addResourceToBag(n, r));
+            logger.trace(inv.toString());
+
         }
     }
 

@@ -220,4 +220,12 @@ public class Inventory {
     public Card peekLastCard() {
         return cards.get(cards.size() - 1);
     }
+
+    @Override
+    public String toString() {
+        String moon = Resources.MOON_STONE.toString() + ":" + getResource(Resources.MOON_STONE);
+        String sun = Resources.SUN_STONE.toString() + ":" + getResource(Resources.SUN_STONE);
+        String gold = Resources.GOLD.toString() + ":" + getResource(Resources.GOLD);
+        return "[BAG] [[" + gold + "], " + "[" + moon + "], " + "[" + sun + "]]";
+    }
 }

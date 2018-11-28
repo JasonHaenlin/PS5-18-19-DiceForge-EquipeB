@@ -18,6 +18,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.CardEnum;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.exception.BadConfigFileException;
 
 /**
  * Config
@@ -41,7 +42,7 @@ public class Config {
         try {
             this.jsonConfig = extractJson();
         } catch (Exception e) {
-            throw new Exception("erreur lors de l'extraction de la configuration\n" + e.toString());
+            throw new BadConfigFileException("erreur lors de l'extraction de la configuration\n" + e.toString());
         }
     }
 
