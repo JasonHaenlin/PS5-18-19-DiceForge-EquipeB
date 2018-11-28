@@ -35,4 +35,9 @@ public class forgeVP extends Player {
         return 0;
     }
 
+    @Override
+    public Resources callBackResources(List<Resources> res) {
+        return null;
+    }
+
 }

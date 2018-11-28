@@ -107,4 +107,9 @@ public class Hephaestos extends Player {
 		}
 		return false;
 	}
+
+	@Override
+	public Resources callBackResources(List<Resources> res) {
+		return null;
+	}
 }

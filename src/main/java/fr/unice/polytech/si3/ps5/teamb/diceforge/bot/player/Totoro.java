@@ -1,5 +1,7 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player;
 
+import java.util.List;
+
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.Exploit;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.Highest;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.Forge;
@@ -52,6 +54,11 @@ public class Totoro extends Player {
     @Override
     protected boolean replayOnceAgain() {
         return !boardView.playableCards(name, Resources.SUN_STONE, 2).isEmpty();
+    }
+
+    @Override
+    public Resources callBackResources(List<Resources> res) {
+        return null;
     }
 
 }

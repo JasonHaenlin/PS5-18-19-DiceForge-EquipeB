@@ -1,8 +1,11 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player;
 
+import java.util.List;
+
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.Exploit;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.Highest;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
 
 /**
@@ -30,6 +33,11 @@ public class Rem extends Player {
     @Override
     public int callBackDice() {
         return 0;
+    }
+
+    @Override
+    public Resources callBackResources(List<Resources> res) {
+        return null;
     }
 
 }

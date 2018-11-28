@@ -1,5 +1,7 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player;
 
+import java.util.List;
+
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.Forge;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.ResourceSide;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
@@ -37,6 +39,11 @@ public class Cloud extends Player {
     @Override
     public int callBackDice() {
         return 0;
+    }
+
+    @Override
+    public Resources callBackResources(List<Resources> res) {
+        return null;
     }
 
 }

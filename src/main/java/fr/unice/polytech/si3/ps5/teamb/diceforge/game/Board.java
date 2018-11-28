@@ -103,8 +103,8 @@ public class Board {
      * @param player name
      * @return result of the rolling dices
      */
-    public Map<Resources, Integer> rolldice(String player) {
-        return playerInventory.get(player).rolldices();
+    public Map<Resources, Integer> rolldice(Player player) {
+        return playerInventory.get(player.toString()).rolldices(player);
     }
 
     /**

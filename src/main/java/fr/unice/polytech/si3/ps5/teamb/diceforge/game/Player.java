@@ -1,5 +1,7 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -43,6 +45,8 @@ public abstract class Player {
     }
 
     public abstract int callBackDice();
+
+    public abstract Resources callBackResources(List<Resources> res);
 
     void addBoard(Board boardView) {
         this.boardView = boardView;

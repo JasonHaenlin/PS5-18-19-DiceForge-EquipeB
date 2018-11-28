@@ -67,7 +67,7 @@ public class Inventory {
      * 
      * @return the resources got by the dices
      */
-    Map<Resources, Integer> rolldices() {
+    Map<Resources, Integer> rolldices(Player player) {
         Map<Resources, Integer> newResources = new EnumMap<>(Resources.class);
         dices.forEach(dice -> {
             logger.trace("[DICE] " + dice.toString());

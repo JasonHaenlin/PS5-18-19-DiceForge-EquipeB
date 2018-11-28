@@ -10,6 +10,7 @@ import java.util.List;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.helper.PlayerTest;
 
 /**
  * BoardExtends
@@ -28,14 +29,14 @@ public class BoardExtends extends Board {
 
     public boolean BoardRegisterTest() {
         assertTrue(registrationToBoard("Lightning"));
-        assertTrue(registrationToBoard("Cloud"));
-        assertFalse(registrationToBoard("Cloud"));
+        assertTrue(registrationToBoard(PlayerTest.first.toString()));
+        assertFalse(registrationToBoard(PlayerTest.first.toString()));
         initialize();
 
-        assertEquals(Collections.emptyList(), playableCards("Cloud"));
-        assertEquals(Collections.emptyList(), playableSides("Cloud"));
+        assertEquals(Collections.emptyList(), playableCards(PlayerTest.first.toString()));
+        assertEquals(Collections.emptyList(), playableSides(PlayerTest.first.toString()));
 
-        assertNotNull(rolldice("Cloud"));
+        assertNotNull(rolldice(PlayerTest.first));
         return true;
     }
 
@@ -58,9 +59,9 @@ public class BoardExtends extends Board {
     }
 
     public boolean BoardDiceTest() {
-        registrationToBoard("Cloud");
+        registrationToBoard(PlayerTest.first.toString());
         initialize();
-        assertEquals(2, (int) rolldice("Cloud").get(Resources.GOLD));
+        assertEquals(2, (int) rolldice(PlayerTest.first).get(Resources.GOLD));
         return true;
     }
 

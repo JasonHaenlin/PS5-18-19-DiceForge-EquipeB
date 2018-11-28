@@ -68,7 +68,7 @@ public class Game extends Board {
 
     private void rollAllDices() {
         bots.forEach((botdice, scoredice) -> {
-            Map<Resources, Integer> result = rolldice(botdice.toString());
+            Map<Resources, Integer> result = rolldice(botdice);
             bots.replace(botdice, scoredice + getVictoryPoints(botdice.toString()));
             logger.debug("Le bot '" + botdice.toString() + "' lance les des");
             result.forEach((res, amout) -> logger
