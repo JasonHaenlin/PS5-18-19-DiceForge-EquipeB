@@ -16,7 +16,7 @@ public class Pika extends Player {
 
     @Override
     protected void setup() {
-        // no specific setup
+
     }
 
     @Override

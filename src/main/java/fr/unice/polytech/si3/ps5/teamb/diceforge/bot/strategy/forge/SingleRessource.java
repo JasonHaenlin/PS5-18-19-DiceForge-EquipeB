@@ -27,13 +27,15 @@ public class SingleRessource extends Forge {
 		}
 		feasible.sort((DiceSide s1, DiceSide s2) -> Integer.compare(s1.getValue(), s2.getValue()));
 		return feasible.get(feasible.size() - 1);
+
 	}
 
-    /**
-     * Select only DiceSide with the ressouces in parametre
-     * @param feasible
-     * @param resource
-     */
+	/**
+	 * Select only DiceSide with the ressouces in parametre
+	 * 
+	 * @param feasible
+	 * @param resource
+	 */
 	private void keepOnlyResource(List<DiceSide> feasible, Resources resource) {
 		int size = feasible.size();
 		int i = 0;
@@ -49,20 +51,21 @@ public class SingleRessource extends Forge {
 
 	/**
 	 * Calculate a score of dice depend of ressource in param
+	 * 
 	 * @param diceSides
 	 * @param resources
 	 * @return the sum of side value ressources
 	 */
 	@Override
-    public int analyseDice(List<DiceSide> diceSides, Resources resources){
-	    int potential = 0;
-	    for(DiceSide diceSide: diceSides){
-	        if(diceSide.getType() == resources){
-	            potential += diceSide.getValue();
-            }
-        }
-        return potential;
-    }
+	public int analyseDice(List<DiceSide> diceSides, Resources resources) {
+		int potential = 0;
+		for (DiceSide diceSide : diceSides) {
+			if (diceSide.getType() == resources) {
+				potential += diceSide.getValue();
+			}
+		}
+		return potential;
+	}
 
 	/**
 	 * Chose the dice for forge (select the dice where analyseDice doesn't return
@@ -72,18 +75,19 @@ public class SingleRessource extends Forge {
 	 * @param diceSides0, diceSides1, Resources
 	 */
 	@Override
-    public int choseDice(List<DiceSide> diceSides0, List<DiceSide> diceSides1, Resources resources){
-	    //TODO
-        return 0;
-    }
+	public int choseDice(List<DiceSide> diceSides0, List<DiceSide> diceSides1, Resources resources) {
+		// TODO
+		return 0;
+	}
 
 	/**
 	 * Chose the better side to remove get the littlest gold side
+	 * 
 	 * @param dicesSides
 	 * @param resources
 	 * @return side to remove
 	 */
-	@Override //TODO change the method to fix the parameter resources which is not used
+	@Override // TODO change the method to fix the parameter resources which is not used
 	public DiceSide choseSideRemove(List<DiceSide> dicesSides, Resources resources) {
 		List<DiceSide> potentielSides = new ArrayList<>();
 		for (DiceSide side : dicesSides) {

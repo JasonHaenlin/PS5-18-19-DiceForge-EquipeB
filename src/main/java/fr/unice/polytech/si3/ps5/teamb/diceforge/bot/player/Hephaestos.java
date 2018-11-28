@@ -3,7 +3,6 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player;
 import java.util.List;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.Exploit;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.Highest;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.Forge;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.SingleRessource;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
@@ -110,6 +109,6 @@ public class Hephaestos extends Player {
 
 	@Override
 	public Resources callBackResources(List<Resources> res) {
-		return null;
+		return res.get(0);
 	}
 }
