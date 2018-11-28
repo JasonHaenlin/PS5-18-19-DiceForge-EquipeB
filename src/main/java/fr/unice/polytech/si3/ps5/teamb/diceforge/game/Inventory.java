@@ -88,52 +88,59 @@ public class Inventory {
     /**
      * add resources to the bag
      * 
-     * @param amout resource quantity
-     * @param res   [gold, victory point, sun stone, moon stone]
+     * @param amount resource quantity
+     * @param res    [gold, victory point, sun stone, moon stone]
      */
-    void addResourceToBag(int amout, Resources res) {
+    void addResourceToBag(int amount, Resources res) {
         if (res.equals(Resources.VICTORY_POINT))
-            lastUpdate += amout;
-        treasury.replace(res, maxRessourcesLimit(amout, res));
+            lastUpdate += amount;
+        treasury.replace(res, maxRessourcesLimit(amount, res));
     }
 
-    int maxRessourcesLimit(int amout, Resources res) {
+    int maxRessourcesLimit(int amount, Resources res) {
         switch (res) {
         case GOLD:
-            if (treasury.get(res) + amout >= 12) {
-                return 12;
+            if (treasury.get(res) + amount >= 12) {
+                return 12; // TODO not static
             } else {
-                return treasury.get(res) + amout;
+                return treasury.get(res) + amount;
             }
         case MOON_STONE:
-            if (treasury.get(res) + amout >= 6) {
-                return 6;
+            if (treasury.get(res) + amount >= 6) {
+                return 6; // TODO not static
             } else {
-                return treasury.get(res) + amout;
+                return treasury.get(res) + amount;
             }
         case SUN_STONE:
-            if (treasury.get(res) + amout >= 6) {
-                return 6;
+            if (treasury.get(res) + amount >= 6) {
+                return 6; // TODO not static
             } else {
-                return treasury.get(res) + amout;
+                return treasury.get(res) + amount;
             }
         default:
-            return treasury.get(res) + amout;
+            return treasury.get(res) + amount;
         }
     }
 
     /**
      * remove resources from the player bag
      * 
-     * @param amout resource quantity
-     * @param res   [gold, victory point, sun stone, moon stone]
+     * @param amount resource quantity
+     * @param res    [gold, victory point, sun stone, moon stone]
      * @return true if the player had enough resources in his bag
      */
-    boolean removeResourceFromBag(int amout, Resources res) {
-        if (treasury.get(res) < amout) {
+    boolean removeResourceFromBag(int amount, Resources res) {
+        if (!hasEnoughResources(amount, res)) {
             return false;
         }
-        treasury.replace(res, treasury.get(res) - amout);
+        treasury.replace(res, treasury.get(res) - amount);
+        return true;
+    }
+
+    boolean hasEnoughResources(int amount, Resources res) {
+        if (treasury.get(res) < amount) {
+            return false;
+        }
         return true;
     }
 

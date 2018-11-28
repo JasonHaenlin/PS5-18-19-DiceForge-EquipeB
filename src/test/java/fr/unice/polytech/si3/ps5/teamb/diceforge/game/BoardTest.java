@@ -1,10 +1,14 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import java.util.List;
 
 import org.junit.Test;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.OnlyDice;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 
 /**
@@ -30,6 +34,16 @@ public class BoardTest {
     public void gameBoardForgeTest() throws Exception {
         board = new BoardExtends(new Config(basicsideConf));
         assertTrue(board.BoardForgeTest());
+    }
+
+    @Test
+    public void gameBoardCheatForgeTest() throws Exception {
+        board = new BoardExtends(new Config(basicsideConf));
+        assertTrue(board.BoardCheatForgeTest());
+        List<DiceSide> sides = board.getBoardView().playableSides("noCheat");
+        DiceSide side = board.getDiceSide("noCheat", 0).get(0);
+        assertTrue(board.forge("noCheat", 0, side, sides.get(2)));
+        assertFalse(board.forge("noCheat", 0, side, sides.get(1)));
     }
 
     @Test

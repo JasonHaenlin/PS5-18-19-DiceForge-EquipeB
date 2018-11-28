@@ -47,7 +47,13 @@ public class BoardExtends extends Board {
         assertEquals(6, playableSides("Cloud").size());
         assertEquals(3, playableSides("Carl").size());
         assertEquals(0, playableSides("Philipe").size());
+        return true;
+    }
 
+    public boolean BoardCheatForgeTest() {
+        registrationToBoard("noCheat");
+        initialize();
+        temporaryAuthorization("noCheat");
         return true;
     }
 
@@ -80,7 +86,7 @@ public class BoardExtends extends Board {
         return true;
     }
 
-    public boolean TestBoardforge() {
+    public boolean boardforge2Test() {
         registrationToBoard("Forgetest");
         initialize();
         temporaryAuthorization("Forgetest");
