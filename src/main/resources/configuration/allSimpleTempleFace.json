@@ -129,6 +129,26 @@
                 "sunStone": 1,
                 "moonStone": 0,
                 "victoryPoint": 2
+            }, {
+                "name": "BLACKSMITH_CHEST",
+                "sunStone": 0,
+                "moonStone": 1,
+                "victoryPoint": 2
+            }, {
+                "name": "BLACKSMITH_CHEST",
+                "sunStone": 0,
+                "moonStone": 1,
+                "victoryPoint": 2
+            }, {
+                "name": "BLACKSMITH_CHEST",
+                "sunStone": 0,
+                "moonStone": 1,
+                "victoryPoint": 2
+            }, {
+                "name": "BLACKSMITH_CHEST",
+                "sunStone": 0,
+                "moonStone": 1,
+                "victoryPoint": 2
             }
 
         ],

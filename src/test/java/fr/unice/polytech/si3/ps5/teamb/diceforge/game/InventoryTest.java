@@ -65,6 +65,12 @@ public class InventoryTest {
         assertEquals(24, inv.getResource(Resources.VICTORY_POINT));
         assertEquals(6, inv.getResource(Resources.MOON_STONE));
         assertEquals(6, inv.getResource(Resources.SUN_STONE));
+        inv.expand(4, 3, 3);
+        inv.addResourceToBag(3, Resources.GOLD);
+        assertEquals(15, inv.getResource(Resources.GOLD));
+        inv.addResourceToBag(3, Resources.GOLD);
+        assertEquals(16, inv.getResource(Resources.GOLD));
+
     }
 
     @Test

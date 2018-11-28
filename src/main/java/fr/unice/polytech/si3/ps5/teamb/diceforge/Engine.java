@@ -30,11 +30,11 @@ public class Engine {
 	private static final LoggerContext ctx = (LoggerContext) LogManager.getContext(false);
 	private static final Configuration config = ctx.getConfiguration();
 
-	private String confFile = "src/main/resources/configuration/allSimpleTempleFace.json";
 	private static final Logger logger = LogManager.getLogger(Engine.class);
+	private String confFile = "src/main/resources/configuration/allSimpleTempleFace.json";
 
-	private static Map<Player, Integer> player;
-	private static Map<Player, Integer> playerTotalScore;
+	private Map<Player, Integer> player;
+	private Map<Player, Integer> playerTotalScore;
 
 	private int numberOfParties = 1;
 	private Config conf;
@@ -47,9 +47,6 @@ public class Engine {
 	 * @throws Exception if the config is not found
 	 */
 	public Engine createGame(int numberOfParties) throws Exception {
-		// warn that the player map will be overide because it's a static field
-		if (player != null)
-			logger.warn("Player map is OVERIDE");
 		player = new HashMap<>();
 		playerTotalScore = new HashMap<>();
 
@@ -143,17 +140,4 @@ public class Engine {
 		this.confFile = confFile;
 	}
 
-	/**
-	 * get the instance of the selected player
-	 * 
-	 * @param name
-	 * @return
-	 */
-	public static Player getPlayerByName(String name) {
-		for (Entry<Player, Integer> pl : player.entrySet()) {
-			if (pl.toString().equals(name))
-				return pl.getKey();
-		}
-		return null;
-	}
 }
