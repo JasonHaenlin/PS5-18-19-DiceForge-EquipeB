@@ -34,6 +34,7 @@ public class Engine {
 	private static final Logger logger = LogManager.getLogger(Engine.class);
 
 	private static Map<Player, Integer> player;
+	private static Map<Player, Integer> playerTotalScore;
 
 	private int numberOfParties = 1;
 	private Config conf;
@@ -50,6 +51,7 @@ public class Engine {
 		if (player != null)
 			logger.warn("Player map is OVERIDE");
 		player = new HashMap<>();
+		playerTotalScore = new HashMap<>();
 
 		this.conf = new Config(confFile);
 		this.numberOfParties = numberOfParties;
@@ -72,7 +74,9 @@ public class Engine {
 	 */
 	public Engine addBot(Class<? extends Player> bot) throws InstantiationException, IllegalAccessException {
 		if (player.size() <= 3) {
-			player.put(bot.newInstance(), 0);
+			Player pl = bot.newInstance();
+			player.put(pl, 0);
+			playerTotalScore.put(pl, 0);
 		}
 		return this;
 	}
@@ -120,6 +124,7 @@ public class Engine {
 	private void computeResult(Map<String, Integer> map) {
 		player.forEach((bot, score) -> {
 			if (map.containsKey(bot.toString())) {
+				playerTotalScore.replace(bot, playerTotalScore.get(bot) + map.get(bot.toString()));
 				player.replace(bot, player.get(bot) + 1);
 			}
 		});
@@ -128,7 +133,8 @@ public class Engine {
 	private String buildResult() {
 		StringBuilder buildScore = new StringBuilder("Resultat de la sequence :");
 		player.forEach((bot, score) -> buildScore.append("\nle bot '" + bot.toString() + "' gagne " + score + " "
-				+ (score > 1 ? "parties" : "partie") + " sur " + numberOfParties + " : "
+				+ (score > 1 ? "parties" : "partie") + " sur " + numberOfParties + " : moyenne des points "
+				+ String.format("%.2f", ((float) playerTotalScore.get(bot)) / numberOfParties) + " points : "
 				+ (score != 0 ? String.format("%.1f", ((float) score / numberOfParties) * 100) + "%" : "0.0%")));
 		return buildScore.toString();
 	}
