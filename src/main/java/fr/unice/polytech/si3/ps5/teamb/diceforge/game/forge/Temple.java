@@ -69,6 +69,9 @@ public class Temple {
         if (curPool == null) {
             return false;
         }
+        if (cardAlreadyPlayed.contains(sideToRemove)) {
+            return false;
+        }
         if (curPool.tryToRemoveSide(sideToRemove)) {
             return cardAlreadyPlayed.add(sideToRemove);
         }

@@ -32,7 +32,7 @@ public class TestBoardforge {
 
     @Test
     public void boardForgeTest() {
-        board.TestBoardforge();
+        board.boardforge2Test();
         assertTrue(board.forge("Forgetest", 0, remove, add));
         assertTrue(checkremove());
 

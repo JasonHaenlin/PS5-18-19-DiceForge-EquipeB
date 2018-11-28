@@ -131,14 +131,17 @@ public class Board {
      * @return true if successfully forge
      */
     public boolean forge(String player, int diceNumber, DiceSide sideToRemove, DiceSide sideToAdd) {
-        // need to add token for further permission
+        Inventory inv = playerInventory.get(player);
         if (sideToAdd == null || sideToRemove == null || !guard.isAuthorizated(player, FORGE)) {
+            return false;
+        }
+        if (!inv.hasEnoughResources(sideToAdd.getCost(), Resources.GOLD)) {
             return false;
         }
         if (!temple.removeSide(sideToAdd)) {
             return false;
         }
-        if (playerInventory.get(player).replaceDiceSide(diceNumber, sideToRemove, sideToAdd)) {
+        if (inv.replaceDiceSide(diceNumber, sideToRemove, sideToAdd)) {
             guard.revokeAuthorizationPartially(player, EXPLOIT);
             logger.debug(le_bot + player + "' a forge et a obtenu une face " + sideToAdd.toString());
             return true;
@@ -194,14 +197,18 @@ public class Board {
      * @return true if the card has been played
      */
     public boolean exploit(Card card, String player) {
-        // need to add token for further permission
+        Inventory inv = playerInventory.get(player);
         if (card == null || !guard.isAuthorizated(player, 2)) {
+            return false;
+        }
+        if (!(inv.hasEnoughResources(card.getMoonStone(), Resources.MOON_STONE)
+                && inv.hasEnoughResources(card.getSunStone(), Resources.SUN_STONE))) {
             return false;
         }
         if (!islands.removeCard(card)) {
             return false;
         }
-        if (playerInventory.get(player).addCardToBag(card)) {
+        if (inv.addCardToBag(card)) {
             guard.revokeAuthorization();
             logger.debug(le_bot + player + "' a fait un exploit et a obtenu " + card.getVictoryPoints() + " "
                     + Resources.VICTORY_POINT);
