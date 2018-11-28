@@ -26,6 +26,10 @@ public class Inventory {
 
     private int lastUpdate = 0;
 
+    private int goldLim = 12;
+    private int sunLim = 6;
+    private int moonLim = 6;
+
     /**
      * create a new empty inventory with basics dices
      */
@@ -98,27 +102,16 @@ public class Inventory {
     }
 
     int maxRessourcesLimit(int amount, Resources res) {
+        int n = treasury.get(res) + amount;
         switch (res) {
         case GOLD:
-            if (treasury.get(res) + amount >= 12) {
-                return 12; // TODO not static
-            } else {
-                return treasury.get(res) + amount;
-            }
+            return n >= goldLim ? goldLim : n;
         case MOON_STONE:
-            if (treasury.get(res) + amount >= 6) {
-                return 6; // TODO not static
-            } else {
-                return treasury.get(res) + amount;
-            }
+            return n >= sunLim ? sunLim : n;
         case SUN_STONE:
-            if (treasury.get(res) + amount >= 6) {
-                return 6; // TODO not static
-            } else {
-                return treasury.get(res) + amount;
-            }
+            return n >= moonLim ? moonLim : n;
         default:
-            return treasury.get(res) + amount;
+            return n;
         }
     }
 
@@ -227,5 +220,14 @@ public class Inventory {
         String sun = Resources.SUN_STONE.toString() + ":" + getResource(Resources.SUN_STONE);
         String gold = Resources.GOLD.toString() + ":" + getResource(Resources.GOLD);
         return "[BAG] [[" + gold + "], " + "[" + moon + "], " + "[" + sun + "]]";
+    }
+
+    /**
+     * expand the inventory maximum capacity
+     */
+    public void expand(int gold, int sun, int moon) {
+        this.goldLim += gold;
+        this.sunLim +=sun;
+        this.moonLim +=moon;
     }
 }

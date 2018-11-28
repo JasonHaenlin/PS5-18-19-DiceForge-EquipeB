@@ -228,6 +228,10 @@ public class Board {
 
             Inventory inv = playerInventory.get(bot.toString());
             Card card = inv.peekLastCard();
+            // don't play the card again if the card has been already used
+            if (card.hasBeenPlayed())
+                return;
+
             // Card effect
             logger.debug("Le bot '" + bot.toString() + "' joue la carte " + card.toString());
             card.hasImmEffect(bot, inv);
