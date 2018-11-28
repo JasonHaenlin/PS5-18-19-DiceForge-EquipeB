@@ -90,12 +90,7 @@ public class Game extends Board {
 
     Game addBot(Class<? extends Player> bot) throws InstantiationException, IllegalAccessException {
         Player player = bot.newInstance();
-        player.addBoard(getBoardView());
-        player.setup();
-        logger.info("add bot :" + bot.toString());
-        bots.put(player, 0);
-        registrationToBoard(player.toString());
-        return this;
+        return addBot(player);
     }
 
     /**
@@ -105,8 +100,8 @@ public class Game extends Board {
      * @return Game
      */
     public Game addBot(Player bot) {
-        bot.setup();
         bot.addBoard(getBoardView());
+        bot.setup();
         logger.debug("add bot : '" + bot.toString() + "'");
         bots.put(bot, 0);
         registrationToBoard(bot.toString());

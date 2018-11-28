@@ -229,6 +229,8 @@ public class Board {
             Inventory inv = playerInventory.get(bot.toString());
             Card card = inv.peekLastCard();
             // don't play the card again if the card has been already used
+            if (card == null)
+                return;
             if (card.hasBeenPlayed())
                 return;
 

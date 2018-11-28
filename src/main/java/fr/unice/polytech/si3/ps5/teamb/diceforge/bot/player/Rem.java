@@ -3,10 +3,9 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player;
 import java.util.List;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.Exploit;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.Highest;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.behaviour.HighestExploit;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
 
 /**
  * Pika
@@ -21,13 +20,12 @@ public class Rem extends Player {
 
     @Override
     protected void setup() {
-        exploit = new Highest(name);
+        exploit = new Exploit(name, boardView);
     }
 
     @Override
     protected void play() {
-        Card card = exploit.compute(boardView.playableCards(name));
-        boardView.exploit(card, name);
+        exploit.compute(new HighestExploit());
     }
 
     @Override

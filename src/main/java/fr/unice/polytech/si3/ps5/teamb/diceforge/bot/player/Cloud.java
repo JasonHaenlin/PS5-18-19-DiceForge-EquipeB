@@ -3,10 +3,10 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player;
 import java.util.List;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.Forge;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.ResourceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.behaviour.HighestForge;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.behaviour.analyse.ResourceSide;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 
 /**
  * Pika
@@ -14,8 +14,6 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 public class Cloud extends Player {
 
     private Forge forge;
-    private int randomDice = 0;
-    private Resources resource;
 
     public Cloud() {
         super("Cloud");
@@ -23,17 +21,13 @@ public class Cloud extends Player {
 
     @Override
     public void setup() {
-        forge = new ResourceSide(name);
-        resource = Resources.VICTORY_POINT;
+        forge = new Forge(name, boardView);
+        forge.setdiceTypePriority(Resources.VICTORY_POINT);
     }
 
     @Override
     public void play() {
-        int numberDice = forge.choseDice(boardView.getDiceSide(name, 0), boardView.getDiceSide(name, 1), null);
-        DiceSide side = forge.compute(boardView.playableSides(name), resource);
-        boardView.forge(name, randomDice,
-                forge.choseSideRemove(boardView.getDiceSide(name, numberDice), Resources.VICTORY_POINT), side);
-
+        forge.compute(new ResourceSide(), new HighestForge(), true);
     }
 
     @Override

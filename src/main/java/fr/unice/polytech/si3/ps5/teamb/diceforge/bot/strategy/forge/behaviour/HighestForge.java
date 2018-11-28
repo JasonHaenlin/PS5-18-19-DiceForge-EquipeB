@@ -6,9 +6,9 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 
 /**
- * Highest
+ * HighestForge
  */
-public class Highest implements StratForge {
+public class HighestForge implements StratForge {
 
     @Override
     public DiceSide execution(List<DiceSide> feasible, Resources resource) {

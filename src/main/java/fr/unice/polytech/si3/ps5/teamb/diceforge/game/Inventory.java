@@ -211,6 +211,8 @@ public class Inventory {
     }
 
     public Card peekLastCard() {
+        if (cards.isEmpty())
+            return null;
         return cards.get(cards.size() - 1);
     }
 
@@ -227,7 +229,7 @@ public class Inventory {
      */
     public void expand(int gold, int sun, int moon) {
         this.goldLim += gold;
-        this.sunLim +=sun;
-        this.moonLim +=moon;
+        this.sunLim += sun;
+        this.moonLim += moon;
     }
 }

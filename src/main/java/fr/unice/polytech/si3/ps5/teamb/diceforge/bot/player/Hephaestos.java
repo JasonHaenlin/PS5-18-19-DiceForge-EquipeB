@@ -3,8 +3,10 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player;
 import java.util.List;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.Exploit;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.behaviour.HighestExploit;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.Forge;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.SingleRessource;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.behaviour.HighestForge;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.behaviour.analyse.SingleResource;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
@@ -18,9 +20,6 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 public class Hephaestos extends Player {
 	private Forge forge;
 	private Exploit exploit;
-	private Resources resourceToForge1;
-	private Resources resourceToForge2;
-
 	private int round = 0;
 
 	public Hephaestos() {
@@ -29,10 +28,9 @@ public class Hephaestos extends Player {
 
 	@Override
 	protected void setup() {
-		forge = new SingleRessource(name);
-		exploit = new Highest(name);
-		resourceToForge1 = Resources.GOLD;
-		resourceToForge2 = Resources.MOON_STONE;
+		forge = new Forge(name, boardView);
+		exploit = new Exploit(name, boardView);
+		forge.setdiceTypePriority(Resources.GOLD, Resources.MOON_STONE, Resources.SUN_STONE);
 	}
 
 	/**
@@ -43,59 +41,21 @@ public class Hephaestos extends Player {
 	@Override
 	public void play() {
 		round++;
-		DiceSide sideToAdd1 = forge.compute(boardView.playableSides(name), resourceToForge1);
-		DiceSide sideToAdd2 = forge.compute(boardView.playableSides(name), resourceToForge2);
-		DiceSide sideToAdd3 = forge.compute(boardView.playableSides(name), Resources.SUN_STONE);
-
-		List<DiceSide> diceSides0 = boardView.getDiceSide(name, 0);
-		List<DiceSide> diceSides1 = boardView.getDiceSide(name, 1);
-
-		int diceToForge1 = forge.choseDice(diceSides0, diceSides1, null);
-		int diceToForge2 = 1; // TODO change to choseDice when changeDice is OK
-
-		if (round < 2) {
-			while (forgeOrBuyExploit(diceToForge1, sideToAdd1, resourceToForge1) == 1)
-				;
-		} else if (round < 5) {
-			while (forgeOrBuyExploit(diceToForge2, sideToAdd2, resourceToForge2) == 1)
-				;
-			while (forgeOrBuyExploit(diceToForge2, sideToAdd3, Resources.SUN_STONE) == 1)
-				;
-
-		} else {
-			buyExploitOrForge(diceToForge2, sideToAdd2, resourceToForge2);
+		if (round == 3) {
+			forge.setdiceTypePriority(Resources.MOON_STONE, Resources.SUN_STONE);
 		}
-
+		if (round < 5) {
+			forge.compute(new SingleResource(), new HighestForge(), true);
+			exploit.compute(new HighestExploit());
+		} else {
+			exploit.compute(new HighestExploit());
+			forge.compute(new SingleResource(), new HighestForge(), true);
+		}
 	}
 
 	@Override
 	public int callBackDice() {
 		return 0;
-	}
-
-	// TODO resourceToForge isn't used at the moment check choseSideRemove
-	private int forgeOrBuyExploit(int diceToForge, DiceSide sideToAdd, Resources resourceToForge) {
-		if (boardView.forge(name, diceToForge,
-				forge.choseSideRemove(boardView.getDiceSide(name, diceToForge), resourceToForge), sideToAdd)) {
-			return 0;
-		} else {
-			Card card = exploit.compute(boardView.playableCards(name));
-			if (boardView.exploit(card, name)) {
-				boardView.playLastCard(this);
-				return 1;
-			}
-		}
-		return -1;
-	}
-
-	private void buyExploitOrForge(int diceToForge, DiceSide sideToAdd, Resources resourceToForge) {
-		Card card = exploit.compute(boardView.playableCards(name));
-		if (boardView.exploit(card, name)) {
-			boardView.playLastCard(this);
-		} else {
-			boardView.forge(name, diceToForge,
-					forge.choseSideRemove(boardView.getDiceSide(name, diceToForge), resourceToForge), sideToAdd);
-		}
 	}
 
 	@Override
