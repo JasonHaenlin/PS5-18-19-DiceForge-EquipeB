@@ -39,9 +39,9 @@ public class Forge {
     public void compute(StratDice stratD, StratForge stratF, boolean repeatInf) {
         List<DiceSide> diceSides0 = boardView.getDiceSide(name, 0);
         List<DiceSide> diceSides1 = boardView.getDiceSide(name, 1);
-        int d = stratD.choseDice(diceSides0, diceSides1, null);
         DiceSide sideToRemove;
         DiceSide sideToAdd;
+        int d;
         do {
             sideToAdd = null;
             int i;
@@ -49,7 +49,8 @@ public class Forge {
                 sideToAdd = stratF.execution(boardView.playableSides(name), resPriority.get(i));
             if (i >= size)
                 i = size - 1;
+            d = stratD.choseDice(diceSides0, diceSides1, resPriority.get(i));
             sideToRemove = stratD.choseSideRemove(boardView.getDiceSide(name, d), resPriority.get(i));
-        } while (repeatInf && boardView.forge(name, d, sideToRemove, sideToAdd));
+        } while (boardView.forge(name, d, sideToRemove, sideToAdd) && repeatInf);
     }
 }

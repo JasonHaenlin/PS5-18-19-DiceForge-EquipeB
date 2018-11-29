@@ -17,12 +17,14 @@ public class PlayerTest extends Board {
     public static final Player third = new OnlyDice();
     public static final Player fourth = new OnlyDice();
 
-    public static PlayerTest playerTest;
-
-    private Config conf;
+    private static PlayerTest playerTest;
 
     private PlayerTest() throws Exception {
         super(new Config(basic));
+    }
+
+    public Board getBoard() {
+        return getBoardView();
     }
 
     public static PlayerTest getInstance() throws Exception {
@@ -30,6 +32,6 @@ public class PlayerTest extends Board {
             playerTest = new PlayerTest();
         }
         return playerTest;
-
     }
+
 }
