@@ -60,14 +60,14 @@ public class Pika extends Player {
 
             @Override
             public void doAction(Board boardView) {
-                exploit.compute(new HighestExploit());
                 forge.compute(new SingleResource(), new HighestForge(), true);
+                exploit.compute(new HighestExploit());
             }
 
             @Override
             public void otherwise(Board boardView) {
-                forge.compute(new SingleResource(), new HighestForge(), true);
                 exploit.compute(new HighestExploit());
+                forge.compute(new SingleResource(), new HighestForge(), true);
             }
 
         });

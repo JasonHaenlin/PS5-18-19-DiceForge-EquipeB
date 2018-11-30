@@ -32,7 +32,6 @@ public class Totoro extends Player {
     public void play() {
         forge.compute(new ResourceSide(), new HighestForge(), true);
         exploit.compute(new HighestExploit());
-        boardView.playLastCard(this);
     }
 
     @Override

@@ -223,7 +223,7 @@ public class Board {
      * 
      * @param bot
      */
-    public void playLastCard(Player bot) {
+    void playLastCard(Player bot) {
         if (bot.toString().equals(guard.peekLastPlayer())) {
 
             Inventory inv = playerInventory.get(bot.toString());
