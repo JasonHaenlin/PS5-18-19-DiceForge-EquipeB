@@ -1,17 +1,20 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state;
 
-public class Context {
-    private State state;
+/**
+ * manage the context for the state
+ */
+class Context {
+    private Template state;
 
-    public Context() {
+    Context() {
         state = null;
     }
 
-    public void setState(State state) {
+    void setState(Template state) {
         this.state = state;
     }
 
-    public State getState() {
+    Template getState() {
         return state;
     }
 }

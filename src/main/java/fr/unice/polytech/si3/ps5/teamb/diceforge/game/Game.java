@@ -30,7 +30,7 @@ public class Game extends Board {
     private int finalScore;
     private int round; // number of rounds in a game
 
-    private Integer gameRound = new Integer(1);
+    private Integer gameRound = new Integer(0);
 
     /**
      * Create a game
@@ -55,8 +55,7 @@ public class Game extends Board {
         initialize();
         for (int i = 0; i < round; i++) {
             gameRound += 1;
-            logger.debug("---------------------------------tour actuel : " + gameRound
-                    + " ---------------------------------");
+            logger.debug("|========================tour actuel : " + gameRound + " ========================|");
             bots.forEach((bot, score) -> {
                 rollAllDices();
                 logger.debug("------------------Debut du tour pour '" + bot.toString() + "' ------------------");
@@ -75,7 +74,7 @@ public class Game extends Board {
             bots.replace(botdice, scoredice + getVictoryPoints(botdice.toString()));
             logger.debug("Le bot '" + botdice.toString() + "' lance les des");
             result.forEach((res, amout) -> logger
-                    .debug("Le bot'" + botdice.toString() + "' a obtenu " + amout + " " + res.toString()));
+                    .debug("Le bot '" + botdice.toString() + "' a obtenu " + amout + " " + res.toString()));
         });
     }
 
@@ -85,7 +84,7 @@ public class Game extends Board {
         playLastCard(bot);
         // ask if the bot want to play again
         if (isPlayingAgainPossible(bot.toString()) && bot.replayOnceAgain()) {
-            logger.debug("Le bot'" + bot.toString() + "'  rejoue son tour");
+            logger.debug("Le bot '" + bot.toString() + "'  rejoue son tour");
             removeResourcesToPlayAgain(bot.toString());
             temporaryAuthorization(bot.toString());
             bot.play();

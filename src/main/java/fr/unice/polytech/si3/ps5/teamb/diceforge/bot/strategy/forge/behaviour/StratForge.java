@@ -7,8 +7,14 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 
 /**
  * StratForge
+ * 
+ * @author Jason Haenlin
  */
 public interface StratForge {
+
+    /**
+     * retrive the best dice side from the temple
+     */
     DiceSide execution(List<DiceSide> feasible, Resources resource);
 
     default void keepOnlyResource(List<DiceSide> feasible, Resources resource) {

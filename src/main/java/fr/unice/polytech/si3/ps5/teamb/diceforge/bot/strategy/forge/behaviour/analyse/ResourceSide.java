@@ -8,6 +8,8 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 
 /**
  * ResourceSide
+ * 
+ * @see StratDice
  */
 public class ResourceSide implements StratDice {
 
