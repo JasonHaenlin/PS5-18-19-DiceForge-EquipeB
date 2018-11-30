@@ -232,4 +232,8 @@ public class Inventory {
         this.sunLim += sun;
         this.moonLim += moon;
     }
+
+    public void createHammer(){
+
+    }
 }

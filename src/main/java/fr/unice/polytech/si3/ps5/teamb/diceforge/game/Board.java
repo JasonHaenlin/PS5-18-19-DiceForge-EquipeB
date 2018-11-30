@@ -236,7 +236,7 @@ public class Board {
 
             // Card effect
             logger.debug("Le bot '" + bot.toString() + "' joue la carte " + card.toString());
-            card.hasImmEffect(bot, inv);
+            card.playImmEffect(bot, inv);
             card.hasAfterEffect(inv);
             card.hasToken(inv);
             card.hasResourcesToStore().forEach((r, n) -> inv.addResourceToBag(n, r));
