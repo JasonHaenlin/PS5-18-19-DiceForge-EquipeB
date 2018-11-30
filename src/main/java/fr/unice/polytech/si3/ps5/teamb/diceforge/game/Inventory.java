@@ -5,6 +5,7 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.BlacksmithHammer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -233,7 +234,36 @@ public class Inventory {
         this.moonLim += moon;
     }
 
-    public void createHammer(){
+    private boolean isHammerInInventory(){
+        for(Card card:cards){
+            if(card.equals(new BlacksmithHammer(1,0,0))) {
+                return true;
+            }
+        }
+        return false;
+    }
 
+    /**
+     * A player can have several hammer in invetory, this method
+     * select the hammer which player can play
+     * @return Hammer card
+     */
+
+    public BlacksmithHammer getHammer(){
+        if(!isHammerInInventory()){
+            return null;
+        }
+        List<Card> listHammer = new ArrayList<>();
+        for(Card card : cards){
+            if(card.equals(new BlacksmithHammer(1,0,0))) {
+                BlacksmithHammer hammer = (BlacksmithHammer) card;
+                if(hammer.getCurrentSquare()<30) listHammer.add(card);
+            }
+        }
+        for(Card card : listHammer){
+            BlacksmithHammer cardHammer = (BlacksmithHammer) card;
+            if( (!cardHammer.isCurrentSquareNull()) ) return (BlacksmithHammer) card;
+        }
+        return (BlacksmithHammer) listHammer.get(0);
     }
 }

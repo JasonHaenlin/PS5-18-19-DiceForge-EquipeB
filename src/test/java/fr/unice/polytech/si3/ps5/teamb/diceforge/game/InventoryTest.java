@@ -4,6 +4,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.BlacksmithHammer;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -112,5 +113,45 @@ public class InventoryTest {
 
         assertTrue(dice1.equals(dice2));
 
+    }
+
+    @Test
+    public void getHammerTest(){
+        Card hammer1 = new BlacksmithHammer(1,0,0);
+        hammer1.playEffect(5);
+        inv.addCardToBag(hammer1);
+        Card hammer2 = new BlacksmithHammer(1,0,0);
+        inv.addCardToBag(hammer2);
+
+        BlacksmithHammer hammer = inv.getHammer();
+        assertEquals(5,hammer.getCurrentSquare());
+    }
+
+    @Test
+    public void getHammerTestAgain(){
+        Card hammer1 = new BlacksmithHammer(1,0,0);
+        inv.addCardToBag(hammer1);
+        Card hammer2 = new BlacksmithHammer(1,0,0);
+        inv.addCardToBag(hammer2);
+
+        BlacksmithHammer hammer = inv.getHammer();
+        assertEquals(0, hammer.getCurrentSquare());
+
+        hammer.playEffect(5);
+
+        hammer = inv.getHammer();
+        assertEquals(5,hammer.getCurrentSquare());
+    }
+
+    @Test
+    public void AnotherGetHammerTest(){
+        Card hammer1 = new BlacksmithHammer(1,0,0);
+        hammer1.playEffect(30);
+        inv.addCardToBag(hammer1);
+        Card hammer2 = new BlacksmithHammer(1,0,0);
+        inv.addCardToBag(hammer2);
+
+        BlacksmithHammer hammer = inv.getHammer();
+        assertEquals(0, hammer.getCurrentSquare());
     }
 }
