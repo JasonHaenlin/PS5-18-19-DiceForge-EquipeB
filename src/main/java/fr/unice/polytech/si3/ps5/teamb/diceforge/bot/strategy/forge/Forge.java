@@ -12,19 +12,28 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 
 /**
  * Forge
+ * 
+ * @see StratDice
+ * @see StratForge
  */
 public class Forge {
 
     private final String name;
     private final Board boardView;
     private List<Resources> resPriority;
-    int size;
+    private int size;
 
     public Forge(String name, Board boardView) {
         this.name = name;
         this.boardView = boardView;
     }
 
+    /**
+     * Set the priorities the strategy will try to forge the first resouce first,
+     * then the second and so on.
+     * 
+     * @param res
+     */
     public void setdiceTypePriority(Resources... res) {
         resPriority = new ArrayList<>(Arrays.asList(res));
         size = resPriority.size();
@@ -32,9 +41,9 @@ public class Forge {
 
     /**
      * 
-     * @param stratD
-     * @param stratF
-     * @param repeatInf
+     * @param stratD    Strategy for the dice
+     * @param stratF    Strategy to force
+     * @param repeatInf set to true if you want to forge as long as you can
      */
     public void compute(StratDice stratD, StratForge stratF, boolean repeatInf) {
         List<DiceSide> diceSides0 = boardView.getDiceSide(name, 0);

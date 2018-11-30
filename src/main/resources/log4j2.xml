@@ -13,7 +13,7 @@
         </File>
         <File name="lessInfos" fileName="target/logs/debug.log" append = "false">
             <PatternLayout>
-                <Pattern>%d %p %c{1}: %m%n</Pattern>
+                <Pattern>%d %p :\t %m%n</Pattern>
             </PatternLayout>
         </File>
     </Appenders>

@@ -7,6 +7,8 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 
 /**
  * HighestForge
+ * 
+ * @see StratForge
  */
 public class HighestForge implements StratForge {
 
