@@ -82,12 +82,14 @@ public class Game extends Board {
     private void startPlayerTurn(Player bot) {
         temporaryAuthorization(bot.toString());
         bot.play();
+        playLastCard(bot);
         // ask if the bot want to play again
         if (isPlayingAgainPossible(bot.toString()) && bot.replayOnceAgain()) {
             logger.debug("Le bot'" + bot.toString() + "'  rejoue son tour");
             removeResourcesToPlayAgain(bot.toString());
             temporaryAuthorization(bot.toString());
             bot.play();
+            playLastCard(bot);
         }
     }
 

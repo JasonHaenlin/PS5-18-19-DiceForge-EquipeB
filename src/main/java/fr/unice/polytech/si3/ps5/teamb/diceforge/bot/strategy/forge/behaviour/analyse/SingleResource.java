@@ -15,6 +15,8 @@ public class SingleResource implements StratDice {
 
     @Override
     public int choseDice(List<DiceSide> diceSides0, List<DiceSide> diceSides1, Resources resources) {
+        if (resources == null)
+            return 0;
         c1 = 0;
         c2 = 0;
         diceSides0.forEach(side -> {
