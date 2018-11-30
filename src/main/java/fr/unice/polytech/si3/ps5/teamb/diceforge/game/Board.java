@@ -258,6 +258,21 @@ public class Board {
     }
 
     /**
+     * Return the inventory for the selected player.
+     * 
+     * @param player
+     * @return inventory map
+     */
+    public Map<Resources, Integer> peekInventory(String player) {
+        Map<Resources, Integer> tmp = new EnumMap<>(Resources.class);
+        Inventory inv = playerInventory.get(player);
+        tmp.put(Resources.GOLD, inv.getResource(Resources.GOLD));
+        tmp.put(Resources.MOON_STONE, inv.getResource(Resources.MOON_STONE));
+        tmp.put(Resources.SUN_STONE, inv.getResource(Resources.SUN_STONE));
+        return tmp;
+    }
+
+    /**
      * 
      * @param player
      * @return

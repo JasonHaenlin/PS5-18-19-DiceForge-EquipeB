@@ -130,7 +130,7 @@ public class Engine {
 	private String buildResult() {
 		StringBuilder buildScore = new StringBuilder("Resultat de la sequence :");
 		player.forEach((bot, score) -> buildScore.append("\nle bot '" + bot.toString() + "' gagne " + score + " "
-				+ (score > 1 ? "parties" : "partie") + " sur " + numberOfParties + " : moyenne des points "
+				+ (score > 1 ? "parties" : "partie") + " sur " + numberOfParties + " : moyenne de "
 				+ String.format("%.2f", ((float) playerTotalScore.get(bot)) / numberOfParties) + " points : "
 				+ (score != 0 ? String.format("%.1f", ((float) score / numberOfParties) * 100) + "%" : "0.0%")));
 		return buildScore.toString();
