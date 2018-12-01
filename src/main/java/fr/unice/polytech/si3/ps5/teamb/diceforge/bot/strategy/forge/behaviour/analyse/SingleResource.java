@@ -2,6 +2,7 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.behaviour.a
 
 import java.util.ArrayList;
 import java.util.List;
+
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 
@@ -21,14 +22,14 @@ public class SingleResource implements StratDice {
             return 0;
         c1 = 0;
         c2 = 0;
-        diceSides0.forEach(side -> {
+        for (DiceSide side : diceSides0) {
             if (side.getType().equals(resources))
                 c1++;
-        });
-        diceSides1.forEach(side -> {
+        }
+        for (DiceSide side : diceSides0) {
             if (side.getType().equals(resources))
                 c2++;
-        });
+        }
         return c1 > c2 ? 0 : 1;
     }
 
