@@ -52,17 +52,17 @@ public class Hephaestos extends Player {
 	}
 
 	@Override
-	public int callBackDice() {
-		return 0;
-	}
-
-	@Override
 	protected boolean replayOnceAgain() {
 		if (!boardView.playableCards(name, Resources.SUN_STONE, 2).isEmpty()) {
 			round--;
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public int callBackDice() {
+		return 0;
 	}
 
 	@Override

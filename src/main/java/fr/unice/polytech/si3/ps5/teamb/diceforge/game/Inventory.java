@@ -272,4 +272,25 @@ public class Inventory {
         String gold = Resources.GOLD.toString() + ":" + getResource(Resources.GOLD);
         return "[BAG] [[" + gold + "], " + "[" + moon + "], " + "[" + sun + "]]";
     }
+
+    /**
+     * @return the goldLim
+     */
+    public int getGoldLim() {
+        return goldLim;
+    }
+
+    /**
+     * @return the moonLim
+     */
+    public int getMoonLim() {
+        return moonLim;
+    }
+
+    /**
+     * @return the sunLim
+     */
+    public int getSunLim() {
+        return sunLim;
+    }
 }
