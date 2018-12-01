@@ -17,6 +17,7 @@ public class Context {
     private final Board boardView;
     private final Manager manager;
     private AtomicInteger gameRound;
+    private final String playerName;
 
     /**
      * create a new context to instantiate all the elements you need.
@@ -30,6 +31,7 @@ public class Context {
         this.gameRound = b.getGameRound();
         this.boardView = b.getBoardView();
         this.manager = manager;
+        this.playerName = b.toString();
         this.state = null;
     }
 
@@ -76,4 +78,10 @@ public class Context {
         return manager;
     }
 
+    /**
+     * @return the playerName
+     */
+    public String getPlayerName() {
+        return playerName;
+    }
 }

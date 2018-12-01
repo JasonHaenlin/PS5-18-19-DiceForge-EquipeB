@@ -2,6 +2,8 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player;
 
 import java.util.Map;
 
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.Callback;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.CallbackDiceWithMostResources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state.Manager;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.template.TemplateEarlyGameForgeGoldPriority;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.template.TemplateLateGameExploitHigestCard;
@@ -38,13 +40,14 @@ public class Raichu extends Player {
     }
 
     @Override
-    public int callBackDice() {
-        return 0;
+    protected boolean replayOnceAgain() {
+        return !boardView.playableCards(name, Resources.SUN_STONE, 2).isEmpty();
     }
 
     @Override
-    protected boolean replayOnceAgain() {
-        return !boardView.playableCards(name, Resources.SUN_STONE, 2).isEmpty();
+    public int callBackDice() {
+        Callback<Integer, Resources> c = new CallbackDiceWithMostResources();
+        return c.runCallback(manager.getContext(), Resources.SUN_STONE);
     }
 
     @Override

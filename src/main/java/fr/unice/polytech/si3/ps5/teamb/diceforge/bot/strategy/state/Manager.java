@@ -91,4 +91,8 @@ public class Manager {
         initState = true;
     }
 
+    public Context getContext() {
+        return context;
+    }
+
 }
