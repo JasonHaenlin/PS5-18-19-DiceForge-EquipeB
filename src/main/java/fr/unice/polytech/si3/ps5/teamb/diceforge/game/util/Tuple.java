@@ -26,4 +26,9 @@ public class Tuple {
     public int delta(int offset) {
         return (maximum - amount) - offset;
     }
+
+    @Override
+    public String toString() {
+        return "[" + resource + ": (" + amount + " / " + maximum + ")" + "]";
+    }
 }

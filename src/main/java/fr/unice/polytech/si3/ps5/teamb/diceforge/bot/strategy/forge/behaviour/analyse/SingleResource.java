@@ -26,7 +26,7 @@ public class SingleResource implements StratDice {
             if (side.getType().equals(resources))
                 c1++;
         }
-        for (DiceSide side : diceSides0) {
+        for (DiceSide side : diceSides1) {
             if (side.getType().equals(resources))
                 c2++;
         }

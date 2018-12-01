@@ -32,4 +32,9 @@ public class TemplateMiddleGameForgeMoonSun implements Template {
         context.getExploit().compute(new HighestExploit());
         context.getForge().compute(new SingleResource(), new HighestForge(), true);
     }
+
+    @Override
+    public String toString() {
+        return "TemplateMiddleGameForgeMoonSun";
+    }
 }

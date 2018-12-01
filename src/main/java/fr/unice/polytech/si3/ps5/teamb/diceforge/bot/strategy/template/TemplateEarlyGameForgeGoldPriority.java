@@ -31,4 +31,9 @@ public class TemplateEarlyGameForgeGoldPriority implements Template {
     public void doElse(Context context) {
         context.getManager().nextTemplate();
     }
+
+    @Override
+    public String toString() {
+        return "TemplateEarlyGameForgeGoldPriority";
+    }
 }

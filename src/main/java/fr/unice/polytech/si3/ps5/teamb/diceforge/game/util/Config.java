@@ -37,7 +37,7 @@ public class Config {
     private EnumMap<Resources, Integer> invConfig;
     private Map<Integer, List<DiceSide>> forgeConfig;
 
-    public Config(String file) throws Exception {
+    public Config(String file) throws RuntimeException {
         this.file = file;
         try {
             this.jsonConfig = extractJson();

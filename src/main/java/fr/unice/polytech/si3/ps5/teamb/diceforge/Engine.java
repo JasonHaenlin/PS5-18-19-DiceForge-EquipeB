@@ -46,7 +46,7 @@ public class Engine {
 	 * @return
 	 * @throws Exception if the config is not found
 	 */
-	public Engine createGame(int numberOfParties) throws Exception {
+	public Engine createGame(int numberOfParties) {
 		player = new HashMap<>();
 		playerTotalScore = new HashMap<>();
 

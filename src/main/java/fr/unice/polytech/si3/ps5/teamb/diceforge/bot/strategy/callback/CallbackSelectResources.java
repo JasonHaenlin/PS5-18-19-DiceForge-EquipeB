@@ -19,10 +19,12 @@ public class CallbackSelectResources implements Callback<Resources, Map<Resource
         Resources res = null;
         List<Tuple> inv = context.getBoardView().peekInventory(context.getPlayerName());
         for (Tuple t : inv) {
-            newOffset = t.delta(value.get(t.resource));
-            if (newOffset > offsetMax) {
-                offsetMax = newOffset;
-                res = t.resource;
+            if (value.containsKey(t.resource)) {
+                newOffset = t.delta(value.get(t.resource));
+                if (newOffset > offsetMax) {
+                    offsetMax = newOffset;
+                    res = t.resource;
+                }
             }
         }
         return res;

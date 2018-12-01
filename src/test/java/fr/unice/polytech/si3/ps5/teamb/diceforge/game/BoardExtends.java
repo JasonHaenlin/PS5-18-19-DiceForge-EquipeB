@@ -28,14 +28,14 @@ public class BoardExtends extends Board {
 
     public boolean BoardRegisterTest() {
         assertTrue(registrationToBoard("Lightning"));
-        assertTrue(registrationToBoard(PlayerTest.first.toString()));
-        assertFalse(registrationToBoard(PlayerTest.first.toString()));
+        assertTrue(registrationToBoard(HelperPlayer.first.toString()));
+        assertFalse(registrationToBoard(HelperPlayer.first.toString()));
         initialize();
 
-        assertEquals(Collections.emptyList(), playableCards(PlayerTest.first.toString()));
-        assertEquals(Collections.emptyList(), playableSides(PlayerTest.first.toString()));
+        assertEquals(Collections.emptyList(), playableCards(HelperPlayer.first.toString()));
+        assertEquals(Collections.emptyList(), playableSides(HelperPlayer.first.toString()));
 
-        assertNotNull(rolldice(PlayerTest.first));
+        assertNotNull(rolldice(HelperPlayer.first));
         return true;
     }
 
@@ -58,9 +58,9 @@ public class BoardExtends extends Board {
     }
 
     public boolean BoardDiceTest() {
-        registrationToBoard(PlayerTest.first.toString());
+        registrationToBoard(HelperPlayer.first.toString());
         initialize();
-        assertEquals(2, (int) rolldice(PlayerTest.first).get(Resources.GOLD));
+        assertEquals(2, (int) rolldice(HelperPlayer.first).get(Resources.GOLD));
         return true;
     }
 

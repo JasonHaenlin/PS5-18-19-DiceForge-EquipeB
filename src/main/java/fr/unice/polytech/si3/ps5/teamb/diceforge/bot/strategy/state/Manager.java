@@ -78,7 +78,7 @@ public class Manager {
      * <code>doAction</code> to prevent from doing nothing
      */
     public void nextTemplate() {
-        if (template.size() >= 1) {
+        if (!template.isEmpty()) {
             context.setState(template.poll());
             initState = false;
         } else {

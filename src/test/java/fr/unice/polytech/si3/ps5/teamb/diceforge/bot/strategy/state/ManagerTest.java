@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.state;
+package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -9,7 +9,7 @@ import org.junit.Test;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state.Context;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state.Manager;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state.Template;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.PlayerTest;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.HelperPlayer;
 
 /**
  * ManagerTest
@@ -23,8 +23,7 @@ public class ManagerTest {
 
     @Before
     public void setup() throws Exception {
-        PlayerTest.getInstance();
-        manager = new Manager(PlayerTest.first);
+        manager = new Manager(HelperPlayer.first);
         initTemplate();
     }
 
