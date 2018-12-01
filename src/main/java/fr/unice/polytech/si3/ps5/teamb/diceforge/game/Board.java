@@ -6,7 +6,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.BlacksmithHammer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -220,31 +219,6 @@ public class Board {
     }
 
     /**
-     * Spend gold to play hammer
-     * @param gold
-     * @param player
-     * @return true if hammer have been played
-     */
-
-    public boolean playHammer(int gold, String player) {
-        Inventory inv = playerInventory.get(player);
-        BlacksmithHammer hammer = inv.getHammer();
-        if (hammer.equals(null)) return false;
-        if(!inv.hasEnoughResources(gold,Resources.GOLD))return false;
-        if(hammer.getCurrentSquare() +gold <= 30){
-            inv.removeResourceFromBag(gold, Resources.GOLD);
-            inv.addResourceToBag(hammer.playEffect(gold), Resources.VICTORY_POINT);
-            return true;
-        }
-        else{
-            int goldNecessary = 30 - hammer.getCurrentSquare();
-            inv.removeResourceFromBag(goldNecessary, Resources.GOLD);
-            inv.addResourceToBag(hammer.playEffect(goldNecessary), Resources.VICTORY_POINT);
-            return true;
-        }
-    }
-
-    /**
      * play the last card exploit by the bot
      * 
      * @param bot
@@ -262,7 +236,8 @@ public class Board {
 
             // Card effect
             logger.debug("Le bot '" + bot.toString() + "' joue la carte " + card.toString());
-            card.playImmEffect(bot, inv);
+            card.setCardOwner(bot);
+            card.playImmEffect(inv);
             card.hasAfterEffect(inv);
             card.hasToken(inv);
             card.hasResourcesToStore().forEach((r, n) -> inv.addResourceToBag(n, r));

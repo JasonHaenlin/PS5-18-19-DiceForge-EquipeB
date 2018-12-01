@@ -1,6 +1,6 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player;
 
-import java.util.List;
+import java.util.Map;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.behaviour.HighestExploit;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.behaviour.HighestForge;
@@ -79,13 +79,18 @@ public class Raichu extends Player {
     }
 
     @Override
-    public Resources callBackResources(List<Resources> res) {
+    protected boolean replayOnceAgain() {
+        return !boardView.playableCards(name, Resources.SUN_STONE, 2).isEmpty();
+    }
+
+    @Override
+    public Resources callBackResources(Map<Resources, Integer> resInt) {
         return null;
     }
 
     @Override
-    protected boolean replayOnceAgain() {
-        return !boardView.playableCards(name, Resources.SUN_STONE, 2).isEmpty();
+    public int callBackHammer(int amount) {
+        return 0;
     }
 
 }

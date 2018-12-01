@@ -2,13 +2,15 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.BlacksmithHammer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.BlacksmithHammer;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.Dice;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
@@ -24,6 +26,9 @@ public class Inventory {
     private Map<Resources, Integer> treasury = new EnumMap<>(Resources.class);
     private List<Dice> dices = new ArrayList<>();
     private List<Card> cards = new ArrayList<>();
+
+    // Queue for the hammer
+    private Queue<BlacksmithHammer> hammerQueue = new LinkedList<>();
 
     private int lastUpdate = 0;
 
@@ -97,12 +102,13 @@ public class Inventory {
      * @param res    [gold, victory point, sun stone, moon stone]
      */
     void addResourceToBag(int amount, Resources res) {
+        amount = checkForHammer(res, amount);
         if (res.equals(Resources.VICTORY_POINT))
             lastUpdate += amount;
-        treasury.replace(res, maxRessourcesLimit(amount, res));
+        treasury.replace(res, checkResourcesLimit(amount, res));
     }
 
-    int maxRessourcesLimit(int amount, Resources res) {
+    int checkResourcesLimit(int amount, Resources res) {
         int n = treasury.get(res) + amount;
         switch (res) {
         case GOLD:
@@ -211,18 +217,15 @@ public class Inventory {
         return false;
     }
 
+    /**
+     * see the last card
+     * 
+     * @return
+     */
     public Card peekLastCard() {
         if (cards.isEmpty())
             return null;
         return cards.get(cards.size() - 1);
-    }
-
-    @Override
-    public String toString() {
-        String moon = Resources.MOON_STONE.toString() + ":" + getResource(Resources.MOON_STONE);
-        String sun = Resources.SUN_STONE.toString() + ":" + getResource(Resources.SUN_STONE);
-        String gold = Resources.GOLD.toString() + ":" + getResource(Resources.GOLD);
-        return "[BAG] [[" + gold + "], " + "[" + moon + "], " + "[" + sun + "]]";
     }
 
     /**
@@ -234,36 +237,39 @@ public class Inventory {
         this.moonLim += moon;
     }
 
-    private boolean isHammerInInventory(){
-        for(Card card:cards){
-            if(card.equals(new BlacksmithHammer(1,0,0))) {
-                return true;
-            }
-        }
-        return false;
+    /**
+     * add cards with effect that long for more than one turn
+     * 
+     * @param card
+     */
+    public void addHammerEffect(BlacksmithHammer card) {
+        if (card != null)
+            hammerQueue.add(card);
     }
 
     /**
-     * A player can have several hammer in invetory, this method
-     * select the hammer which player can play
-     * @return Hammer card
+     * play the hammer effect if an hammer is present
+     * 
+     * @param res
+     * @return
      */
-
-    public BlacksmithHammer getHammer(){
-        if(!isHammerInInventory()){
-            return null;
-        }
-        List<Card> listHammer = new ArrayList<>();
-        for(Card card : cards){
-            if(card.equals(new BlacksmithHammer(1,0,0))) {
-                BlacksmithHammer hammer = (BlacksmithHammer) card;
-                if(hammer.getCurrentSquare()<30) listHammer.add(card);
+    private int checkForHammer(Resources res, int amount) {
+        if (res.equals(Resources.GOLD)) {
+            BlacksmithHammer c = hammerQueue.peek();
+            if (c != null) {
+                amount = c.runHammerEffect(amount);
+                if (c.isHammerDone())
+                    hammerQueue.poll();
             }
         }
-        for(Card card : listHammer){
-            BlacksmithHammer cardHammer = (BlacksmithHammer) card;
-            if( (!cardHammer.isCurrentSquareNull()) ) return (BlacksmithHammer) card;
-        }
-        return (BlacksmithHammer) listHammer.get(0);
+        return amount;
+    }
+
+    @Override
+    public String toString() {
+        String moon = Resources.MOON_STONE.toString() + ":" + getResource(Resources.MOON_STONE);
+        String sun = Resources.SUN_STONE.toString() + ":" + getResource(Resources.SUN_STONE);
+        String gold = Resources.GOLD.toString() + ":" + getResource(Resources.GOLD);
+        return "[BAG] [[" + gold + "], " + "[" + moon + "], " + "[" + sun + "]]";
     }
 }

@@ -1,6 +1,6 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player;
 
-import java.util.List;
+import java.util.Map;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.Forge;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.behaviour.HighestForge;
@@ -36,8 +36,13 @@ public class Cloud extends Player {
     }
 
     @Override
-    public Resources callBackResources(List<Resources> res) {
+    public Resources callBackResources(Map<Resources, Integer> resInt) {
         return null;
+    }
+
+    @Override
+    public int callBackHammer(int amount) {
+        return 0;
     }
 
 }

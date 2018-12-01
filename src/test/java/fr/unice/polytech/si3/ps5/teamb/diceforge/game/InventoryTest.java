@@ -4,15 +4,16 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.BlacksmithHammer;
 import org.junit.Before;
 import org.junit.Test;
 
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.BlacksmithHammer;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Hydra;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.Dice;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.helper.PlayerTest;
 
 /**
  * InventoryTest
@@ -116,42 +117,25 @@ public class InventoryTest {
     }
 
     @Test
-    public void getHammerTest(){
-        Card hammer1 = new BlacksmithHammer(1,0,0);
-        hammer1.playEffect(5);
-        inv.addCardToBag(hammer1);
-        Card hammer2 = new BlacksmithHammer(1,0,0);
-        inv.addCardToBag(hammer2);
+    public void HammerCardEffectTest() {
+        BlacksmithHammer bl = new BlacksmithHammer(1, 0, 0);
+        bl.setCardOwner(PlayerTest.first);
+        inv.addHammerEffect(bl);
+        inv.addResourceToBag(5, Resources.GOLD);
+        assertEquals(0, inv.getResource(Resources.GOLD));
+        assertFalse(bl.isHammerDone());
 
-        BlacksmithHammer hammer = inv.getHammer();
-        assertEquals(5,hammer.getCurrentSquare());
-    }
+        bl.setCardOwner(PlayerTest.fifth);
+        inv.addResourceToBag(5, Resources.GOLD);
+        assertEquals(5, inv.getResource(Resources.GOLD));
 
-    @Test
-    public void getHammerTestAgain(){
-        Card hammer1 = new BlacksmithHammer(1,0,0);
-        inv.addCardToBag(hammer1);
-        Card hammer2 = new BlacksmithHammer(1,0,0);
-        inv.addCardToBag(hammer2);
+        bl.setCardOwner(PlayerTest.first);
+        inv.addResourceToBag(30, Resources.GOLD);
+        assertEquals(10, inv.getResource(Resources.GOLD));
+        assertTrue(bl.isHammerDone());
 
-        BlacksmithHammer hammer = inv.getHammer();
-        assertEquals(0, hammer.getCurrentSquare());
-
-        hammer.playEffect(5);
-
-        hammer = inv.getHammer();
-        assertEquals(5,hammer.getCurrentSquare());
-    }
-
-    @Test
-    public void AnotherGetHammerTest(){
-        Card hammer1 = new BlacksmithHammer(1,0,0);
-        hammer1.playEffect(30);
-        inv.addCardToBag(hammer1);
-        Card hammer2 = new BlacksmithHammer(1,0,0);
-        inv.addCardToBag(hammer2);
-
-        BlacksmithHammer hammer = inv.getHammer();
-        assertEquals(0, hammer.getCurrentSquare());
+        bl.setCardOwner(PlayerTest.fifth);
+        inv.addResourceToBag(10, Resources.GOLD);
+        assertEquals(12, inv.getResource(Resources.GOLD));
     }
 }

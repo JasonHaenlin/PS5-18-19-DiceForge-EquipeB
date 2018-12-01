@@ -1,6 +1,6 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
-import java.util.List;
+import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -52,10 +52,33 @@ public abstract class Player {
         return false;
     }
 
+    /**
+     * callback when a game object need to decide which dice to choose
+     */
     public abstract int callBackDice();
 
-    public abstract Resources callBackResources(List<Resources> res);
+    /**
+     * callback to ask the player wath resource he want from the list
+     * 
+     * @param resInt
+     * @return
+     */
+    public abstract Resources callBackResources(Map<Resources, Integer> resInt);
 
+    /**
+     * callback for the hammer
+     * 
+     * @param amount of gold resources
+     * @return the amount you want to use for the hammer
+     */
+    public abstract int callBackHammer(int amount);
+
+    /**
+     * register needed objects
+     * 
+     * @param gameRound
+     * @param boardView
+     */
     void addBoard(Integer gameRound, Board boardView) {
         this.boardView = boardView; // TODO will not it anymore
         this.forge = new Forge(name, boardView);

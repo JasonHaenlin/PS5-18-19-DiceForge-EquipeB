@@ -14,7 +14,7 @@ public enum Resources {
     VICTORY_POINT("Point de Gloire"), 
     GOLD("Or"), 
     MOON_STONE("Pierre Lune"), 
-    SUN_STONE("Pierre Soleil");
+    SUN_STONE("Pierre Soleil");  
     //@formatter:on
 
     String resource;
