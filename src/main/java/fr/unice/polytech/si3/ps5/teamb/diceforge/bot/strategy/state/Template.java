@@ -1,11 +1,11 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state;
 
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Board;
-
 /**
- * Initialize a new template
+ * Initialize a new template The context contains all you need to do whatever
+ * you want like forging or playing a card.
  * 
  * @author Jason Haenlin
+ * @see Context
  */
 public interface Template {
 
@@ -15,7 +15,7 @@ public interface Template {
      * 
      * @param boardView
      */
-    void onInitialization(Board boardView);
+    void onInitialization(Context context);
 
     /**
      * This part check the current condition if the condition is true, the
@@ -27,14 +27,14 @@ public interface Template {
      * @see #doAction
      * @see #doElse
      */
-    boolean onCondition(Board boardView);
+    boolean onCondition(Context context);
 
     /**
      * The action you want to do during the turn
      * 
      * @param boardView
      */
-    void doAction(Board boardView);
+    void doAction(Context context);
 
     /**
      * do wathever you want if the condition fail. You can use the
@@ -43,6 +43,6 @@ public interface Template {
      * @param boardView
      * @see Manager#nextTemplate()
      */
-    void doElse(Board boardView);
+    void doElse(Context context);
 
 }

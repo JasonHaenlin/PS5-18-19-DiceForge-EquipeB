@@ -10,7 +10,6 @@ import java.util.List;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.helper.PlayerTest;
 
 /**
  * BoardExtends

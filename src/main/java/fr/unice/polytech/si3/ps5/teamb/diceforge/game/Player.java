@@ -1,13 +1,10 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.Exploit;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.Forge;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state.Manager;
 
 /**
  * Player class to be use to create a bot for the game
@@ -16,10 +13,7 @@ public abstract class Player {
 
     protected static Logger logger = LogManager.getLogger(Player.class);
     protected Board boardView;
-    protected Manager manager;
-    protected Integer gameRound;
-    protected Forge forge;
-    protected Exploit exploit;
+    protected AtomicInteger gameRound;
 
     private static int countInstance = 0;
 
@@ -76,20 +70,31 @@ public abstract class Player {
     /**
      * register needed objects
      * 
-     * @param gameRound
+     * @param gameRound2
      * @param boardView
      */
-    void addBoard(Integer gameRound, Board boardView) {
-        this.boardView = boardView; // TODO will not it anymore
-        this.forge = new Forge(name, boardView);
-        this.exploit = new Exploit(name, boardView);
-        this.manager = new Manager(boardView);
+    void addBoard(AtomicInteger gameRound, Board boardView) {
+        this.boardView = boardView;
         this.gameRound = gameRound;
     }
 
     @Override
     public String toString() {
         return name;
+    }
+
+    /**
+     * @return the boardView
+     */
+    public Board getBoardView() {
+        return boardView;
+    }
+
+    /**
+     * @return the gameRound
+     */
+    public AtomicInteger getGameRound() {
+        return this.gameRound;
     }
 
 }

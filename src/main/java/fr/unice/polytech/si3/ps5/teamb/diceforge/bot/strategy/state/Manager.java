@@ -3,7 +3,7 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Board;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
 
 /**
  * Manager
@@ -11,6 +11,8 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Board;
  * Create a manager that... manage a state machine with a simple implementation
  * it uses a basic Template with an initialisation, a condition a two action
  * based on the condition result
+ * 
+ * It's a like a facade
  * 
  * @author Jason haenlin
  * @see Context
@@ -20,13 +22,11 @@ public class Manager {
 
     private final Context context;
     private final Queue<Template> template;
-    private final Board boardView;
     private boolean initState;
 
-    public Manager(Board boardView) {
-        this.context = new Context();
+    public Manager(Player b) {
+        this.context = new Context(b, this);
         this.template = new LinkedList<>();
-        this.boardView = boardView;
         this.initState = false;
     }
 
@@ -65,10 +65,10 @@ public class Manager {
         Template s = context.getState();
         if (!initState)
             initState(s);
-        if (s.onCondition(boardView))
-            s.doAction(boardView);
+        if (s.onCondition(context))
+            s.doAction(context);
         else
-            s.doElse(boardView);
+            s.doElse(context);
     }
 
     /**
@@ -82,12 +82,13 @@ public class Manager {
             context.setState(template.poll());
             initState = false;
         } else {
-            context.getState().doAction(boardView);
+            context.getState().doAction(context);
         }
     }
 
     private void initState(Template s) {
-        s.onInitialization(boardView);
+        s.onInitialization(context);
         initState = true;
     }
+
 }

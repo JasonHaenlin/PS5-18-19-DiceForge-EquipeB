@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state.Context;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state.Manager;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state.Template;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Board;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.helper.PlayerTest;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.PlayerTest;
 
 /**
  * ManagerTest
@@ -23,7 +23,8 @@ public class ManagerTest {
 
     @Before
     public void setup() throws Exception {
-        manager = new Manager(PlayerTest.getInstance().getBoard());
+        PlayerTest.getInstance();
+        manager = new Manager(PlayerTest.first);
         initTemplate();
     }
 
@@ -43,26 +44,26 @@ public class ManagerTest {
     private void initTemplate() {
         template1 = new Template() {
             @Override
-            public void onInitialization(Board boardView) {
+            public void onInitialization(Context context) {
                 assertEquals(0, stateChecker);
                 stateChecker++;
             }
 
             @Override
-            public boolean onCondition(Board boardView) {
+            public boolean onCondition(Context context) {
                 assertTrue(stateChecker < 4);
                 stateChecker++;
                 return stateChecker < 3;
             }
 
             @Override
-            public void doAction(Board boardView) {
+            public void doAction(Context context) {
                 assertEquals(2, stateChecker);
                 stateChecker++;
             }
 
             @Override
-            public void doElse(Board boardView) {
+            public void doElse(Context context) {
                 assertEquals(4, stateChecker);
                 stateChecker++;
                 manager.nextTemplate();
@@ -71,26 +72,26 @@ public class ManagerTest {
         };
         template2 = new Template() {
             @Override
-            public void onInitialization(Board boardView) {
+            public void onInitialization(Context context) {
                 assertEquals(5, stateChecker);
                 stateChecker++;
             }
 
             @Override
-            public boolean onCondition(Board boardView) {
+            public boolean onCondition(Context context) {
                 assertTrue(stateChecker < 9);
                 stateChecker++;
                 return stateChecker < 8;
             }
 
             @Override
-            public void doAction(Board boardView) {
+            public void doAction(Context context) {
                 assertEquals(7, stateChecker);
                 stateChecker++;
             }
 
             @Override
-            public void doElse(Board boardView) {
+            public void doElse(Context context) {
                 assertEquals(9, stateChecker);
                 stateChecker++;
             }

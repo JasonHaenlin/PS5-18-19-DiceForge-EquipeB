@@ -1,4 +1,6 @@
-package fr.unice.polytech.si3.ps5.teamb.diceforge.helper;
+package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.OnlyDice;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.OnlyDice2;
@@ -23,6 +25,11 @@ public class PlayerTest extends Board {
 
     private PlayerTest() throws Exception {
         super(new Config(basic));
+        first.addBoard(new AtomicInteger(0), getBoard());
+        second.addBoard(new AtomicInteger(0), getBoard());
+        third.addBoard(new AtomicInteger(0), getBoard());
+        fourth.addBoard(new AtomicInteger(0), getBoard());
+        fifth.addBoard(new AtomicInteger(0), getBoard());
     }
 
     public Board getBoard() {

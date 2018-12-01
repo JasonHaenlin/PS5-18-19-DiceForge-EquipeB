@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,7 +31,7 @@ public class Game extends Board {
     private int finalScore;
     private int round; // number of rounds in a game
 
-    private Integer gameRound = new Integer(0);
+    private AtomicInteger gameRound;
 
     /**
      * Create a game
@@ -43,6 +44,7 @@ public class Game extends Board {
         this.round = round;
         this.bots = new LinkedHashMap<>();
         this.winners = new HashMap<>();
+        this.gameRound = new AtomicInteger(0);
     }
 
     /**
@@ -54,8 +56,8 @@ public class Game extends Board {
         logger.debug("oneGameFire !");
         initialize();
         for (int i = 0; i < round; i++) {
-            gameRound += 1;
-            logger.debug("|========================tour actuel : " + gameRound + " ========================|");
+            logger.debug("|========================tour actuel : " + this.gameRound.incrementAndGet()
+                    + " ========================|");
             bots.forEach((bot, score) -> {
                 rollAllDices();
                 logger.debug("------------------Debut du tour pour '" + bot.toString() + "' ------------------");

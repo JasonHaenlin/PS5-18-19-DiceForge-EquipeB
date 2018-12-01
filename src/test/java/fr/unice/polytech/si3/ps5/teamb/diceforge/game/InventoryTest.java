@@ -13,7 +13,6 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Hydra;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.Dice;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.helper.PlayerTest;
 
 /**
  * InventoryTest
