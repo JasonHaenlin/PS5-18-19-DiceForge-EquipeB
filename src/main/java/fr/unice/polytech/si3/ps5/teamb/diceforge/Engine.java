@@ -30,14 +30,16 @@ public class Engine {
 	private static final LoggerContext ctx = (LoggerContext) LogManager.getContext(false);
 	private static final Configuration config = ctx.getConfiguration();
 	private static final Logger logger = LogManager.getLogger(Engine.class);
-
-	private String confFile = "src/main/resources/configuration/allSimpleTempleFace.json";
+	private String confFile4P = "src/main/resources/configuration/allSimpleTempleFace.4.json";
+	private String confFile3P = "src/main/resources/configuration/allSimpleTempleFace.3.json";
+	private String confFile2P = "src/main/resources/configuration/allSimpleTempleFace.2.json";
 
 	private Map<Player, Integer> player;
 	private Map<Player, Integer> playerTotalScore;
 
 	private Config conf;
-	private int numberOfParties = 1;
+	private String specificConfFile = " ";
+	private int numberOfParties;
 
 	/**
 	 * setup to create a new game
@@ -46,12 +48,10 @@ public class Engine {
 	 * @return
 	 * @throws Exception if the config is not found
 	 */
-	public Engine createGame(int numberOfParties) {
+	public Engine createGame(int numberOfParties) throws Exception {
 		this.player = new HashMap<>();
 		this.playerTotalScore = new HashMap<>();
-		this.conf = new Config(confFile);
 		this.numberOfParties = numberOfParties;
-		this.conf.prepareConfig();
 		return this;
 	}
 
@@ -77,13 +77,29 @@ public class Engine {
 		return this;
 	}
 
+	public String chooseConFile() {
+		String GreatConFile;
+		switch (player.size()) {
+		case 4:
+			GreatConFile = confFile4P;
+			break;
+		case 3:
+			GreatConFile = confFile3P;
+			break;
+		default:
+			GreatConFile = confFile2P;
+			break;
+		}
+		return GreatConFile;
+	}
+
 	/**
 	 * launch the game when the setup is ready (after createGame and addBot)
 	 * 
 	 * @return the result of the game (stats of the bot over the all sequence)
 	 * @throws Exception
 	 */
-	public String fire() {
+	public String fire() throws Exception {
 		Game diceForge;
 		logger.debug("debut de la sequence");
 		if (player.size() == 1 || player.size() == 0) {
@@ -91,6 +107,15 @@ public class Engine {
 			return "Error : insufficient number of players";
 
 		}
+		if (specificConfFile.equals(" ")) {
+			String Confile = chooseConFile();
+			this.conf = new Config(Confile);
+
+		} else {
+			this.conf = new Config(specificConfFile);
+
+		}
+
 		for (int i = 0; i < numberOfParties; i++) {
 			logger.debug("initialisation du plateau");
 			conf.prepareConfig(); // pour initialiser le plateau à chaque partie
@@ -136,7 +161,7 @@ public class Engine {
 	}
 
 	public void setConfFile(String confFile) {
-		this.confFile = confFile;
+		this.specificConfFile = confFile;
 	}
 
 }

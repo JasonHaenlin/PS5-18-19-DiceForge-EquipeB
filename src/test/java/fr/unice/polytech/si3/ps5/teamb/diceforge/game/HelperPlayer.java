@@ -22,15 +22,15 @@ public class HelperPlayer extends Board {
 
     private HelperPlayer() {
         super(new Config(basic));
-        first.addBoard(new Tuple<String>("round", 0, 9), getBoard());
+        first.addBoard(new Tuple<String>("test", 0, 9), getBoard());
         registrationToBoard(first.toString());
-        second.addBoard(new Tuple<String>("round", 0, 9), getBoard());
+        second.addBoard(new Tuple<String>("test", 0, 9), getBoard());
         registrationToBoard(second.toString());
-        third.addBoard(new Tuple<String>("round", 0, 9), getBoard());
+        third.addBoard(new Tuple<String>("test", 0, 9), getBoard());
         registrationToBoard(third.toString());
-        fourth.addBoard(new Tuple<String>("round", 0, 9), getBoard());
+        fourth.addBoard(new Tuple<String>("test", 0, 9), getBoard());
         registrationToBoard(fourth.toString());
-        fifth.addBoard(new Tuple<String>("round", 0, 9), getBoard());
+        fifth.addBoard(new Tuple<String>("test", 0, 9), getBoard());
         registrationToBoard(fifth.toString());
         initialize();
     }
