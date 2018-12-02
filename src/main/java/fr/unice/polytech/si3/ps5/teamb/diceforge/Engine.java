@@ -51,6 +51,7 @@ public class Engine {
 	public Engine createGame(int numberOfParties) throws Exception {
 		this.player = new HashMap<>();
 		this.playerTotalScore = new HashMap<>();
+
 		this.numberOfParties = numberOfParties;
 		return this;
 	}
