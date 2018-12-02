@@ -1,9 +1,6 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback;
 
-import java.util.List;
-
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state.Context;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Tuple;
 
 /**
@@ -13,24 +10,15 @@ public class CallbackHammerOptimization implements Callback<Integer, Integer> {
 
     @Override
     public Integer runCallback(Context context, Integer value) {
-        Tuple<Resources> goldTuple = getGoldTuple(context);
-        int goldNeeded = goldTuple.delta(value);
-        if (goldNeeded < 0)
-            return goldNeeded;
-        if (goldNeeded > 0) {
-
-        }
-        return value;
+        int goldNeeded = context.getBoardView().getHammerState(context.getPlayerName());
+        if (goldNeeded < value)
+            return value - goldNeeded;
+        return isPossible(goldNeeded, value, context) ? value : 0;
     }
 
-    private Tuple<Resources> getGoldTuple(Context context) {
-        List<Tuple<Resources>> tuple = context.getBoardView().peekInventory(context.getPlayerName());
-        for (Tuple<Resources> elem : tuple) {
-            if (elem.type.equals(Resources.GOLD)) {
-                return elem;
-            }
-        }
-        return null;
+    private boolean isPossible(int goldNeeded, Integer value, Context context) {
+        Tuple<String> round = context.getGameRound();
+        return ((float) goldNeeded) / round.delta() < 2;
     }
 
 }
