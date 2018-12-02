@@ -13,7 +13,7 @@ public class CallbackDiceWithMostResources implements Callback<Integer, Resource
     @Override
     public Integer runCallback(Context context, Resources value) {
         StratDice d1 = new SingleResource();
-        int dice = d1.choseDice(context.getBoardView().getDiceSide(context.getPlayerName(), 0),
+        int dice = d1.chooseDice(context.getBoardView().getDiceSide(context.getPlayerName(), 0),
                 context.getBoardView().getDiceSide(context.getPlayerName(), 1), value);
         return dice;
     }

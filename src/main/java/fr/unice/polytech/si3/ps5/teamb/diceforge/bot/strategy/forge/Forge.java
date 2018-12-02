@@ -62,8 +62,8 @@ public class Forge {
                 sideToAdd = stratF.execution(boardView.playableSides(name), resPriority.get(i));
             if (i >= size)
                 i = size - 1;
-            d = stratD.choseDice(diceSides0, diceSides1, resPriority.get(i));
-            sideToRemove = stratD.choseSideRemove(boardView.getDiceSide(name, d), resPriority.get(i));
+            d = stratD.chooseDice(diceSides0, diceSides1, resPriority.get(i));
+            sideToRemove = stratD.chooseSideRemove(boardView.getDiceSide(name, d), resPriority.get(i));
         } while (boardView.forge(name, d, sideToRemove, sideToAdd) && repeatInf);
     }
 }

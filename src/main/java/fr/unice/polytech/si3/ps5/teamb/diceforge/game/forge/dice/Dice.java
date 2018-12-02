@@ -25,8 +25,9 @@ public class Dice {
     private Random rnd;
 
     /**
-     * Create a dice with 2 sides with MS 2 sides with SS 1 side with gold 1 side
-     * with PG
+     * Creates a 6 sides dice with a side with 2 victory points, a side with 1
+     * moon stones, a side with 1 sun stone and 3 sides with 1 gold (will be changed
+     * by the configuration file at the initialization of the game)
      */
     public Dice() {
         rnd = new Random();
@@ -50,7 +51,6 @@ public class Dice {
     /**
      * Rolls Dice
      *
-     * @param treasury
      */
     public DiceSide roll() {
         return diceSides.get(rnd.nextInt(size));
