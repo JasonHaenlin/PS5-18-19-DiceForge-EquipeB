@@ -18,7 +18,7 @@ public class TemplateEarlyGameForgeGoldPriority implements Template {
 
     @Override
     public boolean onCondition(Context context) {
-        return context.getGameRound() < 3;
+        return context.getGameRound().value < 3;
     }
 
     @Override

@@ -18,7 +18,7 @@ public class TemplateMiddleGameForgeMoonSun implements Template {
 
     @Override
     public boolean onCondition(Context context) {
-        return context.getGameRound() < 5;
+        return context.getGameRound().value < 5;
     }
 
     @Override

@@ -297,6 +297,13 @@ public class Board {
     }
 
     /**
+     * get the amount of gold needed to complete the hammer
+     */
+    public final int getHammerState(String player) {
+        return playerInventory.get(player).checkHammerState();
+    }
+
+    /**
      * get a view of the board for the player
      * 
      * @return board

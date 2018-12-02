@@ -60,8 +60,8 @@ public class Context {
     /**
      * @return the gameRound
      */
-    public int getGameRound() {
-        return gameRound.value;
+    public Tuple<String> getGameRound() {
+        return gameRound;
     }
 
     /**
