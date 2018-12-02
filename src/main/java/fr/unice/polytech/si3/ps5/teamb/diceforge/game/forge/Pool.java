@@ -10,7 +10,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
  */
 public class Pool {
 
-    private List<DiceSide> sides;
+    private final List<DiceSide> sides;
     private int cost;
 
     /**

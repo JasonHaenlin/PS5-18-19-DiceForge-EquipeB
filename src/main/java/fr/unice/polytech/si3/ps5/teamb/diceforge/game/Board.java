@@ -27,22 +27,23 @@ public class Board {
 
     private static Logger logger = LogManager.getLogger(Board.class);
 
-    private Islands islands;
-    private Temple temple;
-    private Guard guard;
-
-    private List<String> playerRegistered;
-    private Map<String, Inventory> playerInventory;
-
-    private Config conf;
+    private final List<String> playerRegistered;
+    private final Map<String, Inventory> playerInventory;
+    private final Config conf;
+    private final Islands islands;
+    private final Temple temple;
+    private final Guard guard;
 
     /**
      * create a new board for the current game
      * 
      * @param conf of the game
      */
-    public Board(Config conf) {
-        playerRegistered = new ArrayList<>();
+    protected Board(Config conf) {
+        this.playerRegistered = new ArrayList<>();
+        this.playerInventory = new LinkedHashMap<>();
+        this.temple = new Temple();
+        this.islands = new Islands();
         this.guard = new Guard(2);
         this.conf = conf;
     }
@@ -51,17 +52,16 @@ public class Board {
      * initialize the game for the current registered bot It includes, the card, the
      * inventory of each player and the dice sides
      */
-    protected void initialize() {
-        createCard();
+    protected final void initialize() {
         createInventory();
-        this.temple = new Temple(conf.getForgeConfig());
+        islands.putInIsland(conf.getExploitConfig());
+        temple.putInTemple(conf.getForgeConfig());
     }
 
     /**
      * create the default inventory for each player registered
      */
-    protected void createInventory() {
-        playerInventory = new LinkedHashMap<>();
+    private void createInventory() {
         EnumMap<Resources, Integer> inv = conf.getInvConfig();
         inv.put(Resources.GOLD, inv.get(Resources.GOLD) + 1);
 
@@ -79,23 +79,16 @@ public class Board {
      * @return true if the player has been correctly added, false otherwise when the
      *         player is already in the board
      */
-    protected boolean registrationToBoard(String player) {
+    protected final boolean registrationToBoard(String player) {
         if (playerRegistered.contains(player))
             return false;
         return playerRegistered.add(player);
     }
 
-    protected boolean temporaryAuthorization(String player) {
+    protected final boolean temporaryAuthorization(String player) {
         logger.trace(playerInventory.get(player).toString());
         temple.resetTurn();
         return guard.enableAuthorization(player);
-    }
-
-    /**
-     * retrieve the default cards configuration and create the islands
-     */
-    private void createCard() {
-        this.islands = new Islands(conf.getExploitConfig());
     }
 
     /**
@@ -104,7 +97,7 @@ public class Board {
      * @param player name
      * @return result of the rolling dices
      */
-    public Map<Resources, Integer> rolldice(Player player) {
+    public final Map<Resources, Integer> rolldice(Player player) {
         return playerInventory.get(player.toString()).rolldices(player);
     }
 
@@ -114,7 +107,7 @@ public class Board {
      * @param player
      * @return the playable sides
      */
-    public List<DiceSide> playableSides(String player) {
+    public final List<DiceSide> playableSides(String player) {
         Inventory inv = playerInventory.get(player);
         int gold = inv.getResource(Resources.GOLD);
         return temple.obtainReplaceableSides(gold);
@@ -130,7 +123,7 @@ public class Board {
      * @param sideToAdd    new side
      * @return true if successfully forge
      */
-    public boolean forge(String player, int diceNumber, DiceSide sideToRemove, DiceSide sideToAdd) {
+    public final boolean forge(String player, int diceNumber, DiceSide sideToRemove, DiceSide sideToAdd) {
         Inventory inv = playerInventory.get(player);
         if (sideToAdd == null || sideToRemove == null || !guard.isAuthorizated(player, FORGE)) {
             return false;
@@ -156,7 +149,7 @@ public class Board {
      * @param player name
      * @return
      */
-    public List<Card> playableCards(String player) {
+    public final List<Card> playableCards(String player) {
         Inventory inv = playerInventory.get(player);
         int moon = inv.getResource(Resources.MOON_STONE);
         int sun = inv.getResource(Resources.SUN_STONE);
@@ -172,7 +165,7 @@ public class Board {
      * @param amountToSubstract (need to be > 0)
      * @return
      */
-    public List<Card> playableCards(String player, Resources rsc, int amountToSubstract) {
+    public final List<Card> playableCards(String player, Resources rsc, int amountToSubstract) {
         Inventory inv = playerInventory.get(player);
         int sun = inv.getResource(Resources.SUN_STONE);
         int moon = inv.getResource(Resources.MOON_STONE);
@@ -197,7 +190,7 @@ public class Board {
      * @param player name
      * @return true if the card has been played
      */
-    public boolean exploit(Card card, String player) {
+    public final boolean exploit(Card card, String player) {
         Inventory inv = playerInventory.get(player);
         if (card == null || !guard.isAuthorizated(player, 2)) {
             return false;
@@ -224,7 +217,7 @@ public class Board {
      * 
      * @param bot
      */
-    void playLastCard(Player bot) {
+    protected final void playLastCard(Player bot) {
         if (bot.toString().equals(guard.peekLastPlayer())) {
 
             Inventory inv = playerInventory.get(bot.toString());
@@ -255,7 +248,7 @@ public class Board {
      * @param number the number of the dice to get (0 or 1)
      * @return the list of sides of a the specified player's dice.
      */
-    public List<DiceSide> getDiceSide(String player, int number) {
+    public final List<DiceSide> getDiceSide(String player, int number) {
         return playerInventory.get(player).getDice(number).getDiceSides();
     }
 
@@ -265,7 +258,7 @@ public class Board {
      * @param player
      * @return inventory map
      */
-    public List<Tuple> peekInventory(String player) {
+    public final List<Tuple> peekInventory(String player) {
         List<Tuple> tmp = new ArrayList<>();
         Inventory inv = playerInventory.get(player);
         tmp.add(new Tuple(Resources.GOLD, inv.getResource(Resources.GOLD), inv.getGoldLim()));
@@ -279,7 +272,7 @@ public class Board {
      * @param player
      * @return
      */
-    public boolean isPlayingAgainPossible(String player) {
+    protected final boolean isPlayingAgainPossible(String player) {
         int sunStone = playerInventory.get(player).getResource(Resources.SUN_STONE);
         return sunStone >= 2;
     }
@@ -289,7 +282,7 @@ public class Board {
      * 
      * @param player
      */
-    public void removeResourcesToPlayAgain(String player) {
+    protected final void removeResourcesToPlayAgain(String player) {
         playerInventory.get(player).removeResourceFromBag(2, Resources.SUN_STONE);
     }
 
@@ -299,7 +292,7 @@ public class Board {
      * @param player name
      * @return the amount of victory point
      */
-    protected int getVictoryPoints(String player) {
+    protected final int getVictoryPoints(String player) {
         return playerInventory.get(player).pollLastVictoryPoint();
     }
 
@@ -308,7 +301,7 @@ public class Board {
      * 
      * @return board
      */
-    protected Board getBoardView() {
+    protected final Board getBoardView() {
         return this;
     }
 

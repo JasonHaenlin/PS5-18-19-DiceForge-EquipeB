@@ -29,15 +29,15 @@ public class Engine {
 
 	private static final LoggerContext ctx = (LoggerContext) LogManager.getContext(false);
 	private static final Configuration config = ctx.getConfiguration();
-
 	private static final Logger logger = LogManager.getLogger(Engine.class);
+
 	private String confFile = "src/main/resources/configuration/allSimpleTempleFace.json";
 
 	private Map<Player, Integer> player;
 	private Map<Player, Integer> playerTotalScore;
 
-	private int numberOfParties = 1;
 	private Config conf;
+	private int numberOfParties = 1;
 
 	/**
 	 * setup to create a new game
@@ -47,9 +47,8 @@ public class Engine {
 	 * @throws Exception if the config is not found
 	 */
 	public Engine createGame(int numberOfParties) {
-		player = new HashMap<>();
-		playerTotalScore = new HashMap<>();
-
+		this.player = new HashMap<>();
+		this.playerTotalScore = new HashMap<>();
 		this.conf = new Config(confFile);
 		this.numberOfParties = numberOfParties;
 		this.conf.prepareConfig();
@@ -94,9 +93,9 @@ public class Engine {
 		}
 		for (int i = 0; i < numberOfParties; i++) {
 			logger.debug("initialisation du plateau");
-			this.conf.prepareConfig(); // pour initialiser le plateau à chaque partie
+			conf.prepareConfig(); // pour initialiser le plateau à chaque partie
 			logger.debug("debut de la partie");
-			diceForge = new Game(this.conf, numberofRound());
+			diceForge = new Game(conf, numberofRound());
 			for (Entry<Player, Integer> bot : player.entrySet()) {
 				diceForge.addBot(bot.getKey());
 			}

@@ -94,7 +94,7 @@ public abstract class Player {
      * @return the gameRound
      */
     public AtomicInteger getGameRound() {
-        return this.gameRound;
+        return gameRound;
     }
 
 }

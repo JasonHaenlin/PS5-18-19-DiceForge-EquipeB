@@ -23,12 +23,10 @@ public class Inventory {
 
     private static Logger logger = LogManager.getLogger(Inventory.class);
 
-    private Map<Resources, Integer> treasury = new EnumMap<>(Resources.class);
-    private List<Dice> dices = new ArrayList<>();
-    private List<Card> cards = new ArrayList<>();
-
-    // Queue for the hammer
-    private Queue<BlacksmithHammer> hammerQueue = new LinkedList<>();
+    private Queue<BlacksmithHammer> hammerQueue; // Queue for the hammer
+    private Map<Resources, Integer> treasury;
+    private List<Dice> dices;
+    private List<Card> cards;
 
     private int lastUpdate = 0;
 
@@ -37,14 +35,13 @@ public class Inventory {
     private int moonLim = 6;
 
     /**
-     * create a new empty inventory with basics dices
+     * create a new empty inventory object
      */
     public Inventory() {
-        for (Resources rsc : Resources.values()) {
-            treasury.put(rsc, 0);
-        }
-        dices.add(new Dice());
-        dices.add(new Dice());
+        this.treasury = new EnumMap<>(Resources.class);
+        this.dices = new ArrayList<>();
+        this.cards = new ArrayList<>();
+        this.hammerQueue = new LinkedList<>();
     }
 
     /**
@@ -55,9 +52,28 @@ public class Inventory {
      * @param dice2Config second dice configuration
      */
     public Inventory(Map<Resources, Integer> invConfig, List<DiceSide> dice1Config, List<DiceSide> dice2Config) {
+        this();
         this.treasury.putAll(invConfig);
         dices.add(new Dice(dice1Config));
         dices.add(new Dice(dice2Config));
+    }
+
+    /**
+     * create a new empty inventory with basics dices
+     */
+    public void basicSet() {
+        for (Resources rsc : Resources.values()) {
+            treasury.put(rsc, 0);
+        }
+        List<DiceSide> diceSides = new ArrayList<>();
+        diceSides.add(new DiceSide(2, Resources.VICTORY_POINT));
+        diceSides.add(new DiceSide(1, Resources.SUN_STONE));
+        diceSides.add(new DiceSide(1, Resources.MOON_STONE));
+        diceSides.add(new DiceSide(1, Resources.GOLD));
+        diceSides.add(new DiceSide(1, Resources.GOLD));
+        diceSides.add(new DiceSide(1, Resources.GOLD));
+        dices.add(new Dice(diceSides));
+        dices.add(new Dice(diceSides));
     }
 
     /**
@@ -108,7 +124,7 @@ public class Inventory {
         treasury.replace(res, checkResourcesLimit(amount, res));
     }
 
-    int checkResourcesLimit(int amount, Resources res) {
+    private int checkResourcesLimit(int amount, Resources res) {
         int n = treasury.get(res) + amount;
         switch (res) {
         case GOLD:
@@ -175,7 +191,7 @@ public class Inventory {
      * 
      * @return
      */
-    public int pollLastVictoryPoint() {
+    public final int pollLastVictoryPoint() {
         int point = lastUpdate;
         lastUpdate = 0;
         return point;
@@ -187,7 +203,7 @@ public class Inventory {
      * @param number
      * @return
      */
-    Dice getDice(int number) {
+    final Dice getDice(int number) {
         return dices.get(number);
     }
 
@@ -199,7 +215,7 @@ public class Inventory {
      * @param sideToAdd
      * @return true if the side has been correctly replaced, false otherwise
      */
-    boolean replaceDiceSide(int diceNumber, DiceSide sideToRemove, DiceSide sideToAdd) {
+    final boolean replaceDiceSide(int diceNumber, DiceSide sideToRemove, DiceSide sideToAdd) {
         if (diceNumber >= dices.size()) {
             return false;
         }
@@ -222,7 +238,7 @@ public class Inventory {
      * 
      * @return
      */
-    public Card peekLastCard() {
+    public final Card peekLastCard() {
         if (cards.isEmpty())
             return null;
         return cards.get(cards.size() - 1);
@@ -231,10 +247,10 @@ public class Inventory {
     /**
      * expand the inventory maximum capacity
      */
-    public void expand(int gold, int sun, int moon) {
-        this.goldLim += gold;
-        this.sunLim += sun;
-        this.moonLim += moon;
+    public final void expand(int goldLim, int sunLim, int moonLim) {
+        this.goldLim += goldLim;
+        this.sunLim += sunLim;
+        this.moonLim += moonLim;
     }
 
     /**
@@ -242,9 +258,13 @@ public class Inventory {
      * 
      * @param card
      */
-    public void addHammerEffect(BlacksmithHammer card) {
+    public final void addHammerEffect(BlacksmithHammer card) {
         if (card != null)
             hammerQueue.add(card);
+    }
+
+    public final int checkHammerState() {
+        return hammerQueue.peek().goldNeededBeforeCompletion();
     }
 
     /**

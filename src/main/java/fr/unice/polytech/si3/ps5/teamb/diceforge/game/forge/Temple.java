@@ -10,24 +10,34 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 /**
  * Temple
  */
-public class Temple {
+public final class Temple {
 
-    private List<Pool> sidesAvailable;
+    private final List<Pool> sidesAvailable;
+
     private List<DiceSide> cardAlreadyPlayed;
-
-    public Temple(Map<Integer, List<DiceSide>> sides) {
-        putInTemple(sides);
-        cardAlreadyPlayed = new ArrayList<>();
-    }
 
     /**
      * store each sides in the right pool
      * 
      * @param sides
      */
-    private void putInTemple(Map<Integer, List<DiceSide>> sides) {
+
+    public Temple() {
         this.sidesAvailable = new ArrayList<>();
-        sides.forEach((cost, side) -> this.sidesAvailable.add(new Pool(side, cost)));
+        this.cardAlreadyPlayed = new ArrayList<>();
+    }
+
+    public Temple(Map<Integer, List<DiceSide>> sides) {
+        this();
+        putInTemple(sides);
+    }
+
+    /**
+     * 
+     * @param sides
+     */
+    public void putInTemple(Map<Integer, List<DiceSide>> sides) {
+        sides.forEach((cost, side) -> sidesAvailable.add(new Pool(side, cost)));
     }
 
     /**
