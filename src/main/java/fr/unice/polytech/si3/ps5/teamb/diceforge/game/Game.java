@@ -5,12 +5,12 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Tuple;
 
 /**
  * Create a game
@@ -31,7 +31,7 @@ public final class Game extends Board {
     private int finalScore;
     private int round; // number of rounds in a game
 
-    private final AtomicInteger gameRound;
+    private final Tuple<String> gameRound;
 
     /**
      * Create a game
@@ -43,7 +43,7 @@ public final class Game extends Board {
         this.round = round;
         this.bots = new LinkedHashMap<>();
         this.winners = new HashMap<>();
-        this.gameRound = new AtomicInteger(0);
+        this.gameRound = new Tuple<>("Round", 0, round);
         logger.debug("init Game");
     }
 

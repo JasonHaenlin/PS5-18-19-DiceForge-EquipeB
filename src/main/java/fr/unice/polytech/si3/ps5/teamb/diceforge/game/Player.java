@@ -1,10 +1,11 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game;
 
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Tuple;
 
 /**
  * Player class to be use to create a bot for the game
@@ -13,7 +14,7 @@ public abstract class Player {
 
     protected static Logger logger = LogManager.getLogger(Player.class);
     protected Board boardView;
-    protected AtomicInteger gameRound;
+    protected Tuple<String> gameRound;
 
     private static int countInstance = 0;
 
@@ -73,7 +74,7 @@ public abstract class Player {
      * @param gameRound2
      * @param boardView
      */
-    void addBoard(AtomicInteger gameRound, Board boardView) {
+    void addBoard(Tuple<String> gameRound, Board boardView) {
         this.boardView = boardView;
         this.gameRound = gameRound;
     }
@@ -93,7 +94,7 @@ public abstract class Player {
     /**
      * @return the gameRound
      */
-    public AtomicInteger getGameRound() {
+    public Tuple<String> getGameRound() {
         return gameRound;
     }
 

@@ -1,34 +1,39 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game.util;
 
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
-
 /**
- * Tuple, most difficult class I have ever made
+ * Tuple, most difficult class I have ever made. The Tuple is made to store int
+ * value and optionnaly store a type
  * 
  * @author Jason Haenlin
  */
 
-public class Tuple {
-    public final Integer amount;
-    public final Integer maximum;
-    public final Resources resource;
+public class Tuple<TYPE> {
+    public final TYPE type;
+    public final int maximum;
+    public int value;
 
-    public Tuple(Resources resource, Integer amount, Integer maximum) {
-        this.resource = resource;
-        this.amount = amount;
+    public Tuple(TYPE type, int value, int maximum) {
+        this.type = type;
+        this.value = value;
         this.maximum = maximum;
     }
 
     public int delta() {
-        return maximum - amount;
+        return maximum - value;
     }
 
     public int delta(int offset) {
-        return (maximum - amount) - offset;
+        return (maximum - value) - offset;
+    }
+
+    public int incrementAndGet() {
+        value++;
+        return value;
     }
 
     @Override
     public String toString() {
-        return "[" + resource + ": (" + amount + " / " + maximum + ")" + "]";
+        return "[" + type + ": (" + value + " / " + maximum + ")" + "]";
     }
+
 }

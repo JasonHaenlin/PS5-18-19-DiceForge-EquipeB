@@ -1,18 +1,17 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.Exploit;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.Forge;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Board;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Tuple;
 
 /**
  * manage the context for the state
  */
 public class Context {
     private Template state;
-    private AtomicInteger gameRound;
+    private Tuple<String> gameRound;
 
     private final Exploit exploit;
     private final Forge forge;
@@ -62,7 +61,7 @@ public class Context {
      * @return the gameRound
      */
     public int getGameRound() {
-        return gameRound.get();
+        return gameRound.value;
     }
 
     /**

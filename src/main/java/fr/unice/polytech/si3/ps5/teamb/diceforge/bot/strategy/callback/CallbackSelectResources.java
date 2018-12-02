@@ -17,13 +17,13 @@ public class CallbackSelectResources implements Callback<Resources, Map<Resource
         int offsetMax = -100;
         int newOffset;
         Resources res = null;
-        List<Tuple> inv = context.getBoardView().peekInventory(context.getPlayerName());
-        for (Tuple t : inv) {
-            if (value.containsKey(t.resource)) {
-                newOffset = t.delta(value.get(t.resource));
+        List<Tuple<Resources>> inv = context.getBoardView().peekInventory(context.getPlayerName());
+        for (Tuple<Resources> t : inv) {
+            if (value.containsKey(t.type)) {
+                newOffset = t.delta(value.get(t.type));
                 if (newOffset > offsetMax) {
                     offsetMax = newOffset;
-                    res = t.resource;
+                    res = t.type;
                 }
             }
         }

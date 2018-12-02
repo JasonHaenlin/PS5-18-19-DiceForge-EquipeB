@@ -258,12 +258,12 @@ public class Board {
      * @param player
      * @return inventory map
      */
-    public final List<Tuple> peekInventory(String player) {
-        List<Tuple> tmp = new ArrayList<>();
+    public final List<Tuple<Resources>> peekInventory(String player) {
+        List<Tuple<Resources>> tmp = new ArrayList<>();
         Inventory inv = playerInventory.get(player);
-        tmp.add(new Tuple(Resources.GOLD, inv.getResource(Resources.GOLD), inv.getGoldLim()));
-        tmp.add(new Tuple(Resources.SUN_STONE, inv.getResource(Resources.SUN_STONE), inv.getSunLim()));
-        tmp.add(new Tuple(Resources.MOON_STONE, inv.getResource(Resources.MOON_STONE), inv.getMoonLim()));
+        tmp.add(new Tuple<Resources>(Resources.GOLD, inv.getResource(Resources.GOLD), inv.getGoldLim()));
+        tmp.add(new Tuple<Resources>(Resources.SUN_STONE, inv.getResource(Resources.SUN_STONE), inv.getSunLim()));
+        tmp.add(new Tuple<Resources>(Resources.MOON_STONE, inv.getResource(Resources.MOON_STONE), inv.getMoonLim()));
         return tmp;
     }
 
