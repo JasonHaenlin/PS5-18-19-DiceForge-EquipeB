@@ -4,6 +4,7 @@ import java.util.Map;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.Callback;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.CallbackDiceWithMostResources;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.CallbackHammerOptimization;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.CallbackSelectResources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state.Manager;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.template.TemplateEarlyGameForgeGoldPriority;
@@ -59,7 +60,8 @@ public class Raichu extends Player {
 
     @Override
     public int callBackHammer(int amount) {
-        return 0;
+        Callback<Integer, Integer> c = new CallbackHammerOptimization();
+        return c.runCallback(manager.getContext(), amount);
     }
 
 }

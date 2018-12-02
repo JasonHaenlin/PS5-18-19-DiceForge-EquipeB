@@ -102,10 +102,9 @@ public class Engine {
 	public String fire() throws Exception {
 		Game diceForge;
 		logger.debug("debut de la sequence");
-		if (player.size() == 1 || player.size() == 0) {
+		if (player.size() < 2) {
 			logger.debug("Nombre de joueurs insufisant : fin de la partie");
 			return "Error : insufficient number of players";
-
 		}
 		if (specificConfFile.equals(" ")) {
 			String Confile = chooseConFile();
@@ -113,7 +112,6 @@ public class Engine {
 
 		} else {
 			this.conf = new Config(specificConfFile);
-
 		}
 
 		for (int i = 0; i < numberOfParties; i++) {
