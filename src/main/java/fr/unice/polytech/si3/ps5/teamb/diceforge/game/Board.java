@@ -15,7 +15,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.Temple;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Guard;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Tuple;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.TupleInteger;
 
 /**
  * The board regroup all the inteith the game items
@@ -258,12 +258,14 @@ public class Board {
      * @param player
      * @return inventory map
      */
-    public final List<Tuple<Resources>> peekInventory(String player) {
-        List<Tuple<Resources>> tmp = new ArrayList<>();
+    public final List<TupleInteger<Resources>> peekInventory(String player) {
+        List<TupleInteger<Resources>> tmp = new ArrayList<>();
         Inventory inv = playerInventory.get(player);
-        tmp.add(new Tuple<Resources>(Resources.GOLD, inv.getResource(Resources.GOLD), inv.getGoldLim()));
-        tmp.add(new Tuple<Resources>(Resources.SUN_STONE, inv.getResource(Resources.SUN_STONE), inv.getSunLim()));
-        tmp.add(new Tuple<Resources>(Resources.MOON_STONE, inv.getResource(Resources.MOON_STONE), inv.getMoonLim()));
+        tmp.add(new TupleInteger<Resources>(Resources.GOLD, inv.getResource(Resources.GOLD), inv.getGoldLim()));
+        tmp.add(new TupleInteger<Resources>(Resources.SUN_STONE, inv.getResource(Resources.SUN_STONE),
+                inv.getSunLim()));
+        tmp.add(new TupleInteger<Resources>(Resources.MOON_STONE, inv.getResource(Resources.MOON_STONE),
+                inv.getMoonLim()));
         return tmp;
     }
 

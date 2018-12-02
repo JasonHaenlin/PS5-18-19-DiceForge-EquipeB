@@ -4,14 +4,14 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.Exploit;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.Forge;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Board;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Tuple;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.TupleInteger;
 
 /**
  * manage the context for the state
  */
 public class Context {
     private Template state;
-    private Tuple<String> gameRound;
+    private TupleInteger<String> gameRound;
 
     private final Exploit exploit;
     private final Forge forge;
@@ -60,7 +60,7 @@ public class Context {
     /**
      * @return the gameRound
      */
-    public Tuple<String> getGameRound() {
+    public TupleInteger<String> getGameRound() {
         return gameRound;
     }
 

@@ -20,6 +20,12 @@ public class Guard {
         this(1);
     }
 
+    /**
+     * create a new guard with a specific number of slot. It can be used to create
+     * multiple protection access
+     * 
+     * @param nbOfSlot
+     */
     public Guard(int nbOfSlot) {
         this.nbOfSlot = nbOfSlot;
         this.playerToken = "";

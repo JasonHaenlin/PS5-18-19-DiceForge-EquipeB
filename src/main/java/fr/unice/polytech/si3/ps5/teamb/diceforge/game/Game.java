@@ -10,7 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Tuple;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.TupleInteger;
 
 /**
  * Create a game
@@ -31,7 +31,7 @@ public final class Game extends Board {
     private int finalScore;
     private int round; // number of rounds in a game
 
-    private final Tuple<String> gameRound;
+    private final TupleInteger<String> gameRound;
 
     /**
      * Create a game
@@ -43,7 +43,7 @@ public final class Game extends Board {
         this.round = round;
         this.bots = new LinkedHashMap<>();
         this.winners = new HashMap<>();
-        this.gameRound = new Tuple<>("Round", 0, round);
+        this.gameRound = new TupleInteger<>("Round", 0, round);
         logger.debug("init Game");
     }
 
