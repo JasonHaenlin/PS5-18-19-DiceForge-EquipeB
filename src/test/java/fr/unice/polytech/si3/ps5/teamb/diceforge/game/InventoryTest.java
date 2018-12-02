@@ -28,6 +28,7 @@ public class InventoryTest {
     public void setup() throws Exception {
         conf = new Config("src/test/resources/config/basic.json");
         inv = new Inventory();
+        inv.basicSet();
         invPerso = new Inventory(conf.getInvConfig(), conf.getDice1Config(), conf.getDice2Config());
     }
 

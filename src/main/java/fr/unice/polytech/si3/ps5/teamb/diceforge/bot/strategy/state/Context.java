@@ -12,11 +12,12 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
  */
 public class Context {
     private Template state;
+    private AtomicInteger gameRound;
+
     private final Exploit exploit;
     private final Forge forge;
     private final Board boardView;
     private final Manager manager;
-    private AtomicInteger gameRound;
     private final String playerName;
 
     /**

@@ -9,6 +9,7 @@ public class CallbackHammerOptimization implements Callback<Integer, Integer> {
 
     @Override
     public Integer runCallback(Context context, Integer value) {
+
         return value;
     }
 
