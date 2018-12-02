@@ -35,10 +35,10 @@ public class ResourceSideTest {
         dice1.add(new DiceSide(5, Resources.MOON_STONE));
         dice1.add(new DiceSide(5, Resources.SUN_STONE));
 
-        int numberDice = strD.choseDice(dice0, dice1, null);
+        int numberDice = strD.chooseDice(dice0, dice1, null);
         List<DiceSide> dice = numberDice == 0 ? dice0 : dice1;
 
-        DiceSide removable = strD.choseSideRemove(dice, null);
+        DiceSide removable = strD.chooseSideRemove(dice, null);
         assertEquals(Resources.VICTORY_POINT, removable.getType());
 
         List<DiceSide> dice2 = new ArrayList<>();
@@ -51,10 +51,10 @@ public class ResourceSideTest {
         dice3.add(new DiceSide(5, Resources.MOON_STONE));
         dice3.add(new DiceSide(5, Resources.SUN_STONE));
 
-        strD.choseDice(dice2, dice3, null);
+        strD.chooseDice(dice2, dice3, null);
         List<DiceSide> dice5 = numberDice == 0 ? dice2 : dice3;
 
-        DiceSide removable2 = strD.choseSideRemove(dice5, null);
+        DiceSide removable2 = strD.chooseSideRemove(dice5, null);
         assertEquals(Resources.GOLD, removable2.getType());
 
     }

@@ -25,7 +25,7 @@ public class TestBoardforge {
     @Before
     public void setup() throws Exception {
         String confFile = "src/test/resources/config/basic.json";
-        this.conf = new Config(confFile);
+        conf = new Config(confFile);
         board = new BoardExtends(conf);
 
     }

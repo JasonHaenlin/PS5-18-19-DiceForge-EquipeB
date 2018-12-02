@@ -12,14 +12,14 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 public interface StratDice {
 
     /**
-     * Chose the best dice considering the resource you want to add
+     * Chooses the best dice considering the resource you want to add
      * 
      * @param diceSides0 first dice
      * @param diceSides1 second dice
      * @param resources  the resource you are looking for
      * @return the best dice
      */
-    int choseDice(List<DiceSide> diceSides0, List<DiceSide> diceSides1, Resources resources);
+    int chooseDice(List<DiceSide> diceSides0, List<DiceSide> diceSides1, Resources resources);
 
     /**
      * chose the best dice side best on all the sides and the resource you want to
@@ -29,6 +29,6 @@ public interface StratDice {
      * @param resources  you want to add on the dice
      * @return the right side
      */
-    DiceSide choseSideRemove(List<DiceSide> dicesSides, Resources resources);
+    DiceSide chooseSideRemove(List<DiceSide> dicesSides, Resources resources);
 
 }

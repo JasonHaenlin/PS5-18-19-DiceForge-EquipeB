@@ -26,6 +26,8 @@ public class Forge {
     public Forge(String name, Board boardView) {
         this.name = name;
         this.boardView = boardView;
+        this.size = 0;
+        this.resPriority = new ArrayList<>();
     }
 
     /**
@@ -46,6 +48,8 @@ public class Forge {
      * @param repeatInf set to true if you want to forge as long as you can
      */
     public void compute(StratDice stratD, StratForge stratF, boolean repeatInf) {
+        if (resPriority.isEmpty())
+            return;
         List<DiceSide> diceSides0 = boardView.getDiceSide(name, 0);
         List<DiceSide> diceSides1 = boardView.getDiceSide(name, 1);
         DiceSide sideToRemove;
@@ -58,8 +62,8 @@ public class Forge {
                 sideToAdd = stratF.execution(boardView.playableSides(name), resPriority.get(i));
             if (i >= size)
                 i = size - 1;
-            d = stratD.choseDice(diceSides0, diceSides1, resPriority.get(i));
-            sideToRemove = stratD.choseSideRemove(boardView.getDiceSide(name, d), resPriority.get(i));
+            d = stratD.chooseDice(diceSides0, diceSides1, resPriority.get(i));
+            sideToRemove = stratD.chooseSideRemove(boardView.getDiceSide(name, d), resPriority.get(i));
         } while (boardView.forge(name, d, sideToRemove, sideToAdd) && repeatInf);
     }
 }

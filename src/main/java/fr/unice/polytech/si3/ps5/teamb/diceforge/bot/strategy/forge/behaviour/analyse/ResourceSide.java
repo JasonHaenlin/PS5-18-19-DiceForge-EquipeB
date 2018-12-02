@@ -14,12 +14,12 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 public class ResourceSide implements StratDice {
 
     @Override
-    public int choseDice(List<DiceSide> diceSides0, List<DiceSide> diceSides1, Resources resources) {
+    public int chooseDice(List<DiceSide> diceSides0, List<DiceSide> diceSides1, Resources resources) {
         return new Random().nextInt(2);
     }
 
     @Override
-    public DiceSide choseSideRemove(List<DiceSide> dicesSides, Resources resources) {
+    public DiceSide chooseSideRemove(List<DiceSide> dicesSides, Resources resources) {
         for (DiceSide diceside : dicesSides) {
             if (diceside.getType().ordinal() == 0 || diceside.getType().ordinal() == 1) {
                 return diceside;

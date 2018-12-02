@@ -12,16 +12,28 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
  * @author Jason Haenlin
  */
 public class DiceSide {
-    private int value;
-    private Resources type;
-    private int cost;
 
+    private final Resources type;
+    private final int value;
+    private final int cost;
+
+    /**
+     * create a new dice side with a cost of 0
+     * 
+     * @param value
+     * @param type  the resource
+     */
     public DiceSide(int value, Resources type) {
-        this.value = value;
-        this.type = type;
-        this.cost = 0;
+        this(value, type, 0);
     }
 
+    /**
+     * create a new dice side
+     * 
+     * @param value
+     * @param type  the resource
+     * @param cost
+     */
     public DiceSide(int value, Resources type, int cost) {
         this.value = value;
         this.type = type;

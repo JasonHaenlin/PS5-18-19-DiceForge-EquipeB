@@ -2,11 +2,13 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player;
 
 import java.util.Map;
 
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.behaviour.HighestExploit;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.behaviour.HighestForge;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.behaviour.analyse.SingleResource;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state.Template;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Board;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.Callback;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.CallbackDiceWithMostResources;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.CallbackSelectResources;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state.Manager;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.template.TemplateEarlyGameForgeGoldPriority;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.template.TemplateLateGameExploitHigestCard;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.template.TemplateMiddleGameForgeMoonSun;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 
@@ -15,6 +17,8 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
  */
 public class Raichu extends Player {
 
+    private Manager manager;
+
     public Raichu() {
         super("Raichu");
         // super Raichu !!!
@@ -22,50 +26,13 @@ public class Raichu extends Player {
 
     @Override
     protected void setup() {
-        manager.addState(new Template() { // first state
-            @Override
-            public void onInitialization(Board boardView) {
-                forge.setdiceTypePriority(Resources.GOLD, Resources.MOON_STONE, Resources.SUN_STONE);
-            }
-
-            @Override
-            public boolean onCondition(Board boardView) {
-                return gameRound < 3;
-            }
-
-            @Override
-            public void doAction(Board boardView) {
-                forge.compute(new SingleResource(), new HighestForge(), true);
-                exploit.compute(new HighestExploit());
-            }
-
-            @Override
-            public void doElse(Board boardView) {
-                manager.nextTemplate();
-            }
-        }).addState(new Template() { // second state
-            @Override
-            public void onInitialization(Board boardView) {
-                forge.setdiceTypePriority(Resources.MOON_STONE, Resources.SUN_STONE);
-            }
-
-            @Override
-            public boolean onCondition(Board boardView) {
-                return gameRound < 5;
-            }
-
-            @Override
-            public void doAction(Board boardView) {
-                forge.compute(new SingleResource(), new HighestForge(), true);
-                exploit.compute(new HighestExploit());
-            }
-
-            @Override
-            public void doElse(Board boardView) {
-                exploit.compute(new HighestExploit());
-                forge.compute(new SingleResource(), new HighestForge(), true);
-            }
-        }).build();
+        manager = new Manager(this);
+        // @formatter:off
+        manager.addState(new TemplateEarlyGameForgeGoldPriority())
+            .addState(new TemplateMiddleGameForgeMoonSun())
+            .addState(new TemplateLateGameExploitHigestCard())
+            .build();
+        // @formatter:on
     }
 
     @Override
@@ -74,18 +41,20 @@ public class Raichu extends Player {
     }
 
     @Override
-    public int callBackDice() {
-        return 0;
-    }
-
-    @Override
     protected boolean replayOnceAgain() {
         return !boardView.playableCards(name, Resources.SUN_STONE, 2).isEmpty();
     }
 
     @Override
+    public int callBackDice() {
+        Callback<Integer, Resources> c = new CallbackDiceWithMostResources();
+        return c.runCallback(manager.getContext(), Resources.SUN_STONE);
+    }
+
+    @Override
     public Resources callBackResources(Map<Resources, Integer> resInt) {
-        return null;
+        Callback<Resources, Map<Resources, Integer>> c = new CallbackSelectResources();
+        return c.runCallback(manager.getContext(), resInt);
     }
 
     @Override

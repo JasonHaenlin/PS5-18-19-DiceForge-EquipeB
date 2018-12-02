@@ -13,7 +13,6 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Hydra;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.Dice;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.helper.PlayerTest;
 
 /**
  * InventoryTest
@@ -29,6 +28,7 @@ public class InventoryTest {
     public void setup() throws Exception {
         conf = new Config("src/test/resources/config/basic.json");
         inv = new Inventory();
+        inv.basicSet();
         invPerso = new Inventory(conf.getInvConfig(), conf.getDice1Config(), conf.getDice2Config());
     }
 
@@ -119,22 +119,22 @@ public class InventoryTest {
     @Test
     public void HammerCardEffectTest() {
         BlacksmithHammer bl = new BlacksmithHammer(1, 0, 0);
-        bl.setCardOwner(PlayerTest.first);
+        bl.setCardOwner(HelperPlayer.first);
         inv.addHammerEffect(bl);
         inv.addResourceToBag(5, Resources.GOLD);
         assertEquals(0, inv.getResource(Resources.GOLD));
         assertFalse(bl.isHammerDone());
 
-        bl.setCardOwner(PlayerTest.fifth);
+        bl.setCardOwner(HelperPlayer.fifth);
         inv.addResourceToBag(5, Resources.GOLD);
         assertEquals(5, inv.getResource(Resources.GOLD));
 
-        bl.setCardOwner(PlayerTest.first);
+        bl.setCardOwner(HelperPlayer.first);
         inv.addResourceToBag(30, Resources.GOLD);
         assertEquals(10, inv.getResource(Resources.GOLD));
         assertTrue(bl.isHammerDone());
 
-        bl.setCardOwner(PlayerTest.fifth);
+        bl.setCardOwner(HelperPlayer.fifth);
         inv.addResourceToBag(10, Resources.GOLD);
         assertEquals(12, inv.getResource(Resources.GOLD));
     }

@@ -13,7 +13,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
 public interface StratForge {
 
     /**
-     * retrive the best dice side from the temple
+     * retrieves the best dice side from the temple
      */
     DiceSide execution(List<DiceSide> feasible, Resources resource);
 

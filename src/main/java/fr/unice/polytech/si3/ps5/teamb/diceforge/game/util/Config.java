@@ -37,7 +37,7 @@ public class Config {
     private EnumMap<Resources, Integer> invConfig;
     private Map<Integer, List<DiceSide>> forgeConfig;
 
-    public Config(String file) throws Exception {
+    public Config(String file) throws RuntimeException {
         this.file = file;
         try {
             this.jsonConfig = extractJson();
@@ -50,11 +50,11 @@ public class Config {
      * compute the config only one time for all the games
      */
     public void prepareConfig() {
-        this.invConfig = extractInventory();
-        this.exploitConfig = extractExploit();
-        this.forgeConfig = extractForge();
-        this.dice1Config = extractDice(0);
-        this.dice2Config = extractDice(1);
+        invConfig = extractInventory();
+        exploitConfig = extractExploit();
+        forgeConfig = extractForge();
+        dice1Config = extractDice(0);
+        dice2Config = extractDice(1);
     }
 
     EnumMap<Resources, Integer> extractInventory() {
@@ -112,7 +112,7 @@ public class Config {
     }
 
     private JSONObject extractJson() throws IOException {
-        JSONObject jobj = new JSONObject(readFile(this.file));
+        JSONObject jobj = new JSONObject(readFile(file));
         return jobj.getJSONObject("data");
     }
 
@@ -137,7 +137,7 @@ public class Config {
      */
     public List<DiceSide> getDice1Config() {
         if (dice1Config == null) {
-            this.dice1Config = extractDice(0);
+            dice1Config = extractDice(0);
         }
         return dice1Config;
     }
@@ -147,7 +147,7 @@ public class Config {
      */
     public List<DiceSide> getDice2Config() {
         if (dice2Config == null) {
-            this.dice2Config = extractDice(1);
+            dice2Config = extractDice(1);
         }
         return dice2Config;
     }
@@ -157,7 +157,7 @@ public class Config {
      */
     public List<Card> getExploitConfig() {
         if (exploitConfig == null) {
-            this.exploitConfig = extractExploit();
+            exploitConfig = extractExploit();
         }
         return exploitConfig;
     }
@@ -167,7 +167,7 @@ public class Config {
      */
     public Map<Integer, List<DiceSide>> getForgeConfig() {
         if (forgeConfig == null) {
-            this.forgeConfig = extractForge();
+            forgeConfig = extractForge();
         }
         return forgeConfig;
     }
@@ -177,7 +177,7 @@ public class Config {
      */
     public EnumMap<Resources, Integer> getInvConfig() {
         if (invConfig == null) {
-            this.invConfig = extractInventory();
+            invConfig = extractInventory();
         }
         return invConfig;
     }

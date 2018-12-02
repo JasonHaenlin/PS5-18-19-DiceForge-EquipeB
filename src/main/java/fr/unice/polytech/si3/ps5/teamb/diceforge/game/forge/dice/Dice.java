@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
-
 /**
  *
  * Create a dice
@@ -17,40 +15,37 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
  *
  */
 
-public class Dice {
+public final class Dice {
 
-    private List<DiceSide> diceSides = new ArrayList<>();
-
-    private int size;
+    private final List<DiceSide> diceSides;
     private Random rnd;
 
+    private int size;
+
+
     /**
-     * Create a dice with 2 sides with MS 2 sides with SS 1 side with gold 1 side
-     * with PG
+     * Creates an empty dice which will be initialized
+     * by the configuration file at the initialization of the game)
      */
     public Dice() {
-        rnd = new Random();
-        diceSides.add(new DiceSide(2, Resources.VICTORY_POINT));
-        diceSides.add(new DiceSide(1, Resources.SUN_STONE));
-        diceSides.add(new DiceSide(1, Resources.MOON_STONE));
-        diceSides.add(new DiceSide(1, Resources.GOLD));
-        diceSides.add(new DiceSide(1, Resources.GOLD));
-        diceSides.add(new DiceSide(1, Resources.GOLD));
-        this.size = diceSides.size();
+        this.rnd = new Random();
+        this.diceSides = new ArrayList<>();
     }
 
+    /**
+     * Create new dice
+     */
     public Dice(List<DiceSide> side) {
-        rnd = new Random();
+        this();
         for (DiceSide s : side) {
             diceSides.add(s);
         }
-        this.size = diceSides.size();
+        size = diceSides.size();
     }
 
     /**
      * Rolls Dice
      *
-     * @param treasury
      */
     public DiceSide roll() {
         return diceSides.get(rnd.nextInt(size));

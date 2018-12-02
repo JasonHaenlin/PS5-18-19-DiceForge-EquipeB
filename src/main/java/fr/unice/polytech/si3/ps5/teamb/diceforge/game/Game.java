@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,17 +21,17 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
  * @author Jason Haenlin
  */
 
-public class Game extends Board {
+public final class Game extends Board {
 
     private static Logger logger = LogManager.getLogger(Game.class);
 
-    private Map<Player, Integer> bots;
-    private Map<String, Integer> winners;
+    private final Map<Player, Integer> bots;
+    private final Map<String, Integer> winners;
 
     private int finalScore;
     private int round; // number of rounds in a game
 
-    private Integer gameRound = new Integer(0);
+    private final AtomicInteger gameRound;
 
     /**
      * Create a game
@@ -39,10 +40,11 @@ public class Game extends Board {
      */
     public Game(Config conf, int round) {
         super(conf);
-        logger.debug("init Game");
         this.round = round;
         this.bots = new LinkedHashMap<>();
         this.winners = new HashMap<>();
+        this.gameRound = new AtomicInteger(0);
+        logger.debug("init Game");
     }
 
     /**
@@ -54,8 +56,8 @@ public class Game extends Board {
         logger.debug("oneGameFire !");
         initialize();
         for (int i = 0; i < round; i++) {
-            gameRound += 1;
-            logger.debug("|========================tour actuel : " + gameRound + " ========================|");
+            logger.debug("|========================tour actuel : " + gameRound.incrementAndGet()
+                    + " ========================|");
             bots.forEach((bot, score) -> {
                 rollAllDices();
                 logger.debug("------------------Debut du tour pour '" + bot.toString() + "' ------------------");
@@ -92,6 +94,14 @@ public class Game extends Board {
         }
     }
 
+    /**
+     * add a bot to the current game and register it in the board
+     * 
+     * @param bot
+     * @return
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     */
     Game addBot(Class<? extends Player> bot) throws InstantiationException, IllegalAccessException {
         Player player = bot.newInstance();
         return addBot(player);

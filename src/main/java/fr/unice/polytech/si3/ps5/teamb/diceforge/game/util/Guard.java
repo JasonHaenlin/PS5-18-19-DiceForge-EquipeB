@@ -8,20 +8,19 @@ import java.util.List;
  */
 public class Guard {
 
+    private final List<Boolean> slotAuth;
+
     private String playerToken;
     private int nbOfSlot;
 
-    private List<Boolean> slotAuth;
-
-    public Guard(int slotAuth) {
-        setup(slotAuth);
-    }
-
+    /**
+     * create a new guard for our game
+     */
     public Guard() {
-        setup(1);
+        this(1);
     }
 
-    private void setup(int nbOfSlot) {
+    public Guard(int nbOfSlot) {
         this.nbOfSlot = nbOfSlot;
         this.playerToken = "";
         this.slotAuth = new ArrayList<>();
