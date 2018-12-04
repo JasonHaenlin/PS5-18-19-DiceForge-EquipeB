@@ -63,6 +63,8 @@ public class Manager {
      */
     public void ExecSequence() {
         Template s = context.getState();
+        if (s == null)
+            return;
         if (!initState)
             initState(s);
         if (s.onCondition(context))

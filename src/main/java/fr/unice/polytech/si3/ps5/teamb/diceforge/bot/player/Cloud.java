@@ -2,9 +2,14 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player;
 
 import java.util.Map;
 
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.Forge;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.Callback;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.CallbackDiceWithMostResources;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.CallbackHammerOptimization;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.CallbackSelectResources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.behaviour.HighestForge;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.behaviour.analyse.ResourceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state.Manager;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.template.TemplateGameFullRandom;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 
@@ -13,7 +18,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
  */
 public class Cloud extends Player {
 
-    private Forge forge;
+    Manager manager;
 
     public Cloud() {
         super("Cloud");
@@ -21,28 +26,36 @@ public class Cloud extends Player {
 
     @Override
     public void setup() {
-        forge = new Forge(name, boardView);
-        forge.setdiceTypePriority(Resources.VICTORY_POINT);
+        manager = new Manager(this);
+        manager.addState(new TemplateGameFullRandom()).build();
     }
 
     @Override
-    public void play() {
-        forge.compute(new ResourceSide(), new HighestForge(), true);
+    protected void play() {
+        manager.ExecSequence();
+    }
+
+    @Override
+    protected boolean replayOnceAgain() {
+        return !boardView.playableCards(name, Resources.SUN_STONE, 2).isEmpty();
     }
 
     @Override
     public int callBackDice() {
-        return 0;
+        Callback<Integer, Resources> c = new CallbackDiceWithMostResources();
+        return c.runCallback(manager.getContext(), Resources.SUN_STONE);
     }
 
     @Override
     public Resources callBackResources(Map<Resources, Integer> resInt) {
-        return null;
+        Callback<Resources, Map<Resources, Integer>> c = new CallbackSelectResources();
+        return c.runCallback(manager.getContext(), resInt);
     }
 
     @Override
     public int callBackHammer(int amount) {
-        return 0;
+        Callback<Integer, Integer> c = new CallbackHammerOptimization();
+        return c.runCallback(manager.getContext(), amount);
     }
 
 }
