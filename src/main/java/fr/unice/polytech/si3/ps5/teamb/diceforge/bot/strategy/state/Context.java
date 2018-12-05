@@ -84,4 +84,7 @@ public class Context {
     public String getPlayerName() {
         return playerName;
     }
+
+    public boolean hasHammer() { return boardView.hasHammer(playerName); }
+
 }

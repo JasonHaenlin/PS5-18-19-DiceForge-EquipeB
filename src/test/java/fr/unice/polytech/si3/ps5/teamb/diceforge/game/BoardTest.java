@@ -69,5 +69,4 @@ public class BoardTest {
         board = new BoardExtends(new Config(basic));
         assertTrue(board.BoardRepeatTest());
     }
-
 }

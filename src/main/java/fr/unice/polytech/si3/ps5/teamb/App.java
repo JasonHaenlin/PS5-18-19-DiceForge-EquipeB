@@ -1,13 +1,10 @@
 package fr.unice.polytech.si3.ps5.teamb;
 
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.Engine;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.Cloud;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.Hephaestos;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.Raichu;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.Totoro;
 
 public class App {
 
@@ -20,7 +17,7 @@ public class App {
         String result = engine.createGame(1000)
                 .addBot(Hephaestos.class)
                 .addBot(Cloud.class)
-                .addBot(Raichu.class)
+                .addBot(Luxio.class)
                 .addBot(Totoro.class)
                 .fire();
         //@formatter:ons

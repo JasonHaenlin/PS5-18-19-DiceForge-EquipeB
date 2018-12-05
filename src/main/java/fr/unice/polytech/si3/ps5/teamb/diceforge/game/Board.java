@@ -75,7 +75,6 @@ public class Board {
      * register a new player on the current game
      * 
      * @param player name
-     * @param token  secret passed by the game
      * @return true if the player has been correctly added, false otherwise when the
      *         player is already in the board
      */
@@ -304,6 +303,8 @@ public class Board {
     public final int getHammerState(String player) {
         return playerInventory.get(player).checkHammerState();
     }
+
+    public boolean hasHammer(String player) { return playerInventory.get(player).playerHasHammer();}
 
     /**
      * get a view of the board for the player

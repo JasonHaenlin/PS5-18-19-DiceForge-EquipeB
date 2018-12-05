@@ -267,6 +267,10 @@ public class Inventory {
         return hammerQueue.peek().goldNeededBeforeCompletion();
     }
 
+    public boolean playerHasHammer(){
+        return hammerQueue.isEmpty();
+    }
+
     /**
      * play the hammer effect if an hammer is present
      * 
