@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.DiceSide;
 
 /**
  * SingleResource is a block of strategy choosing the side to remove
@@ -21,11 +21,11 @@ public class SingleResource implements StratDice {
         int potentialOfDice1 = 0;
         int potentialOfDice2 = 0;
         for (DiceSide side : diceSides0) {
-            if (side.getType().equals(resources))
+            if (side.contains(resources))
                 potentialOfDice1++;
         }
         for (DiceSide side : diceSides1) {
-            if (side.getType().equals(resources))
+            if (side.contains(resources))
                 potentialOfDice2++;
         }
         return potentialOfDice1 > potentialOfDice2 ? 0 : 1;
@@ -35,7 +35,7 @@ public class SingleResource implements StratDice {
     public DiceSide chooseSideRemove(List<DiceSide> dicesSides, Resources resources) {
         List<DiceSide> potentielSides = new ArrayList<>();
         for (DiceSide side : dicesSides) {
-            if (side.getType() == Resources.GOLD) {
+            if (side.contains(Resources.GOLD)) {
                 potentielSides.add(side);
             }
         }
@@ -43,7 +43,7 @@ public class SingleResource implements StratDice {
             return null;
         for (int i = 0; i <= 6; i++) { // Récupère la valeur min
             for (DiceSide side : potentielSides) {
-                if (side.getValue() == i)
+                if (side.coefficient() == i)
                     return side;
             }
         }

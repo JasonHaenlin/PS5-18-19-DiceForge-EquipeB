@@ -17,7 +17,9 @@ import org.json.JSONObject;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.CardEnum;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.DiceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.SideEnum;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.SideSimple;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.exception.BadConfigFileException;
 
 /**
@@ -72,7 +74,7 @@ public class Config {
         List<DiceSide> side = new ArrayList<>();
         extArray.forEach(item -> {
             JSONObject obj = (JSONObject) item;
-            side.add(new DiceSide(obj.getInt("amount"), Resources.valueOf(obj.getString("resource"))));
+            side.add(new SideSimple(Resources.valueOf(obj.getString("resource")), obj.getInt("amount"), 0));
         });
         return side;
     }
@@ -103,7 +105,7 @@ public class Config {
             JSONArray objArray = obj.getJSONArray("side");
             objArray.forEach(item -> {
                 JSONObject sideObj = (JSONObject) item;
-                diceList.add(new DiceSide(sideObj.getInt("amount"), Resources.valueOf(sideObj.getString("resource")),
+                diceList.add(sideObj.getEnum(SideEnum.class, "type").build(sideObj.getJSONArray("properties"),
                         obj.getInt("cost")));
             });
             forgeMap.put(obj.getInt("cost"), diceList);

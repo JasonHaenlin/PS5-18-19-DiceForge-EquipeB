@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.DiceSide;
+
 /**
  *
  * Create a dice
@@ -22,10 +24,9 @@ public final class Dice {
 
     private int size;
 
-
     /**
-     * Creates an empty dice which will be initialized
-     * by the configuration file at the initialization of the game)
+     * Creates an empty dice which will be initialized by the configuration file at
+     * the initialization of the game)
      */
     public Dice() {
         this.rnd = new Random();

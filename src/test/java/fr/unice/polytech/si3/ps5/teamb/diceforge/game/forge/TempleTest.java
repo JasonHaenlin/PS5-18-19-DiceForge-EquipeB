@@ -13,7 +13,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.DiceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.SideSimple;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 
 /**
@@ -27,9 +28,9 @@ public class TempleTest {
     Temple temple;
     List<Pool> pool;
     Map<Integer, List<DiceSide>> temp;
-    DiceSide side1 = new DiceSide(1, Resources.GOLD, 3);
-    DiceSide side2 = new DiceSide(1, Resources.GOLD, 4);
-    DiceSide side3 = new DiceSide(1, Resources.GOLD, 5);
+    DiceSide side1 = new SideSimple(Resources.GOLD, 1, 3);
+    DiceSide side2 = new SideSimple(Resources.GOLD, 1, 4);
+    DiceSide side3 = new SideSimple(Resources.GOLD, 1, 5);
 
     @Before
     public void setup() {

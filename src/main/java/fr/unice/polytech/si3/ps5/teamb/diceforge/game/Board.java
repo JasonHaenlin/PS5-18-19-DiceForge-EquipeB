@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.Islands;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.Temple;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.DiceSide;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Guard;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.TupleInteger;

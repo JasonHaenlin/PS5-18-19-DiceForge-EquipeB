@@ -6,8 +6,6 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.Callback;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.CallbackDiceWithMostResources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.CallbackHammerOptimization;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.CallbackSelectResources;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.behaviour.HighestForge;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.behaviour.analyse.ResourceSide;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state.Manager;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.template.TemplateGameFullRandom;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;

@@ -1,0 +1,116 @@
+{
+    "name": "JSONParser diceForge game config",
+    "version": "1.0.0",
+    "description": "basic game config",
+    "data": {
+        "resources": {
+            "gold": 3,
+            "sunStone": 3,
+            "moonStone": 3,
+            "victoryPoint": 0
+        },
+        "dices": [
+            [{
+                "resource": "VICTORY_POINT",
+                "amount": 2
+            }, {
+                "resource": "MOON_STONE",
+                "amount": 1
+            }, {
+                "resource": "GOLD",
+                "amount": 1
+            }, {
+                "resource": "GOLD",
+                "amount": 1
+            }, {
+                "resource": "GOLD",
+                "amount": 1
+            }, {
+                "resource": "GOLD",
+                "amount": 1
+            }],
+            [{
+                "resource": "SUN_STONE",
+                "amount": 1
+            }, {
+                "resource": "GOLD",
+                "amount": 1
+            }, {
+                "resource": "GOLD",
+                "amount": 1
+            }, {
+                "resource": "GOLD",
+                "amount": 1
+            }, {
+                "resource": "GOLD",
+                "amount": 1
+            }, {
+                "resource": "GOLD",
+                "amount": 1
+            }]
+        ],
+        "exploit": [{
+                "name": "GORGON",
+                "sunStone": 3,
+                "moonStone": 3,
+                "victoryPoint": 12
+            }, {
+                "name": "CANCER",
+                "sunStone": 3,
+                "moonStone": 3,
+                "victoryPoint": 12
+            }, {
+                "name": "CANCER",
+                "sunStone": 3,
+                "moonStone": 3,
+                "victoryPoint": 12
+            }, {
+                "name": "SPHINX",
+                "sunStone": 3,
+                "moonStone": 3,
+                "victoryPoint": 12
+            }, {
+                "name": "SPHINX",
+                "sunStone": 3,
+                "moonStone": 3,
+                "victoryPoint": 12
+            }, {
+                "name": "WILD_SPIRITS",
+                "sunStone": 3,
+                "moonStone": 3,
+                "victoryPoint": 12
+            }, {
+                "name": "WILD_SPIRITS",
+                "sunStone": 3,
+                "moonStone": 3,
+                "victoryPoint": 12
+            }
+
+        ],
+        "forge": [{
+            "cost": 2,
+            "side": [{
+                "type": "SIMPLE_SIDE",
+                "properties": [{
+                    "resource": "VICTORY_POINT",
+                    "amount": 1
+                }]
+
+            }, {
+                "type": "SIMPLE_SIDE",
+                "properties": [{
+                    "resource": "VICTORY_POINT",
+                    "amount": 1
+                }]
+
+            }, {
+                "type": "SIMPLE_SIDE",
+                "properties": [{
+                    "resource": "VICTORY_POINT",
+                    "amount": 1
+                }]
+
+            }]
+        }]
+    }
+}
