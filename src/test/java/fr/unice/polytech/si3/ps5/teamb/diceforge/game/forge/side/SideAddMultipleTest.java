@@ -53,4 +53,14 @@ public class SideAddMultipleTest {
         assertTrue(side1.equals(side2));
         assertFalse(side3.equals(side2));
     }
+
+    @Test
+    public void sideAddMultipleCoefTest() {
+        List<TuplePair<Resources, Integer>> sides1 = new ArrayList<>();
+        sides1.add(new TuplePair<Resources, Integer>(Resources.GOLD, 5));
+        sides1.add(new TuplePair<Resources, Integer>(Resources.MOON_STONE, 2));
+        DiceSide side1 = new SideAddMultiple(sides1, 5);
+
+        assertEquals(7, side1.coefficient());
+    }
 }

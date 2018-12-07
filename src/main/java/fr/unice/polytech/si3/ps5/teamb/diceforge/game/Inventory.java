@@ -278,7 +278,7 @@ public class Inventory {
         return hammerQueue.peek().goldNeededBeforeCompletion();
     }
 
-    public boolean playerHasHammer(){
+    public boolean playerHasHammer() {
         return hammerQueue.isEmpty();
     }
 

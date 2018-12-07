@@ -57,4 +57,14 @@ public class SideChoiceTest {
         assertTrue(side1.equals(side2));
         assertFalse(side3.equals(side2));
     }
+
+    @Test
+    public void sideChoiceCoefTest() {
+        List<TuplePair<Resources, Integer>> sides1 = new ArrayList<>();
+        sides1.add(new TuplePair<Resources, Integer>(Resources.GOLD, 5));
+        sides1.add(new TuplePair<Resources, Integer>(Resources.MOON_STONE, 2));
+        DiceSide side1 = new SideChoice(sides1, 5);
+
+        assertEquals(3, side1.coefficient());
+    }
 }

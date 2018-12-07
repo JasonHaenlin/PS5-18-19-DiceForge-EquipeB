@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -57,5 +58,15 @@ public class SideMultiplyResourceTest {
 
         assertTrue(side1.equals(side2));
         assertFalse(side3.equals(side2));
+    }
+
+    @Test
+    public void sideMultiplyMultiplyTest() {
+        DiceSide side1 = new SideMultiplyResource(0);
+        DiceSide side2 = new SideMultiplyResource(0);
+        List<TuplePair<Resources, Integer>> inst = new ArrayList<>();
+        inst.addAll(side1.executeInstructions(side2, null));
+        inst.addAll(side2.executeInstructions(side1, null));
+        assertTrue(inst.size() == 2);
     }
 }

@@ -26,7 +26,7 @@ public abstract class DiceSide {
     }
 
     /**
-     * add the instruction to be execute optionaly : you can add some post
+     * add the instruction to be execute. Optionaly : you can add some post
      * instructions if something need to be done after the main instructions
      * 
      * @param inst
