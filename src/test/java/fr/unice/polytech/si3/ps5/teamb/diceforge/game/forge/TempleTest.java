@@ -69,8 +69,8 @@ public class TempleTest {
         assertEquals(0, temple.obtainReplaceableSides(1).size());
         assertEquals(8, temple.obtainReplaceableSides(2).size());
         assertEquals(16, temple.obtainReplaceableSides(3).size());
-        assertEquals(19, temple.obtainReplaceableSides(6).size());
-        assertEquals(27, temple.obtainReplaceableSides(8).size());
-        assertEquals(28, temple.obtainReplaceableSides(12).size());
+        assertEquals(16, temple.obtainReplaceableSides(6).size());
+        assertEquals(24, temple.obtainReplaceableSides(8).size());
+        assertEquals(25, temple.obtainReplaceableSides(12).size());
     }
 }

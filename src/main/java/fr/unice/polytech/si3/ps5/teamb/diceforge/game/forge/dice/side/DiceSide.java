@@ -11,9 +11,9 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
  */
 public abstract class DiceSide {
 
-    private final int cost;
-    private final String name;
-    private final List<Instructions> inst;
+    public final String name;
+    protected final int cost;
+    private List<Instructions> inst;
 
     public DiceSide(int cost, String name) {
         this.cost = cost;
@@ -31,6 +31,8 @@ public abstract class DiceSide {
      * @return the inst
      */
     public List<Instructions> getInstructions() {
+        inst = new ArrayList<>();
+        setAllInstrucion(inst);
         return inst;
     }
 
@@ -60,5 +62,10 @@ public abstract class DiceSide {
 
     public static DiceSide emptySide() {
         return new SideSimple(Resources.GOLD, 0, 0);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

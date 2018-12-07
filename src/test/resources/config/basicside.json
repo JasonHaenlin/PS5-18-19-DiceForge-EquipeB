@@ -83,39 +83,69 @@
         "forge": [{
             "cost": 3,
             "side": [{
-                "resource": "SUN_STONE",
-                "amount": 1
+                "type": "SIMPLE_SIDE",
+                "properties": [{
+                    "resource": "SUN_STONE",
+                    "amount": 1
+                }]
             }, {
-                "resource": "VICTORY_POINT",
-                "amount": 1
+                "type": "SIMPLE_SIDE",
+                "properties": [{
+                    "resource": "VICTORY_POINT",
+                    "amount": 1
+                }]
             }, {
-                "resource": "VICTORY_POINT",
-                "amount": 1
+                "type": "SIMPLE_SIDE",
+                "properties": [{
+                    "resource": "VICTORY_POINT",
+                    "amount": 1
+                }]
             }]
         }, {
             "cost": 4,
             "side": [{
-                "resource": "VICTORY_POINT",
-                "amount": 2
+                "type": "SIMPLE_SIDE",
+                "properties": [{
+                    "resource": "VICTORY_POINT",
+                    "amount": 2
+                }]
             }, {
-                "resource": "VICTORY_POINT",
-                "amount": 2
+                "type": "SIMPLE_SIDE",
+                "properties": [{
+                    "resource": "VICTORY_POINT",
+                    "amount": 2
+                }]
             }, {
-                "resource": "VICTORY_POINT",
-                "amount": 3
+                "type": "SIMPLE_SIDE",
+                "properties": [{
+                    "resource": "VICTORY_POINT",
+                    "amount": 2
+                }]
             }]
         }, {
             "cost": 5,
             "side": [{
-                "resource": "VICTORY_POINT",
-                "amount": 3
-            }, {
-                "resource": "VICTORY_POINT",
-                "amount": 3
-            }, {
-                "resource": "VICTORY_POINT",
-                "amount": 3
-            }]
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "VICTORY_POINT",
+                        "amount": 3
+                    }]
+                },
+                {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "VICTORY_POINT",
+                        "amount": 3
+                    }]
+                },
+                {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "VICTORY_POINT",
+                        "amount": 3
+                    }]
+                }
+            ]
         }]
     }
 }

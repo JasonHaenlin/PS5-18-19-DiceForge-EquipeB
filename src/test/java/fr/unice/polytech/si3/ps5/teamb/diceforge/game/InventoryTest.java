@@ -105,6 +105,8 @@ public class InventoryTest {
     public void replaceDiceSideTest() {
         Dice dice1 = invPerso.getDice(0);
         Dice dice2 = invPerso.getDice(1);
+        System.out.println(dice1);
+        System.out.println(dice2);
         assertFalse(dice1.equals(dice2));
 
         DiceSide side1 = new SideSimple(Resources.VICTORY_POINT, 2, 0);

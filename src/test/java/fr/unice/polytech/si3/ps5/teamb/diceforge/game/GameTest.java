@@ -19,10 +19,10 @@ public class GameTest {
         game = new Game(new Config(path), 9);
     }
 
-    // TO DO
     @Test
     public void game2BotEqualsTest() throws Exception {
         String result = game.addBot(OnlyDice.class).addBot(OnlyDice2.class).fire();
+        System.out.println(result);
         assertTrue(result.contains("18 points de Gloire") && result.contains("onlyDice2'")
                 && result.contains("onlyDice'"));
     }

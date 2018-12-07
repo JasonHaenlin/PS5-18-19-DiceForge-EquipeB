@@ -95,21 +95,18 @@
                     "resource": "VICTORY_POINT",
                     "amount": 1
                 }]
-
             }, {
                 "type": "SIMPLE_SIDE",
                 "properties": [{
                     "resource": "VICTORY_POINT",
                     "amount": 1
                 }]
-
             }, {
                 "type": "SIMPLE_SIDE",
                 "properties": [{
                     "resource": "VICTORY_POINT",
                     "amount": 1
                 }]
-
             }]
         }]
     }

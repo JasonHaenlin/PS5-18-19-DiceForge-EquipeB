@@ -19,13 +19,13 @@
             }, {
                 "resource": "MOON_STONE",
                 "amount": 6
-            },{
+            }, {
                 "resource": "MOON_STONE",
                 "amount": 6
-            },{
+            }, {
                 "resource": "MOON_STONE",
                 "amount": 6
-            },{
+            }, {
                 "resource": "MOON_STONE",
                 "amount": 6
             }],
@@ -90,15 +90,27 @@
         "forge": [{
             "cost": 2,
             "side": [{
-                "resource": "VICTORY_POINT",
-                "amount": 1
-            }, {
-                "resource": "VICTORY_POINT",
-                "amount": 1
-            }, {
-                "resource": "VICTORY_POINT",
-                "amount": 1
-            }]
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "VICTORY_POINT",
+                        "amount": 1
+                    }]
+                },
+                {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "VICTORY_POINT",
+                        "amount": 1
+                    }]
+                },
+                {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "VICTORY_POINT",
+                        "amount": 1
+                    }]
+                }
+            ]
         }]
     }
 }

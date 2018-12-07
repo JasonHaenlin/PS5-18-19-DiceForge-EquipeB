@@ -48,4 +48,9 @@ public class SideAddMultiple extends DiceSide {
         return res;
     }
 
+    @Override
+    public String toString() {
+        return sides.toString();
+    }
+
 }

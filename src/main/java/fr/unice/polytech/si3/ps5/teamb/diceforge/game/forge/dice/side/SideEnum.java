@@ -33,7 +33,7 @@ public enum SideEnum {
         @Override
         public DiceSide build(JSONArray obj, int cost) {
             List<TuplePair<Resources, Integer>> sides = extractArrayObj(obj);
-            return new SideChoise(sides, cost);
+            return new SideChoice(sides, cost);
         }
     },
     MULTIPLY_SIDE("Multiply Resource Side") {

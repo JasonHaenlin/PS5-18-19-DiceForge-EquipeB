@@ -24,7 +24,6 @@ public class EngineTest {
         engine = new Engine();
     }
 
-
     @Test
     public void engineResultTest1() throws Exception {
         engine.setConfFile("src/test/resources/config/moonDiceAndSunDice.json");
@@ -32,19 +31,5 @@ public class EngineTest {
         Map<String, String> res = ParseHelper.parseResult("onlyDice", "SimpleHighestExploit", result);
         System.out.println(ParseHelper.parseResult("onlyDice", "SimpleHighestExploit", result));
         assertTrue(res.get("SimpleHighestExploit").contains("gagne 100"));
-    }
-
-    @Test
-    public void engineStatisTest() throws Exception {
-        // check if the static field is correctly reset
-        String result = engine.createGame(1).addBot(OnlyDice.class).addBot(SimpleHighestExploit.class).fire();
-        String[] str = result.split("\n");
-        assertEquals(3, str.length);
-        String result1 = engine.createGame(2).addBot(OnlyDice.class).addBot(SimpleHighestExploit.class).fire();
-        str = result1.split("\n");
-        assertEquals(3, str.length);
-        String result2 = engine.createGame(3).addBot(OnlyDice.class).addBot(SimpleHighestExploit.class).fire();
-        str = result2.split("\n");
-        assertEquals(3, str.length);
     }
 }

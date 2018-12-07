@@ -27,6 +27,12 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
  */
 public class Engine {
 
+	/**
+	 *
+	 */
+
+	private static final int LOG_MAX_GAME = 1;
+
 	private static final LoggerContext ctx = (LoggerContext) LogManager.getContext(false);
 	private static final Configuration config = ctx.getConfiguration();
 	private static final Logger logger = LogManager.getLogger(Engine.class);
@@ -133,7 +139,8 @@ public class Engine {
 	}
 
 	private void removeLogger(int i) {
-		if (i == 0) {
+		// index start from 0
+		if (i >= LOG_MAX_GAME + 1) {
 			config.getRootLogger().removeAppender("allInfos");
 			config.getRootLogger().removeAppender("lessInfos");
 			ctx.updateLoggers();

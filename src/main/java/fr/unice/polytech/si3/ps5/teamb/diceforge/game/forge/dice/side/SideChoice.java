@@ -14,12 +14,12 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.TuplePair;
  * 
  * @see Instructions
  */
-public class SideChoise extends DiceSide {
+public class SideChoice extends DiceSide {
 
     private Map<Resources, Integer> sides;
     private Resources chosenResource = null;
 
-    public SideChoise(List<TuplePair<Resources, Integer>> sides, int cost) {
+    public SideChoice(List<TuplePair<Resources, Integer>> sides, int cost) {
         super(cost, "SideChoise");
         this.sides = new EnumMap<>(Resources.class);
         sides.forEach(tuple -> this.sides.put(tuple.type, tuple.value));
@@ -49,6 +49,11 @@ public class SideChoise extends DiceSide {
             res += el.getValue();
         }
         return res / sides.size();
+    }
+
+    @Override
+    public String toString() {
+        return sides.toString();
     }
 
 }

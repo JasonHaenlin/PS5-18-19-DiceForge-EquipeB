@@ -26,12 +26,11 @@ public class SideMultiplyResource extends DiceSide {
         inst.add(new Instructions() {
             @Override
             public TuplePair<Resources, Integer> execution(DiceSide secondary, Player player) {
-                if (secondary == null)
+                if (secondary == null || name.equals(secondary.name)) // don't like infinit loop XD
                     return null;
                 List<Instructions> inst = secondary.getInstructions();
                 for (int i = 0; i < MULTIPLICATIVE_COEFF; i++) {
-                    if (!inst.get(i).equals(this)) // don't like infinit loop XD
-                        inst.add(inst.get(i));
+                    inst.addAll(inst);
                 }
                 return null;
             }
@@ -46,6 +45,11 @@ public class SideMultiplyResource extends DiceSide {
     @Override
     public int coefficient() {
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "[X " + MULTIPLICATIVE_COEFF + "]";
     }
 
 }

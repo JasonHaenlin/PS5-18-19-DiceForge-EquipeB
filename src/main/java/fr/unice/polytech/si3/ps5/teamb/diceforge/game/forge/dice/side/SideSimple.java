@@ -1,6 +1,7 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side;
 
 import java.util.List;
+import java.util.Objects;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
@@ -37,8 +38,18 @@ public class SideSimple extends DiceSide {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(this.side, this.cost);
+    }
+
+    @Override
     public int coefficient() {
         return side.value;
+    }
+
+    @Override
+    public String toString() {
+        return side.toString();
     }
 
 }
