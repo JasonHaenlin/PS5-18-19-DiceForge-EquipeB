@@ -39,4 +39,8 @@ public class TuplePair<T, V> {
         return this.hashCode() == side.hashCode();
     }
 
+    public static <T, V> TuplePair<T, V> emptySet() {
+        return new TuplePair<T, V>(null, null);
+    }
+
 }

@@ -14,7 +14,6 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.BlacksmithHam
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.Dice;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.DiceSide;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.Instructions;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.SideSimple;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.TuplePair;
 
@@ -105,9 +104,9 @@ public class Inventory {
         DiceSide side2 = dices.get(1).roll();
         logger.trace("[DICE] " + dices.get(1).toString());
         // instructions of the first side
-        tuples.addAll(Instructions.ExecuteAll(side1, side2, player));
+        tuples.addAll(side1.executeInstructions(side2, player));
         // instructions of the second side
-        tuples.addAll(Instructions.ExecuteAll(side2, side1, player));
+        tuples.addAll(side2.executeInstructions(side1, player));
         // udpate the inventory
         updateResources(newResources, tuples);
         return newResources;

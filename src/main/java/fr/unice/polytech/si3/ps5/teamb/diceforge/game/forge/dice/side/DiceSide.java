@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.TuplePair;
 
 /**
  * DiceSideBis
@@ -14,14 +16,23 @@ public abstract class DiceSide {
     public final String name;
     protected final int cost;
     private List<Instructions> inst;
+    private List<Instructions> postInst;
 
     public DiceSide(int cost, String name) {
         this.cost = cost;
         this.name = name;
         this.inst = new ArrayList<>();
+        this.postInst = new ArrayList<>();
     }
 
-    public abstract void setAllInstrucion(List<Instructions> inst);
+    /**
+     * add the instruction to be execute optionaly : you can add some post
+     * instructions if something need to be done after the main instructions
+     * 
+     * @param inst
+     * @param postInst
+     */
+    public abstract void setAllInstrucion(List<Instructions> inst, List<Instructions> postInst);
 
     public abstract boolean contains(Resources res);
 
@@ -32,8 +43,22 @@ public abstract class DiceSide {
      */
     public List<Instructions> getInstructions() {
         inst = new ArrayList<>();
-        setAllInstrucion(inst);
+        setAllInstrucion(inst, postInst);
         return inst;
+    }
+
+    public List<TuplePair<Resources, Integer>> executeInstructions(DiceSide secondary, Player player) {
+        inst = new ArrayList<>();
+        setAllInstrucion(inst, postInst);
+        List<TuplePair<Resources, Integer>> tuples = new ArrayList<>();
+        for (Instructions it : inst) {
+            tuples.add(it.execution(secondary, player));
+        }
+        // the last instructions migth have create other instructions
+        for (Instructions it : postInst) {
+            tuples.add(it.execution(secondary, player));
+        }
+        return tuples;
     }
 
     /**

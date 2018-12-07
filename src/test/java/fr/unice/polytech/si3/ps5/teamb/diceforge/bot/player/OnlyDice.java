@@ -31,7 +31,7 @@ public class OnlyDice extends Player {
 
     @Override
     public Resources callBackResources(Map<Resources, Integer> resInt) {
-        return null;
+        return Resources.GOLD;
     }
 
     @Override

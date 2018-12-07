@@ -21,7 +21,7 @@ public class SideAddMultiple extends DiceSide {
     }
 
     @Override
-    public void setAllInstrucion(List<Instructions> inst) {
+    public void setAllInstrucion(List<Instructions> inst, List<Instructions> postInst) {
         sides.forEach(side -> inst.add(new Instructions() {
             @Override
             public TuplePair<Resources, Integer> execution(DiceSide secondary, Player player) {

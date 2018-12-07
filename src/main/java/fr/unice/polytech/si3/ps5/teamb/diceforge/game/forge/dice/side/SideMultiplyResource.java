@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
@@ -22,17 +23,17 @@ public class SideMultiplyResource extends DiceSide {
     }
 
     @Override
-    public void setAllInstrucion(List<Instructions> inst) {
+    public void setAllInstrucion(List<Instructions> inst, List<Instructions> postInst) {
         inst.add(new Instructions() {
             @Override
             public TuplePair<Resources, Integer> execution(DiceSide secondary, Player player) {
                 if (secondary == null || name.equals(secondary.name)) // don't like infinit loop XD
                     return null;
-                List<Instructions> inst = secondary.getInstructions();
+                List<Instructions> it = secondary.getInstructions();
                 for (int i = 0; i < MULTIPLICATIVE_COEFF; i++) {
-                    inst.addAll(inst);
+                    postInst.addAll(it);
                 }
-                return null;
+                return new TuplePair<Resources, Integer>(Resources.VICTORY_POINT, 0);
             }
         });
     }

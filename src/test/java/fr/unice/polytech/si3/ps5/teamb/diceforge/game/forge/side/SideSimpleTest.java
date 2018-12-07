@@ -19,7 +19,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.TuplePair;
 public class SideSimpleTest {
 
     @Test
-    public void SimpleTest() {
+    public void simpleTest() {
         DiceSide side1 = new SideSimple(Resources.GOLD, 5, 3);
         List<Instructions> inst = side1.getInstructions();
 

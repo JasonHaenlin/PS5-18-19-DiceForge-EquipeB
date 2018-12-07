@@ -1,7 +1,6 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge;
 
 import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Map;
 
