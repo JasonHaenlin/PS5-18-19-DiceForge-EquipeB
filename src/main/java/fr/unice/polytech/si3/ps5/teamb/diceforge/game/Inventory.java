@@ -279,7 +279,7 @@ public class Inventory {
     }
 
     public boolean playerHasHammer() {
-        return hammerQueue.isEmpty();
+        return !hammerQueue.isEmpty();
     }
 
     /**

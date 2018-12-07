@@ -204,6 +204,30 @@
                 "sunStone": 0,
                 "moonStone": 1,
                 "victoryPoint": 2
+            },
+            {
+                "name": "BLACKSMITH_HAMMER",
+                "sunStone": 0,
+                "moonStone": 1,
+                "victoryPoint": 0
+            },
+            {
+                "name": "BLACKSMITH_HAMMER",
+                "sunStone": 0,
+                "moonStone": 1,
+                "victoryPoint": 0
+            },
+            {
+                "name": "BLACKSMITH_HAMMER",
+                "sunStone": 0,
+                "moonStone": 1,
+                "victoryPoint": 0
+            },
+            {
+                "name": "BLACKSMITH_HAMMER",
+                "sunStone": 0,
+                "moonStone": 1,
+                "victoryPoint": 0
             }
         ],
         "forge": [{
