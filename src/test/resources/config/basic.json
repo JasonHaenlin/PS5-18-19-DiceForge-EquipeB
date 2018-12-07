@@ -119,50 +119,68 @@
         "forge": [{
                 "cost": 3,
                 "side": [{
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "VICTORY_POINT",
                         "amount": 1
-                    },
-                    {
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "VICTORY_POINT",
                         "amount": 1
-                    },
-                    {
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "VICTORY_POINT",
                         "amount": 1
-                    }
-                ]
+                    }]
+                }]
             },
             {
                 "cost": 4,
                 "side": [{
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "VICTORY_POINT",
                         "amount": 2
-                    },
-                    {
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "VICTORY_POINT",
                         "amount": 2
-                    },
-                    {
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "VICTORY_POINT",
                         "amount": 2
-                    }
-                ]
+                    }]
+                }]
             },
             {
                 "cost": 5,
                 "side": [{
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "VICTORY_POINT",
                         "amount": 3
-                    },
-                    {
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "VICTORY_POINT",
                         "amount": 3
-                    },
-                    {
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "VICTORY_POINT",
                         "amount": 3
-                    }
-                ]
+                    }]
+                }]
             }
         ]
     }

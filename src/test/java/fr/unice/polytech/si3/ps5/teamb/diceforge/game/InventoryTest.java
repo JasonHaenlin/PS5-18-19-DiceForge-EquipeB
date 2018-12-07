@@ -11,7 +11,8 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.BlacksmithHam
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Hydra;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.Dice;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.DiceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.SideSimple;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 
 /**
@@ -104,10 +105,12 @@ public class InventoryTest {
     public void replaceDiceSideTest() {
         Dice dice1 = invPerso.getDice(0);
         Dice dice2 = invPerso.getDice(1);
+        System.out.println(dice1);
+        System.out.println(dice2);
         assertFalse(dice1.equals(dice2));
 
-        DiceSide side1 = new DiceSide(2, Resources.VICTORY_POINT);
-        DiceSide side2 = new DiceSide(1, Resources.MOON_STONE);
+        DiceSide side1 = new SideSimple(Resources.VICTORY_POINT, 2, 0);
+        DiceSide side2 = new SideSimple(Resources.MOON_STONE, 1, 0);
 
         assertTrue(invPerso.replaceDiceSide(1, dice2.getDiceSides().get(0), side1));
         assertTrue(invPerso.replaceDiceSide(1, dice2.getDiceSides().get(1), side2));

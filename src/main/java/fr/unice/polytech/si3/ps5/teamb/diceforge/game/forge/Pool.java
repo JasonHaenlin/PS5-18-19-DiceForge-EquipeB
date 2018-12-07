@@ -3,7 +3,7 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.DiceSide;
 
 /**
  * Pool

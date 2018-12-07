@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.DiceSide;
 
 /**
  * ConfigTest
@@ -35,11 +35,12 @@ public class ConfigTest {
     @Test
     public void extractDicesTest() {
         List<DiceSide> d1 = conf.extractDice(0);
-        assertEquals(2, d1.get(0).getValue());
-        assertEquals(Resources.VICTORY_POINT, d1.get(0).getType());
+        assertEquals(2, d1.get(0).coefficient());
+        assertTrue(d1.get(0).contains(Resources.VICTORY_POINT));
+
         List<DiceSide> d2 = conf.extractDice(1);
-        assertEquals(1, d2.get(5).getValue());
-        assertEquals(Resources.GOLD, d2.get(5).getType());
+        assertEquals(1, d2.get(5).coefficient());
+        assertTrue(d2.get(5).contains(Resources.GOLD));
     }
 
     @Test
@@ -52,10 +53,10 @@ public class ConfigTest {
     @Test
     public void extractForgeTest() {
         Map<Integer, List<DiceSide>> fg = conf.extractForge();
-        assertEquals(1, fg.get(3).get(0).getValue());
-        assertEquals(Resources.VICTORY_POINT, fg.get(3).get(0).getType());
-        assertEquals(3, fg.get(5).get(2).getValue());
-        assertEquals(Resources.VICTORY_POINT, fg.get(3).get(2).getType());
+        assertEquals(1, fg.get(3).get(0).coefficient());
+        assertTrue(fg.get(3).get(0).contains(Resources.VICTORY_POINT));
+        assertEquals(3, fg.get(5).get(2).coefficient());
+        assertTrue(fg.get(3).get(2).contains(Resources.VICTORY_POINT));
     }
 
     @Test
@@ -67,4 +68,5 @@ public class ConfigTest {
             assertTrue(true);
         }
     }
+
 }

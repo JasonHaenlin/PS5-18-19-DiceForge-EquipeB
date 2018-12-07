@@ -10,8 +10,7 @@
       "victoryPoint": 0
     },
     "dices": [
-      [
-        {
+      [{
           "resource": "VICTORY_POINT",
           "amount": 2
         },
@@ -36,8 +35,7 @@
           "amount": 1
         }
       ],
-      [
-        {
+      [{
           "resource": "SUN_STONE",
           "amount": 1
         },
@@ -63,28 +61,27 @@
         }
       ]
     ],
-    "exploit": [
-      {
-        "name": "GORGON",
-        "sunStone": 0,
-        "moonStone": 3,
-        "victoryPoint": 4
-      }
-    ],
-    "forge": [
-      {
-        "cost": 3,
-        "side": [
-          {
-            "resource": "VICTORY_POINT",
-            "amount": 1
-          },
-          {
-            "resource": "GOLD",
-            "amount": 4
-          }
-        ]
-      }
-    ]
+    "exploit": [{
+      "name": "GORGON",
+      "sunStone": 0,
+      "moonStone": 3,
+      "victoryPoint": 4
+    }],
+    "forge": [{
+      "cost": 3,
+      "side": [{
+        "type": "SIMPLE_SIDE",
+        "properties": [{
+          "resource": "VICTORY_POINT",
+          "amount": 1
+        }]
+      }, {
+        "type": "SIMPLE_SIDE",
+        "properties": [{
+          "resource": "GOLD",
+          "amount": 4
+        }]
+      }]
+    }]
   }
 }

@@ -9,7 +9,8 @@ import org.junit.Test;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.BoardExtends;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.DiceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.SideSimple;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.Config;
 
 /**
@@ -19,8 +20,8 @@ public class TestBoardforge {
 
     private Config conf;
     private BoardExtends board;
-    private DiceSide remove = new DiceSide(1, Resources.MOON_STONE);
-    private DiceSide add = new DiceSide(1, Resources.VICTORY_POINT, 3);
+    private DiceSide remove = new SideSimple(Resources.MOON_STONE, 1, 0);
+    private DiceSide add = new SideSimple(Resources.VICTORY_POINT, 1, 3);
 
     @Before
     public void setup() throws Exception {

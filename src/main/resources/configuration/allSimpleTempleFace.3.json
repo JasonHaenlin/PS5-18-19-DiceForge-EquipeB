@@ -10,8 +10,7 @@
             "victoryPoint": 0
         },
         "dices": [
-            [
-                {
+            [{
                     "resource": "VICTORY_POINT",
                     "amount": 2
                 },
@@ -36,8 +35,7 @@
                     "amount": 1
                 }
             ],
-            [
-                {
+            [{
                     "resource": "SUN_STONE",
                     "amount": 1
                 },
@@ -63,8 +61,7 @@
                 }
             ]
         ],
-        "exploit": [
-            {
+        "exploit": [{
                 "name": "GORGON",
                 "sunStone": 4,
                 "moonStone": 0,
@@ -173,119 +170,157 @@
                 "victoryPoint": 2
             }
         ],
-        "forge": [
-            {
+        "forge": [{
                 "cost": 2,
-                "side": [
-                    {
+                "side": [{
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "MOON_STONE",
                         "amount": 1
-                    },
-                    {
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "MOON_STONE",
                         "amount": 1
-                    },
-                    {
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "MOON_STONE",
                         "amount": 1
-                    },
-                    {
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "GOLD",
                         "amount": 3
-                    },
-                    {
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "GOLD",
                         "amount": 3
-                    },
-                    {
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "GOLD",
                         "amount": 3
-                    }
-                ]
+                    }]
+                }]
             },
             {
                 "cost": 3,
-                "side": [
-                    {
+                "side": [{
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "SUN_STONE",
                         "amount": 1
-                    },
-                    {
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "SUN_STONE",
                         "amount": 1
-                    },
-                    {
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "SUN_STONE",
                         "amount": 1
-                    },
-                    {
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "GOLD",
                         "amount": 4
-                    },
-                    {
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "GOLD",
                         "amount": 4
-                    },
-                    {
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "GOLD",
                         "amount": 4
-                    }
-                ]
+                    }]
+                }]
             },
             {
                 "cost": 6,
-                "side": [
-                    {
+                "side": [{
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "MOON_STONE",
                         "amount": 2
-                    },
-                    {
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "MOON_STONE",
                         "amount": 2
-                    },
-                    {
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "MOON_STONE",
                         "amount": 2
-                    }
-                ]
+                    }]
+                }]
             },
             {
                 "cost": 8,
-                "side": [
-                    {
+                "side": [{
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "SUN_STONE",
                         "amount": 2
-                    },
-                    {
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "SUN_STONE",
                         "amount": 2
-                    },
-                    {
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "SUN_STONE",
                         "amount": 2
-                    },
-                    {
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "VICTORY_POINT",
                         "amount": 3
-                    },
-                    {
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "VICTORY_POINT",
                         "amount": 3
-                    },
-                    {
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "VICTORY_POINT",
                         "amount": 3
-                    }
-                ]
+                    }]
+                }]
             },
             {
                 "cost": 12,
-                "side": [
-                    {
+                "side": [{
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
                         "resource": "VICTORY_POINT",
                         "amount": 4
-                    }
-                ]
+                    }]
+                }]
             }
         ]
     }

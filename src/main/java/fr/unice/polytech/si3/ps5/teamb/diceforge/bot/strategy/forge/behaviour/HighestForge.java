@@ -3,7 +3,7 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.behaviour;
 import java.util.List;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.DiceSide;
 
 /**
  * HighestForge
@@ -18,7 +18,7 @@ public class HighestForge implements StratForge {
         if (feasible.isEmpty()) {
             return null;
         }
-        feasible.sort((DiceSide s1, DiceSide s2) -> Integer.compare(s1.getValue(), s2.getValue()));
+        feasible.sort((DiceSide s1, DiceSide s2) -> Integer.compare(s1.coefficient(), s2.coefficient()));
         return feasible.get(feasible.size() - 1);
     }
 

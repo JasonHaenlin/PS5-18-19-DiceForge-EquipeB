@@ -13,7 +13,9 @@ import org.apache.logging.log4j.Logger;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.BlacksmithHammer;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.Dice;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.DiceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.DiceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.SideSimple;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.game.util.TuplePair;
 
 /**
  * inventory of the game, it contains the dices, the played cards and the
@@ -66,12 +68,13 @@ public class Inventory {
             treasury.put(rsc, 0);
         }
         List<DiceSide> diceSides = new ArrayList<>();
-        diceSides.add(new DiceSide(2, Resources.VICTORY_POINT));
-        diceSides.add(new DiceSide(1, Resources.SUN_STONE));
-        diceSides.add(new DiceSide(1, Resources.MOON_STONE));
-        diceSides.add(new DiceSide(1, Resources.GOLD));
-        diceSides.add(new DiceSide(1, Resources.GOLD));
-        diceSides.add(new DiceSide(1, Resources.GOLD));
+        diceSides.add(new SideSimple(Resources.VICTORY_POINT, 2, 0));
+        diceSides.add(new SideSimple(Resources.SUN_STONE, 2, 0));
+        diceSides.add(new SideSimple(Resources.MOON_STONE, 2, 0));
+        diceSides.add(new SideSimple(Resources.GOLD, 1, 0));
+        diceSides.add(new SideSimple(Resources.GOLD, 1, 0));
+        diceSides.add(new SideSimple(Resources.GOLD, 1, 0));
+
         dices.add(new Dice(diceSides));
         dices.add(new Dice(diceSides));
     }
@@ -84,7 +87,7 @@ public class Inventory {
      */
     public DiceSide rolldice(int number) {
         if (number > dices.size() - 1 || number < 0)
-            return new DiceSide(0, Resources.GOLD);
+            return DiceSide.emptySide();
         return dices.get(number).roll();
     }
 
@@ -95,20 +98,28 @@ public class Inventory {
      */
     Map<Resources, Integer> rolldices(Player player) {
         Map<Resources, Integer> newResources = new EnumMap<>(Resources.class);
-        dices.forEach(dice -> {
-            logger.trace("[DICE] " + dice.toString());
-            DiceSide side = dice.roll();
-            updateResources(newResources, side);
-        });
+        List<TuplePair<Resources, Integer>> tuples = new ArrayList<>();
+        DiceSide side1 = dices.get(0).roll();
+        logger.trace("[DICE] " + dices.get(0).toString());
+        DiceSide side2 = dices.get(1).roll();
+        logger.trace("[DICE] " + dices.get(1).toString());
+        // instructions of the first side
+        tuples.addAll(side1.executeInstructions(side2, player));
+        // instructions of the second side
+        tuples.addAll(side2.executeInstructions(side1, player));
+        // udpate the inventory
+        updateResources(newResources, tuples);
         return newResources;
     }
 
-    private void updateResources(Map<Resources, Integer> newResources, DiceSide side) {
-        addResourceToBag(side.getValue(), side.getType());
-        if (newResources.containsKey(side.getType()))
-            newResources.replace(side.getType(), newResources.get(side.getType()) + side.getValue());
-        else
-            newResources.put(side.getType(), side.getValue());
+    private void updateResources(Map<Resources, Integer> newResources, List<TuplePair<Resources, Integer>> tuples) {
+        tuples.forEach(t -> {
+            addResourceToBag(t.value, t.type);
+            if (newResources.containsKey(t.type))
+                newResources.replace(t.type, newResources.get(t.type) + t.value);
+            else
+                newResources.put(t.type, t.value);
+        });
     }
 
     /**
