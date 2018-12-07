@@ -19,6 +19,7 @@ public class SideSimple extends DiceSide {
     public SideSimple(Resources resource, int value, int cost) {
         super(cost, "SideSimple");
         this.side = new TuplePair<>(resource, value);
+
     }
 
     @Override
@@ -39,7 +40,12 @@ public class SideSimple extends DiceSide {
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.side, this.cost);
+        return Objects.hash(side, cost);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override

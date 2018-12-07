@@ -3,6 +3,7 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Map.Entry;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
@@ -40,6 +41,20 @@ public class SideChoice extends DiceSide {
     @Override
     public boolean contains(Resources res) {
         return sides.containsKey(res);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        for (Entry<Resources, Integer> elem : sides.entrySet()) {
+            hash += (elem.getKey().ordinal() + elem.getValue());
+        }
+        return Objects.hash(hash, cost, name);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override

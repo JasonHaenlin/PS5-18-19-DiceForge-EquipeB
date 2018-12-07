@@ -1,6 +1,7 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side;
 
 import java.util.List;
+import java.util.Objects;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
@@ -37,6 +38,20 @@ public class SideAddMultiple extends DiceSide {
                 return true;
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        for (TuplePair<Resources, Integer> t : sides) {
+            hash += (t.type.ordinal() + t.value);
+        }
+        return Objects.hash(hash, cost, name);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override

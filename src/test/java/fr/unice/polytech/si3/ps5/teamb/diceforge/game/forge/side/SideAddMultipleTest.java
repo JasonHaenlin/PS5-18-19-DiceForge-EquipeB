@@ -1,6 +1,8 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.side;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +30,27 @@ public class SideAddMultipleTest {
 
         List<Instructions> inst = side.getInstructions();
         assertEquals(2, inst.size());
+    }
 
+    @Test
+    public void sideAddMultipleEqualsTest() {
+        List<TuplePair<Resources, Integer>> sides1 = new ArrayList<>();
+        sides1.add(new TuplePair<Resources, Integer>(Resources.GOLD, 5));
+        sides1.add(new TuplePair<Resources, Integer>(Resources.MOON_STONE, 2));
+        DiceSide side1 = new SideAddMultiple(sides1, 5);
+
+        List<TuplePair<Resources, Integer>> sides2 = new ArrayList<>();
+        sides2.add(new TuplePair<Resources, Integer>(Resources.GOLD, 5));
+        sides2.add(new TuplePair<Resources, Integer>(Resources.MOON_STONE, 2));
+        DiceSide side2 = new SideAddMultiple(sides2, 5);
+
+        List<TuplePair<Resources, Integer>> sides3 = new ArrayList<>();
+        sides3.add(new TuplePair<Resources, Integer>(Resources.GOLD, 5));
+        sides3.add(new TuplePair<Resources, Integer>(Resources.MOON_STONE, 2));
+        sides3.add(new TuplePair<Resources, Integer>(Resources.MOON_STONE, 2));
+        DiceSide side3 = new SideAddMultiple(sides3, 5);
+
+        assertTrue(side1.equals(side2));
+        assertFalse(side3.equals(side2));
     }
 }

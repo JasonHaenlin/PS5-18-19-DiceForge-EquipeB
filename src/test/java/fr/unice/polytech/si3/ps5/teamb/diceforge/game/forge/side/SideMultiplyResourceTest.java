@@ -1,6 +1,8 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.side;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -45,5 +47,15 @@ public class SideMultiplyResourceTest {
             count += t.value;
         }
         assertEquals(15, count);
+    }
+
+    @Test
+    public void sideMultiplyResourceEqualsTest() {
+        DiceSide side1 = new SideMultiplyResource(3);
+        DiceSide side2 = new SideMultiplyResource(3);
+        DiceSide side3 = new SideMultiplyResource(5);
+
+        assertTrue(side1.equals(side2));
+        assertFalse(side3.equals(side2));
     }
 }
