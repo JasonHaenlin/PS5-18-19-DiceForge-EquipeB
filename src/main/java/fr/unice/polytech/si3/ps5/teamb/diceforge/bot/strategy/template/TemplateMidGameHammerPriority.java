@@ -15,13 +15,13 @@ public class TemplateMidGameHammerPriority implements Template {
 
     @Override
     public boolean onCondition(Context context) {
-        return !context.hasHammer();
+        return context.hasHammer();
     }
 
     @Override
     public void doAction(Context context) {
         context.getExploit().compute(new RushHammer());
-        context.getForge().compute(new SingleResource(),new HighestForge(),true);
+        context.getForge().compute(new SingleResource(), new HighestForge(), true);
     }
 
     @Override

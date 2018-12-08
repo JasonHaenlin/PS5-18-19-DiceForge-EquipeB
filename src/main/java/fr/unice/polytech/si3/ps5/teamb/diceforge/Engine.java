@@ -140,7 +140,7 @@ public class Engine {
 
 	private void removeLogger(int i) {
 		// index start from 0
-		if (i >= LOG_MAX_GAME + 1) {
+		if (i >= LOG_MAX_GAME - 1) {
 			config.getRootLogger().removeAppender("allInfos");
 			config.getRootLogger().removeAppender("lessInfos");
 			ctx.updateLoggers();
