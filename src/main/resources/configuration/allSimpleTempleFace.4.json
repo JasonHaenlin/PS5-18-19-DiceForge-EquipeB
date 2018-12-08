@@ -228,6 +228,30 @@
                 "sunStone": 0,
                 "moonStone": 1,
                 "victoryPoint": 0
+            },
+            {
+                "name": "HYDRA",
+                "sunStone": 5,
+                "moonStone": 5,
+                "victoryPoint": 26
+            },
+            {
+                "name": "HYDRA",
+                "sunStone": 5,
+                "moonStone": 5,
+                "victoryPoint": 26
+            },
+            {
+                "name": "HYDRA",
+                "sunStone": 5,
+                "moonStone": 5,
+                "victoryPoint": 26
+            },
+            {
+                "name": "HYDRA",
+                "sunStone": 5,
+                "moonStone": 5,
+                "victoryPoint": 26
             }
         ],
         "forge": [{

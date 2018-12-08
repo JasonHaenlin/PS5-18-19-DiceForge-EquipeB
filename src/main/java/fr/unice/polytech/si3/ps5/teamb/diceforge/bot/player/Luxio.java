@@ -58,6 +58,6 @@ public class Luxio extends Player {
     @Override
     public int callBackHammer(int amount) {
         Callback<Integer, Integer> c = new CallbackHammerOptimization();
-        return c.runCallback(manager.getContext(), amount);
+        return c.runCallback(manager.getContext(), amount-1);
     }
 }
