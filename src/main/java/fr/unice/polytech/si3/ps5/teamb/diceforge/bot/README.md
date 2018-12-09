@@ -1,4 +1,4 @@
-# state 
+﻿# state 
 
 ## Exemple de l'implémentation avec le manager
 
@@ -133,4 +133,44 @@ On peut avoir des états alternatifs
 
 - l'état du marteau. une fois le marteau en main, on doit adapter la façon de jouer
 
+
+### Scénario 3
+
+- 1° étape : Construire les dés (on n'achète pas d'exploit)
+	Calcul nombre de ressource (si on a assez de pierre lune pour acheter marteau)
+	Calcul potentiel de chaque dé
+	Calcul nombre de round restant
+
+	Si on peut finir le marteau avant la fin de la partie, onn passe à l'étape 2
+	Sinon on forge des golds (règles classiques)
+
+- 2° étape : Acheter le marteau
+	Si pas de marteau dispo ou nombre de round resgtant trop faible
+	Passe aux strat suivante (faire comme Raichu)
+
+	Sinon, on achète le marteau
+
+- 3° étape : Remplir le marteau
+	Condition : un marteau est dispo (sinon on passe à l'étape suivante)
+
+	Calcul nombre de ressource, nombre de round restant et potentiel des dés
+	
+	Règle de remplissage du marteau pas encore définie
+
+	Si beaucoup de pierre de pierre lune et peu de pierre soleil
+	On fait le Cancer et et tout les golds gagné vont au marteau
+
+	Si beaucoup de pierre soleil et peu de pierre lune
+	On fait le Sphinx
+
+	"A-t-on la capacité de finir le marteau rapidement" oui alors on forge des ressource
+	Sinon "Aura-t-on le temps de finir le marteau avant la fin de la partie" oui alors exploit classique (sans effet)
+	Sinon on forge des golds
+
+- 4° étape : Exploits classiques
+	Si possibilité de faire action à exploit direct, reste au moin 1 manche et peu de ressource
+	Jouer Cancer, ou Sphynx
+
+	Sinon, si on peut faire un exploit sans effet alors faire le plus chère
+		Sinon forge des ressources sur le dés 
 
