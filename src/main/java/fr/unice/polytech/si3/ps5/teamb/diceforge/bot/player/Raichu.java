@@ -4,12 +4,10 @@ import java.util.Map;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.Callback;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.CallbackDiceWithMostResources;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.CallbackHammerOptimization;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.CallbackSelectResources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state.Manager;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.template.TemplateEarlyGameForgeGoldPriority;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.template.TemplateLateGameExploitHigestCard;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.template.TemplateMiddleGameForgeMoonSun;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.template.TemplateMiddleGameForgeSun;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
