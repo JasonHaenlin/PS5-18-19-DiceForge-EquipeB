@@ -74,18 +74,6 @@
                 "victoryPoint": 12
             },
             {
-                "name": "GORGON",
-                "sunStone": 4,
-                "moonStone": 0,
-                "victoryPoint": 12
-            },
-            {
-                "name": "GORGON",
-                "sunStone": 4,
-                "moonStone": 0,
-                "victoryPoint": 12
-            },
-            {
                 "name": "FERRYMAN",
                 "sunStone": 0,
                 "moonStone": 4,
@@ -98,28 +86,16 @@
                 "victoryPoint": 12
             },
             {
-                "name": "FERRYMAN",
-                "sunStone": 0,
-                "moonStone": 4,
-                "victoryPoint": 12
-            },
-            {
-                "name": "FERRYMAN",
-                "sunStone": 0,
-                "moonStone": 4,
-                "victoryPoint": 12
-            },
-            {
-                "name": "CANCER",
+                "name": "SENTINEL",
                 "sunStone": 0,
                 "moonStone": 6,
-                "victoryPoint": 8
+                "victoryPoint": 6
             },
             {
-                "name": "CANCER",
+                "name": "SENTINEL",
                 "sunStone": 0,
                 "moonStone": 6,
-                "victoryPoint": 8
+                "victoryPoint": 6
             },
             {
                 "name": "CANCER",
@@ -146,18 +122,6 @@
                 "victoryPoint": 10
             },
             {
-                "name": "SPHINX",
-                "sunStone": 6,
-                "moonStone": 0,
-                "victoryPoint": 10
-            },
-            {
-                "name": "SPHINX",
-                "sunStone": 6,
-                "moonStone": 0,
-                "victoryPoint": 10
-            },
-            {
                 "name": "WILD_SPIRITS",
                 "sunStone": 1,
                 "moonStone": 0,
@@ -167,30 +131,6 @@
                 "name": "WILD_SPIRITS",
                 "sunStone": 1,
                 "moonStone": 0,
-                "victoryPoint": 2
-            },
-            {
-                "name": "WILD_SPIRITS",
-                "sunStone": 1,
-                "moonStone": 0,
-                "victoryPoint": 2
-            },
-            {
-                "name": "WILD_SPIRITS",
-                "sunStone": 1,
-                "moonStone": 0,
-                "victoryPoint": 2
-            },
-            {
-                "name": "BLACKSMITH_CHEST",
-                "sunStone": 0,
-                "moonStone": 1,
-                "victoryPoint": 2
-            },
-            {
-                "name": "BLACKSMITH_CHEST",
-                "sunStone": 0,
-                "moonStone": 1,
                 "victoryPoint": 2
             },
             {
@@ -216,30 +156,6 @@
                 "sunStone": 0,
                 "moonStone": 1,
                 "victoryPoint": 0
-            },
-            {
-                "name": "BLACKSMITH_HAMMER",
-                "sunStone": 0,
-                "moonStone": 1,
-                "victoryPoint": 0
-            },
-            {
-                "name": "BLACKSMITH_HAMMER",
-                "sunStone": 0,
-                "moonStone": 1,
-                "victoryPoint": 0
-            },
-            {
-                "name": "HYDRA",
-                "sunStone": 5,
-                "moonStone": 5,
-                "victoryPoint": 26
-            },
-            {
-                "name": "HYDRA",
-                "sunStone": 5,
-                "moonStone": 5,
-                "victoryPoint": 26
             },
             {
                 "name": "HYDRA",
@@ -267,30 +183,6 @@
                     "properties": [{
                         "resource": "MOON_STONE",
                         "amount": 1
-                    }]
-                }, {
-                    "type": "SIMPLE_SIDE",
-                    "properties": [{
-                        "resource": "MOON_STONE",
-                        "amount": 1
-                    }]
-                }, {
-                    "type": "SIMPLE_SIDE",
-                    "properties": [{
-                        "resource": "MOON_STONE",
-                        "amount": 1
-                    }]
-                }, {
-                    "type": "SIMPLE_SIDE",
-                    "properties": [{
-                        "resource": "GOLD",
-                        "amount": 3
-                    }]
-                }, {
-                    "type": "SIMPLE_SIDE",
-                    "properties": [{
-                        "resource": "GOLD",
-                        "amount": 3
                     }]
                 }, {
                     "type": "SIMPLE_SIDE",
@@ -323,30 +215,6 @@
                 }, {
                     "type": "SIMPLE_SIDE",
                     "properties": [{
-                        "resource": "SUN_STONE",
-                        "amount": 1
-                    }]
-                }, {
-                    "type": "SIMPLE_SIDE",
-                    "properties": [{
-                        "resource": "SUN_STONE",
-                        "amount": 1
-                    }]
-                }, {
-                    "type": "SIMPLE_SIDE",
-                    "properties": [{
-                        "resource": "GOLD",
-                        "amount": 4
-                    }]
-                }, {
-                    "type": "SIMPLE_SIDE",
-                    "properties": [{
-                        "resource": "GOLD",
-                        "amount": 4
-                    }]
-                }, {
-                    "type": "SIMPLE_SIDE",
-                    "properties": [{
                         "resource": "GOLD",
                         "amount": 4
                     }]
@@ -361,18 +229,6 @@
             {
                 "cost": 6,
                 "side": [{
-                    "type": "SIMPLE_SIDE",
-                    "properties": [{
-                        "resource": "MOON_STONE",
-                        "amount": 2
-                    }]
-                }, {
-                    "type": "SIMPLE_SIDE",
-                    "properties": [{
-                        "resource": "MOON_STONE",
-                        "amount": 2
-                    }]
-                }, {
                     "type": "SIMPLE_SIDE",
                     "properties": [{
                         "resource": "MOON_STONE",
@@ -399,36 +255,6 @@
                     "properties": [{
                         "resource": "SUN_STONE",
                         "amount": 2
-                    }]
-                }, {
-                    "type": "SIMPLE_SIDE",
-                    "properties": [{
-                        "resource": "SUN_STONE",
-                        "amount": 2
-                    }]
-                }, {
-                    "type": "SIMPLE_SIDE",
-                    "properties": [{
-                        "resource": "SUN_STONE",
-                        "amount": 2
-                    }]
-                }, {
-                    "type": "SIMPLE_SIDE",
-                    "properties": [{
-                        "resource": "VICTORY_POINT",
-                        "amount": 3
-                    }]
-                }, {
-                    "type": "SIMPLE_SIDE",
-                    "properties": [{
-                        "resource": "VICTORY_POINT",
-                        "amount": 3
-                    }]
-                }, {
-                    "type": "SIMPLE_SIDE",
-                    "properties": [{
-                        "resource": "VICTORY_POINT",
-                        "amount": 3
                     }]
                 }, {
                     "type": "SIMPLE_SIDE",

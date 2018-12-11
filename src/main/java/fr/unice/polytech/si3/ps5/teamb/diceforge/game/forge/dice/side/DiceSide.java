@@ -26,13 +26,13 @@ public abstract class DiceSide {
     }
 
     /**
-     * add the instruction to be execute. Optionaly : you can add some post
+     * add the instruction to be execute. Optionally : you can add some post
      * instructions if something need to be done after the main instructions
      * 
      * @param inst
      * @param postInst
      */
-    public abstract void setAllInstrucion(List<Instructions> inst, List<Instructions> postInst);
+    public abstract void setAllInstructions(List<Instructions> inst, List<Instructions> postInst);
 
     public abstract boolean contains(Resources res);
 
@@ -43,13 +43,13 @@ public abstract class DiceSide {
      */
     public List<Instructions> getInstructions() {
         inst = new ArrayList<>();
-        setAllInstrucion(inst, postInst);
+        setAllInstructions(inst, postInst);
         return inst;
     }
 
     public List<TuplePair<Resources, Integer>> executeInstructions(DiceSide secondary, Player player) {
         inst = new ArrayList<>();
-        setAllInstrucion(inst, postInst);
+        setAllInstructions(inst, postInst);
         List<TuplePair<Resources, Integer>> tuples = new ArrayList<>();
         for (Instructions it : inst) {
             tuples.add(it.execution(secondary, player));

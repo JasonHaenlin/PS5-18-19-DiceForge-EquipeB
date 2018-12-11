@@ -22,7 +22,7 @@ public class SideMultiplyResource extends DiceSide {
     }
 
     @Override
-    public void setAllInstrucion(List<Instructions> inst, List<Instructions> postInst) {
+    public void setAllInstructions(List<Instructions> inst, List<Instructions> postInst) {
         inst.add(new Instructions() {
             @Override
             public TuplePair<Resources, Integer> execution(DiceSide secondary, Player player) {
