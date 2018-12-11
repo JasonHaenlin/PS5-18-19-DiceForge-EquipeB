@@ -19,7 +19,7 @@ public class TuplePair<T, V> {
 
     @Override
     public String toString() {
-        return "[" + type + ":" + value + "]";
+        return "{" + type + ":" + value + "}";
     }
 
     @Override

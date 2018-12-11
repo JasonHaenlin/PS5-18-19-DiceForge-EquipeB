@@ -36,9 +36,9 @@ public class Engine {
 	private static final LoggerContext ctx = (LoggerContext) LogManager.getContext(false);
 	private static final Configuration config = ctx.getConfiguration();
 	private static final Logger logger = LogManager.getLogger(Engine.class);
-	private String confFile4P = "src/main/resources/configuration/ClassicTempleFace.4.json";
-	private String confFile3P = "src/main/resources/configuration/ClassicTempleFace.3.json";
-	private String confFile2P = "src/main/resources/configuration/ClassicTempleFace.2.json";
+	private String confFile4P = "src/main/resources/configuration/Config.4.json";
+	private String confFile3P = "src/main/resources/configuration/Config.3.json";
+	private String confFile2P = "src/main/resources/configuration/Config.2.json";
 
 	private Map<Player, Integer> player;
 	private Map<Player, Integer> playerTotalScore;

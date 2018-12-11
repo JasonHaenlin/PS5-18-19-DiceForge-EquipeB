@@ -49,7 +49,7 @@ public class SideMultiplyResource extends DiceSide {
 
     @Override
     public String toString() {
-        return "[X " + MULTIPLICATIVE_COEFF + "]";
+        return "{X " + MULTIPLICATIVE_COEFF + "}";
     }
 
 }

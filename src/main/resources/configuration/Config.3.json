@@ -1,0 +1,474 @@
+{
+    "name": "JSONParser diceForge game config",
+    "version": "1.0.0",
+    "description": "basic game config",
+    "data": {
+        "resources": {
+            "gold": 3,
+            "sunStone": 0,
+            "moonStone": 0,
+            "victoryPoint": 0
+        },
+        "dices": [
+            [{
+                    "resource": "VICTORY_POINT",
+                    "amount": 2
+                },
+                {
+                    "resource": "MOON_STONE",
+                    "amount": 1
+                },
+                {
+                    "resource": "GOLD",
+                    "amount": 1
+                },
+                {
+                    "resource": "GOLD",
+                    "amount": 1
+                },
+                {
+                    "resource": "GOLD",
+                    "amount": 1
+                },
+                {
+                    "resource": "GOLD",
+                    "amount": 1
+                }
+            ],
+            [{
+                    "resource": "SUN_STONE",
+                    "amount": 1
+                },
+                {
+                    "resource": "GOLD",
+                    "amount": 1
+                },
+                {
+                    "resource": "GOLD",
+                    "amount": 1
+                },
+                {
+                    "resource": "GOLD",
+                    "amount": 1
+                },
+                {
+                    "resource": "GOLD",
+                    "amount": 1
+                },
+                {
+                    "resource": "GOLD",
+                    "amount": 1
+                }
+            ]
+        ],
+        "exploit": [{
+                "name": "GORGON",
+                "sunStone": 4,
+                "moonStone": 0,
+                "victoryPoint": 12
+            },
+            {
+                "name": "GORGON",
+                "sunStone": 4,
+                "moonStone": 0,
+                "victoryPoint": 12
+            },
+            {
+                "name": "GORGON",
+                "sunStone": 4,
+                "moonStone": 0,
+                "victoryPoint": 12
+            },
+            {
+                "name": "FERRYMAN",
+                "sunStone": 0,
+                "moonStone": 4,
+                "victoryPoint": 12
+            },
+            {
+                "name": "FERRYMAN",
+                "sunStone": 0,
+                "moonStone": 4,
+                "victoryPoint": 12
+            },
+            {
+                "name": "FERRYMAN",
+                "sunStone": 0,
+                "moonStone": 4,
+                "victoryPoint": 12
+            },
+            {
+                "name": "SENTINEL",
+                "sunStone": 0,
+                "moonStone": 6,
+                "victoryPoint": 6
+            },
+            {
+                "name": "SENTINEL",
+                "sunStone": 0,
+                "moonStone": 6,
+                "victoryPoint": 6
+            },
+            {
+                "name": "SENTINEL",
+                "sunStone": 0,
+                "moonStone": 6,
+                "victoryPoint": 6
+            },
+            {
+                "name": "CANCER",
+                "sunStone": 0,
+                "moonStone": 6,
+                "victoryPoint": 8
+            },
+            {
+                "name": "CANCER",
+                "sunStone": 0,
+                "moonStone": 6,
+                "victoryPoint": 8
+            },
+            {
+                "name": "CANCER",
+                "sunStone": 0,
+                "moonStone": 6,
+                "victoryPoint": 8
+            },
+            {
+                "name": "SPHINX",
+                "sunStone": 6,
+                "moonStone": 0,
+                "victoryPoint": 10
+            },
+            {
+                "name": "SPHINX",
+                "sunStone": 6,
+                "moonStone": 0,
+                "victoryPoint": 10
+            },
+            {
+                "name": "SPHINX",
+                "sunStone": 6,
+                "moonStone": 0,
+                "victoryPoint": 10
+            },
+            {
+                "name": "WILD_SPIRITS",
+                "sunStone": 1,
+                "moonStone": 0,
+                "victoryPoint": 2
+            },
+            {
+                "name": "WILD_SPIRITS",
+                "sunStone": 1,
+                "moonStone": 0,
+                "victoryPoint": 2
+            },
+            {
+                "name": "WILD_SPIRITS",
+                "sunStone": 1,
+                "moonStone": 0,
+                "victoryPoint": 2
+            },
+            {
+                "name": "BLACKSMITH_CHEST",
+                "sunStone": 0,
+                "moonStone": 1,
+                "victoryPoint": 2
+            },
+            {
+                "name": "BLACKSMITH_CHEST",
+                "sunStone": 0,
+                "moonStone": 1,
+                "victoryPoint": 2
+            },
+            {
+                "name": "BLACKSMITH_CHEST",
+                "sunStone": 0,
+                "moonStone": 1,
+                "victoryPoint": 2
+            },
+            {
+                "name": "BLACKSMITH_HAMMER",
+                "sunStone": 0,
+                "moonStone": 1,
+                "victoryPoint": 0
+            },
+            {
+                "name": "BLACKSMITH_HAMMER",
+                "sunStone": 0,
+                "moonStone": 1,
+                "victoryPoint": 0
+            },
+            {
+                "name": "BLACKSMITH_HAMMER",
+                "sunStone": 0,
+                "moonStone": 1,
+                "victoryPoint": 0
+            },
+            {
+                "name": "HYDRA",
+                "sunStone": 5,
+                "moonStone": 5,
+                "victoryPoint": 26
+            },
+            {
+                "name": "HYDRA",
+                "sunStone": 5,
+                "moonStone": 5,
+                "victoryPoint": 26
+            },
+            {
+                "name": "HYDRA",
+                "sunStone": 5,
+                "moonStone": 5,
+                "victoryPoint": 26
+            }
+        ],
+        "forge": [{
+                "cost": 2,
+                "side": [{
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "MOON_STONE",
+                        "amount": 1
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "MOON_STONE",
+                        "amount": 1
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "MOON_STONE",
+                        "amount": 1
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "GOLD",
+                        "amount": 3
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "GOLD",
+                        "amount": 3
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "GOLD",
+                        "amount": 3
+                    }]
+                }]
+            },
+            {
+                "cost": 3,
+                "side": [{
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "SUN_STONE",
+                        "amount": 1
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "SUN_STONE",
+                        "amount": 1
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "SUN_STONE",
+                        "amount": 1
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "GOLD",
+                        "amount": 4
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "GOLD",
+                        "amount": 4
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "GOLD",
+                        "amount": 4
+                    }]
+                }]
+            }, {
+                "cost": 4,
+                "side": [{
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "GOLD",
+                        "amount": 6
+                    }]
+                }, {
+                    "type": "CHOICE_SIDE",
+                    "properties": [{
+                        "resource": "GOLD",
+                        "amount": 2
+                    }, {
+                        "resource": "SUN_STONE",
+                        "amount": 1
+                    }, {
+                        "resource": "MOON_STONE",
+                        "amount": 1
+                    }]
+                }, {
+                    "type": "ADD_MULTIPLE_SIDE",
+                    "properties": [{
+                        "resource": "VICTORY_POINT",
+                        "amount": 1
+                    }, {
+                        "resource": "MOON_STONE",
+                        "amount": 1
+                    }]
+                }, {
+                    "type": "ADD_MULTIPLE_SIDE",
+                    "properties": [{
+                        "resource": "GOLD",
+                        "amount": 1
+                    }, {
+                        "resource": "SUN_STONE",
+                        "amount": 1
+                    }]
+                }]
+            }, {
+                "cost": 5,
+                "side": [{
+                    "type": "CHOICE_SIDE",
+                    "properties": [{
+                        "resource": "GOLD",
+                        "amount": 3
+                    }, {
+                        "resource": "VICTORY_POINT",
+                        "amount": 1
+                    }]
+                }, {
+                    "type": "CHOICE_SIDE",
+                    "properties": [{
+                        "resource": "GOLD",
+                        "amount": 3
+                    }, {
+                        "resource": "VICTORY_POINT",
+                        "amount": 1
+                    }]
+                }, {
+                    "type": "CHOICE_SIDE",
+                    "properties": [{
+                        "resource": "GOLD",
+                        "amount": 3
+                    }, {
+                        "resource": "VICTORY_POINT",
+                        "amount": 1
+                    }]
+                }]
+            },
+            {
+                "cost": 6,
+                "side": [{
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "MOON_STONE",
+                        "amount": 2
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "MOON_STONE",
+                        "amount": 2
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "MOON_STONE",
+                        "amount": 2
+                    }]
+                }]
+            },
+            {
+                "cost": 8,
+                "side": [{
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "SUN_STONE",
+                        "amount": 2
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "SUN_STONE",
+                        "amount": 2
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "SUN_STONE",
+                        "amount": 2
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "VICTORY_POINT",
+                        "amount": 3
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "VICTORY_POINT",
+                        "amount": 3
+                    }]
+                }, {
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "VICTORY_POINT",
+                        "amount": 3
+                    }]
+                }]
+            },
+            {
+                "cost": 12,
+                "side": [{
+                    "type": "SIMPLE_SIDE",
+                    "properties": [{
+                        "resource": "VICTORY_POINT",
+                        "amount": 4
+                    }]
+                }, {
+                    "type": "CHOICE_SIDE",
+                    "properties": [{
+                        "resource": "VICTORY_POINT",
+                        "amount": 3
+                    }, {
+                        "resource": "SUN_STONE",
+                        "amount": 2
+                    }, {
+                        "resource": "MOON_STONE",
+                        "amount": 2
+                    }]
+                }, {
+                    "type": "CHOICE_SIDE",
+                    "properties": [{
+                        "resource": "GOLD",
+                        "amount": 2
+                    }, {
+                        "resource": "SUN_STONE",
+                        "amount": 2
+                    }, {
+                        "resource": "MOON_STONE",
+                        "amount": 2
+                    }]
+                }]
+            }
+        ]
+    }
+}

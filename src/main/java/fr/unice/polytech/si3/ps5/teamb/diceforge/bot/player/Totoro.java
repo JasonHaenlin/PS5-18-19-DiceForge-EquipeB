@@ -33,13 +33,7 @@ public class Totoro extends Player {
     }
 
     @Override
-    protected boolean replayOnceAgain() {
-        return new Random().nextBoolean();
-    }
-
-    @Override
     public int callBackDice() {
-        Callback<Integer, Resources> c = new CallbackDiceWithMostResources();
         return new Random().nextInt(2);
     }
 

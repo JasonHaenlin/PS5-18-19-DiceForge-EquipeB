@@ -10,6 +10,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state.Manager;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.template.TemplateEarlyGameForgeGoldPriority;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.template.TemplateLateGameExploitHigestCard;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.template.TemplateMiddleGameForgeMoonSun;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.template.TemplateMiddleGameForgeSun;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 
@@ -30,7 +31,7 @@ public class Raichu extends Player {
         manager = new Manager(this);
         // @formatter:off
         manager.addState(new TemplateEarlyGameForgeGoldPriority())
-            .addState(new TemplateMiddleGameForgeMoonSun())
+            .addState(new TemplateMiddleGameForgeSun())
             .addState(new TemplateLateGameExploitHigestCard())
             .build();
         // @formatter:on
@@ -60,8 +61,7 @@ public class Raichu extends Player {
 
     @Override
     public int callBackHammer(int amount) {
-        Callback<Integer, Integer> c = new CallbackHammerOptimization();
-        return c.runCallback(manager.getContext(), amount);
+        return amount;
     }
 
 }
