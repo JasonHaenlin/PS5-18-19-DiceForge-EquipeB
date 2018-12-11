@@ -7,25 +7,34 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.CallbackD
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.CallbackHammerOptimization;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.CallbackSelectResources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state.Manager;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.template.TemplateGameFullRandom;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.template.TemplateEarlyGameForgeGoldPriority;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.template.TemplateLateGameExploitHigestCard;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.template.TemplateMidGameHammerPriority;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.template.TemplateMiddleGameForgeMoonSun;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 
 /**
- * Pika
+ * Luxio ...
  */
-public class Cloud extends Player {
+public class Asta extends Player {
 
-    Manager manager;
+    private Manager manager;
 
-    public Cloud() {
-        super("Cloud");
+    public Asta() {
+        super("Asta");
     }
 
     @Override
-    public void setup() {
+    protected void setup() {
         manager = new Manager(this);
-        manager.addState(new TemplateGameFullRandom()).build();
+        // @formatter:off
+        manager.addState(new TemplateEarlyGameForgeGoldPriority())
+                .addState(new TemplateMidGameHammerPriority())
+                .addState(new TemplateMiddleGameForgeMoonSun())
+                .addState(new TemplateLateGameExploitHigestCard())
+                .build();
+        // @formatter:on
     }
 
     @Override
@@ -55,5 +64,4 @@ public class Cloud extends Player {
         Callback<Integer, Integer> c = new CallbackHammerOptimization();
         return c.runCallback(manager.getContext(), amount);
     }
-
 }

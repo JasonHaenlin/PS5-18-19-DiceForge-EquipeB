@@ -1,7 +1,7 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.template;
 
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.behaviour.RandomForge;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.behaviour.analyse.RandomSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.behaviour.StratForgeRandomForge;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.behaviour.analyse.StratDiceRandomSide;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state.Context;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state.Template;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
@@ -23,7 +23,7 @@ public class TemplateEarlyGameRandomForge implements Template {
 
     @Override
     public void doAction(Context context) {
-        context.getForge().compute(new RandomSide(), new RandomForge(), true);
+        context.getForge().compute(new StratDiceRandomSide(), new StratForgeRandomForge(), true);
     }
 
     @Override

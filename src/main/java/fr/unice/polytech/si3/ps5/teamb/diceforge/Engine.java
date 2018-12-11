@@ -162,6 +162,7 @@ public class Engine {
 				+ (score > 1 ? "parties" : "partie") + " sur " + numberOfParties + " : moyenne de "
 				+ String.format("%.2f", ((float) playerTotalScore.get(bot)) / numberOfParties) + " points : "
 				+ (score != 0 ? String.format("%.1f", ((float) score / numberOfParties) * 100) + "%" : "0.0%")));
+		buildScore.append("\n");
 		return buildScore.toString();
 	}
 

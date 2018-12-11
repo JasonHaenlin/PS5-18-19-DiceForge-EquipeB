@@ -7,12 +7,12 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.DiceSide;
 
 /**
- * SingleResource is a block of strategy choosing the side to remove
+ * StratDiceSingleResource is a block of strategy choosing the side to remove
  *
  * 
  * @see StratDice
  */
-public class SingleResource implements StratDice {
+public class StratDiceSingleResource implements StratDice {
 
     @Override
     public int chooseDice(List<DiceSide> diceSides0, List<DiceSide> diceSides1, Resources resources) {

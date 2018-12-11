@@ -1,12 +1,12 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player;
 
 import java.util.Map;
+import java.util.Random;
 
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.Exploit;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.exploit.behaviour.HighestExploit;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.Forge;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.behaviour.HighestForge;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.behaviour.analyse.ResourceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.Callback;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.CallbackDiceWithMostResources;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state.Manager;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.template.TemplateGameFullRandom;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 
@@ -14,43 +14,46 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
  * Totoro
  */
 public class Totoro extends Player {
-    private Forge forge;
-    private Exploit exploit;
+
+    Manager manager;
 
     public Totoro() {
         super("Totoro");
     }
 
     @Override
-    protected void setup() {
-        forge = new Forge(name, boardView);
-        exploit = new Exploit(name, boardView);
-        forge.setdiceTypePriority(Resources.MOON_STONE);
+    public void setup() {
+        manager = new Manager(this);
+        manager.addState(new TemplateGameFullRandom()).build();
     }
 
     @Override
-    public void play() {
-        forge.compute(new ResourceSide(), new HighestForge(), true);
-        exploit.compute(new HighestExploit());
-    }
-
-    @Override
-    public int callBackDice() {
-        return 0;
+    protected void play() {
+        manager.ExecSequence();
     }
 
     @Override
     protected boolean replayOnceAgain() {
-        return !boardView.playableCards(name, Resources.SUN_STONE, 2).isEmpty();
+        return new Random().nextBoolean();
+    }
+
+    @Override
+    public int callBackDice() {
+        Callback<Integer, Resources> c = new CallbackDiceWithMostResources();
+        return new Random().nextInt(2);
     }
 
     @Override
     public Resources callBackResources(Map<Resources, Integer> resInt) {
+        for (Resources key : resInt.keySet()) {
+            return key;
+        }
         return null;
     }
 
     @Override
     public int callBackHammer(int amount) {
-        return 0;
+        return new Random().nextInt(amount);
     }
+
 }

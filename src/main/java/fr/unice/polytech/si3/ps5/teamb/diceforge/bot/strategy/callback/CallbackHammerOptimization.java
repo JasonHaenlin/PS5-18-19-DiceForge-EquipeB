@@ -25,7 +25,7 @@ public class CallbackHammerOptimization implements Callback<Integer, Integer> {
 
     private boolean isPossible(int goldNeeded, Integer value, Context context) {
         TupleInteger<String> round = context.getGameRound();
-        return ((float) goldNeeded) / round.delta() < 2;
+        return ((float) goldNeeded) / round.delta() < 1.5;
     }
 
 }

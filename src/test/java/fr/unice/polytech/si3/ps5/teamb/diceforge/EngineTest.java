@@ -28,7 +28,6 @@ public class EngineTest {
         engine.setConfFile("src/test/resources/config/moonDiceAndSunDice.json");
         String result = engine.createGame(100).addBot(OnlyDice.class).addBot(SimpleHighestExploit.class).fire();
         Map<String, String> res = ParseHelper.parseResult("onlyDice", "SimpleHighestExploit", result);
-        System.out.println(ParseHelper.parseResult("onlyDice", "SimpleHighestExploit", result));
         assertTrue(res.get("SimpleHighestExploit").contains("gagne 100"));
     }
 }
