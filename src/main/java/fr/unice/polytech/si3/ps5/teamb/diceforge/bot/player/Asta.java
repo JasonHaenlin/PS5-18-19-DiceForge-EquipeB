@@ -16,6 +16,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 
 /**
  * Asta Bot which has for main quest to success in completing the Hammer card
+ * currently
  */
 public class Asta extends Player {
 
