@@ -21,7 +21,7 @@ public class ResourceSideTest {
 
     @Before
     public void setup() {
-        strD = new ResourceSide();
+        strD = new StratDiceResourceSide();
     }
 
     @Test

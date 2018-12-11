@@ -31,8 +31,6 @@ public class CallbackSelectResourcesTest {
         Map<Resources, Integer> value = new HashMap<>();
         value.put(Resources.MOON_STONE, 15);
         value.put(Resources.SUN_STONE, 10);
-        System.out.println(m);
-        System.out.println(m.getContext().getPlayerName());
         Resources res = c.runCallback(m.getContext(), value);
         assertTrue(Resources.SUN_STONE.equals(res));
     }

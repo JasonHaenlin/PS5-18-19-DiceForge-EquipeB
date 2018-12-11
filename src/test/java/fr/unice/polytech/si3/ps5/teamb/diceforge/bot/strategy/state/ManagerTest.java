@@ -1,7 +1,7 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -1,6 +1,6 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -52,7 +52,6 @@ public class TestBoardforge {
                 intremove[0] = 0;
             }
         }
-        System.out.println("intadd : " + intadd[0] + " intremove :" + intremove[0]);
         if (intadd[0] == 1 && intremove[0] == 1) {
             return true;
         }

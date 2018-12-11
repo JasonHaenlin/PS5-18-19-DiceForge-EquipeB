@@ -34,7 +34,7 @@ public class SingleResourceTest {
     @Before
     public void setup() throws Exception {
         conf = new Config("src/test/resources/config/singleresource.json");
-        strD = new SingleResource();
+        strD = new StratDiceSingleResource();
     }
 
     @Test

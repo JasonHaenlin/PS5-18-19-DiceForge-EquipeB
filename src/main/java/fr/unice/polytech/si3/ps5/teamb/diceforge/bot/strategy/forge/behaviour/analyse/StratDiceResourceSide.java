@@ -11,7 +11,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.DiceSide;
  * 
  * @see StratDice
  */
-public class ResourceSide implements StratDice {
+public class StratDiceResourceSide implements StratDice {
 
     @Override
     public int chooseDice(List<DiceSide> diceSides0, List<DiceSide> diceSides1, Resources resources) {

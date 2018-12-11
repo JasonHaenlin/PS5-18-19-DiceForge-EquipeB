@@ -34,7 +34,6 @@ public class forgeTest {
     @Test
     public void forgeRemoveSideTest() {
         List<DiceSide> sides = forge.obtainReplaceableSides(3);
-        System.out.println(sides.toString());
         forge.removeSide(sides.get(0));
         assertEquals(0, forge.obtainReplaceableSides(3).size());
         assertEquals(3, forge.obtainReplaceableSides(4).size());

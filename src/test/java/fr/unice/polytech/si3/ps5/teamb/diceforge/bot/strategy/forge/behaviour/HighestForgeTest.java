@@ -21,7 +21,7 @@ public class HighestForgeTest {
 
     @Before
     public void setup() {
-        strF = new HighestForge();
+        strF = new StratForgeHighestForge();
     }
 
     @Test

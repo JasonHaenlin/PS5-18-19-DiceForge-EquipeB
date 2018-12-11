@@ -8,10 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.Engine;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.Cloud;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.Hephaestos;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.Raichu;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.Totoro;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player.forgeVP;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.exploit.card.Card;
 
 /**
@@ -24,7 +21,7 @@ public class Conf4PTest {
     @Before
     public void setup() throws Exception {
         Engine engine = new Engine();
-        engine.createGame(1).addBot(Hephaestos.class).addBot(Cloud.class).addBot(Raichu.class).addBot(Totoro.class);
+        engine.createGame(1).addBot(forgeVP.class).addBot(forgeVP.class).addBot(forgeVP.class).addBot(forgeVP.class);
         conf = new Config(engine.chooseConFile());
 
     }

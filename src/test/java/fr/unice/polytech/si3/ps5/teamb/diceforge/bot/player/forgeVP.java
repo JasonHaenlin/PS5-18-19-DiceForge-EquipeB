@@ -3,8 +3,8 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player;
 import java.util.Map;
 
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.Forge;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.behaviour.HighestForge;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.behaviour.analyse.ResourceSide;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.behaviour.StratForgeHighestForge;
+import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.forge.behaviour.analyse.StratDiceResourceSide;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 
@@ -24,7 +24,7 @@ public class forgeVP extends Player {
 
     @Override
     public void play() {
-        forge.compute(new ResourceSide(), new HighestForge(), false);
+        forge.compute(new StratDiceResourceSide(), new StratForgeHighestForge(), false);
 
     }
 

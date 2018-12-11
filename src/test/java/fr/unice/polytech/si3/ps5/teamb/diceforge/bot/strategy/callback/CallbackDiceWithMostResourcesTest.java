@@ -1,6 +1,6 @@
 package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
