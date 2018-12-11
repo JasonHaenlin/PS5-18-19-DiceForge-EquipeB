@@ -31,8 +31,8 @@ public class SideChoice extends DiceSide {
         inst.add(new Instructions() {
             @Override
             public TuplePair<Resources, Integer> execution(DiceSide secondary, Player player) {
-                if (chosenResource == null)// do the callback only one time
-                    chosenResource = player.callBackResources(sides); // check returned value
+                if (chosenResource == null)
+                    chosenResource = player.callBackResources(sides);
                 return new TuplePair<Resources, Integer>(chosenResource, sides.get(chosenResource));
             }
         });

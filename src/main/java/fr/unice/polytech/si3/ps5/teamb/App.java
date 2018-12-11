@@ -11,20 +11,29 @@ public class App {
 
     private static Logger logger = LogManager.getLogger(App.class);
 
-    private static void launchGame() throws Exception, InstantiationException, IllegalAccessException {
+    public static void main(String[] args) throws Exception {
         Engine engine = new Engine();
+        String result;
+
         // @formatter:off
-        String result = engine.createGame(1000)
+        result = engine.createGame(1000)
+                .addBot(Totoro.class)
+                .addBot(Totoro.class)
                 .addBot(Totoro.class)
                 .addBot(Raichu.class)
                 .fire();
-        //@formatter:ons
+                
         logger.info(result);
-    }
 
-    public static void main(String[] args) throws Exception {
-        launchGame();
-        launchGame();
+        result = engine.createGame(1000)
+                .addBot(Raichu.class)
+                .addBot(Raichu.class)
+                .addBot(Raichu.class)
+                .addBot(Raichu.class)
+                .fire();
+
+        logger.info(result);
+        //@formatter:on
     }
 
 }
