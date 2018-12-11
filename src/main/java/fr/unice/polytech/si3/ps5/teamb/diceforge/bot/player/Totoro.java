@@ -3,8 +3,6 @@ package fr.unice.polytech.si3.ps5.teamb.diceforge.bot.player;
 import java.util.Map;
 import java.util.Random;
 
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.Callback;
-import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.callback.CallbackDiceWithMostResources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.state.Manager;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.bot.strategy.template.TemplateGameFullRandom;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
