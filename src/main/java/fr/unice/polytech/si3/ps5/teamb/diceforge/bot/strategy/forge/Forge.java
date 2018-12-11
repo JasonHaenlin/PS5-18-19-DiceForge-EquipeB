@@ -11,7 +11,8 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.DiceSide;
 
 /**
- * Forge
+ * Forge is the strategy class setting the priority resource to forge
+ * and on which Dice the forge is prioritized
  * 
  * @see StratDice
  * @see StratForge

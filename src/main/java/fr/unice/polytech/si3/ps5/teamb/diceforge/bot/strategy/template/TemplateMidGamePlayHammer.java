@@ -12,7 +12,6 @@ public class TemplateMidGamePlayHammer implements Template {
 
     @Override
     public boolean onCondition(Context context) {
-        //TODO Methode in contest to knows if the hammer has completed
         return false;
     }
 

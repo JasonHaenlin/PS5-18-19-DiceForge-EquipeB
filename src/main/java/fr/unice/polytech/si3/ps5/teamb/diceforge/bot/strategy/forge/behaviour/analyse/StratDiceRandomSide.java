@@ -7,9 +7,9 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.DiceSide;
 
 /**
- * StratDiceChoseRandomSide
+ * StratDiceChoseRandomSide choses a random Side on a random Dice to change it when forge is called
  */
-public class StratDiceRandomSide implements StratDice {
+public class    StratDiceRandomSide implements StratDice {
 
     @Override
     public int chooseDice(List<DiceSide> diceSides0, List<DiceSide> diceSides1, Resources resources) {

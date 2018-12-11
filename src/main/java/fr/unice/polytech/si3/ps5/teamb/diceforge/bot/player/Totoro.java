@@ -11,7 +11,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Player;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 
 /**
- * Totoro
+ * Totoro Full random bot...
  */
 public class Totoro extends Player {
 

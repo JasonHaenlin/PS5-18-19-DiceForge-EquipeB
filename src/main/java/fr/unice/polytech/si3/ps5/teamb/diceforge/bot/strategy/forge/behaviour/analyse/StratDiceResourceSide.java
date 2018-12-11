@@ -7,7 +7,8 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.DiceSide;
 
 /**
- * ResourceSide
+ * ResourceSide is a clock of strategy choosing randomly the dice to craft on and a side with gold or victory
+ * point on it
  * 
  * @see StratDice
  */

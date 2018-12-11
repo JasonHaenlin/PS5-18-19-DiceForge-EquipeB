@@ -6,7 +6,7 @@ import fr.unice.polytech.si3.ps5.teamb.diceforge.game.Resources;
 import fr.unice.polytech.si3.ps5.teamb.diceforge.game.forge.dice.side.DiceSide;
 
 /**
- * StratForgeHighestForge
+ * StratForgeHighestForge chooses the side with the highest gold value
  * 
  * @see StratForge
  */
